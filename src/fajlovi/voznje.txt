@@ -1,0 +1,5 @@
+2019-12-13 12:35,Nenada Mitrova 12,Sime Matavulja 15,petar,nemanja,10,30,krirana,
+2018-08-15 10:10,Devet Jugovica 44,Josifa Marinkovica 26,milos,mirko,3,5,dodeljena,
+2019-11-10 8:50,Nikole Tesle 12,Primorska 31,stefan,jovana,12,25,prihvacena
+2019-03-05 4:40,Futoska pijaca 13,Dimitrija Davidovica 11,jovan,marina,4,10,zavrsena
+2019-01-07 12:00,Valentina Vodnika 40,Strazilovska 13,aleksandar,stefan,5,18,odbijena

@@ -1,0 +1,5 @@
+ilija123,ilija321,ilija,markovic,1235438695314,Bulevar Cara Lazara,muski,0601326412,120000,0143433689,Liman
+milija123,milija321,milija,savic,1928354321841,Balzakova,muski,0634251252,90000,0143432441,Detelinara
+milica123,milica321,milica,milicic,2928453212941,Bulevar Despota Stefana,zenski,0623241252,140000,0143433845,Grbavica
+ivana123,ivana321,ivana,ivanic,4235438274814,Suncani kej,zenski,0617868921,110000,0219939223,Podbara
+marko123,marko321,marko,stajic,Ribarsko ostrvo,muski,0602364719,95000,0213423312,Petrovaradin
