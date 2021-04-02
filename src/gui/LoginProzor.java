@@ -9,7 +9,6 @@ import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import ucitavanje.Ucitavanje;
 
-
 public class LoginProzor extends JFrame{
 
 	private static final long serialVersionUID = 1L;
