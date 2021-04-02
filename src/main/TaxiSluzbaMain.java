@@ -1,23 +1,20 @@
 package main;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import gui.LoginProzor;
+import ucitavanje.Ucitavanje;
 
 public class TaxiSluzbaMain {
+	
+    private static String KORISNICI_FAJL = "musterija.txt";
+
 
 	public static void main(String[] args){
 		
-		JFrame frame = new JFrame("Taxi sluzba");
-		frame.setSize(400, 200);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Ucitavanje ucitavanje = new Ucitavanje();
+        ucitavanje.ucitajZaposlene(KORISNICI_FAJL);
 
-		JPanel panel = new JPanel();
-		frame.add(panel);
-		LoginProzor.placeComponents(panel);
-
-		frame.setVisible(true);
+        LoginProzor lp = new LoginProzor(ucitavanje);
+        lp.setVisible(true);
 
 	}
 

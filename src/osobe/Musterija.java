@@ -6,23 +6,23 @@ public class Musterija {
 	private String lozinka;
 	private String ime;
 	private String prezime;
-	private int jmbg;
+	private String jmbg;
 	private String adresa;
 	private String pol;
-	private int brojTelefona;
+	private String brojTelefona;
 	
 	public Musterija() {
-		String korisnickoIme = "";
-		String lozinka = "";
-		String ime = "";
-		String prezime = "";
-		int jmbg = 0;
-		String adresa = "";
-		String pol = "";
-		int brojTelefona = 0;
+		this.korisnickoIme = "";
+		this.lozinka = "";
+		this.ime = "";
+		this.prezime = "";
+		this.jmbg = "";
+		this.adresa = "";
+		this.pol = "";
+		this.brojTelefona = "";
 	}
 	
-	public Musterija(String korisnickoIme,String lozinka,String ime,String prezime,int jmbg,String adresa,String pol,int brojTelefona) {
+	public Musterija(String korisnickoIme,String lozinka,String ime,String prezime,String jmbg,String adresa,String pol,String brojTelefona) {
 		super();
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
@@ -66,11 +66,11 @@ public class Musterija {
 		this.prezime = prezime;
 	}
 
-	public int getJmbg() {
+	public String getJmbg() {
 		return jmbg;
 	}
 
-	public void setJmbg(int jmbg) {
+	public void setJmbg(String jmbg) {
 		this.jmbg = jmbg;
 	}
 
@@ -90,11 +90,11 @@ public class Musterija {
 		this.pol = pol;
 	}
 
-	public int getBrojTelefona() {
+	public String getBrojTelefona() {
 		return brojTelefona;
 	}
 
-	public void setBrojTelefona(int brojTelefona) {
+	public void setBrojTelefona(String brojTelefona) {
 		this.brojTelefona = brojTelefona;
 	}
 

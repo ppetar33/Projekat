@@ -2,75 +2,81 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
-public class LoginProzor{
+import net.miginfocom.swing.MigLayout;
+import osobe.Musterija;
+import ucitavanje.Ucitavanje;
+
+
+public class LoginProzor extends JFrame{
+
+	private static final long serialVersionUID = 1L;
+	private JLabel lblPoruka;
+	private JLabel lblKorisnickoIme;
+	private JTextField txtKorisnickoIme;
+	private JLabel lblSifra;
+	private JPasswordField pfSifra;
+	private JButton btnOK;
+	private JButton btnCancel;
+    private Ucitavanje ucitavanje;
     
-	public static void placeComponents(JPanel panel) {
+    public LoginProzor(Ucitavanje ucitavanje) {
+        this.ucitavanje = ucitavanje;
+		setTitle("Prijava");
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setResizable(false);
+		initGUI();
+		initActions();
+        pack();
+    }
+    private void initGUI() {
+		MigLayout layout = new MigLayout("wrap 2", "[][]", "[]20[][]20[]");
+		setLayout(layout);
 
-		panel.setLayout(null);
+		this.lblPoruka = new JLabel("Dobrodošli. Molimo da se prijavite.");
+		this.lblKorisnickoIme = new JLabel("Korisničko ime");
+		this.txtKorisnickoIme = new JTextField(20);
+		this.lblSifra = new JLabel("Šifra");
+		this.pfSifra = new JPasswordField(20);
+		this.btnOK = new JButton("OK");
+		this.btnCancel = new JButton("Cancel");
 
-		JLabel userLabel = new JLabel("Korisnicko ime");
-		userLabel.setBounds(70, 25, 120, 25);
-		panel.add(userLabel);
-
-		JTextField userText = new JTextField(20);
-		userText.setBounds(180, 25, 160, 25);
-		panel.add(userText);
-
-		JLabel passwordLabel = new JLabel("Lozinka");
-		passwordLabel.setBounds(70, 65, 80, 25);
-		panel.add(passwordLabel);
-
-		JPasswordField passwordText = new JPasswordField(20);
-		passwordText.setBounds(180, 65, 160, 25);
-		panel.add(passwordText);
-
-		JButton loginButton = new JButton("Prijava");
-		loginButton.setBounds(65, 120, 90, 35);
-		panel.add(loginButton);
+		this.getRootPane().setDefaultButton(btnOK);
 		
-		JButton exitButton = new JButton("Otkazi");
-		exitButton.setBounds(250, 120, 90, 35);
-		panel.add(exitButton);
+		add(lblPoruka, "span 2");
+		add(lblKorisnickoIme);
+		add(txtKorisnickoIme);
+		add(lblSifra);
+		add(pfSifra);
+		add(new JLabel());
+		add(btnOK, "split 2");
+		add(btnCancel);
 		
-	    loginButton.addActionListener(new ActionListener()
-	    {
-	      public void actionPerformed(ActionEvent e)
-	      {
-	    	  String userNameInput = userText.getText().trim();
-	    	  String passwordInput = new String(passwordText.getPassword()).trim();
-//	    	     try {
-//	    	            Scanner in = new Scanner(inputFile);
-//	    	            while (in.hasNextLine())
-//	    	            {
-//	    	              String s = in.nextLine();  
-//	    	              String[] sArray = s.split(",");
-//	    	              
-//	    	              if (userNameInput == sArray[0] && passwordInput == sArray[1])
-//	    	              {
-//	    	                JOptionPane.showMessageDialog(null,"Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-//	    	              }
-//	    	              else
-//	    	              {
-//	    	                JOptionPane.showMessageDialog(null, "Invalid Username / Password Combo", "Error",JOptionPane.ERROR_MESSAGE);
-//	    	              }
-//	    	            }
-//	    	            in.close();
-//	    	            
-//	    	        } catch (FileNotFoundException e1) {
-//	    	            JOptionPane.showMessageDialog(null, "User Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
-//	    	        }
-	      }
-	    });	
+    }
+    private void initActions() {
+        btnOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String korisnickoIme = txtKorisnickoIme.getText().trim();
+                String sifra = new String(pfSifra.getPassword()).trim();
 
-	    exitButton.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	            JOptionPane.showMessageDialog(loginButton, "Uspesno ste izasli iz aplikacije!", null, JOptionPane.WARNING_MESSAGE);
-	    		System.exit(0);
-	    	}
-	    });
-	    
-	}
-
+                Musterija prijavljen = ucitavanje.login(korisnickoIme, sifra);
+                if (prijavljen == null) {
+                    JOptionPane.showMessageDialog(null, "Neispravni login podaci", "Greska", JOptionPane.WARNING_MESSAGE);
+                } else {
+                	JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+		btnCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LoginProzor.this.setVisible(false);
+				LoginProzor.this.dispose();
+			}
+		});
+    }
 }
