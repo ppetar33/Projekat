@@ -1,5 +1,0 @@
-petar123,petar321,petar,petrovic,0102031213122,Mihaila Pupina,muski,0653443213
-milos123,milos321,milos,milosevic,1234324561237,Strazilovska,muski,0653443213
-jovan123,jovan321,jovan,jovanovic,9128374654182,Jevrejska 14,muski,0653443213
-jelena123,jelena321,jelena,jelenic,1021314258231,Karadjordja 12,zenski,0653443213
-ana123,ana321,ana,maric,1290328132192,Moskrijeva 13,zenski,0653443213

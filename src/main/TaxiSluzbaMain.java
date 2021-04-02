@@ -5,7 +5,7 @@ import ucitavanje.Ucitavanje;
 
 public class TaxiSluzbaMain {
 	
-    private static String KORISNICI_FAJL = "musterija.txt";
+    private static String KORISNICI_FAJL = "korisnici.txt";
 
 
 	public static void main(String[] args){
