@@ -14,6 +14,7 @@ public class PrikazVozaca {
 				System.out.println(words[i]);
 			}
 		}
+		// zbog razmaka ne prikazuje podatke
 	
 	}
 	
