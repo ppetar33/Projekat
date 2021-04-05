@@ -8,8 +8,8 @@ milija123,milija321,milija,savic,1928354321841,Balzakova,muski,0634251252,90000,
 milica123,milica321,milica,milicic,2928453212941,Bulevar Despota Stefana,zenski,0623241252,140000,0143433845,Grbavica,DISPECAR
 ivana123,ivana321,ivana,ivanic,4235438274814,Suncani kej,zenski,0617868921,110000,0219939223,Podbara,DISPECAR
 marko123,marko321,marko,stajic,1234673215531,Mokranjac,muski,0602364719,95000,0213423312,Petrovaradin,DISPECAR
-petar123,petar321,petar,petrovic,0102031213122,Mihaila Pupina,muski,0653443213,,,MUSTERIJA
-milos123,milos321,milos,milosevic,1234324561237,Strazilovska,muski,0653443213,,,MUSTERIJA
-jovan123,jovan321,jovan,jovanovic,9128374654182,Jevrejska 14,muski,0653443213,,,MUSTERIJA
-jelena123,jelena321,jelena,jelenic,1021314258231,Karadjordja 12,zenski,0653443213,,,MUSTERIJA
-ana123,ana321,ana,maric,1290328132192,Moskrijeva 13,zenski,0653443213,,,MUSTERIJA
+petar123,petar321,petar,petrovic,0102031213122,Mihaila Pupina,muski,0653443213,,,,MUSTERIJA
+milos123,milos321,milos,milosevic,1234324561237,Strazilovska,muski,0653443213,,,,MUSTERIJA
+jovan123,jovan321,jovan,jovanovic,9128374654182,Jevrejska 14,muski,0653443213,,,,MUSTERIJA
+jelena123,jelena321,jelena,jelenic,1021314258231,Karadjordja 12,zenski,0653443213,,,,MUSTERIJA
+ana123,ana321,ana,maric,1290328132192,Moskrijeva 13,zenski,0653443213,,,,MUSTERIJA
