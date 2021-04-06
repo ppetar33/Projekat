@@ -1,10 +1,17 @@
 package dispecer;
 
+import osobe.Musterija;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MyFrame extends JFrame{
 
+    //napraviti prozor za dodavanje
+    //uraditi validaciju podataka
+    //
     private Container c;
     private JLabel ime;
     private JTextField time;
@@ -193,6 +200,15 @@ public class MyFrame extends JFrame{
         btnOK.setBackground(Color.BLUE);
         c.add(btnOK);
 
+        initActions();
+    }
+    private void initActions() {
+        btnOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(null, "Uspesno ste dodali novog vozaca!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
     }
 }
 
