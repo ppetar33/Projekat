@@ -20,11 +20,11 @@ public class Ucitavanje {
 
     public void ucitajZaposlene(String imeFajla) {
     	try {
-			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
+			File korisniciFajl = new File("src/fajlovi/" + imeFajla);
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
 			String line = null;
 			while((line = br.readLine()) != null) {
-				String[] split = line.split("\\,");
+				String[] split = line.split(",");
 				String korisnickoIme = split[0];
 				String lozinka = split[1];
 				String ime = split[2];
@@ -52,8 +52,10 @@ public class Ucitavanje {
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String automobil = split[10];
+					System.out.println(line);
 				}
-				
+                Musterija musterija = new Musterija(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
+                musterije.add(musterija);
 			}
 			br.close();
 		} catch (Exception e) {

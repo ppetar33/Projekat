@@ -14,8 +14,8 @@ public class Dispecar extends Musterija {
 		this.odeljenjeNaKojemRadi = "";
 	}
 
-	public Dispecar(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-			String pol, String brojTelefona, String plata, String brojTelefonskeLinije, String odeljenjeNaKojemRadi) {
+	public Dispecar(String korisnickoIme, String lozinka, String ime, String prezime, double jmbg, String adresa,
+			String pol, int brojTelefona, String plata, String brojTelefonskeLinije, String odeljenjeNaKojemRadi) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojTelefonskeLinije = brojTelefonskeLinije;

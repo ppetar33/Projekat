@@ -10,7 +10,6 @@ public class PrikazVozaca {
 		ucitajVozaca();
 		
 	}
-
 	public static void ucitajVozaca() {
 		try {
 			File korisniciFajl = new File("src/fajlovi/korisnici.txt");

@@ -6,23 +6,23 @@ public class Musterija {
 	private String lozinka;
 	private String ime;
 	private String prezime;
-	private String jmbg;
+	private double jmbg;
 	private String adresa;
 	private String pol;
-	private String brojTelefona;
+	private int brojTelefona;
 	
 	public Musterija() {
 		this.korisnickoIme = "";
 		this.lozinka = "";
 		this.ime = "";
 		this.prezime = "";
-		this.jmbg = "";
+		this.jmbg = 0;
 		this.adresa = "";
 		this.pol = "";
-		this.brojTelefona = "";
+		this.brojTelefona = 0;
 	}
 	
-	public Musterija(String korisnickoIme,String lozinka,String ime,String prezime,String jmbg,String adresa,String pol,String brojTelefona) {
+	public Musterija(String korisnickoIme,String lozinka,String ime,String prezime,double jmbg,String adresa,String pol,int brojTelefona) {
 		super();
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
@@ -66,11 +66,11 @@ public class Musterija {
 		this.prezime = prezime;
 	}
 
-	public String getJmbg() {
+	public double getJmbg() {
 		return jmbg;
 	}
 
-	public void setJmbg(String jmbg) {
+	public void setJmbg(double jmbg) {
 		this.jmbg = jmbg;
 	}
 
@@ -90,11 +90,11 @@ public class Musterija {
 		this.pol = pol;
 	}
 
-	public String getBrojTelefona() {
+	public int getBrojTelefona() {
 		return brojTelefona;
 	}
 
-	public void setBrojTelefona(String brojTelefona) {
+	public void setBrojTelefona(int brojTelefona) {
 		this.brojTelefona = brojTelefona;
 	}
 

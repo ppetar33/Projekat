@@ -14,8 +14,8 @@ public class Vozac extends Musterija{
 		this.automobil = "";
 	}
 
-	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-			String pol, String brojTelefona, String plata, String brojClanskeKarte, String automobil) {
+	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, double jmbg, String adresa,
+			String pol, int brojTelefona, String plata, String brojClanskeKarte, String automobil) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
