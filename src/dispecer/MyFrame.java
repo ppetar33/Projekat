@@ -199,6 +199,7 @@ public class MyFrame extends JFrame{
 
         initActions();
     }
+    
     private void initActions() {
         btnOK.addActionListener(new ActionListener() {
             @Override
