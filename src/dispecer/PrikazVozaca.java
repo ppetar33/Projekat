@@ -7,10 +7,10 @@ public class PrikazVozaca {
 	
 	public static void main(String[] args){
 		
-		ucitajVozaca();
+		ucitajKorisnike();
 		
 	}
-	public static void ucitajVozaca() {
+	public static void ucitajKorisnike() {
 		try {
 			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));

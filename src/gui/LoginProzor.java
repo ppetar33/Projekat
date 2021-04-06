@@ -2,16 +2,13 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
-
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import ucitavanje.Ucitavanje;
 
 public class LoginProzor extends JFrame{
 
-	private static final long serialVersionUID = 1L;
 	private JLabel lblPoruka;
 	private JLabel lblKorisnickoIme;
 	private JTextField txtKorisnickoIme;

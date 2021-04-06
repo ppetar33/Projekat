@@ -50,6 +50,4 @@ public class Vozac extends Musterija{
 	public String toString() {
 		return "Vozac [plata=" + plata + ", brojClanskeKarte=" + brojClanskeKarte + ", automobil=" + automobil + "]";
 	}
-	
-
 }

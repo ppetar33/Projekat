@@ -14,9 +14,6 @@ public class Ucitavanje {
     public Ucitavanje() {
         this.musterije = new ArrayList<Musterija>();
     }
-    public ArrayList<Musterija> getVozaci() {
-        return musterije;
-    }
 
     public void ucitajZaposlene(String imeFajla) {
     	try {
