@@ -17,6 +17,8 @@ public class LoginProzor extends JFrame{
 	private JButton btnOK;
 	private JButton btnCancel;
     private Ucitavanje ucitavanje;
+
+    // test
     
     public LoginProzor(Ucitavanje ucitavanje) {
         this.ucitavanje = ucitavanje;
