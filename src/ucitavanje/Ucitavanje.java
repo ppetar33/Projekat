@@ -37,18 +37,18 @@ public class Ucitavanje {
 				int brojTelefona = Integer.parseInt(brojTelefonaString);
 				String tip = split[11];
 				if(tip.equals("MUSTERIJA")) {
-					String prazan01 = split[8];
-					String prazan02 = split[9];
-					String prazan03 = split[10];
+					String prazanStringMusterija01 = split[8];
+					String prazanStringMusterija02 = split[9];
+					String prazanStringMusterija03 = split[10];
 				}else if(tip.equals("DISPECAR")) {
 					String plataString = split[8];
-					int plata = Integer.parseInt(plataString);
+					int plataDispecara = Integer.parseInt(plataString);
 					String brojPozivnogTelefonaString = split[9];
 					int brojPozivnogTelefona = Integer.parseInt(brojPozivnogTelefonaString);
 					String deoGradaNaKojemRadi = split[10];
 				}else if(tip.equals("VOZAC")) {
 					String plataString = split[8];
-					int plata = Integer.parseInt(plataString);
+					int plataVozaca = Integer.parseInt(plataString);
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String automobil = split[10];

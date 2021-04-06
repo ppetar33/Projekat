@@ -44,7 +44,7 @@ public class PrikazVozaca {
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String automobil = split[10];
-					System.out.println(line);
+//					System.out.println(line);
 				}
 				
 			}

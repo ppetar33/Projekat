@@ -73,6 +73,7 @@ public class LoginProzor extends JFrame{
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Uspesno ste izasli iz aplikacije", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
 				LoginProzor.this.setVisible(false);
 				LoginProzor.this.dispose();
 			}
