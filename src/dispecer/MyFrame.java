@@ -9,9 +9,6 @@ import java.awt.event.ActionListener;
 
 public class MyFrame extends JFrame{
 
-    //napraviti prozor za dodavanje
-    //uraditi validaciju podataka
-    //
     private Container c;
     private JLabel ime;
     private JTextField time;
