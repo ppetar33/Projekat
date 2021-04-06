@@ -18,6 +18,7 @@ public class LoginProzor extends JFrame{
 	private JButton btnCancel;
     private Ucitavanje ucitavanje;
 
+    //dadadadad
     public LoginProzor(Ucitavanje ucitavanje) {
         this.ucitavanje = ucitavanje;
 		setTitle("Prijava");
