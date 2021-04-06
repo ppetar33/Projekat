@@ -7,7 +7,7 @@ public class TaxiSluzbaMain {
 	
     private static String KORISNICI_FAJL = "korisnici.txt";
 
-    //dadada
+    
 	public static void main(String[] args){
 		
         Ucitavanje ucitavanje = new Ucitavanje();
