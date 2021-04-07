@@ -3,19 +3,19 @@ package osobe;
 public class Dispecar extends Musterija {
 
 	
-	private String plata;
-	private String brojTelefonskeLinije;
+	private int plata;
+	private int brojTelefonskeLinije;
 	private String odeljenjeNaKojemRadi;
 	
 	public Dispecar() {
 		super();
-		this.plata = "";
-		this.brojTelefonskeLinije = "";
+		this.plata = 0;
+		this.brojTelefonskeLinije = 0;
 		this.odeljenjeNaKojemRadi = "";
 	}
 
 	public Dispecar(String korisnickoIme, String lozinka, String ime, String prezime, double jmbg, String adresa,
-			String pol, int brojTelefona, String plata, String brojTelefonskeLinije, String odeljenjeNaKojemRadi) {
+			String pol, int brojTelefona, int plata, int brojTelefonskeLinije, String odeljenjeNaKojemRadi) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojTelefonskeLinije = brojTelefonskeLinije;
@@ -23,19 +23,19 @@ public class Dispecar extends Musterija {
 	}
 
 
-	public String getPlata() {
+	public int getPlata() {
 		return plata;
 	}
 
-	public void setPlata(String plata) {
+	public void setPlata(int plata) {
 		this.plata = plata;
 	}
 
-	public String getBrojTelefonskeLinije() {
+	public int getBrojTelefonskeLinije() {
 		return brojTelefonskeLinije;
 	}
 
-	public void setBrojTelefonskeLinije(String brojTelefonskeLinije) {
+	public void setBrojTelefonskeLinije(int brojTelefonskeLinije) {
 		this.brojTelefonskeLinije = brojTelefonskeLinije;
 	}
 
