@@ -198,8 +198,8 @@ public class MyFrame extends JFrame{
         c.add(btnOK);
 
         initActions();
+
     }
-    
     private void initActions() {
         btnOK.addActionListener(new ActionListener() {
             @Override
