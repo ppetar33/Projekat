@@ -76,6 +76,7 @@ public class LoginProzor extends JFrame{
                 }
 
 				if (tipDispecar.equals("DISPECAR")){
+
 					JOptionPane.showMessageDialog(null, "Ulogovani ste kao dispecar!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
 				}else if(tipMusterija.equals("MUSTERIJA")){
 					JOptionPane.showMessageDialog(null, "Ulogovani ste kao musterija", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
