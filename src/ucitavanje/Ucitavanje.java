@@ -5,14 +5,20 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import osobe.Dispecar;
 import osobe.Musterija;
+import osobe.Vozac;
 
 public class Ucitavanje {
 
     private ArrayList<Musterija> musterije;
+    private ArrayList<Dispecar> dispecari;
+    private ArrayList<Vozac> vozaci;
 
     public Ucitavanje() {
         this.musterije = new ArrayList<Musterija>();
+        this.dispecari = new ArrayList<Dispecar>();
+        this.vozaci = new ArrayList<Vozac>();
     }
 
     public void ucitajZaposlene(String imeFajla) {
@@ -32,34 +38,38 @@ public class Ucitavanje {
 				String pol = split[6];
 				String brojTelefonaString = split[7];
 				int brojTelefona = Integer.parseInt(brojTelefonaString);
-				String tip = split[11];
-				if(tip.equals("MUSTERIJA")) {
+				String tipKorisnika = split[11];
+				if(tipKorisnika.equals("MUSTERIJA")) {
 					String prazanStringMusterija01 = split[8];
 					String prazanStringMusterija02 = split[9];
 					String prazanStringMusterija03 = split[10];
-				}else if(tip.equals("DISPECAR")) {
+					Musterija musterija = new Musterija(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, prazanStringMusterija01, prazanStringMusterija02, prazanStringMusterija03, tipKorisnika);
+					musterije.add(musterija);
+				}else if(tipKorisnika.equals("DISPECAR")) {
 					String plataString = split[8];
 					int plataDispecara = Integer.parseInt(plataString);
 					String brojPozivnogTelefonaString = split[9];
 					int brojPozivnogTelefona = Integer.parseInt(brojPozivnogTelefonaString);
 					String deoGradaNaKojemRadi = split[10];
-				}else if(tip.equals("VOZAC")) {
+					Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataDispecara, brojPozivnogTelefona, deoGradaNaKojemRadi, tipKorisnika);
+					dispecari.add(dispecar);
+				}else if(tipKorisnika.equals("VOZAC")) {
 					String plataString = split[8];
 					int plataVozaca = Integer.parseInt(plataString);
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String automobil = split[10];
 					System.out.println(line);
+					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataVozaca, brojKartice, automobil, tipKorisnika);
+					vozaci.add(vozac);
 				}
-                Musterija musterija = new Musterija(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
-                musterije.add(musterija);
 			}
 			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }
-    public Musterija login(String korisnickoIme, String lozinka) {
+    public Musterija loginMusterija(String korisnickoIme, String lozinka) {
         for (Musterija musterija : musterije) {
             if (musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
                     && musterija.getLozinka().equals(lozinka)) {
@@ -68,4 +78,22 @@ public class Ucitavanje {
         }
         return null;
     }
+	public Dispecar loginDispecar(String korisnickoIme, String lozinka) {
+		for (Dispecar dispecar : dispecari) {
+			if (dispecar.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
+					&& dispecar.getLozinka().equals(lozinka)) {
+				return dispecar;
+			}
+		}
+		return null;
+	}
+	public Vozac loginVozac(String korisnickoIme, String lozinka) {
+		for (Vozac vozac : vozaci) {
+			if (vozac.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
+					&& vozac.getLozinka().equals(lozinka)) {
+				return vozac;
+			}
+		}
+		return null;
+	}
 }

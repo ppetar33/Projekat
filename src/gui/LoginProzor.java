@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
+import osobe.Dispecar;
 import osobe.Musterija;
+import osobe.Vozac;
 import ucitavanje.Ucitavanje;
 
 public class LoginProzor extends JFrame{
@@ -59,12 +61,29 @@ public class LoginProzor extends JFrame{
                 String korisnickoIme = txtKorisnickoIme.getText().trim();
                 String sifra = new String(pfSifra.getPassword()).trim();
 
-                Musterija prijavljen = ucitavanje.login(korisnickoIme, sifra);
-                if (prijavljen == null) {
+                Musterija prijavljenMusterija = ucitavanje.loginMusterija(korisnickoIme, sifra);
+                if (prijavljenMusterija == null) {
                     JOptionPane.showMessageDialog(null, "Neispravni login podaci", "Greska", JOptionPane.WARNING_MESSAGE);
                 } else {
-                	JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili kao musterija!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                	// prikazati glavni prozor
                 }
+
+                Vozac prijavljenVozac = ucitavanje.loginVozac(korisnickoIme, sifra);
+				if( prijavljenVozac == null ){
+					JOptionPane.showMessageDialog(null, "Neispravni login podaci", "Greska", JOptionPane.WARNING_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili kao vozac!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+					// prikazati glavni prozor
+				}
+
+				Dispecar prijavljenDispecar = ucitavanje.loginDispecar(korisnickoIme, sifra);
+				if( prijavljenDispecar == null ){
+					JOptionPane.showMessageDialog(null, "Neispravni login podaci", "Greska", JOptionPane.WARNING_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili kao dispecar!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+					// prikazati glavni prozor
+				}
             }
         });
 		btnCancel.addActionListener(new ActionListener() {

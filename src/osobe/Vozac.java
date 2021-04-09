@@ -1,25 +1,27 @@
 package osobe;
 
-public class Vozac extends Musterija{
-	
-	
+public class Vozac extends Osoba{
+
 	private int plata;
 	private int brojClanskeKarte;
 	private String automobil;
-	
+	private String tipKorisnika;
+
 	public Vozac() {
 		super();
 		this.plata = 0;
 		this.brojClanskeKarte = 0;
 		this.automobil = "";
+		this.tipKorisnika = "";
 	}
 
 	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, double jmbg, String adresa,
-			String pol, int brojTelefona, int plata, int brojClanskeKarte, String automobil) {
+			String pol, int brojTelefona, int plata, int brojClanskeKarte, String automobil, String tipKorisnika) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
 		this.automobil = automobil;
+		this.tipKorisnika = tipKorisnika;
 	}
 
 	public int getPlata() {
@@ -48,6 +50,10 @@ public class Vozac extends Musterija{
 
 	@Override
 	public String toString() {
-		return "Vozac [plata=" + plata + ", brojClanskeKarte=" + brojClanskeKarte + ", automobil=" + automobil + "]";
+		return "Vozac{" +
+				"plata=" + plata +
+				", brojClanskeKarte=" + brojClanskeKarte +
+				", automobil='" + automobil + '\'' +
+				"} " + super.toString();
 	}
 }
