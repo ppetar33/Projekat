@@ -70,16 +70,18 @@ public class LoginProzor extends JFrame{
 
 				if (prijavljenMusterija == null && prijavljenVozac == null && prijavljenDispecar == null) {
                     JOptionPane.showMessageDialog(null, "Neispravni login podaci", "Greska", JOptionPane.WARNING_MESSAGE);
-                }else if (tipDispecar.equals("DISPECAR")){
-					JOptionPane.showMessageDialog(null, "Ulogovani ste kao musterija!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
-				}else if(tipMusterija.equals("MUSTERIJA")){
-					JOptionPane.showMessageDialog(null, "Ulogovani ste kao dispecar", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
-				}else if(tipVozac.equals("VOZAC")){
-					JOptionPane.showMessageDialog(null, "Ulogovani ste kao vozac!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
-				}
+                }
 				else {
                 	JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                 }
+
+				if (tipDispecar.equals("DISPECAR")){
+					JOptionPane.showMessageDialog(null, "Ulogovani ste kao dispecar!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+				}else if(tipMusterija.equals("MUSTERIJA")){
+					JOptionPane.showMessageDialog(null, "Ulogovani ste kao musterija", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+				}else if(tipVozac.equals("VOZAC")){
+					JOptionPane.showMessageDialog(null, "Ulogovani ste kao vozac!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+				}
             }
         });
 		btnCancel.addActionListener(new ActionListener() {

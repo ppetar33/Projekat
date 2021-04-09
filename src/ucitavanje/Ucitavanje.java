@@ -71,8 +71,6 @@ public class Ucitavanje {
     }
 
     private String tipMusterija = "MUSTERIJA";
-    private String tipDispecar = "DISPECAR";
-    private String tipVozac = "VOZAC";
 
     public Musterija loginMusterija(String korisnickoIme, String lozinka, String tipMusterija) {
         for (Musterija musterija : musterije) {
@@ -84,6 +82,8 @@ public class Ucitavanje {
         return null;
     }
 
+	private String tipDispecar = "DISPECAR";
+
 	public Dispecar loginDispecar(String korisnickoIme, String lozinka, String tipDispecar) {
 		for (Dispecar dispecar : dispecari) {
 			if (dispecar.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
@@ -93,6 +93,9 @@ public class Ucitavanje {
 		}
 		return null;
 	}
+
+	private String tipVozac = "VOZAC";
+
 	public Vozac loginVozac(String korisnickoIme, String lozinka, String tipVozac) {
 		for (Vozac vozac : vozaci) {
 			if (vozac.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
