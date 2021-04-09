@@ -23,6 +23,7 @@ public class Osoba {
     }
 
     public Osoba(String korisnickoIme, String lozinka, String ime, String prezime, double jmbg, String adresa, String pol, int brojTelefona) {
+        super();
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
         this.ime = ime;
