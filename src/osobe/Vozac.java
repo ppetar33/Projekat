@@ -1,34 +1,31 @@
 package osobe;
 
-public class Vozac extends Osoba{
+public class Vozac extends Osoba {
 
-	private int plata;
+	private double plata;
 	private int brojClanskeKarte;
-	private String automobil;
-	private String tipKorisnika;
+	private String automobil; // mora biti posebna klasa automobil todo
 
 	public Vozac() {
 		super();
 		this.plata = 0;
 		this.brojClanskeKarte = 0;
 		this.automobil = "";
-		this.tipKorisnika = "";
 	}
 
-	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, double jmbg, String adresa,
-			String pol, int brojTelefona, int plata, int brojClanskeKarte, String automobil, String tipKorisnika) {
+	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
+				 Pol pol, String brojTelefona, int plata, int brojClanskeKarte, String automobil) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
 		this.automobil = automobil;
-		this.tipKorisnika = tipKorisnika;
 	}
 
-	public int getPlata() {
+	public double getPlata() {
 		return plata;
 	}
 
-	public void setPlata(int plata) {
+	public void setPlata(double plata) {
 		this.plata = plata;
 	}
 
@@ -48,13 +45,6 @@ public class Vozac extends Osoba{
 		this.automobil = automobil;
 	}
 
-	public String getTipKorisnika() {
-		return tipKorisnika;
-	}
-
-	public void setTipKorisnika(String tipKorisnika) {
-		this.tipKorisnika = tipKorisnika;
-	}
 
 	@Override
 	public String toString() {
@@ -62,7 +52,6 @@ public class Vozac extends Osoba{
 				"plata=" + plata +
 				", brojClanskeKarte=" + brojClanskeKarte +
 				", automobil='" + automobil + '\'' +
-				", tipKorisnika='" + tipKorisnika + '\'' +
 				"} " + super.toString();
 	}
 }

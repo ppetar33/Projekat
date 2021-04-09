@@ -2,68 +2,56 @@ package osobe;
 
 public class Dispecar extends Osoba {
 
-	
-	private int plata;
-	private int brojTelefonskeLinije;
-	private String odeljenjeNaKojemRadi;
-	private String tipKorisnika;
-	
+
+	private double plata;
+	private String brojTelefonskeLinije;
+	private Odeljenje odeljenje;
+
 	public Dispecar() {
 		super();
 		this.plata = 0;
-		this.brojTelefonskeLinije = 0;
-		this.odeljenjeNaKojemRadi = "";
-		this.tipKorisnika = "";
+		this.brojTelefonskeLinije = "";
 	}
 
-	public Dispecar(String korisnickoIme, String lozinka, String ime, String prezime, double jmbg, String adresa,
-			String pol, int brojTelefona, int plata, int brojTelefonskeLinije, String odeljenjeNaKojemRadi, String tipKorisnika) {
+	public Dispecar(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
+					Pol pol, String brojTelefona, double plata, String brojTelefonskeLinije, Odeljenje odeljenje) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojTelefonskeLinije = brojTelefonskeLinije;
-		this.odeljenjeNaKojemRadi = odeljenjeNaKojemRadi;
-		this.tipKorisnika = tipKorisnika;
+		this.odeljenje = odeljenje;
 	}
 
-	public int getPlata() {
+	public double getPlata() {
 		return plata;
 	}
 
-	public void setPlata(int plata) {
+	public void setPlata(double plata) {
 		this.plata = plata;
 	}
 
-	public int getBrojTelefonskeLinije() {
+	public String getBrojTelefonskeLinije() {
 		return brojTelefonskeLinije;
 	}
 
-	public void setBrojTelefonskeLinije(int brojTelefonskeLinije) {
+	public void setBrojTelefonskeLinije(String brojTelefonskeLinije) {
 		this.brojTelefonskeLinije = brojTelefonskeLinije;
 	}
 
-	public String getOdeljenjeNaKojemRadi() {
-		return odeljenjeNaKojemRadi;
+	public Odeljenje getOdeljenje() {
+		return odeljenje;
 	}
 
-	public void setOdeljenjeNaKojemRadi(String odeljenjeNaKojemRadi) {
-		this.odeljenjeNaKojemRadi = odeljenjeNaKojemRadi;
+	public void setOdeljenje(Odeljenje odeljenje) {
+		this.odeljenje = odeljenje;
 	}
 
-	public String getTipKorisnika() {
-		return tipKorisnika;
-	}
-
-	public void setTipKorisnika(String tipKorisnika) {
-		this.tipKorisnika = tipKorisnika;
-	}
 
 	@Override
 	public String toString() {
 		return "Dispecar{" +
 				"plata=" + plata +
-				", brojTelefonskeLinije=" + brojTelefonskeLinije +
-				", odeljenjeNaKojemRadi='" + odeljenjeNaKojemRadi + '\'' +
-				", tipKorisnika='" + tipKorisnika + '\'' +
-				"} " + super.toString();
+				", brojTelefonskeLinije='" + brojTelefonskeLinije + '\'' +
+				", odeljenje=" + odeljenje +
+				'}';
 	}
 }

@@ -1,28 +1,32 @@
 package osobe;
 
-public class Osoba {
+public abstract class Osoba {
 
     private String korisnickoIme;
     private String lozinka;
     private String ime;
     private String prezime;
-    private double jmbg;
+    private String jmbg;
     private String adresa;
-    private String pol;
-    private int brojTelefona;
+    private Pol pol;
+    private String brojTelefona; // 0
 
-    public Osoba(){
+    public Osoba() {
         this.korisnickoIme = "";
         this.lozinka = "";
         this.ime = "";
         this.prezime = "";
-        this.jmbg = 0;
+        this.jmbg = "";
         this.adresa = "";
-        this.pol = "";
-        this.brojTelefona = 0;
+        this.brojTelefona = "";
     }
+    // Osoba o = new Osoba();
+    // Osoba o = new Osoba("pera","pera123","Petar",,,,...);
+    // o.getIme();
+    // o.setIme("Jovan");
+    // System.out.println(o); -> Osoba@1243344
 
-    public Osoba(String korisnickoIme, String lozinka, String ime, String prezime, double jmbg, String adresa, String pol, int brojTelefona) {
+    public Osoba(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brojTelefona) {
         super();
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
@@ -66,11 +70,11 @@ public class Osoba {
         this.prezime = prezime;
     }
 
-    public double getJmbg() {
+    public String getJmbg() {
         return jmbg;
     }
 
-    public void setJmbg(double jmbg) {
+    public void setJmbg(String jmbg) {
         this.jmbg = jmbg;
     }
 
@@ -82,19 +86,19 @@ public class Osoba {
         this.adresa = adresa;
     }
 
-    public String getPol() {
+    public Pol getPol() {
         return pol;
     }
 
-    public void setPol(String pol) {
+    public void setPol(Pol pol) {
         this.pol = pol;
     }
 
-    public int getBrojTelefona() {
+    public String getBrojTelefona() {
         return brojTelefona;
     }
 
-    public void setBrojTelefona(int brojTelefona) {
+    public void setBrojTelefona(String brojTelefona) {
         this.brojTelefona = brojTelefona;
     }
 
