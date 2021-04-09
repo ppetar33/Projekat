@@ -48,12 +48,21 @@ public class Vozac extends Osoba{
 		this.automobil = automobil;
 	}
 
+	public String getTipKorisnika() {
+		return tipKorisnika;
+	}
+
+	public void setTipKorisnika(String tipKorisnika) {
+		this.tipKorisnika = tipKorisnika;
+	}
+
 	@Override
 	public String toString() {
 		return "Vozac{" +
 				"plata=" + plata +
 				", brojClanskeKarte=" + brojClanskeKarte +
 				", automobil='" + automobil + '\'' +
+				", tipKorisnika='" + tipKorisnika + '\'' +
 				"} " + super.toString();
 	}
 }

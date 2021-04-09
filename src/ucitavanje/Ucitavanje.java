@@ -69,28 +69,34 @@ public class Ucitavanje {
 			e.printStackTrace();
 		}
     }
-    public Musterija loginMusterija(String korisnickoIme, String lozinka) {
+
+    private String tipMusterija = "MUSTERIJA";
+    private String tipDispecar = "DISPECAR";
+    private String tipVozac = "VOZAC";
+
+    public Musterija loginMusterija(String korisnickoIme, String lozinka, String tipMusterija) {
         for (Musterija musterija : musterije) {
             if (musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
-                    && musterija.getLozinka().equals(lozinka)) {
+                    && musterija.getLozinka().equals(lozinka) && musterija.getTipKorisnika().equals(tipMusterija)) {
                 return musterija;
             }
         }
         return null;
     }
-	public Dispecar loginDispecar(String korisnickoIme, String lozinka) {
+
+	public Dispecar loginDispecar(String korisnickoIme, String lozinka, String tipDispecar) {
 		for (Dispecar dispecar : dispecari) {
 			if (dispecar.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
-					&& dispecar.getLozinka().equals(lozinka)) {
+					&& dispecar.getLozinka().equals(lozinka) && dispecar.getTipKorisnika().equals(tipDispecar)) {
 				return dispecar;
 			}
 		}
 		return null;
 	}
-	public Vozac loginVozac(String korisnickoIme, String lozinka) {
+	public Vozac loginVozac(String korisnickoIme, String lozinka, String tipVozac) {
 		for (Vozac vozac : vozaci) {
 			if (vozac.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
-					&& vozac.getLozinka().equals(lozinka)) {
+					&& vozac.getLozinka().equals(lozinka) && vozac.getTipKorisnika().equals(tipVozac)) {
 				return vozac;
 			}
 		}

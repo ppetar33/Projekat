@@ -49,12 +49,21 @@ public class Dispecar extends Osoba {
 		this.odeljenjeNaKojemRadi = odeljenjeNaKojemRadi;
 	}
 
+	public String getTipKorisnika() {
+		return tipKorisnika;
+	}
+
+	public void setTipKorisnika(String tipKorisnika) {
+		this.tipKorisnika = tipKorisnika;
+	}
+
 	@Override
 	public String toString() {
 		return "Dispecar{" +
 				"plata=" + plata +
 				", brojTelefonskeLinije=" + brojTelefonskeLinije +
 				", odeljenjeNaKojemRadi='" + odeljenjeNaKojemRadi + '\'' +
+				", tipKorisnika='" + tipKorisnika + '\'' +
 				"} " + super.toString();
 	}
 }

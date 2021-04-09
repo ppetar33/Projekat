@@ -60,8 +60,11 @@ public class LoginProzor extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String korisnickoIme = txtKorisnickoIme.getText().trim();
                 String sifra = new String(pfSifra.getPassword()).trim();
+                String tipMusterija = "MUSTERIJA";
+                String tipDispecar = "DISPECAR";
+                String tipVozac = "VOZAC";
 
-                Musterija prijavljenMusterija = ucitavanje.loginMusterija(korisnickoIme, sifra);
+                Musterija prijavljenMusterija = ucitavanje.loginMusterija(korisnickoIme, sifra, tipMusterija);
                 if (prijavljenMusterija == null) {
                     JOptionPane.showMessageDialog(null, "Neispravni login podaci", "Greska", JOptionPane.WARNING_MESSAGE);
                 } else {
@@ -69,7 +72,7 @@ public class LoginProzor extends JFrame{
                 	// prikazati glavni prozor
                 }
 
-                Vozac prijavljenVozac = ucitavanje.loginVozac(korisnickoIme, sifra);
+                Vozac prijavljenVozac = ucitavanje.loginVozac(korisnickoIme, sifra, tipVozac);
 				if( prijavljenVozac == null ){
 					JOptionPane.showMessageDialog(null, "Neispravni login podaci", "Greska", JOptionPane.WARNING_MESSAGE);
 				} else {
@@ -77,7 +80,7 @@ public class LoginProzor extends JFrame{
 					// prikazati glavni prozor
 				}
 
-				Dispecar prijavljenDispecar = ucitavanje.loginDispecar(korisnickoIme, sifra);
+				Dispecar prijavljenDispecar = ucitavanje.loginDispecar(korisnickoIme, sifra, tipDispecar);
 				if( prijavljenDispecar == null ){
 					JOptionPane.showMessageDialog(null, "Neispravni login podaci", "Greska", JOptionPane.WARNING_MESSAGE);
 				} else {
