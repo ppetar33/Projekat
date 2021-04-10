@@ -1,14 +1,25 @@
 package dispecer;
 
-import java.io.*;
+import osobe.Musterija;
+import osobe.Pol;
+import osobe.Vozac;
 
+import java.io.*;
+import java.util.ArrayList;
+
+/*
+	napraviti prozor za prikaz (izgled kao na slici 4 u specifikaciji projekta)
+*/
 
 public class PrikazVozaca {
-	
+
+	private ArrayList<Musterija> musterije;
+
+	public PrikazVozaca(){
+		this.musterije = new ArrayList<Musterija>();
+	}
 	public static void main(String[] args){
-		
 		ucitajKorisnike();
-		
 	}
 	public static void ucitajKorisnike() {
 		try {
@@ -16,37 +27,25 @@ public class PrikazVozaca {
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
 			String line = null;
 			while((line = br.readLine()) != null) {
-				String[] split = line.split("\\,");
+				String[] split = line.split(",");
 				String korisnickoIme = split[0];
 				String lozinka = split[1];
 				String ime = split[2];
 				String prezime = split[3];
-				String jmbgString = split[4];
-				double jmbg = Double.parseDouble(jmbgString);
+				String jmbg = split[4];
 				String adresa = split[5];
-				String pol = split[6];
-				String brojTelefonaString = split[7];
-				int brojTelefona = Integer.parseInt(brojTelefonaString);
+				Pol pol = Pol.valueOf(split[6].toUpperCase());
+				String brojTelefona= split[7];
 				String tip = split[11];
-				if(tip.equals("MUSTERIJA")) {
-					String prazan01 = split[8];
-					String prazan02 = split[9];
-					String prazan03 = split[10];
-				}else if(tip.equals("DISPECAR")) {
-					String plataString = split[8];
-					int plata = Integer.parseInt(plataString);
-					String brojPozivnogTelefonaString = split[9];
-					int brojPozivnogTelefona = Integer.parseInt(brojPozivnogTelefonaString);
-					String deoGradaNaKojemRadi = split[10];
-				}else if(tip.equals("VOZAC")) {
+				if(tip.equals("VOZAC")) {
 					String plataString = split[8];
 					int plata = Integer.parseInt(plataString);
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String automobil = split[10];
-//					System.out.println(line);
+					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojKartice, automobil);
+					System.out.println(vozac);
 				}
-				
 			}
 			br.close();
 		} catch (Exception e) {

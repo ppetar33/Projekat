@@ -1,11 +1,15 @@
 package dispecer;
 
-import osobe.Musterija;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+/*
+    1. proveriti da li je slobodan automobil
+    ako jeste onda je moguce dodati ga vozacu
+    2. uraditi ispis u fajl nakon popunjenih podataka
+ */
 
 public class MyFrame extends JFrame{
 

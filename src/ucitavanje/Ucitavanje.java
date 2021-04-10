@@ -25,14 +25,12 @@ public class Ucitavanje {
 		this.musterije = new ArrayList<Musterija>();
 		this.dispecari = new ArrayList<Dispecar>();
 		this.vozaci = new ArrayList<Vozac>();
-
-
 		this.korisnici = new ArrayList<Osoba>();
 	}
 
 	public void ucitajZaposlene(String imeFajla) {
 		try {
-			File korisniciFajl = new File("../src/fajlovi/" + imeFajla);
+			File korisniciFajl = new File("src/fajlovi/" + imeFajla);
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
 			String line = null;
 			while((line = br.readLine()) != null) {
@@ -47,11 +45,8 @@ public class Ucitavanje {
 				String brojTelefona = split[7];
 				String tipKorisnika = split[11];
 				if(tipKorisnika.equals("MUSTERIJA")) {
-					String prazanStringMusterija01 = split[8];
-					String prazanStringMusterija02 = split[9];
-					String prazanStringMusterija03 = split[10];
 					Musterija musterija = new Musterija(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
-					System.out.println(musterija);
+//					System.out.println(musterija); formatirani ispis pomocu toString
 					musterije.add(musterija);
 				}else if(tipKorisnika.equals("DISPECAR")) {
 					String plataString = split[8];
@@ -59,7 +54,7 @@ public class Ucitavanje {
 					String brojPozivnogTelefona = split[9];
 					Odeljenje odeljenje = Odeljenje.valueOf(split[10]);
 					Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataDispecara, brojPozivnogTelefona, odeljenje);
-					System.out.println(dispecar);
+//					System.out.println(dispecar); formatirani ispis pomocu toString
 					dispecari.add(dispecar);
 				}else if(tipKorisnika.equals("VOZAC")) {
 					String plataString = split[8];
@@ -67,9 +62,8 @@ public class Ucitavanje {
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String automobil = split[10];
-
 					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataVozaca, brojKartice, automobil);
-					System.out.println(vozac);
+//					System.out.println(vozac); formatirani ispis pomocu toString
 					vozaci.add(vozac);
 				}
 			}
@@ -79,9 +73,8 @@ public class Ucitavanje {
 		}
 	}
 
-	private String tipMusterija = "MUSTERIJA";
 
-	public Musterija loginMusterija(String korisnickoIme, String lozinka, String tipMusterija) {
+	public Musterija loginMusterija(String korisnickoIme, String lozinka) {
 		for (Musterija musterija : musterije) {
 			if (musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
 					&& musterija.getLozinka().equals(lozinka)) {
@@ -91,9 +84,8 @@ public class Ucitavanje {
 		return null;
 	}
 
-	private String tipDispecar = "DISPECAR";
 
-	public Dispecar loginDispecar(String korisnickoIme, String lozinka, String tipDispecar) {
+	public Dispecar loginDispecar(String korisnickoIme, String lozinka) {
 		for (Dispecar dispecar : dispecari) {
 			if (dispecar.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
 					&& dispecar.getLozinka().equals(lozinka)) {
@@ -103,11 +95,9 @@ public class Ucitavanje {
 		return null;
 	}
 
-	private String tipVozac = "VOZAC";
 
-	public Vozac loginVozac(String korisnickoIme, String lozinka, String tipVozac) {
+	public Vozac loginVozac(String korisnickoIme, String lozinka) {
 		for (Vozac vozac : vozaci) {
-			// ignore case no no
 			if (vozac.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
 					&& vozac.getLozinka().equals(lozinka)) {
 				return vozac;
