@@ -1,5 +1,8 @@
 package automobili;
 
+import osobe.Musterija;
+import osobe.Vozac;
+
 public class Voznja {
 
     /*
@@ -18,15 +21,15 @@ public class Voznja {
     private String datumIvremePorudzbine;
     private String adresaPolaska;
     private String adresaDestinacije;
-    private String musterija;
-    private String vozac;
+    private Musterija musterija;
+    private Vozac vozac;
     private double brojKMpredjenih;
     private double trajanjVoznje;
     private StatusVoznje statusVoznje;
 
     public Voznja(){}
 
-    public Voznja(String datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, String musterija, String vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje){
+    public Voznja(String datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje){
         this.datumIvremePorudzbine = datumIvremePorudzbine;
         this.adresaPolaska = adresaPolaska;
         this.adresaDestinacije = adresaDestinacije;
@@ -61,19 +64,19 @@ public class Voznja {
         this.adresaDestinacije = adresaDestinacije;
     }
 
-    public String getMusterija() {
+    public Musterija getMusterija() {
         return musterija;
     }
 
-    public void setMusterija(String musterija) {
+    public void setMusterija(Musterija musterija) {
         this.musterija = musterija;
     }
 
-    public String getVozac() {
+    public Vozac getVozac() {
         return vozac;
     }
 
-    public void setVozac(String vozac) {
+    public void setVozac(Vozac vozac) {
         this.vozac = vozac;
     }
 
