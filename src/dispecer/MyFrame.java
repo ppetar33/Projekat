@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
     1. proveriti da li je slobodan automobil
     ako jeste onda je moguce dodati ga vozacu
     2. uraditi ispis u fajl nakon popunjenih podataka
+    3. potrebno implementirati proveru koja će onemogućiti akciju ukoliko nisu uneseni svi obavezni podaci.
  */
 
 public class MyFrame extends JFrame{
