@@ -1,6 +1,5 @@
 package automobili;
 
-
 /*
     Automobili predstavljaju poseban entitet u sistemu i za svaki se evidentira sledeće:
     model, proizvođač, godina proizvodnje, broj registarske oznake,
@@ -9,22 +8,18 @@ package automobili;
     putničkim automobilima i kombi vozilima).
  */
 
-
-
 public class Automobil {
 
     private String model;
     private String proizvodjac;
     private int godinaProizvodnje;
-    private int registarskiBroj;
+    private String registarskiBroj;
     private int brojVozila;
     private VrstaVozila vrstaVozila;
 
-    public Automobil(){
+    public Automobil(){}
 
-    }
-
-    public Automobil(String model, String proizvodjac, int godinaProizvodnje, int registarskiBroj, int brojVozila, VrstaVozila vrstaVozila){
+    public Automobil(String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila){
         this.model = model;
         this.proizvodjac = proizvodjac;
         this.godinaProizvodnje = godinaProizvodnje;
@@ -57,11 +52,11 @@ public class Automobil {
         this.godinaProizvodnje = godinaProizvodnje;
     }
 
-    public int getRegistarskiBroj() {
+    public String getRegistarskiBroj() {
         return registarskiBroj;
     }
 
-    public void setRegistarskiBroj(int registarskiBroj) {
+    public void setRegistarskiBroj(String registarskiBroj) {
         this.registarskiBroj = registarskiBroj;
     }
 
