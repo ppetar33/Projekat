@@ -6,7 +6,7 @@ package automobili;
     broj taksi vozila (jedinstvena oznaka koju svako vozilo ima u okviru
     svoje taksi službe), vrsta automobila (taksi služba raspolaže sa
     putničkim automobilima i kombi vozilima).
- */
+*/
 
 public class Automobil {
 
