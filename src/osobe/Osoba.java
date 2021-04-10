@@ -27,7 +27,6 @@ public abstract class Osoba {
     // System.out.println(o); -> Osoba@1243344
 
     public Osoba(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brojTelefona) {
-        super();
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
         this.ime = ime;

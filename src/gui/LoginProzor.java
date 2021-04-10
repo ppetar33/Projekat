@@ -65,7 +65,8 @@ public class LoginProzor extends JFrame{
                 	treba proveriti kojeg je tipa korisnik
                 	i u zavisnosti od tipa
                 	prikazati odgovarajuci prozor
-                 */
+                */
+
 				Vozac prijavljenVozac = ucitavanje.loginVozac(korisnickoIme, sifra);
 				Musterija prijavljenMusterija = ucitavanje.loginMusterija(korisnickoIme, sifra);
 				Dispecar prijavljenDispecar = ucitavanje.loginDispecar(korisnickoIme, sifra);
