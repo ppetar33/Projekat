@@ -42,16 +42,16 @@ public class Ucitavanje {
 				String tipKorisnika = split[11];
 				if(tipKorisnika.equals("MUSTERIJA")) {
 					Musterija musterija = new Musterija(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
-//					System.out.println(musterija); formatirani ispis pomocu toString
 					musterije.add(musterija);
+					// System.out.println(musterija); formatirani ispis pomocu toString
 				}else if(tipKorisnika.equals("DISPECAR")) {
 					String plataString = split[8];
 					double plataDispecara = Double.parseDouble(plataString);
 					String brojPozivnogTelefona = split[9];
 					Odeljenje odeljenje = Odeljenje.valueOf(split[10]);
 					Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataDispecara, brojPozivnogTelefona, odeljenje);
-//					System.out.println(dispecar); formatirani ispis pomocu toString
 					dispecari.add(dispecar);
+					// System.out.println(dispecar); formatirani ispis pomocu toString
 				}else if(tipKorisnika.equals("VOZAC")) {
 					String plataString = split[8];
 					int plataVozaca = Integer.parseInt(plataString);
@@ -59,8 +59,8 @@ public class Ucitavanje {
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String automobil = split[10];
 					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataVozaca, brojKartice, automobil);
-//					System.out.println(vozac); formatirani ispis pomocu toString
 					vozaci.add(vozac);
+					// System.out.println(vozac); formatirani ispis pomocu toString
 				}
 			}
 			br.close();

@@ -6,7 +6,6 @@ import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 import osobe.Dispecar;
 import osobe.Musterija;
-import osobe.Osoba;
 import osobe.Vozac;
 import ucitavanje.Ucitavanje;
 
