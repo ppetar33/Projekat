@@ -18,14 +18,10 @@ public class Ucitavanje {
 	private ArrayList<Dispecar> dispecari;
 	private ArrayList<Vozac> vozaci;
 
-
-	private ArrayList<Osoba> korisnici;
-
 	public Ucitavanje() {
 		this.musterije = new ArrayList<Musterija>();
 		this.dispecari = new ArrayList<Dispecar>();
 		this.vozaci = new ArrayList<Vozac>();
-		this.korisnici = new ArrayList<Osoba>();
 	}
 
 	public void ucitajZaposlene(String imeFajla) {
@@ -73,7 +69,6 @@ public class Ucitavanje {
 		}
 	}
 
-
 	public Musterija loginMusterija(String korisnickoIme, String lozinka) {
 		for (Musterija musterija : musterije) {
 			if (musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
@@ -83,7 +78,6 @@ public class Ucitavanje {
 		}
 		return null;
 	}
-
 
 	public Dispecar loginDispecar(String korisnickoIme, String lozinka) {
 		for (Dispecar dispecar : dispecari) {
@@ -95,24 +89,11 @@ public class Ucitavanje {
 		return null;
 	}
 
-
 	public Vozac loginVozac(String korisnickoIme, String lozinka) {
 		for (Vozac vozac : vozaci) {
 			if (vozac.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
 					&& vozac.getLozinka().equals(lozinka)) {
 				return vozac;
-			}
-		}
-		return null;
-	}
-
-
-	public Osoba login(String korisnickoIme, String lozinka)
-	{
-		for (Osoba o : korisnici)
-		{
-			if (o.getKorisnickoIme().equals(korisnickoIme) && o.getLozinka().equals(lozinka)) {
-				return o;
 			}
 		}
 		return null;

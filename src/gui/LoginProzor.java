@@ -6,6 +6,7 @@ import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 import osobe.Dispecar;
 import osobe.Musterija;
+import osobe.Osoba;
 import osobe.Vozac;
 import ucitavanje.Ucitavanje;
 
@@ -31,6 +32,7 @@ public class LoginProzor extends JFrame{
         pack();
     }
     private void initGUI() {
+
 		MigLayout layout = new MigLayout("wrap 2", "[][]", "[]20[][]20[]");
 		setLayout(layout);
 
@@ -61,12 +63,6 @@ public class LoginProzor extends JFrame{
                 String korisnickoIme = txtKorisnickoIme.getText().trim();
                 String sifra = new String(pfSifra.getPassword()).trim();
 
-                /*
-                	treba proveriti kojeg je tipa korisnik
-                	i u zavisnosti od tipa
-                	prikazati odgovarajuci prozor
-                */
-
 				Vozac prijavljenVozac = ucitavanje.loginVozac(korisnickoIme, sifra);
 				Musterija prijavljenMusterija = ucitavanje.loginMusterija(korisnickoIme, sifra);
 				Dispecar prijavljenDispecar = ucitavanje.loginDispecar(korisnickoIme, sifra);
@@ -77,6 +73,14 @@ public class LoginProzor extends JFrame{
 				else {
                 	JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                 }
+
+				if(prijavljenMusterija instanceof Musterija){
+					JOptionPane.showMessageDialog(null,   "Uspesno ste se ulogovali kao musterija", "uspesno", JOptionPane.INFORMATION_MESSAGE);
+				}else if(prijavljenDispecar instanceof Dispecar){
+					JOptionPane.showMessageDialog(null, "Uspesno ste se ulogovali kao dispecer", "uspesno", JOptionPane.INFORMATION_MESSAGE);
+				}else if(prijavljenVozac instanceof Vozac){
+					JOptionPane.showMessageDialog(null, "Uspesno ste se ulogovali kao vozac", "uspesno", JOptionPane.INFORMATION_MESSAGE);
+				}
             }
         });
 		btnCancel.addActionListener(new ActionListener() {
