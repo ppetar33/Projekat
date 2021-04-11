@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import automobili.Automobil;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Odeljenje;
@@ -54,7 +55,7 @@ public class Ucitavanje {
 					// System.out.println(dispecar); formatirani ispis pomocu toString
 				}else if(tipKorisnika.equals("VOZAC")) {
 					String plataString = split[8];
-					int plataVozaca = Integer.parseInt(plataString);
+					double plataVozaca = Double.parseDouble(plataString);
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String automobil = split[10];

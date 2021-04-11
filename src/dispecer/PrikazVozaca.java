@@ -39,7 +39,7 @@ public class PrikazVozaca {
 				String tip = split[11];
 				if(tip.equals("VOZAC")) {
 					String plataString = split[8];
-					int plata = Integer.parseInt(plataString);
+					double plata = Double.parseDouble(plataString);
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String automobil = split[10];
