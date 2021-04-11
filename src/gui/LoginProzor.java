@@ -3,6 +3,9 @@ package gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+import dispecer.MogucnostiDispecera;
+import dispecer.MyFrame;
 import net.miginfocom.swing.MigLayout;
 import osobe.Dispecar;
 import osobe.Musterija;
@@ -77,6 +80,10 @@ public class LoginProzor extends JFrame{
 					JOptionPane.showMessageDialog(null,   "Uspesno ste se ulogovali kao musterija", "uspesno", JOptionPane.INFORMATION_MESSAGE);
 				}else if(prijavljenDispecar instanceof Dispecar){
 					JOptionPane.showMessageDialog(null, "Uspesno ste se ulogovali kao dispecer", "uspesno", JOptionPane.INFORMATION_MESSAGE);
+					LoginProzor.this.setVisible(false);
+					LoginProzor.this.dispose();
+					MogucnostiDispecera mogucnostiDispecera = new MogucnostiDispecera(ucitavanje,prijavljenDispecar);
+					mogucnostiDispecera.setVisible(true);
 				}else if(prijavljenVozac instanceof Vozac){
 					JOptionPane.showMessageDialog(null, "Uspesno ste se ulogovali kao vozac", "uspesno", JOptionPane.INFORMATION_MESSAGE);
 				}
