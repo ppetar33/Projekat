@@ -1,20 +1,17 @@
 package osobe;
 
+import automobili.Automobil;
+
 public class Vozac extends Osoba {
 
 	private double plata;
 	private int brojClanskeKarte;
-	private String automobil; // mora biti posebna klasa automobil todo
+	private Automobil automobil; // mora biti posebna klasa automobil todo
 
-	public Vozac() {
-		super();
-		this.plata = 0;
-		this.brojClanskeKarte = 0;
-		this.automobil = "";
-	}
+	public Vozac() {}
 
 	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-				 Pol pol, String brojTelefona, int plata, int brojClanskeKarte, String automobil) {
+				 Pol pol, String brojTelefona, int plata, int brojClanskeKarte, Automobil automobil) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
@@ -37,21 +34,20 @@ public class Vozac extends Osoba {
 		this.brojClanskeKarte = brojClanskeKarte;
 	}
 
-	public String getAutomobil() {
+	public Automobil getAutomobil() {
 		return automobil;
 	}
 
-	public void setAutomobil(String automobil) {
+	public void setAutomobil(Automobil automobil) {
 		this.automobil = automobil;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Vozac{" +
 				"plata=" + plata +
 				", brojClanskeKarte=" + brojClanskeKarte +
-				", automobil='" + automobil + '\'' +
-				"} " + super.toString();
+				", automobil=" + automobil +
+				'}';
 	}
 }
