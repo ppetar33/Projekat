@@ -1,5 +1,7 @@
 package dispecer;
 
+import ucitavanje.Ucitavanje;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +14,7 @@ import java.awt.event.ActionListener;
     3. potrebno implementirati proveru koja će onemogućiti akciju ukoliko nisu uneseni svi obavezni podaci.
  */
 
-public class MyFrame extends JFrame{
+public class DodavanjeVozaca extends JFrame{
 
     private Container c;
     private JLabel ime;
@@ -41,12 +43,16 @@ public class MyFrame extends JFrame{
     private JTextField tautomobil;
     private JButton btnOK;
 
-    public MyFrame()
+    private Ucitavanje ucitavanje;
+
+    public DodavanjeVozaca(Ucitavanje ucitavanje)
     {
+        this.ucitavanje = ucitavanje;
         setTitle("Dodavanje Vozaca");
-        setBounds(300, 90, 900, 600);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(900, 600);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
+        setLocationRelativeTo(null);
 
         c = getContentPane();
         c.setLayout(null);

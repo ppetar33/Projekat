@@ -5,12 +5,13 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import dispecer.MogucnostiDispecera;
-import dispecer.MyFrame;
+import musterija.MogucnostiMusterije;
 import net.miginfocom.swing.MigLayout;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Vozac;
 import ucitavanje.Ucitavanje;
+import vozac.MogucnostiVozaca;
 
 public class LoginProzor extends JFrame{
 
@@ -26,12 +27,12 @@ public class LoginProzor extends JFrame{
     public LoginProzor(Ucitavanje ucitavanje) {
         this.ucitavanje = ucitavanje;
 		setTitle("Prijava");
-		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		initGUI();
 		initActions();
-        pack();
+		pack();
+		setLocationRelativeTo(null);
     }
     private void initGUI() {
 
@@ -78,14 +79,22 @@ public class LoginProzor extends JFrame{
 
 				if(prijavljenMusterija instanceof Musterija){
 					JOptionPane.showMessageDialog(null,   "Uspesno ste se ulogovali kao musterija", "uspesno", JOptionPane.INFORMATION_MESSAGE);
+					LoginProzor.this.dispose();
+					LoginProzor.this.setVisible(false);
+					MogucnostiMusterije mogucnostiMusterije = new MogucnostiMusterije(ucitavanje,prijavljenMusterija);
+					mogucnostiMusterije.setVisible(true);
 				}else if(prijavljenDispecar instanceof Dispecar){
 					JOptionPane.showMessageDialog(null, "Uspesno ste se ulogovali kao dispecer", "uspesno", JOptionPane.INFORMATION_MESSAGE);
-					LoginProzor.this.setVisible(false);
 					LoginProzor.this.dispose();
+					LoginProzor.this.setVisible(false);
 					MogucnostiDispecera mogucnostiDispecera = new MogucnostiDispecera(ucitavanje,prijavljenDispecar);
 					mogucnostiDispecera.setVisible(true);
 				}else if(prijavljenVozac instanceof Vozac){
 					JOptionPane.showMessageDialog(null, "Uspesno ste se ulogovali kao vozac", "uspesno", JOptionPane.INFORMATION_MESSAGE);
+					LoginProzor.this.dispose();
+					LoginProzor.this.setVisible(false);
+					MogucnostiVozaca mogucnostiVozaca = new MogucnostiVozaca(ucitavanje,prijavljenVozac);
+					mogucnostiVozaca.setVisible(true);
 				}
             }
         });
