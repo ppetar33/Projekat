@@ -255,7 +255,6 @@ public class DodavanjeVozaca extends JFrame{
                         Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka.toString(), unosIme, unosPrezime, unosJMBG, unosAdresa, Pol.ZENSKI, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
                         ucitavanje.getVozaci().add(vozac);
                     }
-
                     ucitavanje.dodavanjeKorisnika();
                     JOptionPane.showMessageDialog(null,"Vozac je uspesno dodat!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
                     DodavanjeVozaca.this.dispose();

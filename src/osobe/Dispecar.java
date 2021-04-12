@@ -2,7 +2,6 @@ package osobe;
 
 public class Dispecar extends Osoba {
 
-
 	private double plata;
 	private String brojTelefonskeLinije;
 	private Odeljenje odeljenje;
@@ -44,7 +43,6 @@ public class Dispecar extends Osoba {
 	public void setOdeljenje(Odeljenje odeljenje) {
 		this.odeljenje = odeljenje;
 	}
-
 
 	@Override
 	public String toString() {

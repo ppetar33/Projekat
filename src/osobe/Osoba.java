@@ -9,7 +9,7 @@ public abstract class Osoba {
     private String jmbg;
     private String adresa;
     private Pol pol;
-    private String brojTelefona; // 0
+    private String brojTelefona;
 
     public Osoba() {
         this.korisnickoIme = "";
@@ -20,11 +20,6 @@ public abstract class Osoba {
         this.adresa = "";
         this.brojTelefona = "";
     }
-    // Osoba o = new Osoba();
-    // Osoba o = new Osoba("pera","pera123","Petar",,,,...);
-    // o.getIme();
-    // o.setIme("Jovan");
-    // System.out.println(o); -> Osoba@1243344
 
     public Osoba(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brojTelefona) {
         this.korisnickoIme = korisnickoIme;
