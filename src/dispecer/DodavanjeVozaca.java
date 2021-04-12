@@ -13,8 +13,7 @@ import java.awt.event.ActionListener;
 /*
     1. proveriti da li je slobodan automobil
     ako jeste onda je moguce dodati ga vozacu
-    2. uraditi ispis u fajl nakon popunjenih podataka
-    3. potrebno implementirati proveru koja će onemogućiti akciju ukoliko nisu uneseni svi obavezni podaci.
+    2. lozinka ne radi jer ne moze konvertovati sa char[] toString()
  */
 
 public class DodavanjeVozaca extends JFrame{
@@ -235,47 +234,30 @@ public class DodavanjeVozaca extends JFrame{
                     int unosBrojClanskeKarte = Integer.parseInt(tbrojClanskeKarte.getText().trim());
                     String unosAutomobil = tautomobil.getText().trim();
 
-                    if(muski.isSelected()){
+                    if(osoba != null) {
+                        Vozac vozac = (Vozac)osoba;
+                        vozac.setIme(unosIme);
+                        vozac.setPrezime(unosPrezime);
+                        vozac.setKorisnickoIme(unosKorisnickoIme);
+                        vozac.setLozinka(unosLozinka.toString());
+                        vozac.setAdresa(unosAdresa);
+                        vozac.setJmbg(unosJMBG);
+                        vozac.setBrojTelefona(unosBrojTelefona);
+                        vozac.setPlata(unosPlata);
+                        vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
+                        vozac.setAutomobil(unosAutomobil);
+                    }if (muski.isSelected()) {
                         Pol pol = Pol.MUSKI;
-                        if(osoba != null){
-                            Vozac vozac = (Vozac)osoba;
-                            vozac.setIme(unosIme);
-                            vozac.setPrezime(unosPrezime);
-                            vozac.setKorisnickoIme(unosKorisnickoIme);
-                            vozac.setLozinka(unosLozinka.toString());
-                            vozac.setAdresa(unosAdresa);
-                            vozac.setJmbg(unosJMBG);
-                            vozac.setBrojTelefona(unosBrojTelefona);
-                            vozac.setPlata(unosPlata);
-                            vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
-                            vozac.setAutomobil(unosAutomobil);
-                        }else{
-                            Vozac vozac = new Vozac(unosKorisnickoIme,unosLozinka.toString(),unosIme,unosPrezime,unosJMBG,unosAdresa,Pol.MUSKI,unosBrojTelefona,unosPlata,unosBrojClanskeKarte,unosAutomobil);
-                            ucitavanje.getVozaci().add(vozac);
-                        }
-                    }
-
-                    if(zenski.isSelected()){
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka.toString(), unosIme, unosPrezime, unosJMBG, unosAdresa, Pol.MUSKI, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
+                        ucitavanje.getVozaci().add(vozac);
+                    } else if (zenski.isSelected()) {
                         Pol pol = Pol.ZENSKI;
-                        if(osoba != null){
-                            Vozac vozac = (Vozac)osoba;
-                            vozac.setIme(unosIme);
-                            vozac.setPrezime(unosPrezime);
-                            vozac.setKorisnickoIme(unosKorisnickoIme);
-                            vozac.setLozinka(unosLozinka.toString());
-                            vozac.setAdresa(unosAdresa);
-                            vozac.setJmbg(unosJMBG);
-                            vozac.setBrojTelefona(unosBrojTelefona);
-                            vozac.setPlata(unosPlata);
-                            vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
-                            vozac.setAutomobil(unosAutomobil);
-                        }else{
-                            Vozac vozac = new Vozac(unosKorisnickoIme,unosLozinka.toString(),unosIme,unosPrezime,unosJMBG,unosAdresa,Pol.ZENSKI,unosBrojTelefona,unosPlata,unosBrojClanskeKarte,unosAutomobil);
-                            ucitavanje.getVozaci().add(vozac);
-                        }
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka.toString(), unosIme, unosPrezime, unosJMBG, unosAdresa, Pol.ZENSKI, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
+                        ucitavanje.getVozaci().add(vozac);
                     }
 
                     ucitavanje.dodavanjeKorisnika();
+                    JOptionPane.showMessageDialog(null,"Vozac je uspesno dodat!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
                     DodavanjeVozaca.this.dispose();
                     DodavanjeVozaca.this.setVisible(false);
                 }
@@ -342,6 +324,3 @@ public class DodavanjeVozaca extends JFrame{
         return ok;
     }
 }
-
-
-
