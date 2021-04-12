@@ -1,6 +1,9 @@
 package dispecer;
 
-import ucitavanje.Ucitavanje;
+import osobe.Osoba;
+import osobe.Pol;
+import osobe.Vozac;
+import ucitavanje.Ucitavanje_i_Snimanje;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,11 +46,16 @@ public class DodavanjeVozaca extends JFrame{
     private JTextField tautomobil;
     private JButton btnOK;
 
-    private Ucitavanje ucitavanje;
+    private Ucitavanje_i_Snimanje ucitavanje;
+    private Vozac vozac;
+    private Osoba osoba;
 
-    public DodavanjeVozaca(Ucitavanje ucitavanje)
+    public DodavanjeVozaca(Ucitavanje_i_Snimanje ucitavanje, Vozac vozac)
     {
         this.ucitavanje = ucitavanje;
+        this.vozac = vozac;
+        this.osoba = osoba;
+
         setTitle("Dodavanje Vozaca");
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -208,16 +216,130 @@ public class DodavanjeVozaca extends JFrame{
         btnOK.setBackground(Color.BLUE);
         c.add(btnOK);
 
-        initActions();
+        initListeners();
 
     }
-    private void initActions() {
+    private void initListeners() {
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, "Uspesno ste dodali novog vozaca!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                if(proveraPodataka() == true){
+                    String unosIme = time.getText().trim();
+                    String unosPrezime = tprezime.getText().trim();
+                    String unosKorisnickoIme = tkorisnickoIme.getText().trim();
+                    char[] unosLozinka = tlozinka.getPassword();
+                    String unosAdresa = tadresa.getText().trim();
+                    String unosJMBG = tjmbg.getText().trim();
+                    String unosBrojTelefona = tbrojTelefona.getText().trim();
+                    double unosPlata = Double.parseDouble(tplata.getText().trim());
+                    int unosBrojClanskeKarte = Integer.parseInt(tbrojClanskeKarte.getText().trim());
+                    String unosAutomobil = tautomobil.getText().trim();
+
+                    if(muski.isSelected()){
+                        Pol pol = Pol.MUSKI;
+                        if(osoba != null){
+                            Vozac vozac = (Vozac)osoba;
+                            vozac.setIme(unosIme);
+                            vozac.setPrezime(unosPrezime);
+                            vozac.setKorisnickoIme(unosKorisnickoIme);
+                            vozac.setLozinka(unosLozinka.toString());
+                            vozac.setAdresa(unosAdresa);
+                            vozac.setJmbg(unosJMBG);
+                            vozac.setBrojTelefona(unosBrojTelefona);
+                            vozac.setPlata(unosPlata);
+                            vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
+                            vozac.setAutomobil(unosAutomobil);
+                        }else{
+                            Vozac vozac = new Vozac(unosKorisnickoIme,unosLozinka.toString(),unosIme,unosPrezime,unosJMBG,unosAdresa,Pol.MUSKI,unosBrojTelefona,unosPlata,unosBrojClanskeKarte,unosAutomobil);
+                            ucitavanje.getVozaci().add(vozac);
+                        }
+                    }
+
+                    if(zenski.isSelected()){
+                        Pol pol = Pol.ZENSKI;
+                        if(osoba != null){
+                            Vozac vozac = (Vozac)osoba;
+                            vozac.setIme(unosIme);
+                            vozac.setPrezime(unosPrezime);
+                            vozac.setKorisnickoIme(unosKorisnickoIme);
+                            vozac.setLozinka(unosLozinka.toString());
+                            vozac.setAdresa(unosAdresa);
+                            vozac.setJmbg(unosJMBG);
+                            vozac.setBrojTelefona(unosBrojTelefona);
+                            vozac.setPlata(unosPlata);
+                            vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
+                            vozac.setAutomobil(unosAutomobil);
+                        }else{
+                            Vozac vozac = new Vozac(unosKorisnickoIme,unosLozinka.toString(),unosIme,unosPrezime,unosJMBG,unosAdresa,Pol.ZENSKI,unosBrojTelefona,unosPlata,unosBrojClanskeKarte,unosAutomobil);
+                            ucitavanje.getVozaci().add(vozac);
+                        }
+                    }
+
+                    ucitavanje.dodavanjeKorisnika();
+                    DodavanjeVozaca.this.dispose();
+                    DodavanjeVozaca.this.setVisible(false);
+                }
             }
         });
+    }
+
+    private boolean proveraPodataka(){
+        boolean ok = true;
+        String obavestenjeZaGresku = "Napravili ste neke greske pri unosu, molimo vas ispravite! \n";
+
+        if(time.getText().trim().equals("")){
+            obavestenjeZaGresku += "Morate uneti ime! \n";
+            ok = false;
+        }
+        if(tprezime.getText().trim().equals("")){
+            obavestenjeZaGresku += "Morate uneti prezime! \n";
+            ok = false;
+        }
+        if(tkorisnickoIme.getText().trim().equals("")){
+            obavestenjeZaGresku += "Morate uneti korisnicko ime! \n";
+            ok = false;
+        }
+        if(tlozinka.getPassword().equals("")){
+            obavestenjeZaGresku += "Morate uneti sifru! \n";
+            ok = false;
+        }
+        if(tadresa.getText().trim().equals("")){
+            obavestenjeZaGresku += "Morate uneti adresu! \n";
+            ok = false;
+        }
+        try {
+            Integer.parseInt(tjmbg.getText().trim());
+        }catch (NumberFormatException e){
+            obavestenjeZaGresku += "Jmbg mora biti broj! \n";
+            ok = false;
+        }
+        try{
+            Integer.parseInt(tbrojTelefona.getText().trim());
+        }catch (NumberFormatException e){
+            obavestenjeZaGresku += "Broj telefona mora biti broj! \n";
+            ok = false;
+        }
+        try {
+            Double.parseDouble(tplata.getText().trim());
+        }catch (NumberFormatException e){
+            obavestenjeZaGresku += "Plata mora biti broj! \n";
+            ok = false;
+        }
+        try{
+            Integer.parseInt(tbrojClanskeKarte.getText().trim());
+        }catch (NumberFormatException e){
+            obavestenjeZaGresku += "Broj clanske karte mora biti broj! \n";
+            ok = false;
+        }
+        if(tautomobil.getText().trim().equals("")){
+            obavestenjeZaGresku += "Morate uneti automobil! \n";
+            ok = false;
+        }
+
+        if(ok == false) {
+            JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
+        }
+        return ok;
     }
 }
 

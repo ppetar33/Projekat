@@ -1,8 +1,8 @@
-package vozac;
+package vozacPaket;
 
 import gui.LoginProzor;
 import osobe.Vozac;
-import ucitavanje.Ucitavanje;
+import ucitavanje.Ucitavanje_i_Snimanje;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,10 +23,10 @@ public class MogucnostiVozaca extends JFrame {
     private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
     private JMenuItem odustaniZaOdjavu = new JMenuItem("Odustani");
 
-    private Ucitavanje ucitavanje;
+    private Ucitavanje_i_Snimanje ucitavanje;
     private Vozac prijavljeniVozac;
 
-    public MogucnostiVozaca(Ucitavanje ucitavanje,Vozac prijavljeniVozac){
+    public MogucnostiVozaca(Ucitavanje_i_Snimanje ucitavanje, Vozac prijavljeniVozac){
         this.ucitavanje = ucitavanje;
         this.prijavljeniVozac = prijavljeniVozac;
         setTitle("Vozac, ime: " + prijavljeniVozac.getIme().substring(0, 1).toUpperCase() + prijavljeniVozac.getIme().substring(1));

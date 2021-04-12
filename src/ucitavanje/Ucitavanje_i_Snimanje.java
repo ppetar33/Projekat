@@ -1,8 +1,6 @@
 package ucitavanje;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 import automobili.Automobil;
@@ -13,19 +11,56 @@ import osobe.Osoba;
 import osobe.Pol;
 import osobe.Vozac;
 
-public class Ucitavanje {
+public class Ucitavanje_i_Snimanje {
 
 	private ArrayList<Musterija> musterije;
 	private ArrayList<Dispecar> dispecari;
 	private ArrayList<Vozac> vozaci;
 
-	public Ucitavanje() {
+	public Ucitavanje_i_Snimanje() {
 		this.musterije = new ArrayList<Musterija>();
 		this.dispecari = new ArrayList<Dispecar>();
 		this.vozaci = new ArrayList<Vozac>();
 	}
 
-	public void ucitajZaposlene(String imeFajla) {
+	public ArrayList<Musterija> getMusterije() {
+		return musterije;
+	}
+
+	public void dodajMusteriju (Musterija musterija){
+		this.musterije.add(musterija);
+	}
+
+	public void obirisiMusteriju (Musterija musterija){
+		this.musterije.remove(musterija);
+	}
+
+	public ArrayList<Dispecar> getDispecari() {
+		return dispecari;
+	}
+
+	public void dodajDispecera(Dispecar dispecar){
+		this.dispecari.remove(dispecar);
+	}
+
+	public void obrisiDispecera(Dispecar dispecar){
+		this.dispecari.remove(dispecar);
+	}
+
+	public ArrayList<Vozac> getVozaci() {
+		return vozaci;
+	}
+
+	public void dodajVozaca(Vozac vozac){
+		this.vozaci.add(vozac);
+	}
+
+	public void obrisiVozaca(Vozac vozac){
+		this.vozaci.remove(vozac);
+	}
+
+
+	public void ucitajKorisnike(String imeFajla) {
 		try {
 			File korisniciFajl = new File("src/fajlovi/" + imeFajla);
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
@@ -100,4 +135,51 @@ public class Ucitavanje {
 		return null;
 	}
 
+	public void dodavanjeKorisnika(){
+		try {
+			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
+			String content = "";
+			for (Vozac vozac : vozaci) {
+				content += vozac.getKorisnickoIme() + "," +
+						vozac.getLozinka() + "," +
+						vozac.getIme() + "," +
+						vozac.getPrezime() + "," +
+						vozac.getJmbg() + "," +
+						vozac.getAdresa() + "," +
+						vozac.getPol() + "," +
+						vozac.getBrojTelefona() + "," +
+						vozac.getPlata() + "," +
+						vozac.getBrojClanskeKarte() + "," +
+						vozac.getAutomobil() + "," + "VOZAC" + "," + "true" + "\n";
+			}
+			for (Musterija musterija : musterije) {
+				content += musterija.getKorisnickoIme() + "," +
+						musterija.getLozinka() + "," +
+						musterija.getIme() + "," +
+						musterija.getPrezime() + "," +
+						musterija.getJmbg() + "," +
+						musterija.getAdresa() + "," +
+						musterija.getPol() + "," +
+						musterija.getBrojTelefona() + "," + "," + "," + "," + "MUSTERIJA" + "," + "true" + "\n";
+			}
+			for (Dispecar dispecar : dispecari){
+				content += dispecar.getKorisnickoIme() + "," +
+						dispecar.getLozinka() + "," +
+						dispecar.getIme() + "," +
+						dispecar.getPrezime() + "," +
+						dispecar.getJmbg() + "," +
+						dispecar.getAdresa() + "," +
+						dispecar.getPol() + "," +
+						dispecar.getBrojTelefona() + "," +
+						dispecar.getPlata() + "," +
+						dispecar.getBrojTelefonskeLinije() + "," +
+						dispecar.getOdeljenje() + "," + "DISPECAR" + "," + "true" + "\n";
+			}
+			BufferedWriter writer = new BufferedWriter(new FileWriter(korisniciFajl));
+			writer.write(content);
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

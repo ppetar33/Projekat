@@ -1,4 +1,4 @@
-package vozac;
+package vozacPaket;
 
 public class IstorijaVoznje {
 }

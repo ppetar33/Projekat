@@ -2,7 +2,7 @@ package main;
 
 import gui.LoginProzor;
 import osobe.Odeljenje;
-import ucitavanje.Ucitavanje;
+import ucitavanje.Ucitavanje_i_Snimanje;
 
 public class TaxiSluzbaMain {
 
@@ -11,8 +11,8 @@ public class TaxiSluzbaMain {
     public static void main(String[] args) {
 
 
-        Ucitavanje ucitavanje = new Ucitavanje();
-        ucitavanje.ucitajZaposlene(KORISNICI_FAJL);
+        Ucitavanje_i_Snimanje ucitavanje = new Ucitavanje_i_Snimanje();
+        ucitavanje.ucitajKorisnike(KORISNICI_FAJL);
 
         LoginProzor lp = new LoginProzor(ucitavanje);
         lp.setVisible(true);

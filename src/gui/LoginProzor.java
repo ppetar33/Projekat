@@ -10,8 +10,8 @@ import net.miginfocom.swing.MigLayout;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Vozac;
-import ucitavanje.Ucitavanje;
-import vozac.MogucnostiVozaca;
+import ucitavanje.Ucitavanje_i_Snimanje;
+import vozacPaket.MogucnostiVozaca;
 
 public class LoginProzor extends JFrame{
 
@@ -22,9 +22,9 @@ public class LoginProzor extends JFrame{
 	private JPasswordField pfSifra;
 	private JButton btnOK;
 	private JButton btnCancel;
-    private Ucitavanje ucitavanje;
+    private Ucitavanje_i_Snimanje ucitavanje;
 
-    public LoginProzor(Ucitavanje ucitavanje) {
+    public LoginProzor(Ucitavanje_i_Snimanje ucitavanje) {
         this.ucitavanje = ucitavanje;
 		setTitle("Prijava");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

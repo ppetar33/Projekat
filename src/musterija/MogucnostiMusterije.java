@@ -1,9 +1,8 @@
 package musterija;
 
-import dispecer.MogucnostiDispecera;
 import gui.LoginProzor;
 import osobe.Musterija;
-import ucitavanje.Ucitavanje;
+import ucitavanje.Ucitavanje_i_Snimanje;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,10 +21,10 @@ public class MogucnostiMusterije extends JFrame{
     private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
     private JMenuItem odustaniZaOdjavu = new JMenuItem("Odustani");
 
-    private Ucitavanje ucitavanje;
+    private Ucitavanje_i_Snimanje ucitavanje;
     private Musterija prijavljenaMusterija;
 
-    public MogucnostiMusterije(Ucitavanje ucitavanje, Musterija prijavljenaMusterija){
+    public MogucnostiMusterije(Ucitavanje_i_Snimanje ucitavanje, Musterija prijavljenaMusterija){
         this.ucitavanje = ucitavanje;
         this.prijavljenaMusterija = prijavljenaMusterija;
         setTitle("Musterija, ime: " + prijavljenaMusterija.getIme().substring(0, 1).toUpperCase() + prijavljenaMusterija.getIme().substring(1));

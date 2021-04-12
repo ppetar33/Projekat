@@ -2,7 +2,8 @@ package dispecer;
 
 import gui.LoginProzor;
 import osobe.Dispecar;
-import ucitavanje.Ucitavanje;
+import osobe.Vozac;
+import ucitavanje.Ucitavanje_i_Snimanje;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -50,10 +51,11 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem odustaniZaOdjavu = new JMenuItem("Odustani");
 
 
-	private Ucitavanje ucitavanje;
+	private Ucitavanje_i_Snimanje ucitavanje;
 	private Dispecar prijavljeniDispecar;
+	private Vozac vozac;
 
-	public MogucnostiDispecera(Ucitavanje ucitavanje, Dispecar prijavljeniDispecar){
+	public MogucnostiDispecera(Ucitavanje_i_Snimanje ucitavanje, Dispecar prijavljeniDispecar){
 		this.ucitavanje = ucitavanje;
 		this.prijavljeniDispecar = prijavljeniDispecar;
 		setTitle("Dispecer, ime: " + prijavljeniDispecar.getIme().substring(0, 1).toUpperCase() + prijavljeniDispecar.getIme().substring(1));
@@ -109,7 +111,7 @@ public class MogucnostiDispecera extends JFrame {
 		dodavanjeVozaca.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DodavanjeVozaca prozorZaDodavanjeVozaca = new DodavanjeVozaca(ucitavanje);
+				DodavanjeVozaca prozorZaDodavanjeVozaca = new DodavanjeVozaca(ucitavanje, vozac);
 				prozorZaDodavanjeVozaca.setVisible(true);
 			}
 		});
