@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 /*
     1. proveriti da li je slobodan automobil
     ako jeste onda je moguce dodati ga vozacu
- */
+*/
 
 public class DodavanjeVozaca extends JFrame{
 
@@ -223,6 +223,7 @@ public class DodavanjeVozaca extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(proveraPodataka() == true){
+
                     String unosIme = time.getText().trim();
                     String unosPrezime = tprezime.getText().trim();
                     String unosKorisnickoIme = tkorisnickoIme.getText().trim();
@@ -248,11 +249,11 @@ public class DodavanjeVozaca extends JFrame{
                         vozac.setAutomobil(unosAutomobil);
                     }if (muski.isSelected()) {
                         Pol pol = Pol.MUSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, Pol.MUSKI, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
                         ucitavanje.getVozaci().add(vozac);
                     } else if (zenski.isSelected()) {
                         Pol pol = Pol.ZENSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, Pol.ZENSKI, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
                         ucitavanje.getVozaci().add(vozac);
                     }
                     ucitavanje.dodavanjeKorisnika();
