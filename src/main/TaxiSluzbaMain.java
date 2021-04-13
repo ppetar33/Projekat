@@ -2,6 +2,7 @@ package main;
 
 import gui.LoginProzor;
 import osobe.Odeljenje;
+import osobe.Vozac;
 import ucitavanje.Ucitavanje_i_Snimanje;
 
 public class TaxiSluzbaMain {
@@ -21,6 +22,15 @@ public class TaxiSluzbaMain {
         Odeljenje prvo = Odeljenje.ODELJENJE_ZA_PRIJEM_VOZNJI;
         Odeljenje drugo = Odeljenje.ODELJENJE_ZA_REKLAMACIJE;
         Odeljenje treci = Odeljenje.ODELJENJE_ZA_PRIJEM_VOZNJI;
+
+
+        /*
+            PRIKAZ VOZACA
+        */
+
+//        Ucitavanje_i_Snimanje prikazVozaca = new Ucitavanje_i_Snimanje();
+//        prikazVozaca.ucitajKorisnike(KORISNICI_FAJL);
+//        System.out.println(prikazVozaca.getVozaci());
     }
 
 }

@@ -98,8 +98,7 @@ public abstract class Osoba {
 
     @Override
     public String toString() {
-        return "Osoba{" +
-                "korisnickoIme='" + korisnickoIme + '\'' +
+        return ", korisnickoIme='" + korisnickoIme + '\'' +
                 ", lozinka='" + lozinka + '\'' +
                 ", ime='" + ime + '\'' +
                 ", prezime='" + prezime + '\'' +

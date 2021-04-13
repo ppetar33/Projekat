@@ -18,9 +18,7 @@ public class PrikazVozaca {
 	public PrikazVozaca(){
 		this.musterije = new ArrayList<Musterija>();
 	}
-	public static void main(String[] args){
-		ucitajKorisnike();
-	}
+
 	public static void ucitajKorisnike() {
 		try {
 			File korisniciFajl = new File("src/fajlovi/korisnici.txt");

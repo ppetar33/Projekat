@@ -44,10 +44,10 @@ public class Vozac extends Osoba {
 
 	@Override
 	public String toString() {
-		return "Vozac{" +
+		return "\nVozac{" +
 				"plata=" + plata +
 				", brojClanskeKarte=" + brojClanskeKarte +
 				", automobil='" + automobil + '\'' +
-				"} " + super.toString();
+				super.toString();
 	}
 }
