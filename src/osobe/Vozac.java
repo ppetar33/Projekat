@@ -17,7 +17,7 @@ public class Vozac extends Osoba {
 		this.automobil = automobil;
 	}
 
-    public double getPlata() {
+	public double getPlata() {
 		return plata;
 	}
 

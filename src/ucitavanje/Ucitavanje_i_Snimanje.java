@@ -27,11 +27,11 @@ public class Ucitavanje_i_Snimanje {
 		return musterije;
 	}
 
-	public void dodajMusteriju (Musterija musterija){
+	public void dodajMusteriju(Musterija musterija) {
 		this.musterije.add(musterija);
 	}
 
-	public void obirisiMusteriju (Musterija musterija){
+	public void obirisiMusteriju(Musterija musterija) {
 		this.musterije.remove(musterija);
 	}
 
@@ -39,11 +39,11 @@ public class Ucitavanje_i_Snimanje {
 		return dispecari;
 	}
 
-	public void dodajDispecera(Dispecar dispecar){
+	public void dodajDispecera(Dispecar dispecar) {
 		this.dispecari.remove(dispecar);
 	}
 
-	public void obrisiDispecera(Dispecar dispecar){
+	public void obrisiDispecera(Dispecar dispecar) {
 		this.dispecari.remove(dispecar);
 	}
 
@@ -51,11 +51,11 @@ public class Ucitavanje_i_Snimanje {
 		return vozaci;
 	}
 
-	public void dodajVozaca(Vozac vozac){
+	public void dodajVozaca(Vozac vozac) {
 		this.vozaci.add(vozac);
 	}
 
-	public void obrisiVozaca(Vozac vozac){
+	public void obrisiVozaca(Vozac vozac) {
 		this.vozaci.remove(vozac);
 	}
 
@@ -65,7 +65,7 @@ public class Ucitavanje_i_Snimanje {
 			File korisniciFajl = new File("../src/fajlovi/" + imeFajla);
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
 			String line = null;
-			while((line = br.readLine()) != null) {
+			while ((line = br.readLine()) != null) {
 				String[] split = line.split(",");
 				String korisnickoIme = split[0];
 				String lozinka = split[1];
@@ -76,11 +76,11 @@ public class Ucitavanje_i_Snimanje {
 				Pol pol = Pol.valueOf(split[6].toUpperCase());
 				String brojTelefona = split[7];
 				String tipKorisnika = split[11];
-				if(tipKorisnika.equals("MUSTERIJA")) {
+				if (tipKorisnika.equals("MUSTERIJA")) {
 					Musterija musterija = new Musterija(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 					musterije.add(musterija);
 					// System.out.println(musterija); formatirani ispis pomocu toString
-				}else if(tipKorisnika.equals("DISPECAR")) {
+				} else if (tipKorisnika.equals("DISPECAR")) {
 					String plataString = split[8];
 					double plataDispecara = Double.parseDouble(plataString);
 					String brojPozivnogTelefona = split[9];
@@ -88,7 +88,7 @@ public class Ucitavanje_i_Snimanje {
 					Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataDispecara, brojPozivnogTelefona, odeljenje);
 					dispecari.add(dispecar);
 					// System.out.println(dispecar); formatirani ispis pomocu toString
-				}else if(tipKorisnika.equals("VOZAC")) {
+				} else if (tipKorisnika.equals("VOZAC")) {
 					String plataString = split[8];
 					double plataVozaca = Double.parseDouble(plataString);
 					String brojKarticeString = split[9];
@@ -135,7 +135,7 @@ public class Ucitavanje_i_Snimanje {
 		return null;
 	}
 
-	public void dodavanjeKorisnika(){
+	public void dodavanjeKorisnika() {
 		try {
 			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
 			String content = "";
@@ -162,7 +162,7 @@ public class Ucitavanje_i_Snimanje {
 						musterija.getPol() + "," +
 						musterija.getBrojTelefona() + "," + "," + "," + "," + "MUSTERIJA" + "," + "true" + "\n";
 			}
-			for (Dispecar dispecar : dispecari){
+			for (Dispecar dispecar : dispecari) {
 				content += dispecar.getKorisnickoIme() + "," +
 						dispecar.getLozinka() + "," +
 						dispecar.getIme() + "," +
