@@ -21,7 +21,7 @@ public class PrikazVozaca {
 
 	public static void ucitajKorisnike() {
 		try {
-			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
+			File korisniciFajl = new File("../src/fajlovi/korisnici.txt");
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
 			String line = null;
 			while((line = br.readLine()) != null) {

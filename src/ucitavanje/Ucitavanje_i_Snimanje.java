@@ -62,7 +62,7 @@ public class Ucitavanje_i_Snimanje {
 
 	public void ucitajKorisnike(String imeFajla) {
 		try {
-			File korisniciFajl = new File("src/fajlovi/" + imeFajla);
+			File korisniciFajl = new File("../src/fajlovi/" + imeFajla);
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
 			String line = null;
 			while((line = br.readLine()) != null) {
