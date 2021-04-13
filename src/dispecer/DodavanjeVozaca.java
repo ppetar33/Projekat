@@ -1,5 +1,6 @@
 package dispecer;
 
+import obrisan.Obrisan;
 import osobe.Osoba;
 import osobe.Pol;
 import osobe.Vozac;
@@ -13,7 +14,6 @@ import java.awt.event.ActionListener;
 /*
     1. proveriti da li je slobodan automobil
     ako jeste onda je moguce dodati ga vozacu
-    2. lozinka ne radi jer ne moze konvertovati sa char[] toString()
  */
 
 public class DodavanjeVozaca extends JFrame{
@@ -226,7 +226,7 @@ public class DodavanjeVozaca extends JFrame{
                     String unosIme = time.getText().trim();
                     String unosPrezime = tprezime.getText().trim();
                     String unosKorisnickoIme = tkorisnickoIme.getText().trim();
-                    char[] unosLozinka = tlozinka.getPassword();
+                    String unosLozinka = new String (tlozinka.getPassword());
                     String unosAdresa = tadresa.getText().trim();
                     String unosJMBG = tjmbg.getText().trim();
                     String unosBrojTelefona = tbrojTelefona.getText().trim();
@@ -239,7 +239,7 @@ public class DodavanjeVozaca extends JFrame{
                         vozac.setIme(unosIme);
                         vozac.setPrezime(unosPrezime);
                         vozac.setKorisnickoIme(unosKorisnickoIme);
-                        vozac.setLozinka(unosLozinka.toString());
+                        vozac.setLozinka(unosLozinka);
                         vozac.setAdresa(unosAdresa);
                         vozac.setJmbg(unosJMBG);
                         vozac.setBrojTelefona(unosBrojTelefona);
@@ -248,11 +248,11 @@ public class DodavanjeVozaca extends JFrame{
                         vozac.setAutomobil(unosAutomobil);
                     }if (muski.isSelected()) {
                         Pol pol = Pol.MUSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka.toString(), unosIme, unosPrezime, unosJMBG, unosAdresa, Pol.MUSKI, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, Pol.MUSKI, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
                         ucitavanje.getVozaci().add(vozac);
                     } else if (zenski.isSelected()) {
                         Pol pol = Pol.ZENSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka.toString(), unosIme, unosPrezime, unosJMBG, unosAdresa, Pol.ZENSKI, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, Pol.ZENSKI, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
                         ucitavanje.getVozaci().add(vozac);
                     }
                     ucitavanje.dodavanjeKorisnika();

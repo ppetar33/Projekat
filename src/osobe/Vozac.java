@@ -1,6 +1,5 @@
 package osobe;
 
-import automobili.Automobil;
 
 public class Vozac extends Osoba {
 

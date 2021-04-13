@@ -8,6 +8,8 @@ package automobili;
     putničkim automobilima i kombi vozilima).
 */
 
+import obrisan.Obrisan;
+
 public class Automobil {
 
     private String model;
@@ -15,16 +17,18 @@ public class Automobil {
     private int godinaProizvodnje;
     private String registarskiBroj;
     private int brojVozila;
+    private Obrisan obrisan;
     private VrstaVozila vrstaVozila;
 
     public Automobil(){}
 
-    public Automobil(String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila){
+    public Automobil(String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, Obrisan obrisan, VrstaVozila vrstaVozila){
         this.model = model;
         this.proizvodjac = proizvodjac;
         this.godinaProizvodnje = godinaProizvodnje;
         this.registarskiBroj = registarskiBroj;
         this.brojVozila = brojVozila;
+        this.obrisan = obrisan;
         this.vrstaVozila = vrstaVozila;
     }
 
@@ -68,6 +72,14 @@ public class Automobil {
         this.brojVozila = brojVozila;
     }
 
+    public Obrisan getObrisan() {
+        return obrisan;
+    }
+
+    public void setObrisan(Obrisan obrisan) {
+        this.obrisan = obrisan;
+    }
+
     public VrstaVozila getVrstaVozila() {
         return vrstaVozila;
     }
@@ -82,8 +94,9 @@ public class Automobil {
                 "model='" + model + '\'' +
                 ", proizvodjac='" + proizvodjac + '\'' +
                 ", godinaProizvodnje=" + godinaProizvodnje +
-                ", registarskiBroj=" + registarskiBroj +
+                ", registarskiBroj='" + registarskiBroj + '\'' +
                 ", brojVozila=" + brojVozila +
+                ", obrisan=" + obrisan +
                 ", vrstaVozila=" + vrstaVozila +
                 '}';
     }
