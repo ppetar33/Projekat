@@ -2,25 +2,27 @@ package ucitavanje;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-import automobili.Automobil;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Odeljenje;
-import osobe.Osoba;
 import osobe.Pol;
 import osobe.Vozac;
+import taksisluzba.TaksiSluzba;
 
 public class Ucitavanje_i_Snimanje {
 
 	private ArrayList<Musterija> musterije;
 	private ArrayList<Dispecar> dispecari;
 	private ArrayList<Vozac> vozaci;
+	private ArrayList<TaksiSluzba> taksiSluzbe;
 
 	public Ucitavanje_i_Snimanje() {
 		this.musterije = new ArrayList<Musterija>();
 		this.dispecari = new ArrayList<Dispecar>();
 		this.vozaci = new ArrayList<Vozac>();
+		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
 	}
 
 	public ArrayList<Musterija> getMusterije() {
@@ -59,6 +61,9 @@ public class Ucitavanje_i_Snimanje {
 		this.vozaci.remove(vozac);
 	}
 
+	public ArrayList<TaksiSluzba> getTaksiSluzbe() {
+		return taksiSluzbe;
+	}
 
 	public void ucitajKorisnike(String imeFajla) {
 		try {
@@ -137,8 +142,32 @@ public class Ucitavanje_i_Snimanje {
 
 	public void dodavanjeKorisnika() {
 		try {
-			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
+			File korisniciFajl = new File("../src/fajlovi/korisnici.txt");
 			String content = "";
+			/*
+			 *
+			 * for (korisnik k : korisnici)
+			 * {
+			 *
+			 *
+			 *
+			 * 	if (k vozac (instaceof))
+			 * {
+			 *  castuj vozaca
+			 *   snimi vozac.pripremiZaUpis();
+			 * }
+			 * else if (musterija(
+			 * {
+			 * *  castuj musteriju
+			 *   snimi musterija.pripremiZaUpis();
+			 * }
+			 * else
+			 * {
+			 * *  castuj dispecer
+			 *   snimi dispecer.pripremiZaUpis();
+			 *
+			 * */
+
 			for (Vozac vozac : vozaci) {
 				content += vozac.getKorisnickoIme() + "," +
 						vozac.getLozinka() + "," +
@@ -181,5 +210,48 @@ public class Ucitavanje_i_Snimanje {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public void ucitajTaksiSluzbe(String imeFajla) {
+		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			String line;
+			while ((line = br.readLine()) != null) {
+				String[] podaci = line.trim().split(",");
+				// System.out.println(Arrays.toString(podaci));
+
+				int id = Integer.parseInt(podaci[0]);
+				String pib = podaci[1];
+				String naziv = podaci[2];
+				String adresa = podaci[3];
+				double cenaStartaVoznje = Double.parseDouble(podaci[4]);
+				double cenaPoKilometru = Double.parseDouble(podaci[5]);
+				TaksiSluzba ts = new TaksiSluzba(id, pib, naziv, adresa, cenaStartaVoznje, cenaPoKilometru);
+				taksiSluzbe.add(ts);
+
+			}
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Greska prilikom citanja fajla");
+		}
+
+	}
+
+	public void snimiTaksiSluzbe(String imeFajla)
+	{
+
+
+		try {
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			for (TaksiSluzba taksiSluzba : taksiSluzbe) {
+				br.write(taksiSluzba.pripremiZaSnimanje());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Greska prilikom snimanja fajla");
+		}
+
+
 	}
 }

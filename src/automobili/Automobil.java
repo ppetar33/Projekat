@@ -12,6 +12,7 @@ import obrisan.Obrisan;
 
 public class Automobil {
 
+    private int id;
     private String model;
     private String proizvodjac;
     private int godinaProizvodnje;
@@ -22,7 +23,8 @@ public class Automobil {
 
     public Automobil(){}
 
-    public Automobil(String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, Obrisan obrisan, VrstaVozila vrstaVozila){
+    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, Obrisan obrisan, VrstaVozila vrstaVozila) {
+        this.id = id;
         this.model = model;
         this.proizvodjac = proizvodjac;
         this.godinaProizvodnje = godinaProizvodnje;
@@ -30,6 +32,14 @@ public class Automobil {
         this.brojVozila = brojVozila;
         this.obrisan = obrisan;
         this.vrstaVozila = vrstaVozila;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getModel() {
@@ -91,7 +101,8 @@ public class Automobil {
     @Override
     public String toString() {
         return "Automobil{" +
-                "model='" + model + '\'' +
+                "id=" + id +
+                ", model='" + model + '\'' +
                 ", proizvodjac='" + proizvodjac + '\'' +
                 ", godinaProizvodnje=" + godinaProizvodnje +
                 ", registarskiBroj='" + registarskiBroj + '\'' +

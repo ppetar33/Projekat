@@ -96,6 +96,7 @@ public abstract class Osoba {
         this.brojTelefona = brojTelefona;
     }
 
+    // string pripremiZaUpis()
     @Override
     public String toString() {
         return ", korisnickoIme='" + korisnickoIme + '\'' +

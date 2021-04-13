@@ -3,6 +3,8 @@ package automobili;
 import osobe.Musterija;
 import osobe.Vozac;
 
+import java.time.LocalDateTime;
+
 public class Voznja {
 
     /*
@@ -17,8 +19,10 @@ public class Voznja {
                 napomenu koju unose korisnici. Kada se kreira ova vožnja njen inicijalni status je
                 KREIRANA-NA ČEKANJU.
     */
-
-    private String datumIvremePorudzbine;
+    // 2019-12-13 12:35,Nenada Mitrova 12,Sime Matavulja 15,petar,nemanja,10,30,KREIRANA
+    // todo izmeniti voznje.txt da cuvaju korisnicka imena
+    private int id;
+    private LocalDateTime datumIvremePorudzbine;
     private String adresaPolaska;
     private String adresaDestinacije;
     private Musterija musterija;
@@ -27,9 +31,16 @@ public class Voznja {
     private double trajanjVoznje;
     private StatusVoznje statusVoznje;
 
-    public Voznja(){}
+    public Voznja(){
+        // snimanje this.getMusterija().getKorisnickoIme()
+        // citanje prvo ucitati musterije i vozace pa tek onda voznju
+        // generlano prvo ucitavamo entitete koji nemaju veze na neke druge slozene tipove
+        // musterija korIme = pera 123
+        // prodji for petljom kroz sve mustrije, ako se pokalap korIme tu musteriju iz petlje dodaj u voznju
+    }
 
-    public Voznja(String datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje){
+    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje) {
+        this.id = id;
         this.datumIvremePorudzbine = datumIvremePorudzbine;
         this.adresaPolaska = adresaPolaska;
         this.adresaDestinacije = adresaDestinacije;
@@ -40,11 +51,19 @@ public class Voznja {
         this.statusVoznje = statusVoznje;
     }
 
-    public String getDatumIvremePorudzbine() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDatumIvremePorudzbine() {
         return datumIvremePorudzbine;
     }
 
-    public void setDatumIvremePorudzbine(String datumIvremePorudzbine) {
+    public void setDatumIvremePorudzbine(LocalDateTime datumIvremePorudzbine) {
         this.datumIvremePorudzbine = datumIvremePorudzbine;
     }
 
@@ -107,11 +126,12 @@ public class Voznja {
     @Override
     public String toString() {
         return "Voznja{" +
-                "datumIvremePorudzbine='" + datumIvremePorudzbine + '\'' +
+                "id=" + id +
+                ", datumIvremePorudzbine=" + datumIvremePorudzbine +
                 ", adresaPolaska='" + adresaPolaska + '\'' +
                 ", adresaDestinacije='" + adresaDestinacije + '\'' +
-                ", musterija='" + musterija + '\'' +
-                ", vozac='" + vozac + '\'' +
+                ", musterija=" + musterija +
+                ", vozac=" + vozac +
                 ", brojKMpredjenih=" + brojKMpredjenih +
                 ", trajanjVoznje=" + trajanjVoznje +
                 ", statusVoznje=" + statusVoznje +

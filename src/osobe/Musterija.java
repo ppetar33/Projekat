@@ -9,6 +9,10 @@ public class Musterija extends Osoba {
         super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
     }
 
+    // string pripremiZaUpis()
+    //{
+    // super.pripremiZaUpis() + moje +"," + ....
+    //}
 
     @Override
     public String toString() {
