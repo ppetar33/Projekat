@@ -111,4 +111,8 @@ public class Automobil {
                 ", vrstaVozila=" + vrstaVozila +
                 '}';
     }
+
+    public String pripremiZaSnimanjeAutomobil() {
+        return id + "," + model + "," + proizvodjac + "," + godinaProizvodnje + "," + registarskiBroj + "," + brojVozila +"," + obrisan +"," + vrstaVozila + "\n";
+    }
 }

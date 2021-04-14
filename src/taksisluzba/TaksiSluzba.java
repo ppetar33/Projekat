@@ -80,7 +80,7 @@ public class TaksiSluzba {
                 '}';
     }
 
-    public String pripremiZaSnimanje() {
+    public String pripremiZaSnimanjeTaksiSluzbu() {
         return id + "," + pib + "," + naziv + "," + adresa + "," + cenaStartaVoznje + "," + cenaPoKilometru + "\n";
     }
 }

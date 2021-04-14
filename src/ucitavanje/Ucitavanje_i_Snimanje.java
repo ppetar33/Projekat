@@ -3,7 +3,11 @@ package ucitavanje;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
+import automobili.Automobil;
+import automobili.VrstaVozila;
+import obrisan.Obrisan;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Odeljenje;
@@ -17,12 +21,16 @@ public class Ucitavanje_i_Snimanje {
 	private ArrayList<Dispecar> dispecari;
 	private ArrayList<Vozac> vozaci;
 	private ArrayList<TaksiSluzba> taksiSluzbe;
+	private ArrayList<Automobil> automobil;
+
+
 
 	public Ucitavanje_i_Snimanje() {
 		this.musterije = new ArrayList<Musterija>();
 		this.dispecari = new ArrayList<Dispecar>();
 		this.vozaci = new ArrayList<Vozac>();
 		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
+		this.automobil = new ArrayList<Automobil>();
 	}
 
 	public ArrayList<Musterija> getMusterije() {
@@ -63,6 +71,10 @@ public class Ucitavanje_i_Snimanje {
 
 	public ArrayList<TaksiSluzba> getTaksiSluzbe() {
 		return taksiSluzbe;
+	}
+
+	public ArrayList<Automobil> getAutomobil(){
+		return automobil;
 	}
 
 	public void ucitajKorisnike(String imeFajla) {
@@ -241,17 +253,54 @@ public class Ucitavanje_i_Snimanje {
 	public void snimiTaksiSluzbe(String imeFajla)
 	{
 
-
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
 			for (TaksiSluzba taksiSluzba : taksiSluzbe) {
-				br.write(taksiSluzba.pripremiZaSnimanje());
+				br.write(taksiSluzba.pripremiZaSnimanjeTaksiSluzbu());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Greska prilikom snimanja fajla");
 		}
-
-
 	}
+
+	public void ucitajAutomobila(String imeFajla){
+		this.automobil = new ArrayList<Automobil>();
+		try{
+			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi" + imeFajla)));
+			String line;
+			while((line = br.readLine()) != null){
+				String [] podaci = line.trim().split(",");
+				int id = Integer.parseInt(podaci[0]);
+				String model = podaci[1];
+				String proizvodajc = podaci[2];
+				int godinaProizvodnje = Integer.parseInt(podaci[3]);
+				String registarskiBroj = podaci[4];
+				int brojVozila = Integer.parseInt(podaci[5]);
+				//Pol pol = Pol.valueOf(split[6].toUpperCase());
+				Obrisan obrisan = Obrisan.valueOf(podaci[6].toUpperCase());
+				VrstaVozila vrstaVozila = VrstaVozila.valueOf(podaci[7].toUpperCase());
+				Automobil aut = new Automobil(id,model,proizvodajc,godinaProizvodnje,registarskiBroj,brojVozila,obrisan,vrstaVozila);
+				automobil.add(aut);
+			}
+			br.close();
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Greska prilikom citanja fajla");
+		}
+	}
+
+	public void snimanjeAutomobila(String imeFajla){
+		try{
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi" + imeFajla)));
+			for (Automobil automobil : automobil){
+				br.write(automobil.pripremiZaSnimanjeAutomobil());
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Greska prilikom snimanja fajla");
+		}
+	}
+
+
 }
