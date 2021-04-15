@@ -2,13 +2,21 @@ package main;
 
 import gui.LoginProzor;
 import osobe.Odeljenje;
-import osobe.Vozac;
 import ucitavanje.Ucitavanje_i_Snimanje;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class TaxiSluzbaMain {
 
     private static final String KORISNICI_FAJL = "korisnici.txt";
     private static final String automobil = "automobil.txt";
+
+    // ucitati sve podatke
+    // identifikator mora da postoji i to je deo iz algoritama
+    // liste i mape su deo iz algoritama, pitati asistenta
+    // putem aplikacije se unosi dodatna napomena i to je jedina razlika
+    // za izvestaje pitati asistenta iz algoritama
 
     public static void main(String[] args) {
 
@@ -24,9 +32,9 @@ public class TaxiSluzbaMain {
         Odeljenje drugo = Odeljenje.ODELJENJE_ZA_REKLAMACIJE;
         Odeljenje treci = Odeljenje.ODELJENJE_ZA_PRIJEM_VOZNJI;
 
-        Ucitavanje_i_Snimanje prikazAutomobila = new Ucitavanje_i_Snimanje();
-        prikazAutomobila.ucitajAutomobila(automobil);
-        System.out.println(prikazAutomobila.getAutomobil());
+//        Ucitavanje_i_Snimanje prikazAutomobila = new Ucitavanje_i_Snimanje();
+//        prikazAutomobila.ucitajAutomobila(automobil);
+//        System.out.println(prikazAutomobila.getAutomobil());
 
 
         /*

@@ -2,10 +2,8 @@ package ucitavanje;
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
-
 import automobili.Automobil;
 import automobili.StatusVoznje;
 import automobili.Voznja;
@@ -18,8 +16,6 @@ import osobe.Pol;
 import osobe.Vozac;
 import taksisluzba.TaksiSluzba;
 
-
-
 public class Ucitavanje_i_Snimanje {
 
 	private ArrayList<Musterija> musterije;
@@ -28,8 +24,6 @@ public class Ucitavanje_i_Snimanje {
 	private ArrayList<TaksiSluzba> taksiSluzbe;
 	private ArrayList<Automobil> automobil;
 	private ArrayList<Voznja> voznja;
-
-
 
 	public Ucitavanje_i_Snimanje() {
 		this.musterije = new ArrayList<Musterija>();
@@ -322,14 +316,16 @@ public class Ucitavanje_i_Snimanje {
 				String[] podaci = line.trim().split(",");
 				int id = Integer.parseInt(podaci[0]);
 				String datumIvremePorudzbine = podaci[1]; //todo: KOJA VRSTA PODATAKA JE OVDE
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+				LocalDateTime dateTime = LocalDateTime.parse(datumIvremePorudzbine, formatter);
 				String adresaPolaska = podaci[2];
 				String adresaDestinacije = podaci[3];
-				String musterija = podaci[4];
-				String vozac = podaci[5];
+//				musterija podaci[5]
+//				vozac podaci[5]
 				double brojKMpredjenih = Double.parseDouble(podaci[6]);
 				double trajanjVoznje = Double.parseDouble(podaci[7]);
 				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8].toUpperCase());
-				Voznja voz = new Voznja(id,datumIvremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
+				Voznja voz = new Voznja(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
 				voznja.add(voz);
 				System.out.println(automobil);
 			}
