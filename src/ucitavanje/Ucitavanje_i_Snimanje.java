@@ -1,11 +1,14 @@
 package ucitavanje;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
 import automobili.Automobil;
+import automobili.StatusVoznje;
+import automobili.Voznja;
 import automobili.VrstaVozila;
 import obrisan.Obrisan;
 import osobe.Dispecar;
@@ -15,6 +18,8 @@ import osobe.Pol;
 import osobe.Vozac;
 import taksisluzba.TaksiSluzba;
 
+
+
 public class Ucitavanje_i_Snimanje {
 
 	private ArrayList<Musterija> musterije;
@@ -22,6 +27,7 @@ public class Ucitavanje_i_Snimanje {
 	private ArrayList<Vozac> vozaci;
 	private ArrayList<TaksiSluzba> taksiSluzbe;
 	private ArrayList<Automobil> automobil;
+	private ArrayList<Voznja> voznja;
 
 
 
@@ -31,6 +37,7 @@ public class Ucitavanje_i_Snimanje {
 		this.vozaci = new ArrayList<Vozac>();
 		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
 		this.automobil = new ArrayList<Automobil>();
+		this.voznja = new ArrayList<Voznja>();
 	}
 
 	public ArrayList<Musterija> getMusterije() {
@@ -75,6 +82,10 @@ public class Ucitavanje_i_Snimanje {
 
 	public ArrayList<Automobil> getAutomobil(){
 		return automobil;
+	}
+
+	public ArrayList<Voznja> getVoznja(){
+		return voznja;
 	}
 
 	public void ucitajKorisnike(String imeFajla) {
@@ -267,7 +278,7 @@ public class Ucitavanje_i_Snimanje {
 	public void ucitajAutomobila(String imeFajla){
 		this.automobil = new ArrayList<Automobil>();
 		try{
-			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
 			String line;
 			while((line = br.readLine()) != null){
 				String [] podaci = line.trim().split(",");
@@ -277,11 +288,11 @@ public class Ucitavanje_i_Snimanje {
 				int godinaProizvodnje = Integer.parseInt(podaci[3]);
 				String registarskiBroj = podaci[4];
 				int brojVozila = Integer.parseInt(podaci[5]);
-				//Pol pol = Pol.valueOf(split[6].toUpperCase());
 				Obrisan obrisan = Obrisan.valueOf(podaci[6].toUpperCase());
 				VrstaVozila vrstaVozila = VrstaVozila.valueOf(podaci[7].toUpperCase());
 				Automobil aut = new Automobil(id,model,proizvodajc,godinaProizvodnje,registarskiBroj,brojVozila,obrisan,vrstaVozila);
 				automobil.add(aut);
+				System.out.println(automobil);
 			}
 			br.close();
 		}catch (Exception e){
@@ -292,13 +303,36 @@ public class Ucitavanje_i_Snimanje {
 
 	public void snimanjeAutomobila(String imeFajla){
 		try{
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
 			for (Automobil automobil : automobil){
 				br.write(automobil.pripremiZaSnimanjeAutomobil());
 			}
 		}catch (Exception e){
 			e.printStackTrace();
 			System.out.println("Greska prilikom snimanja fajla");
+		}
+	}
+
+	public void ucitavanjeVoznji(String imeFajla){
+		try {
+			this.voznja = new ArrayList<Voznja>();
+			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			String line;
+			while ((line = br.readLine()) != null){
+				String[] podaci = line.trim().split(",");
+				int id = Integer.parseInt(podaci[0]);
+				String datumIvremePorudzbine = podaci[1]; //todo: KOJA VRSTA PODATAKA JE OVDE
+				String adresaPolaska = podaci[2];
+				String adresaDestinacije = podaci[3];
+				//Musterija musterija = Musterija.valueOf(podaci[4]);
+				//Vozac vozac = Vozac.valueOf(podaci[5]);
+				double brojKMpredjenih = Double.parseDouble(podaci[6]);
+				double trajanjVoznje = Double.parseDouble(podaci[7]);
+				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8].toUpperCase());
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Greska prilikom citanja fajla");
 		}
 	}
 

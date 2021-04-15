@@ -8,6 +8,7 @@ import ucitavanje.Ucitavanje_i_Snimanje;
 public class TaxiSluzbaMain {
 
     private static final String KORISNICI_FAJL = "korisnici.txt";
+    private static final String automobil = "automobil.txt";
 
     public static void main(String[] args) {
 
@@ -22,6 +23,10 @@ public class TaxiSluzbaMain {
         Odeljenje prvo = Odeljenje.ODELJENJE_ZA_PRIJEM_VOZNJI;
         Odeljenje drugo = Odeljenje.ODELJENJE_ZA_REKLAMACIJE;
         Odeljenje treci = Odeljenje.ODELJENJE_ZA_PRIJEM_VOZNJI;
+
+        Ucitavanje_i_Snimanje prikazAutomobila = new Ucitavanje_i_Snimanje();
+        prikazAutomobila.ucitajAutomobila(automobil);
+        System.out.println(prikazAutomobila.getAutomobil());
 
 
         /*
