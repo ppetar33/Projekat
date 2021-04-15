@@ -324,15 +324,30 @@ public class Ucitavanje_i_Snimanje {
 				String datumIvremePorudzbine = podaci[1]; //todo: KOJA VRSTA PODATAKA JE OVDE
 				String adresaPolaska = podaci[2];
 				String adresaDestinacije = podaci[3];
-				//Musterija musterija = Musterija.valueOf(podaci[4]);
-				//Vozac vozac = Vozac.valueOf(podaci[5]);
+				String musterija = podaci[4];
+				String vozac = podaci[5];
 				double brojKMpredjenih = Double.parseDouble(podaci[6]);
 				double trajanjVoznje = Double.parseDouble(podaci[7]);
 				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8].toUpperCase());
+				Voznja voz = new Voznja(id,datumIvremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
+				voznja.add(voz);
+				System.out.println(automobil);
 			}
 		}catch (Exception e){
 			e.printStackTrace();
 			System.out.println("Greska prilikom citanja fajla");
+		}
+	}
+
+	public void snimanjeVoznji(String imeFajla){
+		try {
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			for (Voznja voznja: voznja){
+				br.write(voznja.pripremiZaSnimanjeVoznju());
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Greska prilikom snimanja fajla");
 		}
 	}
 

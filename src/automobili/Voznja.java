@@ -137,4 +137,8 @@ public class Voznja {
                 ", statusVoznje=" + statusVoznje +
                 '}';
     }
+
+    public String pripremiZaSnimanjeVoznju() {
+        return id + "," + datumIvremePorudzbine + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija + "," + vozac + "," + brojKMpredjenih + "," + trajanjVoznje + "," + "," + statusVoznje;
+    }
 }
