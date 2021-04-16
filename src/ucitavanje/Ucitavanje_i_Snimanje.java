@@ -84,7 +84,7 @@ public class Ucitavanje_i_Snimanje {
 
 	public void ucitajKorisnike(String imeFajla) {
 		try {
-			File korisniciFajl = new File("../src/fajlovi/" + imeFajla);
+			File korisniciFajl = new File("src/fajlovi/" + imeFajla);
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
 			String line = null;
 			while ((line = br.readLine()) != null) {
@@ -159,7 +159,7 @@ public class Ucitavanje_i_Snimanje {
 
 	public void dodavanjeKorisnika() {
 		try {
-			File korisniciFajl = new File("../src/fajlovi/korisnici.txt");
+			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
 			String content = "";
 			/*
 			 *
@@ -196,7 +196,7 @@ public class Ucitavanje_i_Snimanje {
 						vozac.getBrojTelefona() + "," +
 						vozac.getPlata() + "," +
 						vozac.getBrojClanskeKarte() + "," +
-						vozac.getAutomobil() + "," + "VOZAC" + "," + "true" + "\n";
+						vozac.getAutomobil() + "," + "VOZAC" + "," + Obrisan.TRUE + "\n";
 			}
 			for (Musterija musterija : musterije) {
 				content += musterija.getKorisnickoIme() + "," +
@@ -206,7 +206,7 @@ public class Ucitavanje_i_Snimanje {
 						musterija.getJmbg() + "," +
 						musterija.getAdresa() + "," +
 						musterija.getPol() + "," +
-						musterija.getBrojTelefona() + "," + "," + "," + "," + "MUSTERIJA" + "," + "true" + "\n";
+						musterija.getBrojTelefona() + "," + "," + "," + "," + "MUSTERIJA" + "," + Obrisan.TRUE + "\n";
 			}
 			for (Dispecar dispecar : dispecari) {
 				content += dispecar.getKorisnickoIme() + "," +
@@ -219,7 +219,7 @@ public class Ucitavanje_i_Snimanje {
 						dispecar.getBrojTelefona() + "," +
 						dispecar.getPlata() + "," +
 						dispecar.getBrojTelefonskeLinije() + "," +
-						dispecar.getOdeljenje() + "," + "DISPECAR" + "," + "true" + "\n";
+						dispecar.getOdeljenje() + "," + "DISPECAR" + "," + Obrisan.TRUE + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(korisniciFajl));
 			writer.write(content);
@@ -231,12 +231,11 @@ public class Ucitavanje_i_Snimanje {
 	public void ucitajTaksiSluzbe(String imeFajla) {
 		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] podaci = line.trim().split(",");
 				// System.out.println(Arrays.toString(podaci));
-
 				int id = Integer.parseInt(podaci[0]);
 				String pib = podaci[1];
 				String naziv = podaci[2];
@@ -245,7 +244,7 @@ public class Ucitavanje_i_Snimanje {
 				double cenaPoKilometru = Double.parseDouble(podaci[5]);
 				TaksiSluzba ts = new TaksiSluzba(id, pib, naziv, adresa, cenaStartaVoznje, cenaPoKilometru);
 				taksiSluzbe.add(ts);
-
+				System.out.println(ts);
 			}
 			br.close();
 		} catch (Exception e) {
@@ -259,7 +258,7 @@ public class Ucitavanje_i_Snimanje {
 	{
 
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
 			for (TaksiSluzba taksiSluzba : taksiSluzbe) {
 				br.write(taksiSluzba.pripremiZaSnimanjeTaksiSluzbu());
 			}
@@ -272,7 +271,7 @@ public class Ucitavanje_i_Snimanje {
 	public void ucitajAutomobila(String imeFajla){
 		this.automobil = new ArrayList<Automobil>();
 		try{
-			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while((line = br.readLine()) != null){
 				String [] podaci = line.trim().split(",");
@@ -286,7 +285,7 @@ public class Ucitavanje_i_Snimanje {
 				VrstaVozila vrstaVozila = VrstaVozila.valueOf(podaci[7].toUpperCase());
 				Automobil aut = new Automobil(id,model,proizvodajc,godinaProizvodnje,registarskiBroj,brojVozila,obrisan,vrstaVozila);
 				automobil.add(aut);
-				System.out.println(automobil);
+				System.out.println(aut);
 			}
 			br.close();
 		}catch (Exception e){
@@ -297,7 +296,7 @@ public class Ucitavanje_i_Snimanje {
 
 	public void snimanjeAutomobila(String imeFajla){
 		try{
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
 			for (Automobil automobil : automobil){
 				br.write(automobil.pripremiZaSnimanjeAutomobil());
 			}
@@ -310,7 +309,7 @@ public class Ucitavanje_i_Snimanje {
 	public void ucitavanjeVoznji(String imeFajla){
 		try {
 			this.voznja = new ArrayList<Voznja>();
-			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while ((line = br.readLine()) != null){
 				String[] podaci = line.trim().split(",");
@@ -325,8 +324,8 @@ public class Ucitavanje_i_Snimanje {
 				double brojKMpredjenih = Double.parseDouble(podaci[6]);
 				double trajanjVoznje = Double.parseDouble(podaci[7]);
 				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8].toUpperCase());
-				Voznja voz = new Voznja(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
-				voznja.add(voz);
+//				Voznja voz = new Voznja(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
+//				voznja.add(voz);
 				System.out.println(automobil);
 			}
 		}catch (Exception e){
@@ -337,7 +336,7 @@ public class Ucitavanje_i_Snimanje {
 
 	public void snimanjeVoznji(String imeFajla){
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
 			for (Voznja voznja: voznja){
 				br.write(voznja.pripremiZaSnimanjeVoznju());
 			}

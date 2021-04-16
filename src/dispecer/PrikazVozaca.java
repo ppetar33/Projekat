@@ -8,10 +8,13 @@ import java.io.*;
 import java.util.ArrayList;
 
 /*
-	napraviti prozor za prikaz (izgled kao na slici 4 u specifikaciji projekta)
+	1. napraviti prozor za prikaz (izgled kao na slici 4 u specifikaciji projekta)
+	2. izmeniti sve
 */
 
 public class PrikazVozaca {
+
+
 
 	private ArrayList<Musterija> musterije;
 
@@ -50,6 +53,4 @@ public class PrikazVozaca {
 			e.printStackTrace();
 		}
 	}
-	
-	
 }

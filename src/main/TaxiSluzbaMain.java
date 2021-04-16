@@ -4,13 +4,13 @@ import gui.LoginProzor;
 import osobe.Odeljenje;
 import ucitavanje.Ucitavanje_i_Snimanje;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class TaxiSluzbaMain {
 
     private static final String KORISNICI_FAJL = "korisnici.txt";
-    private static final String automobil = "automobil.txt";
+    private static final String AUTOMOBILI_FAJL = "automobil.txt";
+    private static final String TAKSI_SLUZBA_FAJL = "taksiSluzba.txt";
+    private static final String VOZNJE_FAJL = "voznje.txt";
 
     // ucitati sve podatke
     // identifikator mora da postoji i to je deo iz algoritama
@@ -32,9 +32,7 @@ public class TaxiSluzbaMain {
         Odeljenje drugo = Odeljenje.ODELJENJE_ZA_REKLAMACIJE;
         Odeljenje treci = Odeljenje.ODELJENJE_ZA_PRIJEM_VOZNJI;
 
-//        Ucitavanje_i_Snimanje prikazAutomobila = new Ucitavanje_i_Snimanje();
-//        prikazAutomobila.ucitajAutomobila(automobil);
-//        System.out.println(prikazAutomobila.getAutomobil());
+
 
 
         /*
