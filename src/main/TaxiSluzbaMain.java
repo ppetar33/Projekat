@@ -32,16 +32,6 @@ public class TaxiSluzbaMain {
         Odeljenje drugo = Odeljenje.ODELJENJE_ZA_REKLAMACIJE;
         Odeljenje treci = Odeljenje.ODELJENJE_ZA_PRIJEM_VOZNJI;
 
-
-
-
-        /*
-            PRIKAZ VOZACA
-        */
-
-//        Ucitavanje_i_Snimanje prikazVozaca = new Ucitavanje_i_Snimanje();
-//        prikazVozaca.ucitajKorisnike(KORISNICI_FAJL);
-//        System.out.println(prikazVozaca.getVozaci());
     }
 
 }

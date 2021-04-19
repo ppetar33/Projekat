@@ -1,5 +1,7 @@
 package osobe;
 
+import enumi.Pol;
+
 public abstract class Osoba {
 
     private String korisnickoIme;

@@ -1,5 +1,7 @@
 package osobe;
 
+import enumi.Pol;
+
 public class Dispecar extends Osoba {
 
 	private double plata;
@@ -13,7 +15,7 @@ public class Dispecar extends Osoba {
 	}
 
 	public Dispecar(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-					Pol pol, String brojTelefona, double plata, String brojTelefonskeLinije, Odeljenje odeljenje) {
+                    Pol pol, String brojTelefona, double plata, String brojTelefonskeLinije, Odeljenje odeljenje) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojTelefonskeLinije = brojTelefonskeLinije;

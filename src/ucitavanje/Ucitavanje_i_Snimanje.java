@@ -5,14 +5,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import automobili.Automobil;
-import automobili.StatusVoznje;
+import enumi.StatusVoznje;
 import automobili.Voznja;
-import automobili.VrstaVozila;
-import obrisan.Obrisan;
+import enumi.VrstaVozila;
+import enumi.Obrisan;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Odeljenje;
-import osobe.Pol;
+import enumi.Pol;
 import osobe.Vozac;
 import taksisluzba.TaksiSluzba;
 

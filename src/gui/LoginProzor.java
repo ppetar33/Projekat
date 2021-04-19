@@ -74,25 +74,21 @@ public class LoginProzor extends JFrame{
                     JOptionPane.showMessageDialog(null, "Neispravni login podaci", "Greska", JOptionPane.WARNING_MESSAGE);
                 }
 				else {
-                	JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili!", "Uspesna prijava", JOptionPane.INFORMATION_MESSAGE);
+					LoginProzor.this.dispose();
+					LoginProzor.this.setVisible(false);
                 }
 
 				if(prijavljenMusterija instanceof Musterija){
-					JOptionPane.showMessageDialog(null,   "Uspesno ste se ulogovali kao musterija", "uspesno", JOptionPane.INFORMATION_MESSAGE);
-					LoginProzor.this.dispose();
-					LoginProzor.this.setVisible(false);
+					JOptionPane.showMessageDialog(null,   "Uspesno ste se ulogovali kao musterija", "Musterija", JOptionPane.INFORMATION_MESSAGE);
 					MogucnostiMusterije mogucnostiMusterije = new MogucnostiMusterije(ucitavanje,prijavljenMusterija);
 					mogucnostiMusterije.setVisible(true);
 				}else if(prijavljenDispecar instanceof Dispecar){
-					JOptionPane.showMessageDialog(null, "Uspesno ste se ulogovali kao dispecer", "uspesno", JOptionPane.INFORMATION_MESSAGE);
-					LoginProzor.this.dispose();
-					LoginProzor.this.setVisible(false);
+					JOptionPane.showMessageDialog(null, "Uspesno ste se ulogovali kao dispecer", "Dispecer", JOptionPane.INFORMATION_MESSAGE);
 					MogucnostiDispecera mogucnostiDispecera = new MogucnostiDispecera(ucitavanje,prijavljenDispecar);
 					mogucnostiDispecera.setVisible(true);
 				}else if(prijavljenVozac instanceof Vozac){
-					JOptionPane.showMessageDialog(null, "Uspesno ste se ulogovali kao vozac", "uspesno", JOptionPane.INFORMATION_MESSAGE);
-					LoginProzor.this.dispose();
-					LoginProzor.this.setVisible(false);
+					JOptionPane.showMessageDialog(null, "Uspesno ste se ulogovali kao vozac", "Vozac", JOptionPane.INFORMATION_MESSAGE);
 					MogucnostiVozaca mogucnostiVozaca = new MogucnostiVozaca(ucitavanje,prijavljenVozac);
 					mogucnostiVozaca.setVisible(true);
 				}

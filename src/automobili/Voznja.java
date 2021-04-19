@@ -1,5 +1,6 @@
 package automobili;
 
+import enumi.StatusVoznje;
 import osobe.Musterija;
 import osobe.Vozac;
 

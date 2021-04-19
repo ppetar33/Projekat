@@ -8,7 +8,8 @@ package automobili;
     putničkim automobilima i kombi vozilima).
 */
 
-import obrisan.Obrisan;
+import enumi.Obrisan;
+import enumi.VrstaVozila;
 
 public class Automobil {
 

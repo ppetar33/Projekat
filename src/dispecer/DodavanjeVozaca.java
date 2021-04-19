@@ -1,8 +1,7 @@
 package dispecer;
 
-import obrisan.Obrisan;
 import osobe.Osoba;
-import osobe.Pol;
+import enumi.Pol;
 import osobe.Vozac;
 import ucitavanje.Ucitavanje_i_Snimanje;
 

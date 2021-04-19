@@ -1,5 +1,7 @@
 package osobe;
 
+import enumi.Pol;
+
 public class Musterija extends Osoba {
 
 

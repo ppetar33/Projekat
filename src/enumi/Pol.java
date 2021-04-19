@@ -1,4 +1,4 @@
-package osobe;
+package enumi;
 
 public enum Pol {
     MUSKI, ZENSKI
