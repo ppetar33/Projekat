@@ -5,6 +5,8 @@ import enumi.Obrisan;
 import enumi.Pol;
 
 
+import automobili.Automobil;
+
 public class Vozac extends Osoba {
 
 	private double plata;
