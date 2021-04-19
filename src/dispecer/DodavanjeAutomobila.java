@@ -3,7 +3,7 @@ package dispecer;
 //    prilikom dodavanja automobila, automobil je moguće dodeliti nekom od vozača koji nemaju dodeljen automobil
 
 import automobili.Automobil;
-import ucitavanje.Ucitavanje_i_Snimanje;
+import podaci.Liste;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,10 +28,10 @@ public class DodavanjeAutomobila extends JFrame {
     private ButtonGroup vrstaVozilaDugme;
     private JButton btnOK;
 
-    private Ucitavanje_i_Snimanje ucitavanje;
+    private Liste ucitavanje;
     private Automobil automobil;
 
-    public DodavanjeAutomobila(Ucitavanje_i_Snimanje ucitavanje, Automobil automobil) {
+    public DodavanjeAutomobila(Liste ucitavanje, Automobil automobil) {
         this.ucitavanje = ucitavanje;
         this.automobil = automobil;
 
