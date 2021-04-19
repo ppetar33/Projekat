@@ -1,7 +1,6 @@
 package main;
 
 import gui.LoginProzor;
-import osobe.Odeljenje;
 import podaci.Liste;
 
 
@@ -12,27 +11,24 @@ public class TaxiSluzbaMain {
     private static final String TAKSI_SLUZBA_FAJL = "taksiSluzba.txt";
     private static final String VOZNJE_FAJL = "voznje.txt";
 
-    // ucitati sve podatke
-    // identifikator mora da postoji i to je deo iz algoritama
-    // liste i mape su deo iz algoritama, pitati asistenta
-    // putem aplikacije se unosi dodatna napomena i to je jedina razlika
-    // za izvestaje pitati asistenta iz algoritama
-    // pretrage algoritmi
-
     public static void main(String[] args) {
 
-
         Liste ucitavanje = new Liste();
-        ucitavanje.ucitajKorisnike(KORISNICI_FAJL);
+
+            ucitavanje.ucitajKorisnike(KORISNICI_FAJL);
+            ucitavanje.ucitajAutomobila(AUTOMOBILI_FAJL);
+            ucitavanje.ucitajTaksiSluzbe(TAKSI_SLUZBA_FAJL);
+            ucitavanje.ucitavanjeVoznji(VOZNJE_FAJL);
 
         LoginProzor lp = new LoginProzor(ucitavanje);
         lp.setVisible(true);
 
-
-        Odeljenje prvo = Odeljenje.ODELJENJE_ZA_PRIJEM_VOZNJI;
-        Odeljenje drugo = Odeljenje.ODELJENJE_ZA_REKLAMACIJE;
-        Odeljenje treci = Odeljenje.ODELJENJE_ZA_PRIJEM_VOZNJI;
-
     }
 
 }
+// ucitati sve podatke
+// identifikator mora da postoji i to je deo iz algoritama
+// liste i mape su deo iz algoritama, pitati asistenta
+// putem aplikacije se unosi dodatna napomena i to je jedina razlika
+// za izvestaje pitati asistenta iz algoritama
+// pretrage algoritmi

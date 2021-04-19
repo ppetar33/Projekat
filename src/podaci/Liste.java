@@ -42,21 +42,15 @@ public class Liste {
 		this.musterije.add(musterija);
 	}
 
-	public void obirisiMusteriju(Musterija musterija) {
-		this.musterije.remove(musterija);
-	}
 
 	public ArrayList<Dispecar> getDispecari() {
 		return dispecari;
 	}
 
 	public void dodajDispecera(Dispecar dispecar) {
-		this.dispecari.remove(dispecar);
+		this.dispecari.add(dispecar);
 	}
 
-	public void obrisiDispecera(Dispecar dispecar) {
-		this.dispecari.remove(dispecar);
-	}
 
 	public ArrayList<Vozac> getVozaci() {
 		return vozaci;
@@ -66,9 +60,6 @@ public class Liste {
 		this.vozaci.add(vozac);
 	}
 
-	public void obrisiVozaca(Vozac vozac) {
-		this.vozaci.remove(vozac);
-	}
 
 	public ArrayList<TaksiSluzba> getTaksiSluzbe() {
 		return taksiSluzbe;
@@ -81,6 +72,7 @@ public class Liste {
 	public ArrayList<Voznja> getVoznja(){
 		return voznja;
 	}
+
 
 	public void ucitajKorisnike(String imeFajla) {
 		try {
@@ -102,7 +94,6 @@ public class Liste {
 					Obrisan obrisan = Obrisan.valueOf(split[12]);
 					Musterija musterija = new Musterija(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
 					musterije.add(musterija);
-					// System.out.println(musterija); formatirani ispis pomocu toString
 				} else if (tipKorisnika.equals("DISPECAR")) {
 					String plataString = split[8];
 					double plataDispecara = Double.parseDouble(plataString);
@@ -111,7 +102,6 @@ public class Liste {
 					Obrisan obrisan = Obrisan.valueOf(split[12]);
 					Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataDispecara, brojPozivnogTelefona, odeljenje, obrisan);
 					dispecari.add(dispecar);
-					// System.out.println(dispecar); formatirani ispis pomocu toString
 				} else if (tipKorisnika.equals("VOZAC")) {
 					String plataString = split[8];
 					double plataVozaca = Double.parseDouble(plataString);
@@ -121,7 +111,6 @@ public class Liste {
 					Obrisan obrisan = Obrisan.valueOf(split[12]);
 					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataVozaca, brojKartice, automobil, obrisan);
 					vozaci.add(vozac);
-					// System.out.println(vozac); formatirani ispis pomocu toString
 				}
 			}
 			br.close();
@@ -233,7 +222,6 @@ public class Liste {
 	}
 
 	public void ucitajTaksiSluzbe(String imeFajla) {
-		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
@@ -273,7 +261,6 @@ public class Liste {
 	}
 
 	public void ucitajAutomobila(String imeFajla){
-		this.automobil = new ArrayList<Automobil>();
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
@@ -289,7 +276,7 @@ public class Liste {
 				VrstaVozila vrstaVozila = VrstaVozila.valueOf(podaci[7].toUpperCase());
 				Automobil aut = new Automobil(id,model,proizvodajc,godinaProizvodnje,registarskiBroj,brojVozila,obrisan,vrstaVozila);
 				automobil.add(aut);
-				System.out.println(aut);
+//				System.out.println(aut);
 			}
 			br.close();
 		}catch (Exception e){
@@ -312,15 +299,14 @@ public class Liste {
 
 	public void ucitavanjeVoznji(String imeFajla){
 		try {
-			this.voznja = new ArrayList<Voznja>();
 			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while ((line = br.readLine()) != null){
 				String[] podaci = line.trim().split(",");
 				int id = Integer.parseInt(podaci[0]);
 				String datumIvremePorudzbine = podaci[1]; //todo: KOJA VRSTA PODATAKA JE OVDE
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-				LocalDateTime dateTime = LocalDateTime.parse(datumIvremePorudzbine, formatter);
+//				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//				LocalDateTime dateTime = LocalDateTime.parse(datumIvremePorudzbine, formatter);
 				String adresaPolaska = podaci[2];
 				String adresaDestinacije = podaci[3];
 //				musterija podaci[5]
@@ -351,4 +337,34 @@ public class Liste {
 	}
 
 
+	public Vozac nadjiVozaca(String korisnickoIme){
+		for(Vozac vozac : vozaci){
+			if(vozac.getKorisnickoIme().equals(korisnickoIme)){
+				return vozac;
+			}
+		}
+		return null;
+	}
+
+	public Musterija nadjiMusteriju(String korisnickoIme){
+		for(Musterija musterija : musterije){
+			if(musterija.getKorisnickoIme().equals(korisnickoIme)){
+				return musterija;
+			}
+		}
+		return null;
+	}
+
+	public Dispecar nadjiDispecera(String korisnickoIme){
+		for(Dispecar dispecar : dispecari){
+			if(dispecar.getKorisnickoIme().equals(korisnickoIme)){
+				return dispecar;
+			}
+		}
+		return null;
+	}
+
+	/*
+		ostalo nadji po ID-u
+	 */
 }

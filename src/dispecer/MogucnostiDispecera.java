@@ -55,6 +55,7 @@ public class MogucnostiDispecera extends JFrame {
 	private Liste ucitavanje;
 	private Dispecar prijavljeniDispecar;
 	private Vozac vozac;
+	private Dispecar dispecar;
 	private Automobil automobil;
 
 	public MogucnostiDispecera(Liste ucitavanje, Dispecar prijavljeniDispecar){
@@ -117,6 +118,30 @@ public class MogucnostiDispecera extends JFrame {
 				prozorZaDodavanjeVozaca.setVisible(true);
 			}
 		});
+		prikazVozaca.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazVozaca prozorZaPrikazVozaca = new PrikazVozaca(ucitavanje);
+				prozorZaPrikazVozaca.setVisible(true);
+			}
+		});
+		brisanjeVozaca.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BrisanjeVozaca prozorZaBrisanjeVozaca = new BrisanjeVozaca(ucitavanje);
+				prozorZaBrisanjeVozaca.setVisible(true);
+			}
+		});
+		/*
+			TODO
+			izmenaVozaca.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				IzmenaVozaca prozorZaIzmenuVozaca = new IzmenaVozaca(ucitavanje);
+				prozorZaIzmenuVozaca.setVisible(true);
+			}
+		});
+		*/
 		dodavanjeAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
