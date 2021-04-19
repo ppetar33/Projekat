@@ -1,9 +1,10 @@
 package dispecer;
 
+import enumi.Obrisan;
 import osobe.Osoba;
 import enumi.Pol;
 import osobe.Vozac;
-import ucitavanje.Ucitavanje_i_Snimanje;
+import podaci.Liste;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,11 +45,11 @@ public class DodavanjeVozaca extends JFrame{
     private JTextField tautomobil;
     private JButton btnOK;
 
-    private Ucitavanje_i_Snimanje ucitavanje;
+    private Liste ucitavanje;
     private Vozac vozac;
     private Osoba osoba;
 
-    public DodavanjeVozaca(Ucitavanje_i_Snimanje ucitavanje, Vozac vozac)
+    public DodavanjeVozaca(Liste ucitavanje, Vozac vozac)
     {
         this.ucitavanje = ucitavanje;
         this.vozac = vozac;
@@ -246,13 +247,14 @@ public class DodavanjeVozaca extends JFrame{
                         vozac.setPlata(unosPlata);
                         vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
                         vozac.setAutomobil(unosAutomobil);
+                        vozac.setObrisan(Obrisan.TRUE);
                     }if (muski.isSelected()) {
                         Pol pol = Pol.MUSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil, Obrisan.TRUE);
                         ucitavanje.getVozaci().add(vozac);
                     } else if (zenski.isSelected()) {
                         Pol pol = Pol.ZENSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, unosAutomobil, Obrisan.TRUE);
                         ucitavanje.getVozaci().add(vozac);
                     }
                     ucitavanje.dodavanjeKorisnika();

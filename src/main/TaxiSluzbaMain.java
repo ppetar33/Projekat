@@ -2,7 +2,7 @@ package main;
 
 import gui.LoginProzor;
 import osobe.Odeljenje;
-import ucitavanje.Ucitavanje_i_Snimanje;
+import podaci.Liste;
 
 
 public class TaxiSluzbaMain {
@@ -17,11 +17,12 @@ public class TaxiSluzbaMain {
     // liste i mape su deo iz algoritama, pitati asistenta
     // putem aplikacije se unosi dodatna napomena i to je jedina razlika
     // za izvestaje pitati asistenta iz algoritama
+    // pretrage algoritmi
 
     public static void main(String[] args) {
 
 
-        Ucitavanje_i_Snimanje ucitavanje = new Ucitavanje_i_Snimanje();
+        Liste ucitavanje = new Liste();
         ucitavanje.ucitajKorisnike(KORISNICI_FAJL);
 
         LoginProzor lp = new LoginProzor(ucitavanje);

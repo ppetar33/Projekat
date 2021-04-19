@@ -1,25 +1,26 @@
 package osobe;
 
 
-import automobili.Automobil;
+import enumi.Obrisan;
 import enumi.Pol;
 
-import java.util.ArrayList;
 
 public class Vozac extends Osoba {
 
 	private double plata;
 	private int brojClanskeKarte;
-	private ArrayList<Automobil> automobili; // mora biti posebna klasa automobil todo
+	private String automobil; // mora biti posebna klasa automobil todo
+	private Obrisan obrisan;
 
 	public Vozac() {}
 
 	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-				 Pol pol, String brojTelefona, double plata, int brojClanskeKarte, ArrayList<Automobil> automobili) {
+				 Pol pol, String brojTelefona, double plata, int brojClanskeKarte, String automobil, Obrisan obrisan) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
-		this.automobili = automobili;
+		this.automobil = automobil;
+		this.obrisan = obrisan;
 	}
 
 	public double getPlata() {
@@ -38,13 +39,20 @@ public class Vozac extends Osoba {
 		this.brojClanskeKarte = brojClanskeKarte;
 	}
 
-
-	public ArrayList<Automobil> getAutomobili() {
-		return automobili;
+	public String getAutomobil() {
+		return automobil;
 	}
 
-	public void setAutomobili(ArrayList<Automobil> automobili) {
-		this.automobili = automobili;
+	public void setAutomobil(String automobil) {
+		this.automobil = automobil;
+	}
+
+	public Obrisan getObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(Obrisan obrisan) {
+		this.obrisan = obrisan;
 	}
 
 	@Override
@@ -52,7 +60,8 @@ public class Vozac extends Osoba {
 		return "Vozac{" +
 				"plata=" + plata +
 				", brojClanskeKarte=" + brojClanskeKarte +
-				", automobili=" + automobili +
+				", automobil='" + automobil + '\'' +
+				", obrisan=" + obrisan +
 				"} " + super.toString();
 	}
 }

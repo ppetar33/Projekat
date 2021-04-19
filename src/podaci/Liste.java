@@ -1,4 +1,4 @@
-package ucitavanje;
+package podaci;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ import enumi.Pol;
 import osobe.Vozac;
 import taksisluzba.TaksiSluzba;
 
-public class Ucitavanje_i_Snimanje {
+public class Liste {
 
 	private ArrayList<Musterija> musterije;
 	private ArrayList<Dispecar> dispecari;
@@ -25,7 +25,7 @@ public class Ucitavanje_i_Snimanje {
 	private ArrayList<Automobil> automobil;
 	private ArrayList<Voznja> voznja;
 
-	public Ucitavanje_i_Snimanje() {
+	public Liste() {
 		this.musterije = new ArrayList<Musterija>();
 		this.dispecari = new ArrayList<Dispecar>();
 		this.vozaci = new ArrayList<Vozac>();
@@ -99,7 +99,8 @@ public class Ucitavanje_i_Snimanje {
 				String brojTelefona = split[7];
 				String tipKorisnika = split[11];
 				if (tipKorisnika.equals("MUSTERIJA")) {
-					Musterija musterija = new Musterija(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
+					Obrisan obrisan = Obrisan.valueOf(split[12]);
+					Musterija musterija = new Musterija(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
 					musterije.add(musterija);
 					// System.out.println(musterija); formatirani ispis pomocu toString
 				} else if (tipKorisnika.equals("DISPECAR")) {
@@ -107,7 +108,8 @@ public class Ucitavanje_i_Snimanje {
 					double plataDispecara = Double.parseDouble(plataString);
 					String brojPozivnogTelefona = split[9];
 					Odeljenje odeljenje = Odeljenje.valueOf(split[10]);
-					Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataDispecara, brojPozivnogTelefona, odeljenje);
+					Obrisan obrisan = Obrisan.valueOf(split[12]);
+					Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataDispecara, brojPozivnogTelefona, odeljenje, obrisan);
 					dispecari.add(dispecar);
 					// System.out.println(dispecar); formatirani ispis pomocu toString
 				} else if (tipKorisnika.equals("VOZAC")) {
@@ -116,7 +118,8 @@ public class Ucitavanje_i_Snimanje {
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String automobil = split[10];
-					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataVozaca, brojKartice, automobil);
+					Obrisan obrisan = Obrisan.valueOf(split[12]);
+					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataVozaca, brojKartice, automobil, obrisan);
 					vozaci.add(vozac);
 					// System.out.println(vozac); formatirani ispis pomocu toString
 				}
@@ -196,7 +199,7 @@ public class Ucitavanje_i_Snimanje {
 						vozac.getBrojTelefona() + "," +
 						vozac.getPlata() + "," +
 						vozac.getBrojClanskeKarte() + "," +
-						vozac.getAutomobil() + "," + "VOZAC" + "," + Obrisan.TRUE + "\n";
+						vozac.getAutomobil() + "," + "VOZAC" + "," + vozac.getObrisan() + "\n";
 			}
 			for (Musterija musterija : musterije) {
 				content += musterija.getKorisnickoIme() + "," +
@@ -206,7 +209,7 @@ public class Ucitavanje_i_Snimanje {
 						musterija.getJmbg() + "," +
 						musterija.getAdresa() + "," +
 						musterija.getPol() + "," +
-						musterija.getBrojTelefona() + "," + "," + "," + "," + "MUSTERIJA" + "," + Obrisan.TRUE + "\n";
+						musterija.getBrojTelefona() + "," + "," + "," + "," + "MUSTERIJA" + "," + musterija.getObrisan() + "\n";
 			}
 			for (Dispecar dispecar : dispecari) {
 				content += dispecar.getKorisnickoIme() + "," +
@@ -219,7 +222,7 @@ public class Ucitavanje_i_Snimanje {
 						dispecar.getBrojTelefona() + "," +
 						dispecar.getPlata() + "," +
 						dispecar.getBrojTelefonskeLinije() + "," +
-						dispecar.getOdeljenje() + "," + "DISPECAR" + "," + Obrisan.TRUE + "\n";
+						dispecar.getOdeljenje() + "," + "DISPECAR" + "," + dispecar.getObrisan() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(korisniciFajl));
 			writer.write(content);
@@ -228,6 +231,7 @@ public class Ucitavanje_i_Snimanje {
 			e.printStackTrace();
 		}
 	}
+
 	public void ucitajTaksiSluzbe(String imeFajla) {
 		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
 		try {

@@ -2,7 +2,7 @@ package musterija;
 
 import gui.LoginProzor;
 import osobe.Musterija;
-import ucitavanje.Ucitavanje_i_Snimanje;
+import podaci.Liste;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -21,10 +21,10 @@ public class MogucnostiMusterije extends JFrame{
     private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
     private JMenuItem odustaniZaOdjavu = new JMenuItem("Odustani");
 
-    private Ucitavanje_i_Snimanje ucitavanje;
+    private Liste ucitavanje;
     private Musterija prijavljenaMusterija;
 
-    public MogucnostiMusterije(Ucitavanje_i_Snimanje ucitavanje, Musterija prijavljenaMusterija){
+    public MogucnostiMusterije(Liste ucitavanje, Musterija prijavljenaMusterija){
         this.ucitavanje = ucitavanje;
         this.prijavljenaMusterija = prijavljenaMusterija;
         setTitle("Musterija, ime: " + prijavljenaMusterija.getIme().substring(0, 1).toUpperCase() + prijavljenaMusterija.getIme().substring(1));

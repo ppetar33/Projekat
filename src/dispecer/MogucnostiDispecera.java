@@ -3,7 +3,7 @@ package dispecer;
 import gui.LoginProzor;
 import osobe.Dispecar;
 import osobe.Vozac;
-import ucitavanje.Ucitavanje_i_Snimanje;
+import podaci.Liste;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -51,11 +51,11 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem odustaniZaOdjavu = new JMenuItem("Odustani");
 
 
-	private Ucitavanje_i_Snimanje ucitavanje;
+	private Liste ucitavanje;
 	private Dispecar prijavljeniDispecar;
 	private Vozac vozac;
 
-	public MogucnostiDispecera(Ucitavanje_i_Snimanje ucitavanje, Dispecar prijavljeniDispecar){
+	public MogucnostiDispecera(Liste ucitavanje, Dispecar prijavljeniDispecar){
 		this.ucitavanje = ucitavanje;
 		this.prijavljeniDispecar = prijavljeniDispecar;
 		setTitle("Dispecer, ime: " + prijavljeniDispecar.getIme().substring(0, 1).toUpperCase() + prijavljeniDispecar.getIme().substring(1));
