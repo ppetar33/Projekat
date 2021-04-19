@@ -143,7 +143,7 @@ public class DodavanjeAutomobila extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(proveraPodataka() == true){
-
+                    
                 }
             }
         });

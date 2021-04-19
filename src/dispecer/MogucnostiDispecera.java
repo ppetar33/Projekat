@@ -4,6 +4,7 @@ import gui.LoginProzor;
 import osobe.Dispecar;
 import osobe.Vozac;
 import podaci.Liste;
+import automobili.Automobil;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -54,6 +55,7 @@ public class MogucnostiDispecera extends JFrame {
 	private Liste ucitavanje;
 	private Dispecar prijavljeniDispecar;
 	private Vozac vozac;
+	private Automobil automobil;
 
 	public MogucnostiDispecera(Liste ucitavanje, Dispecar prijavljeniDispecar){
 		this.ucitavanje = ucitavanje;
@@ -113,6 +115,13 @@ public class MogucnostiDispecera extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				DodavanjeVozaca prozorZaDodavanjeVozaca = new DodavanjeVozaca(ucitavanje, vozac);
 				prozorZaDodavanjeVozaca.setVisible(true);
+			}
+		});
+		dodavanjeAutomobila.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DodavanjeAutomobila prozorZaDodavanjeAutomobila = new DodavanjeAutomobila(ucitavanje, automobil);
+				prozorZaDodavanjeAutomobila.setVisible(true);
 			}
 		});
 		potvrdaZaOdjavu.addActionListener(new ActionListener() {
