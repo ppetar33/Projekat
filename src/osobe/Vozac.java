@@ -8,17 +8,17 @@ public class Vozac extends Osoba {
 
 	private double plata;
 	private int brojClanskeKarte;
-	private Automobil automobil; // mora biti posebna klasa automobil todo
+	private Automobil automobili; // mora biti posebna klasa automobil todo
 	private Obrisan obrisan;
 
 	public Vozac() {}
 
 	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-				 Pol pol, String brojTelefona, double plata, int brojClanskeKarte, Automobil automobil, Obrisan obrisan) {
+				 Pol pol, String brojTelefona, double plata, int brojClanskeKarte, Automobil automobili, Obrisan obrisan) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
-		this.automobil = automobil;
+		this.automobili = automobili;
 		this.obrisan = obrisan;
 	}
 
@@ -38,12 +38,12 @@ public class Vozac extends Osoba {
 		this.brojClanskeKarte = brojClanskeKarte;
 	}
 
-	public Automobil getAutomobil() {
-		return automobil;
+	public Automobil getAutomobili() {
+		return automobili;
 	}
 
-	public void setAutomobil(Automobil automobil) {
-		this.automobil = automobil;
+	public void setAutomobili(Automobil automobili) {
+		this.automobili = automobili;
 	}
 
 	public Obrisan getObrisan() {
@@ -59,7 +59,7 @@ public class Vozac extends Osoba {
 		return "Vozac{" +
 				"plata=" + plata +
 				", brojClanskeKarte=" + brojClanskeKarte +
-				", automobil='" + automobil + '\'' +
+				", automobil='" + automobili + '\'' +
 				", obrisan=" + obrisan +
 				"} " + super.toString();
 	}

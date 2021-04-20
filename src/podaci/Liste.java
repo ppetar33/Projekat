@@ -65,7 +65,7 @@ public class Liste {
 		return taksiSluzbe;
 	}
 
-	public ArrayList<Automobil> getAutomobil(){
+	public ArrayList<Automobil> getAutomobili() {
 		return automobili;
 	}
 
@@ -235,7 +235,7 @@ public class Liste {
 						vozac.getBrojTelefona() + "," +
 						vozac.getPlata() + "," +
 						vozac.getBrojClanskeKarte() + "," +
-						vozac.getAutomobil() + "," + "VOZAC" + "," + vozac.getObrisan() + "\n";
+						vozac.getAutomobili() + "," + "VOZAC" + "," + vozac.getObrisan() + "\n";
 			}
 			for (Musterija musterija : musterije) {
 				content += musterija.getKorisnickoIme() + "," +
