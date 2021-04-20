@@ -22,7 +22,7 @@ public class Liste {
 	private ArrayList<Dispecar> dispecari;
 	private ArrayList<Vozac> vozaci;
 	private ArrayList<TaksiSluzba> taksiSluzbe;
-	private ArrayList<Automobil> automobil;
+	private ArrayList<Automobil> automobili;
 	private ArrayList<Voznja> voznja;
 
 	public Liste() {
@@ -30,7 +30,7 @@ public class Liste {
 		this.dispecari = new ArrayList<Dispecar>();
 		this.vozaci = new ArrayList<Vozac>();
 		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
-		this.automobil = new ArrayList<Automobil>();
+		this.automobili = new ArrayList<Automobil>();
 		this.voznja = new ArrayList<Voznja>();
 	}
 
@@ -66,13 +66,21 @@ public class Liste {
 	}
 
 	public ArrayList<Automobil> getAutomobil(){
-		return automobil;
+		return automobili;
 	}
 
 	public ArrayList<Voznja> getVoznja(){
 		return voznja;
 	}
 
+	public void setVoznja(ArrayList<Voznja> voznja) {
+		this.voznja = voznja;
+	}
+
+
+	/*
+			UCITAVANJE
+	 */
 
 	public void ucitajKorisnike(String imeFajla) {
 		try {
@@ -107,8 +115,13 @@ public class Liste {
 					double plataVozaca = Double.parseDouble(plataString);
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
-					String automobil = split[10];
+					Automobil automobil = new Automobil();
 					Obrisan obrisan = Obrisan.valueOf(split[12]);
+					for(Automobil automobil1 : automobili){
+						if(split[10].equalsIgnoreCase(automobil1.getModel())){
+							automobil = automobil1;
+						}
+					}
 					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataVozaca, brojKartice, automobil, obrisan);
 					vozaci.add(vozac);
 				}
@@ -119,63 +132,97 @@ public class Liste {
 		}
 	}
 
-	public Musterija loginMusterija(String korisnickoIme, String lozinka) {
-		for (Musterija musterija : musterije) {
-			if (musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
-					&& musterija.getLozinka().equals(lozinka)) {
-				return musterija;
+	public void ucitajTaksiSluzbe(String imeFajla) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
+			String line;
+			while ((line = br.readLine()) != null) {
+				String[] podaci = line.trim().split(",");
+				int id = Integer.parseInt(podaci[0]);
+				String pib = podaci[1];
+				String naziv = podaci[2];
+				String adresa = podaci[3];
+				double cenaStartaVoznje = Double.parseDouble(podaci[4]);
+				double cenaPoKilometru = Double.parseDouble(podaci[5]);
+				TaksiSluzba ts = new TaksiSluzba(id, pib, naziv, adresa, cenaStartaVoznje, cenaPoKilometru);
+				taksiSluzbe.add(ts);
 			}
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Greska prilikom citanja fajla");
 		}
-		return null;
 	}
 
-	public Dispecar loginDispecar(String korisnickoIme, String lozinka) {
-		for (Dispecar dispecar : dispecari) {
-			if (dispecar.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
-					&& dispecar.getLozinka().equals(lozinka)) {
-				return dispecar;
+	public void ucitajAutomobila(String imeFajla){
+		try{
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
+			String line;
+			while((line = br.readLine()) != null){
+				String [] podaci = line.trim().split(",");
+				int id = Integer.parseInt(podaci[0]);
+				String model = podaci[1];
+				String proizvodjac = podaci[2];
+				int godinaProizvodnje = Integer.parseInt(podaci[3]);
+				String registarskiBroj = podaci[4];
+				int brojVozila = Integer.parseInt(podaci[5]);
+				VrstaVozila vrstaVozila = VrstaVozila.valueOf(podaci[6].toUpperCase());
+				Obrisan obrisan = Obrisan.valueOf(podaci[7].toUpperCase());
+				Automobil aut = new Automobil(id,model,proizvodjac,godinaProizvodnje,registarskiBroj,brojVozila,vrstaVozila,obrisan);
+				automobili.add(aut);
 			}
+			br.close();
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Greska prilikom citanja fajla");
 		}
-		return null;
 	}
 
-	public Vozac loginVozac(String korisnickoIme, String lozinka) {
-		for (Vozac vozac : vozaci) {
-			if (vozac.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
-					&& vozac.getLozinka().equals(lozinka)) {
-				return vozac;
+	public void ucitavanjeVoznji(String imeFajla){
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
+			String line;
+			while ((line = br.readLine()) != null){
+				String[] podaci = line.trim().split(",");
+				int id = Integer.parseInt(podaci[0]);
+				String datumIvremePorudzbine = podaci[1];
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+				LocalDateTime dateTime = LocalDateTime.parse(datumIvremePorudzbine,formatter);
+				String adresaPolaska = podaci[2];
+				String adresaDestinacije = podaci[3];
+				Musterija musterija = new Musterija();
+				Vozac vozac = new Vozac();
+				double brojKMpredjenih = Double.parseDouble(podaci[6]);
+				double trajanjVoznje = Double.parseDouble(podaci[7]);
+				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8].toUpperCase());
+				for(Musterija musterija1 : musterije){
+					if(podaci[4].equalsIgnoreCase(musterija1.getKorisnickoIme())){
+						musterija = musterija1;
+					}
+				}
+				for(Vozac vozac1 : vozaci){
+					if(podaci[5].equalsIgnoreCase(vozac1.getKorisnickoIme())){
+						vozac = vozac1;
+					}
+				}
+				Voznja voz = new Voznja(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
+				voznja.add(voz);
 			}
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Greska prilikom citanja fajla");
 		}
-		return null;
 	}
+
+
+	/*
+			DODAVANJE
+	 */
 
 	public void dodavanjeKorisnika() {
 		try {
 			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
 			String content = "";
-			/*
-			 *
-			 * for (korisnik k : korisnici)
-			 * {
-			 *
-			 *
-			 *
-			 * 	if (k vozac (instaceof))
-			 * {
-			 *  castuj vozaca
-			 *   snimi vozac.pripremiZaUpis();
-			 * }
-			 * else if (musterija(
-			 * {
-			 * *  castuj musteriju
-			 *   snimi musterija.pripremiZaUpis();
-			 * }
-			 * else
-			 * {
-			 * *  castuj dispecer
-			 *   snimi dispecer.pripremiZaUpis();
-			 *
-			 * */
 
 			for (Vozac vozac : vozaci) {
 				content += vozac.getKorisnickoIme() + "," +
@@ -221,31 +268,6 @@ public class Liste {
 		}
 	}
 
-	public void ucitajTaksiSluzbe(String imeFajla) {
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
-			String line;
-			while ((line = br.readLine()) != null) {
-				String[] podaci = line.trim().split(",");
-				// System.out.println(Arrays.toString(podaci));
-				int id = Integer.parseInt(podaci[0]);
-				String pib = podaci[1];
-				String naziv = podaci[2];
-				String adresa = podaci[3];
-				double cenaStartaVoznje = Double.parseDouble(podaci[4]);
-				double cenaPoKilometru = Double.parseDouble(podaci[5]);
-				TaksiSluzba ts = new TaksiSluzba(id, pib, naziv, adresa, cenaStartaVoznje, cenaPoKilometru);
-				taksiSluzbe.add(ts);
-				System.out.println(ts);
-			}
-			br.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Greska prilikom citanja fajla");
-		}
-
-	}
-
 	public void snimiTaksiSluzbe(String imeFajla)
 	{
 
@@ -260,67 +282,15 @@ public class Liste {
 		}
 	}
 
-	public void ucitajAutomobila(String imeFajla){
-		try{
-			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
-			String line;
-			while((line = br.readLine()) != null){
-				String [] podaci = line.trim().split(",");
-				int id = Integer.parseInt(podaci[0]);
-				String model = podaci[1];
-				String proizvodajc = podaci[2];
-				int godinaProizvodnje = Integer.parseInt(podaci[3]);
-				String registarskiBroj = podaci[4];
-				int brojVozila = Integer.parseInt(podaci[5]);
-				Obrisan obrisan = Obrisan.valueOf(podaci[6].toUpperCase());
-				VrstaVozila vrstaVozila = VrstaVozila.valueOf(podaci[7].toUpperCase());
-				Automobil aut = new Automobil(id,model,proizvodajc,godinaProizvodnje,registarskiBroj,brojVozila,obrisan,vrstaVozila);
-				automobil.add(aut);
-//				System.out.println(aut);
-			}
-			br.close();
-		}catch (Exception e){
-			e.printStackTrace();
-			System.out.println("Greska prilikom citanja fajla");
-		}
-	}
-
 	public void snimanjeAutomobila(String imeFajla){
 		try{
 			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
-			for (Automobil automobil : automobil){
+			for (Automobil automobil : automobili){
 				br.write(automobil.pripremiZaSnimanjeAutomobil());
 			}
 		}catch (Exception e){
 			e.printStackTrace();
 			System.out.println("Greska prilikom snimanja fajla");
-		}
-	}
-
-	public void ucitavanjeVoznji(String imeFajla){
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
-			String line;
-			while ((line = br.readLine()) != null){
-				String[] podaci = line.trim().split(",");
-				int id = Integer.parseInt(podaci[0]);
-				String datumIvremePorudzbine = podaci[1]; //todo: KOJA VRSTA PODATAKA JE OVDE
-//				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-//				LocalDateTime dateTime = LocalDateTime.parse(datumIvremePorudzbine, formatter);
-				String adresaPolaska = podaci[2];
-				String adresaDestinacije = podaci[3];
-//				musterija podaci[5]
-//				vozac podaci[5]
-				double brojKMpredjenih = Double.parseDouble(podaci[6]);
-				double trajanjVoznje = Double.parseDouble(podaci[7]);
-				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8].toUpperCase());
-//				Voznja voz = new Voznja(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
-//				voznja.add(voz);
-				System.out.println(automobil);
-			}
-		}catch (Exception e){
-			e.printStackTrace();
-			System.out.println("Greska prilikom citanja fajla");
 		}
 	}
 
@@ -336,6 +306,10 @@ public class Liste {
 		}
 	}
 
+
+	/*
+			PRETRAGA
+	 */
 
 	public Vozac nadjiVozaca(String korisnickoIme){
 		for(Vozac vozac : vozaci){
@@ -364,7 +338,65 @@ public class Liste {
 		return null;
 	}
 
+	public Automobil nadjiAutomobil(int id){
+		for(Automobil automobil : automobili){
+			if(automobil.getId() == id){
+				return automobil;
+			}
+		}
+		return null;
+	}
+
+	public TaksiSluzba nadjiTaksiSluzbu(int id){
+		for(TaksiSluzba taksiSluzba : taksiSluzbe){
+			if(taksiSluzba.getId() == id){
+				return taksiSluzba;
+			}
+		}
+		return null;
+	}
+
+	public Voznja nadjiVoznju(int id){
+		for(Voznja voznja : voznja){
+			if(voznja.getId() == id){
+				return voznja;
+			}
+		}
+		return null;
+	}
+
+
 	/*
-		ostalo nadji po ID-u
+			PROVERA ZA LOGIN
 	 */
+
+	public Musterija loginMusterija(String korisnickoIme, String lozinka) {
+		for (Musterija musterija : musterije) {
+			if (musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
+					&& musterija.getLozinka().equals(lozinka)) {
+				return musterija;
+			}
+		}
+		return null;
+	}
+
+	public Dispecar loginDispecar(String korisnickoIme, String lozinka) {
+		for (Dispecar dispecar : dispecari) {
+			if (dispecar.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
+					&& dispecar.getLozinka().equals(lozinka)) {
+				return dispecar;
+			}
+		}
+		return null;
+	}
+
+	public Vozac loginVozac(String korisnickoIme, String lozinka) {
+		for (Vozac vozac : vozaci) {
+			if (vozac.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
+					&& vozac.getLozinka().equals(lozinka)) {
+				return vozac;
+			}
+		}
+		return null;
+	}
 }

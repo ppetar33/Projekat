@@ -125,3 +125,31 @@
 //        });
 //    }
 //}
+
+
+
+
+			/*
+			 *
+			 * for (korisnik k : korisnici)
+			 * {
+			 *
+			 *
+			 *
+			 * 	if (k vozac (instaceof))
+			 * {
+			 *  castuj vozaca
+			 *   snimi vozac.pripremiZaUpis();
+			 * }
+			 * else if (musterija(
+			 * {
+			 * *  castuj musteriju
+			 *   snimi musterija.pripremiZaUpis();
+			 * }
+			 * else
+			 * {
+			 * *  castuj dispecer
+			 *   snimi dispecer.pripremiZaUpis();
+			 *
+			 * */
+

@@ -19,20 +19,20 @@ public class Automobil {
     private int godinaProizvodnje;
     private String registarskiBroj;
     private int brojVozila;
-    private Obrisan obrisan;
     private VrstaVozila vrstaVozila;
+    private Obrisan obrisan;
 
     public Automobil(){}
 
-    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, Obrisan obrisan, VrstaVozila vrstaVozila) {
+    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila, Obrisan obrisan) {
         this.id = id;
         this.model = model;
         this.proizvodjac = proizvodjac;
         this.godinaProizvodnje = godinaProizvodnje;
         this.registarskiBroj = registarskiBroj;
         this.brojVozila = brojVozila;
-        this.obrisan = obrisan;
         this.vrstaVozila = vrstaVozila;
+        this.obrisan = obrisan;
     }
 
     public int getId() {
@@ -83,20 +83,20 @@ public class Automobil {
         this.brojVozila = brojVozila;
     }
 
-    public Obrisan getObrisan() {
-        return obrisan;
-    }
-
-    public void setObrisan(Obrisan obrisan) {
-        this.obrisan = obrisan;
-    }
-
     public VrstaVozila getVrstaVozila() {
         return vrstaVozila;
     }
 
     public void setVrstaVozila(VrstaVozila vrstaVozila) {
         this.vrstaVozila = vrstaVozila;
+    }
+
+    public Obrisan getObrisan() {
+        return obrisan;
+    }
+
+    public void setObrisan(Obrisan obrisan) {
+        this.obrisan = obrisan;
     }
 
     @Override
