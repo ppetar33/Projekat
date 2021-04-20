@@ -161,6 +161,13 @@ public class MogucnostiDispecera extends JFrame {
 //			public void actionPerformed(ActionEvent e) {
 //			}
 //		});
+		poImenu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PretragaVozaca pretragaVozaca = new PretragaVozaca(ucitavanje,vozac);
+				pretragaVozaca.setVisible(true);
+			}
+		});
 		potvrdaZaOdjavu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
