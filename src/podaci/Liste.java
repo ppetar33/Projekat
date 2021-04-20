@@ -56,10 +56,9 @@ public class Liste {
 		return vozaci;
 	}
 
-	public void dodajVozaca(Vozac vozac) {
-		this.vozaci.add(vozac);
+	public void setVozaci(ArrayList<Vozac> vozaci) {
+		this.vozaci = vozaci;
 	}
-
 
 	public ArrayList<TaksiSluzba> getTaksiSluzbe() {
 		return taksiSluzbe;
@@ -67,6 +66,10 @@ public class Liste {
 
 	public ArrayList<Automobil> getAutomobili() {
 		return automobili;
+	}
+
+	public void setAutomobili(ArrayList<Automobil> automobili) {
+		this.automobili = automobili;
 	}
 
 	public ArrayList<Voznja> getVoznja(){
@@ -190,11 +193,11 @@ public class Liste {
 				LocalDateTime dateTime = LocalDateTime.parse(datumIvremePorudzbine,formatter);
 				String adresaPolaska = podaci[2];
 				String adresaDestinacije = podaci[3];
-				Musterija musterija = new Musterija();
-				Vozac vozac = new Vozac();
 				double brojKMpredjenih = Double.parseDouble(podaci[6]);
 				double trajanjVoznje = Double.parseDouble(podaci[7]);
 				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8].toUpperCase());
+				Musterija musterija = new Musterija();
+				Vozac vozac = new Vozac();
 				for(Musterija musterija1 : musterije){
 					if(podaci[4].equalsIgnoreCase(musterija1.getKorisnickoIme())){
 						musterija = musterija1;
@@ -235,7 +238,7 @@ public class Liste {
 						vozac.getBrojTelefona() + "," +
 						vozac.getPlata() + "," +
 						vozac.getBrojClanskeKarte() + "," +
-						vozac.getAutomobili() + "," + "VOZAC" + "," + vozac.getObrisan() + "\n";
+						vozac.getAutomobili().getModel() + "," + "VOZAC" + "," + vozac.getObrisan() + "\n";
 			}
 			for (Musterija musterija : musterije) {
 				content += musterija.getKorisnickoIme() + "," +
