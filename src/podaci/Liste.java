@@ -162,7 +162,7 @@ public class Liste {
 			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while((line = br.readLine()) != null){
-				String [] podaci = line.trim().split(",");
+				String[] podaci = line.trim().split(",");
 				int id = Integer.parseInt(podaci[0]);
 				String model = podaci[1];
 				String proizvodjac = podaci[2];
@@ -268,6 +268,7 @@ public class Liste {
 			writer.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("Greska prilikom dodavanja korisnika");
 		}
 	}
 

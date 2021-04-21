@@ -45,9 +45,9 @@ public class BrisanjeVozaca extends PrikazVozaca{
                             vozac.setObrisan(Obrisan.FALSE);
                             tableModel.removeRow(red);
                             ucitavanje.dodavanjeKorisnika();
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog vozaca!", "Greska", JOptionPane.ERROR_MESSAGE);
                         }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog vozaca!", "Greska", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
