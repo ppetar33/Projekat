@@ -1,7 +1,11 @@
 package main;
 
+import automobili.Automobil;
+import automobili.Voznja;
 import gui.LoginProzor;
 import podaci.Liste;
+
+import java.util.ArrayList;
 
 
 public class TaxiSluzbaMain {
@@ -15,10 +19,19 @@ public class TaxiSluzbaMain {
 
         Liste ucitavanje = new Liste();
 
-            ucitavanje.ucitajKorisnike(KORISNICI_FAJL);
-            ucitavanje.ucitajAutomobila(AUTOMOBILI_FAJL);
-            ucitavanje.ucitajTaksiSluzbe(TAKSI_SLUZBA_FAJL);
-            ucitavanje.ucitavanjeVoznji(VOZNJE_FAJL);
+        ucitavanje.ucitajAutomobila(AUTOMOBILI_FAJL);
+
+        ucitavanje.ucitajKorisnike(KORISNICI_FAJL);
+
+        ucitavanje.ucitavanjeVoznji(VOZNJE_FAJL);
+
+        ucitavanje.ucitajTaksiSluzbe(TAKSI_SLUZBA_FAJL);
+
+
+        ArrayList<Voznja> v = ucitavanje.getVoznja();
+
+        ucitavanje.snimanjeAutomobila(AUTOMOBILI_FAJL);
+        ucitavanje.snimanjeVoznji(VOZNJE_FAJL);
 
         LoginProzor lp = new LoginProzor(ucitavanje);
         lp.setVisible(true);

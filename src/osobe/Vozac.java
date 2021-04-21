@@ -8,7 +8,7 @@ public class Vozac extends Osoba {
 
 	private double plata;
 	private int brojClanskeKarte;
-	private Automobil automobili; // mora biti posebna klasa automobil todo
+	private Automobil automobili;
 	private Obrisan obrisan;
 
 	public Vozac() {}

@@ -56,7 +56,6 @@ public class MogucnostiDispecera extends JFrame {
 	private Dispecar prijavljeniDispecar;
 	private Vozac vozac;
 	private Dispecar dispecar;
-	private Automobil automobil;
 
 	public MogucnostiDispecera(Liste ucitavanje, Dispecar prijavljeniDispecar){
 		this.ucitavanje = ucitavanje;
@@ -145,7 +144,7 @@ public class MogucnostiDispecera extends JFrame {
 		dodavanjeAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DodavanjeAutomobila prozorZaDodavanjeAutomobila = new DodavanjeAutomobila(ucitavanje, automobil);
+				DodavanjeAutomobila prozorZaDodavanjeAutomobila = new DodavanjeAutomobila(ucitavanje);
 				prozorZaDodavanjeAutomobila.setVisible(true);
 			}
 		});

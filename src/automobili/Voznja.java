@@ -5,6 +5,7 @@ import osobe.Musterija;
 import osobe.Vozac;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Voznja {
 
@@ -126,6 +127,6 @@ public class Voznja {
     }
 
     public String pripremiZaSnimanjeVoznju() {
-        return id + "," + datumIvremePorudzbine + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija + "," + vozac + "," + brojKMpredjenih + "," + trajanjVoznje + "," + "," + statusVoznje;
+        return id + "," + datumIvremePorudzbine.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija.getKorisnickoIme() + "," + vozac.getKorisnickoIme() + "," + brojKMpredjenih + "," + trajanjVoznje + "," + statusVoznje  + "\n";
     }
 }
