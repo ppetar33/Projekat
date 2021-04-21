@@ -11,6 +11,8 @@ package automobili;
 import enumi.Obrisan;
 import enumi.VrstaVozila;
 
+import javax.swing.*;
+
 public class Automobil {
 
     private int id;
@@ -114,6 +116,6 @@ public class Automobil {
     }
 
     public String pripremiZaSnimanjeAutomobil() {
-        return id + "," + model + "," + proizvodjac + "," + godinaProizvodnje + "," + registarskiBroj + "," + brojVozila +"," + obrisan +"," + vrstaVozila + "\n";
+        return id + "," + model + "," + proizvodjac + "," + godinaProizvodnje + "," + registarskiBroj + "," + brojVozila +"," + vrstaVozila + "," + obrisan + "\n";
     }
 }
