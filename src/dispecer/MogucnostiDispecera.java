@@ -157,6 +157,13 @@ public class MogucnostiDispecera extends JFrame {
 			}
 		});
 		// PRIKAZ,IZMENA,BRISANJE AUTOMOBILA TODO
+		prikazAutomobila.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazAutomobila prozorZaPrikazAutomobila = new PrikazAutomobila(ucitavanje);
+				prozorZaPrikazAutomobila.setVisible(true);
+			}
+		});
 		// PRIKAZ VOZNJI
 		putemTelefona.addActionListener(new ActionListener() {
 			@Override
