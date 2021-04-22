@@ -141,24 +141,6 @@ public class DodavanjeAutomobila extends JFrame {
     }
 
     private void initListeners() {
-        kombi.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                kombi.setSelected(true);
-                putnickiAutomobil.setSelected(false);
-            }
-        });
-
-        putnickiAutomobil.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                putnickiAutomobil.setSelected(true);
-                kombi.setSelected(false);
-            }
-        });
-
 
         btnOK.addActionListener(new ActionListener() {
             @Override
@@ -192,8 +174,6 @@ public class DodavanjeAutomobila extends JFrame {
                     JOptionPane.showMessageDialog(null, "Automobil je uspesno dodat!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                     DodavanjeAutomobila.this.dispose();
                     DodavanjeAutomobila.this.setVisible(false);
-
-
                 }
             }
         });

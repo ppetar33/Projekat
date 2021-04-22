@@ -4,8 +4,6 @@ import gui.LoginProzor;
 import osobe.Dispecar;
 import osobe.Vozac;
 import podaci.Liste;
-import automobili.Automobil;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -131,16 +129,26 @@ public class MogucnostiDispecera extends JFrame {
 				prozorZaBrisanjeVozaca.setVisible(true);
 			}
 		});
-		/*
-			TODO
-			izmenaVozaca.addActionListener(new ActionListener() {
+		izmenaVozaca.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				IzmenaVozaca prozorZaIzmenuVozaca = new IzmenaVozaca(ucitavanje);
 				prozorZaIzmenuVozaca.setVisible(true);
 			}
 		});
-		*/
+		// TAKSI SLUZBA
+		prikazPodataka.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		izmenaPodataka.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 		dodavanjeAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -148,18 +156,23 @@ public class MogucnostiDispecera extends JFrame {
 				prozorZaDodavanjeAutomobila.setVisible(true);
 			}
 		});
+		// PRIKAZ,IZMENA,BRISANJE AUTOMOBILA TODO
+		// PRIKAZ VOZNJI
 		putemTelefona.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PrikazVoznji prozorZaPrikazVoznji = new PrikazVoznji(ucitavanje);
-				prozorZaPrikazVoznji.setVisible(true);
+				PrikazVoznjiPutemTelefona prozorZaPrikazVoznjiPutemTelefona = new PrikazVoznjiPutemTelefona(ucitavanje);
+				prozorZaPrikazVoznjiPutemTelefona.setVisible(true);
 			}
 		});
-//		putemAplikacije.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//			}
-//		});
+		putemAplikacije.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazVoznjiPutemAplikacije prozorZaPrikazVoznjiPutemAplikacije = new PrikazVoznjiPutemAplikacije(ucitavanje);
+				prozorZaPrikazVoznjiPutemAplikacije.setVisible(true);
+			}
+		});
+		// PRETRAGA VOZACA
 		poImenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -167,6 +180,29 @@ public class MogucnostiDispecera extends JFrame {
 				pretragaVozaca.setVisible(true);
 			}
 		});
+		poPrezimenu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		poAutomobilu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		poPlati.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		// PRETRAGA AUTOMOBILA TODO 
+
+
+
+		//ODJAVLJIVANJE
 		potvrdaZaOdjavu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

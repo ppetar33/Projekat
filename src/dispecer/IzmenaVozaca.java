@@ -1,5 +1,10 @@
 package dispecer;
 
-public class IzmenaVozaca {
-    //todo
+import podaci.Liste;
+
+public class IzmenaVozaca extends PrikazVozaca{
+
+    public IzmenaVozaca(Liste ucitavanje) {
+        super(ucitavanje);
+    }
 }

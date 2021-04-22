@@ -7,8 +7,9 @@ import podaci.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.time.format.DateTimeFormatter;
 
-public class PrikazVoznji extends JFrame {
+public class PrikazVoznjiPutemTelefona extends JFrame {
 
     private JToolBar mainJtoolBar = new JToolBar();
 
@@ -17,7 +18,7 @@ public class PrikazVoznji extends JFrame {
 
     private Liste ucitavanje;
 
-    public PrikazVoznji(Liste ucitavanje){
+    public PrikazVoznjiPutemTelefona(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
         setTitle("Prikaz voznji narucenih putem telefona");
         setSize(1100, 300);
@@ -27,6 +28,7 @@ public class PrikazVoznji extends JFrame {
         initGUI();
     }
 
+
     private void initGUI(){
         add(mainJtoolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
@@ -35,7 +37,7 @@ public class PrikazVoznji extends JFrame {
             Voznja voznje = ucitavanje.getVoznja().get(i);
             if(voznje.getStatusVoznje() == StatusVoznje.KREIRANA){ // putem telefona
                 sadrzaj[i][0] = voznje.getId();
-                sadrzaj[i][1] = voznje.getDatumIvremePorudzbine();
+                sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
                 sadrzaj[i][2] = voznje.getAdresaPolaska();
                 sadrzaj[i][3] = voznje.getAdresaDestinacije();
                 sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);

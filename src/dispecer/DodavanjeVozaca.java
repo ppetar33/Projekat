@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 /*
     PROVERITI DA LI JE SLOBODAN AUTOMOBIL
     AKO JE SLOBODAN TREBA GA DODATI VOZACU
+    polje za automobil treba biti padajuca lista sa automobilima koji su slobodni
 */
 
 public class DodavanjeVozaca extends JFrame{
@@ -246,8 +247,6 @@ public class DodavanjeVozaca extends JFrame{
                         vozac.setBrojTelefona(unosBrojTelefona);
                         vozac.setPlata(unosPlata);
                         vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
-//                        vozac.setAutomobil(unosAutomobil);
-                        vozac.setObrisan(Obrisan.TRUE);
                     }if (muski.isSelected()) {
                         Pol pol = Pol.MUSKI;
                         Obrisan obrisan = Obrisan.TRUE;

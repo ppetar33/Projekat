@@ -11,8 +11,6 @@ package automobili;
 import enumi.Obrisan;
 import enumi.VrstaVozila;
 
-import javax.swing.*;
-
 public class Automobil {
 
     private int id;

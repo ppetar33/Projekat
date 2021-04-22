@@ -42,8 +42,7 @@ public class PrikazVozaca extends JFrame {
                 sadrzaj[i][5] = vozac.getBrojTelefona();
                 sadrzaj[i][6] = vozac.getPlata();
                 sadrzaj[i][7] = vozac.getBrojClanskeKarte();
-                Automobil automobili = vozac.getAutomobili();
-                sadrzaj[i][8] = automobili.getModel(); // greska, prikazuje prazan konsturktor
+                sadrzaj[i][8] = vozac.getAutomobili().getModel(); // greska, prikazuje prazan konsturktor
             }
         }
 
