@@ -6,7 +6,7 @@ import enumi.Pol;
 
 public class Vozac extends Osoba {
 
-	private double plata;
+	private String plata;
 	private int brojClanskeKarte;
 	private Automobil automobili;
 	private Obrisan obrisan;
@@ -14,7 +14,7 @@ public class Vozac extends Osoba {
 	public Vozac() {}
 
 	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-				 Pol pol, String brojTelefona, double plata, int brojClanskeKarte, Automobil automobili, Obrisan obrisan) {
+				 Pol pol, String brojTelefona, String plata, int brojClanskeKarte, Automobil automobili, Obrisan obrisan) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
@@ -22,11 +22,11 @@ public class Vozac extends Osoba {
 		this.obrisan = obrisan;
 	}
 
-	public double getPlata() {
+	public String getPlata() {
 		return plata;
 	}
 
-	public void setPlata(double plata) {
+	public void setPlata(String plata) {
 		this.plata = plata;
 	}
 

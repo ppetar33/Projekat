@@ -232,7 +232,7 @@ public class DodavanjeVozaca extends JFrame{
                     String unosAdresa = tadresa.getText().trim();
                     String unosJMBG = tjmbg.getText().trim();
                     String unosBrojTelefona = tbrojTelefona.getText().trim();
-                    double unosPlata = Double.parseDouble(tplata.getText().trim());
+                    String unosPlata = tplata.getText().trim();
                     int unosBrojClanskeKarte = Integer.parseInt(tbrojClanskeKarte.getText().trim());
 //                    String unosAutomobil = tautomobil.getText().trim();
 
@@ -269,7 +269,7 @@ public class DodavanjeVozaca extends JFrame{
         });
     }
 
-    private boolean proveraPodataka(){
+    public boolean proveraPodataka(){
         boolean ok = true;
         String obavestenjeZaGresku = "Napravili ste neke greske pri unosu, molimo vas ispravite! \n";
 
@@ -323,7 +323,7 @@ public class DodavanjeVozaca extends JFrame{
 //        }
 
         if(ok == false) {
-            JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Morate popuniti polja!", JOptionPane.WARNING_MESSAGE);
         }
         return ok;
     }

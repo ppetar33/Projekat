@@ -14,9 +14,9 @@ public class BrisanjeVozaca extends PrikazVozaca{
 
     private JButton btnDelete = new JButton();
 
-    public BrisanjeVozaca(Liste ucitavanje) {
-        super(ucitavanje);
-        setTitle("Brisanje Vozaca");
+    public BrisanjeVozaca(Liste ucitavanje,Vozac vozac) {
+        super(ucitavanje,vozac);
+        setTitle("Brisanje Vozaca" + this.vozac.getIme().substring(0,1).toUpperCase() + this.vozac.getIme().substring(1));
         initGUI();
         initListeners();
     }

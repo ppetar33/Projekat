@@ -118,21 +118,21 @@ public class MogucnostiDispecera extends JFrame {
 		prikazVozaca.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PrikazVozaca prozorZaPrikazVozaca = new PrikazVozaca(ucitavanje);
+				PrikazVozaca prozorZaPrikazVozaca = new PrikazVozaca(ucitavanje,vozac);
 				prozorZaPrikazVozaca.setVisible(true);
 			}
 		});
 		brisanjeVozaca.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BrisanjeVozaca prozorZaBrisanjeVozaca = new BrisanjeVozaca(ucitavanje);
+				BrisanjeVozaca prozorZaBrisanjeVozaca = new BrisanjeVozaca(ucitavanje,vozac);
 				prozorZaBrisanjeVozaca.setVisible(true);
 			}
 		});
 		izmenaVozaca.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				IzmenaVozaca prozorZaIzmenuVozaca = new IzmenaVozaca(ucitavanje);
+				IzmenaVozaca prozorZaIzmenuVozaca = new IzmenaVozaca(ucitavanje,vozac);
 				prozorZaIzmenuVozaca.setVisible(true);
 			}
 		});

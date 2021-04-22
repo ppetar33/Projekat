@@ -1,6 +1,5 @@
 package dispecer;
 
-import automobili.Automobil;
 import enumi.Obrisan;
 import osobe.Vozac;
 import podaci.Liste;
@@ -16,13 +15,14 @@ public class PrikazVozaca extends JFrame {
     public JTable vozaciTabela;
 
     public Liste ucitavanje;
+    public Vozac vozac;
 
-    public PrikazVozaca(Liste ucitavanje){
+    public PrikazVozaca(Liste ucitavanje,Vozac vozac){
         this.ucitavanje = ucitavanje;
-        setTitle("Prikaz vozaca");
+        this.vozac = vozac;
+        setTitle("Prikaz vozaca" + this.vozac.getIme().substring(0,1).toUpperCase() + this.vozac.getIme().substring(1));
         setSize(1000, 300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setResizable(false);
         setLocationRelativeTo(null);
         initGUI();
     }
@@ -42,7 +42,7 @@ public class PrikazVozaca extends JFrame {
                 sadrzaj[i][5] = vozac.getBrojTelefona();
                 sadrzaj[i][6] = vozac.getPlata();
                 sadrzaj[i][7] = vozac.getBrojClanskeKarte();
-                sadrzaj[i][8] = vozac.getAutomobili().getModel(); // greska, prikazuje prazan konsturktor
+                sadrzaj[i][8] = vozac.getAutomobili().getModel();
             }
         }
 

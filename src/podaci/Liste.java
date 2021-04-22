@@ -5,14 +5,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import automobili.Automobil;
-import enumi.StatusVoznje;
+import enumi.*;
 import automobili.Voznja;
-import enumi.VrstaVozila;
-import enumi.Obrisan;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Odeljenje;
-import enumi.Pol;
 import osobe.Vozac;
 import taksisluzba.TaksiSluzba;
 
@@ -87,7 +84,7 @@ public class Liste {
 
 	public void ucitajKorisnike(String imeFajla) {
 		try {
-			File korisniciFajl = new File("../src/fajlovi/" + imeFajla);
+			File korisniciFajl = new File("src/fajlovi/" + imeFajla);
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
 			String line = null;
 			while ((line = br.readLine()) != null) {
@@ -115,7 +112,6 @@ public class Liste {
 					dispecari.add(dispecar);
 				} else if (tipKorisnika.equals("VOZAC")) {
 					String plataString = split[8];
-					double plataVozaca = Double.parseDouble(plataString);
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					Automobil automobil = new Automobil();
@@ -125,7 +121,7 @@ public class Liste {
 							automobil = automobil1;
 						}
 					}
-					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataVozaca, brojKartice, automobil, obrisan);
+					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataString, brojKartice, automobil, obrisan);
 					vozaci.add(vozac);
 				}
 			}
@@ -137,7 +133,7 @@ public class Liste {
 
 	public void ucitajTaksiSluzbe(String imeFajla) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] podaci = line.trim().split(",");
@@ -159,7 +155,7 @@ public class Liste {
 
 	public void ucitajAutomobila(String imeFajla){
 		try{
-			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while((line = br.readLine()) != null){
 				String[] podaci = line.trim().split(",");
@@ -171,7 +167,8 @@ public class Liste {
 				int brojVozila = Integer.parseInt(podaci[5]);
 				VrstaVozila vrstaVozila = VrstaVozila.valueOf(podaci[6].toUpperCase());
 				Obrisan obrisan = Obrisan.valueOf(podaci[7].toUpperCase());
-				Automobil aut = new Automobil(id,model,proizvodjac,godinaProizvodnje,registarskiBroj,brojVozila,vrstaVozila,obrisan);
+				StatusAutomobila statusAutomobila = StatusAutomobila.valueOf(podaci[8].toUpperCase());
+				Automobil aut = new Automobil(id,model,proizvodjac,godinaProizvodnje,registarskiBroj,brojVozila,vrstaVozila,obrisan,statusAutomobila);
 				automobili.add(aut);
 			}
 			br.close();
@@ -183,7 +180,7 @@ public class Liste {
 
 	public void ucitavanjeVoznji(String imeFajla){
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while ((line = br.readLine()) != null){
 				String[] podaci = line.trim().split(",");
@@ -224,7 +221,7 @@ public class Liste {
 
 	public void dodavanjeKorisnika() {
 		try {
-			File korisniciFajl = new File("../src/fajlovi/korisnici.txt");
+			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
 			String content = "";
 
 			for (Vozac vozac : vozaci) {
@@ -291,7 +288,7 @@ public class Liste {
 	{
 
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
 			for (TaksiSluzba taksiSluzba : taksiSluzbe) {
 				br.write(taksiSluzba.pripremiZaSnimanjeTaksiSluzbu());
 			}
@@ -304,7 +301,7 @@ public class Liste {
 
 	public void snimanjeAutomobila(String imeFajla){
 		try{
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
 			for (Automobil automobil : automobili){
 				br.write(automobil.pripremiZaSnimanjeAutomobil());
 			}
@@ -317,7 +314,7 @@ public class Liste {
 
 	public void snimanjeVoznji(String imeFajla){
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
 			for (Voznja voznja: voznja){
 				br.write(voznja.pripremiZaSnimanjeVoznju());
 			}

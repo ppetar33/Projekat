@@ -1,13 +1,10 @@
 package dispecer;
 
-//    prilikom dodavanja automobila, automobil je moguće dodeliti nekom od vozača koji nemaju dodeljen automobil
-
 import automobili.Automobil;
 import enumi.Obrisan;
+import enumi.StatusAutomobila;
 import enumi.VrstaVozila;
 import podaci.Liste;
-
-import javax.naming.InitialContext;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -161,6 +158,7 @@ public class DodavanjeAutomobila extends JFrame {
                     automobil.setRegistarskiBroj(unosBrojRegistarskeOznake);
                     automobil.setBrojVozila(unosBrojTaksiVozila);
                     automobil.setObrisan(Obrisan.TRUE);
+                    automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
                     if (putnickiAutomobil.isSelected()) {
                         automobil.setVrstaVozila(VrstaVozila.PUTNICKI_AUTOMOBIL);
                     } else if (kombi.isSelected()) {

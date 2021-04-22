@@ -1,14 +1,7 @@
 package automobili;
 
-/*
-    Automobili predstavljaju poseban entitet u sistemu i za svaki se evidentira sledeće:
-    model, proizvođač, godina proizvodnje, broj registarske oznake,
-    broj taksi vozila (jedinstvena oznaka koju svako vozilo ima u okviru
-    svoje taksi službe), vrsta automobila (taksi služba raspolaže sa
-    putničkim automobilima i kombi vozilima).
-*/
-
 import enumi.Obrisan;
+import enumi.StatusAutomobila;
 import enumi.VrstaVozila;
 
 public class Automobil {
@@ -21,10 +14,11 @@ public class Automobil {
     private int brojVozila;
     private VrstaVozila vrstaVozila;
     private Obrisan obrisan;
+    private StatusAutomobila statusAutomobila;
 
     public Automobil(){}
 
-    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila, Obrisan obrisan) {
+    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila, Obrisan obrisan, StatusAutomobila statusAutomobila) {
         this.id = id;
         this.model = model;
         this.proizvodjac = proizvodjac;
@@ -33,6 +27,7 @@ public class Automobil {
         this.brojVozila = brojVozila;
         this.vrstaVozila = vrstaVozila;
         this.obrisan = obrisan;
+        this.statusAutomobila = statusAutomobila;
     }
 
     public int getId() {
@@ -99,6 +94,14 @@ public class Automobil {
         this.obrisan = obrisan;
     }
 
+    public StatusAutomobila getStatusAutomobila() {
+        return statusAutomobila;
+    }
+
+    public void setStatusAutomobila(StatusAutomobila statusAutomobila) {
+        this.statusAutomobila = statusAutomobila;
+    }
+
     @Override
     public String toString() {
         return "Automobil{" +
@@ -114,6 +117,6 @@ public class Automobil {
     }
 
     public String pripremiZaSnimanjeAutomobil() {
-        return id + "," + model + "," + proizvodjac + "," + godinaProizvodnje + "," + registarskiBroj + "," + brojVozila +"," + vrstaVozila + "," + obrisan + "\n";
+        return id + "," + model + "," + proizvodjac + "," + godinaProizvodnje + "," + registarskiBroj + "," + brojVozila +"," + vrstaVozila + "," + obrisan + "," + statusAutomobila +  "\n";
     }
 }

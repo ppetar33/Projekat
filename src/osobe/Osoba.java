@@ -4,14 +4,14 @@ import enumi.Pol;
 
 public abstract class Osoba {
 
-    private String korisnickoIme;
-    private String lozinka;
-    private String ime;
-    private String prezime;
-    private String jmbg;
-    private String adresa;
-    private Pol pol;
-    private String brojTelefona;
+    protected String korisnickoIme;
+    protected String lozinka;
+    protected String ime;
+    protected String prezime;
+    protected String jmbg;
+    protected String adresa;
+    protected Pol pol;
+    protected String brojTelefona;
 
     public Osoba() {
         this.korisnickoIme = "";
