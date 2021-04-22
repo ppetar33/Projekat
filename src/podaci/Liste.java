@@ -366,6 +366,29 @@ public class Liste {
 		return null;
 	}
 
+	// NADJI AUTOMOBIL PO STATUSU AUTOMOBILA
+
+	public Automobil nadjiAutomobilPoStatusuAutomobila(){
+		for(Automobil automobil : automobili){
+			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN){
+				return automobil;
+			}
+		}
+		return null;
+	}
+
+	public boolean nadji(){
+		for(Automobil automobil : automobili){
+			for(Vozac vozac : vozaci){
+				if(automobil.getModel() == vozac.getAutomobili().getModel()){
+					automobil.setStatusAutomobila(StatusAutomobila.ZAUZET);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public TaksiSluzba nadjiTaksiSluzbu(int id){
 		for(TaksiSluzba taksiSluzba : taksiSluzbe){
 			if(taksiSluzba.getId() == id){
@@ -382,6 +405,20 @@ public class Liste {
 			}
 		}
 		return null;
+	}
+
+	/*
+		GENERISI NOVI ID ZA VOZNJE
+	 */
+
+	public int generisiNoviIdZaVoznje() {
+		int maks = -1;
+		for (Voznja voznja : voznja) {
+			if (voznja.getId() > maks) {
+				maks = voznja.getId();
+			}
+		}
+		return maks + 1;
 	}
 
 

@@ -31,3 +31,8 @@ public class TaxiSluzbaMain {
 // putem aplikacije se unosi dodatna napomena i to je jedina razlika
 // za izvestaje pitati asistenta iz algoritama
 // pretrage algoritmi
+
+/*
+    6,Ibiza,Seat,2012,SU-132-DW,351,PUTNICKI_AUTOMOBIL,TRUE,SLOBODAN
+    7,Golf 5,Volkswagen,2020,VA-221-LS,314,PUTNICKI_AUTOMOBIL,TRUE,SLOBODAN
+*/

@@ -58,7 +58,7 @@ public class MogucnostiDispecera extends JFrame {
 	public MogucnostiDispecera(Liste ucitavanje, Dispecar prijavljeniDispecar){
 		this.ucitavanje = ucitavanje;
 		this.prijavljeniDispecar = prijavljeniDispecar;
-		setTitle("Dispecer, ime: " + prijavljeniDispecar.getIme().substring(0, 1).toUpperCase() + prijavljeniDispecar.getIme().substring(1));
+		setTitle("Dobrodosli " + prijavljeniDispecar.getIme().substring(0, 1).toUpperCase() + prijavljeniDispecar.getIme().substring(1) + " (Dispecer)");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(720, 300);
 		initGUI();

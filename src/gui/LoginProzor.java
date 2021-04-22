@@ -2,6 +2,9 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.*;
 
 import dispecer.MogucnostiDispecera;
@@ -65,6 +68,14 @@ public class LoginProzor extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String korisnickoIme = txtKorisnickoIme.getText().trim();
                 String sifra = new String(pfSifra.getPassword()).trim();
+
+				try {
+					FileWriter fw = new FileWriter("src/fajlovi/ulogovanKorisnik.txt",false);
+					fw.write(korisnickoIme);
+					fw.close();
+				} catch (IOException ioException) {
+					ioException.printStackTrace();
+				}
 
 				Vozac prijavljenVozac = ucitavanje.loginVozac(korisnickoIme, sifra);
 				Musterija prijavljenMusterija = ucitavanje.loginMusterija(korisnickoIme, sifra);

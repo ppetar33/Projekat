@@ -3,6 +3,7 @@ mirko123,mirko321,mirko,mirkovic,0022009943124,Laze Lazarevic,MUSKI,0621204285,4
 jovana123,jovana321,jovana,jovanovic,8832859310421,Ive Andrica,ZENSKI,0643214532,39000.0,11,Astra,VOZAC,TRUE
 marina123,marina321,marina,markovic,1919282837542,Narodnog fronta,ZENSKI,0662143759,53000.0,15,X1,VOZAC,TRUE
 stefan123,stefan321,stefan,stefanovic,4928357482931,Heroja Pinkija,MUSKI,0643785015,60000.0,20,Scudo,VOZAC,TRUE
+1,1,1,1,1,1,MUSKI,1,1,1,A4,VOZAC,TRUE
 petar123,petar321,petar,petrovic,0102031213122,Mihaila Pupina,MUSKI,0653443213,,,,MUSTERIJA,TRUE
 milos123,milos321,milos,milosevic,1234324561237,Strazilovska,MUSKI,0653443213,,,,MUSTERIJA,TRUE
 jovan123,jovan321,jovan,jovanovic,9128374654182,Jevrejska 14,MUSKI,0653443213,,,,MUSTERIJA,TRUE

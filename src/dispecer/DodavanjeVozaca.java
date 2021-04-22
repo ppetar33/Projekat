@@ -2,6 +2,7 @@ package dispecer;
 
 import automobili.Automobil;
 import enumi.Obrisan;
+import enumi.StatusAutomobila;
 import osobe.Osoba;
 import enumi.Pol;
 import osobe.Vozac;
@@ -247,17 +248,31 @@ public class DodavanjeVozaca extends JFrame{
                         vozac.setBrojTelefona(unosBrojTelefona);
                         vozac.setPlata(unosPlata);
                         vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
-                    }if (muski.isSelected()) {
+                    }
+                    /*
+                        provera da li je automobil slobodan
+                     */
+
+                    // proci kroz txt fajl automobili
+                    // naci automobil kojem je enum statusAutomobila == slobodan
+                    // uzeti model i dodeliti ga vozacu
+                    // nakon toga promeniti status sa slobodan na zauzet
+
+
+                    Automobil slobodanAutomobil = ucitavanje.nadjiAutomobilPoStatusuAutomobila();
+                    slobodanAutomobil.getModel();
+
+                    if (muski.isSelected()) {
+                        ucitavanje.nadji();
                         Pol pol = Pol.MUSKI;
                         Obrisan obrisan = Obrisan.TRUE;
-                        Automobil automobil = new Automobil();
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, automobil, obrisan);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, slobodanAutomobil, obrisan);
                         ucitavanje.getVozaci().add(vozac);
                     } else if (zenski.isSelected()) {
+                        ucitavanje.nadji();
                         Pol pol = Pol.ZENSKI;
                         Obrisan obrisan = Obrisan.TRUE;
-                        Automobil automobil = new Automobil();
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, automobil, obrisan);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, slobodanAutomobil, obrisan);
                         ucitavanje.getVozaci().add(vozac);
                     }
                     ucitavanje.dodavanjeKorisnika();

@@ -2,12 +2,9 @@ package dispecer;
 
 import podaci.Liste;
 import taksisluzba.TaksiSluzba;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.net.SocketAddress;
-import java.security.PublicKey;
 
 public class PrikazPodatakaTaksiSluzbe extends JFrame {
 
@@ -21,7 +18,7 @@ public class PrikazPodatakaTaksiSluzbe extends JFrame {
     public PrikazPodatakaTaksiSluzbe(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
         setTitle("Prikaz podataka taksi sluzbe!");
-        setSize(1000,300);
+        setSize(900,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);

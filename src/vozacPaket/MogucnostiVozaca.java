@@ -3,7 +3,6 @@ package vozacPaket;
 import gui.LoginProzor;
 import osobe.Vozac;
 import podaci.Liste;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +28,7 @@ public class MogucnostiVozaca extends JFrame {
     public MogucnostiVozaca(Liste ucitavanje, Vozac prijavljeniVozac){
         this.ucitavanje = ucitavanje;
         this.prijavljeniVozac = prijavljeniVozac;
-        setTitle("Vozac, ime: " + prijavljeniVozac.getIme().substring(0, 1).toUpperCase() + prijavljeniVozac.getIme().substring(1));
+        setTitle("Dobrodosli " + prijavljeniVozac.getIme().substring(0, 1).toUpperCase() + prijavljeniVozac.getIme().substring(1) + " (Vozac)");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(300, 300);
         initGUI();

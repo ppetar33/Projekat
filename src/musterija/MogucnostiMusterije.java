@@ -27,7 +27,7 @@ public class MogucnostiMusterije extends JFrame{
     public MogucnostiMusterije(Liste ucitavanje, Musterija prijavljenaMusterija){
         this.ucitavanje = ucitavanje;
         this.prijavljenaMusterija = prijavljenaMusterija;
-        setTitle("Musterija, ime: " + prijavljenaMusterija.getIme().substring(0, 1).toUpperCase() + prijavljenaMusterija.getIme().substring(1));
+        setTitle("Dobrodosli " + prijavljenaMusterija.getIme().substring(0, 1).toUpperCase() + prijavljenaMusterija.getIme().substring(1) + " (Musterija)");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(300, 300);
         initGUI();
@@ -64,8 +64,8 @@ public class MogucnostiMusterije extends JFrame{
         narucivanjeVoznjePrekoTelefona.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Narucivanje voznji preko telefona","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                // todo class and import
+                NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(ucitavanje,prijavljenaMusterija);
+                narucivanjeVoznjePrekoTelefona.setVisible(true);
             }
         });
         potvrdaZaOdjavu.addActionListener(new ActionListener() {

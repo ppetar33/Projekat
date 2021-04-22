@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PrikazZaIzmenu extends JFrame {
+public class ProzorZaIzmenuVozaca extends JFrame {
 
     // korisnicko ime
     private JLabel korisnickoIme = new JLabel("Korisnicko ime");
@@ -43,7 +43,7 @@ public class PrikazZaIzmenu extends JFrame {
     private Liste ucitavanje;
     private Vozac vozac;
 
-    public PrikazZaIzmenu(Liste ucitavanje,Vozac vozac){
+    public ProzorZaIzmenuVozaca(Liste ucitavanje, Vozac vozac){
         this.ucitavanje = ucitavanje;
         this.vozac = vozac;
         setTitle("Izmena vozaca " + this.vozac.getIme().substring(0,1).toUpperCase() + this.vozac.getIme().substring(1));
@@ -118,8 +118,8 @@ public class PrikazZaIzmenu extends JFrame {
                     }
                     ucitavanje.dodavanjeKorisnika();
                     JOptionPane.showMessageDialog(null, "Vozac: " + vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1) + " je uspesno izmenjen!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
-                    PrikazZaIzmenu.this.setVisible(false);
-                    PrikazZaIzmenu.this.dispose();
+                    ProzorZaIzmenuVozaca.this.setVisible(false);
+                    ProzorZaIzmenuVozaca.this.dispose();
                 }
             }
         });
@@ -127,8 +127,8 @@ public class PrikazZaIzmenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,"Uspesno ste odustali od izmene","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                PrikazZaIzmenu.this.setVisible(false);
-                PrikazZaIzmenu.this.dispose();
+                ProzorZaIzmenuVozaca.this.setVisible(false);
+                ProzorZaIzmenuVozaca.this.dispose();
             }
         });
     }
@@ -182,7 +182,7 @@ public class PrikazZaIzmenu extends JFrame {
             ok = false;
         }
         if(ok == false) {
-            JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Prazna polja", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Morate popuniti polja!", JOptionPane.WARNING_MESSAGE);
         }
         return ok;
     }

@@ -41,8 +41,8 @@ public class IzmenaVozaca extends PrikazVozaca{
                     if( vozac != null){
                         int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da izmenite vozaca: " + vozac.getIme().substring(0,1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                         if ( izbor == JOptionPane.YES_OPTION ){
-                            PrikazZaIzmenu prikazZaIzmenu = new PrikazZaIzmenu(ucitavanje,vozac);
-                            prikazZaIzmenu.setVisible(true);
+                            ProzorZaIzmenuVozaca prozorZaIzmenuVozaca = new ProzorZaIzmenuVozaca(ucitavanje,vozac);
+                            prozorZaIzmenuVozaca.setVisible(true);
                         }
                     }else{
                         JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog vozaca!", "Greska", JOptionPane.ERROR_MESSAGE);
