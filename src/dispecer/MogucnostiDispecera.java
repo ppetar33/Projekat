@@ -140,7 +140,8 @@ public class MogucnostiDispecera extends JFrame {
 		prikazPodataka.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				PrikazPodatakaTaksiSluzbe prozorZaPrikazPodatakaTaksiSluzbe = new PrikazPodatakaTaksiSluzbe(ucitavanje);
+				prozorZaPrikazPodatakaTaksiSluzbe.setVisible(true);
 			}
 		});
 		izmenaPodataka.addActionListener(new ActionListener() {
@@ -156,7 +157,7 @@ public class MogucnostiDispecera extends JFrame {
 				prozorZaDodavanjeAutomobila.setVisible(true);
 			}
 		});
-		// PRIKAZ,IZMENA,BRISANJE AUTOMOBILA TODO
+		// PRIKAZ AUTOMOBILA
 		prikazAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -164,6 +165,16 @@ public class MogucnostiDispecera extends JFrame {
 				prozorZaPrikazAutomobila.setVisible(true);
 			}
 		});
+		//BRISANJE AUTOMOBILA
+		brisanjeAutomobila.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BrisanjeAutomobila prozorZaBrisanjeAutomobila = new BrisanjeAutomobila(ucitavanje);
+				prozorZaBrisanjeAutomobila.setVisible(true);
+			}
+		});
+		//IZMENA AUTOMOBILA TODO
+
 		// PRIKAZ VOZNJI
 		putemTelefona.addActionListener(new ActionListener() {
 			@Override
