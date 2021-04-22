@@ -84,7 +84,7 @@ public class Liste {
 
 	public void ucitajKorisnike(String imeFajla) {
 		try {
-			File korisniciFajl = new File("src/fajlovi/" + imeFajla);
+			File korisniciFajl = new File("../src/fajlovi/" + imeFajla);
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
 			String line = null;
 			while ((line = br.readLine()) != null) {
@@ -133,7 +133,7 @@ public class Liste {
 
 	public void ucitajTaksiSluzbe(String imeFajla) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] podaci = line.trim().split(",");
@@ -155,7 +155,7 @@ public class Liste {
 
 	public void ucitajAutomobila(String imeFajla){
 		try{
-			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
 			String line;
 			while((line = br.readLine()) != null){
 				String[] podaci = line.trim().split(",");
@@ -180,7 +180,7 @@ public class Liste {
 
 	public void ucitavanjeVoznji(String imeFajla){
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
 			String line;
 			while ((line = br.readLine()) != null){
 				String[] podaci = line.trim().split(",");
@@ -221,7 +221,7 @@ public class Liste {
 
 	public void dodavanjeKorisnika() {
 		try {
-			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
+			File korisniciFajl = new File("../src/fajlovi/korisnici.txt");
 			String content = "";
 
 			for (Vozac vozac : vozaci) {
@@ -269,26 +269,11 @@ public class Liste {
 		}
 	}
 
-	/*
-	1,2019-12-13 12:35,Nenada Mitrova 12,Sime Matavulja 15,petar123,nemanja123,10,30,KREIRANA
-	2,2018-08-15 10:10,Devet Jugovica 44,Josifa Marinkovica 26,milos123,mirko123,3,5,DODELJENA
-	3,2019-11-10 08:50,Nikole Tesle 12,Primorska 31,milos123,jovana123,12,25,PRIHVACENA
-	4,2019-03-05 04:40,Futoska pijaca 13,Dimitrija Davidovica 11,jovan123,marina123,4,10,ZAVRSENA
-	5,2019-01-07 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,stefan123,5,18,ODBIJENA
-	* */
-
-	/*
-	1,A4,Audi,2012,VA-016-PA,214,PUTNICKI_AUTOMOBIL,TRUE
-	2,Transporter,Volkswagen,2007,NS-131-WD,321,KOMBI,TRUE
-	3,Astra,Opel,2009,BG-121-MF,994,PUTNICKI_AUTOMOBIL,TRUE
-	4,X1,BMW,2014,SA-005-AA,643,PUTNICKI_AUTOMOBIL,TRUE
-	5,Scudo,Fiat,2012,NS-123-EC,742,KOMBI,TRUE
-	* */
 	public void snimiTaksiSluzbe(String imeFajla)
 	{
 
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
 			for (TaksiSluzba taksiSluzba : taksiSluzbe) {
 				br.write(taksiSluzba.pripremiZaSnimanjeTaksiSluzbu());
 			}
@@ -301,7 +286,7 @@ public class Liste {
 
 	public void snimanjeAutomobila(String imeFajla){
 		try{
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
 			for (Automobil automobil : automobili){
 				br.write(automobil.pripremiZaSnimanjeAutomobil());
 			}
@@ -314,7 +299,7 @@ public class Liste {
 
 	public void snimanjeVoznji(String imeFajla){
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
 			for (Voznja voznja: voznja){
 				br.write(voznja.pripremiZaSnimanjeVoznju());
 			}

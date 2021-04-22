@@ -205,10 +205,8 @@ public class DodavanjeAutomobila extends JFrame {
             obavestenjeZaGresku += "Godina proizvodnje mora biti broj!\n";
             ok = false;
         }
-        try {
-            Integer.parseInt(tbrojRegistarskeOznake.getText().trim());
-        } catch (NumberFormatException e) {
-            obavestenjeZaGresku += "Broj registarske oznake mora biti broj!\n";
+        if(tbrojRegistarskeOznake.getText().trim().equals("")){
+            obavestenjeZaGresku += "Morate uneti broj registarske oznake za automobil!\n";
             ok = false;
         }
         try {
