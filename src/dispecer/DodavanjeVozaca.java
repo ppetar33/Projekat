@@ -260,7 +260,14 @@ public class DodavanjeVozaca extends JFrame{
 
 
                     Automobil slobodanAutomobil = ucitavanje.nadjiAutomobilPoStatusuAutomobila();
-                    slobodanAutomobil.getModel();
+                    if(slobodanAutomobil != null){
+                        slobodanAutomobil.getModel();
+                        slobodanAutomobil.setStatusAutomobila(StatusAutomobila.ZAUZET);
+                        ucitavanje.snimanjeAutomobila("automobil.txt");
+                    }else{
+                        Automobil automobil = new Automobil();
+                        slobodanAutomobil = automobil;
+                    }
 
                     if (muski.isSelected()) {
                         Pol pol = Pol.MUSKI;

@@ -1,6 +1,5 @@
 package musterija;
 
-import automobili.Automobil;
 import automobili.Voznja;
 import enumi.StatusVoznje;
 import net.miginfocom.swing.MigLayout;
@@ -11,11 +10,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
