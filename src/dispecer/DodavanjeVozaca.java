@@ -263,13 +263,11 @@ public class DodavanjeVozaca extends JFrame{
                     slobodanAutomobil.getModel();
 
                     if (muski.isSelected()) {
-                        ucitavanje.nadji();
                         Pol pol = Pol.MUSKI;
                         Obrisan obrisan = Obrisan.TRUE;
                         Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, slobodanAutomobil, obrisan);
                         ucitavanje.getVozaci().add(vozac);
                     } else if (zenski.isSelected()) {
-                        ucitavanje.nadji();
                         Pol pol = Pol.ZENSKI;
                         Obrisan obrisan = Obrisan.TRUE;
                         Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, unosPlata, unosBrojClanskeKarte, slobodanAutomobil, obrisan);

@@ -84,7 +84,7 @@ public class Liste {
 
 	public void ucitajKorisnike(String imeFajla) {
 		try {
-			File korisniciFajl = new File("../src/fajlovi/" + imeFajla);
+			File korisniciFajl = new File("src/fajlovi/" + imeFajla);
 			BufferedReader br = new BufferedReader(new FileReader(korisniciFajl));
 			String line = null;
 			while ((line = br.readLine()) != null) {
@@ -133,7 +133,7 @@ public class Liste {
 
 	public void ucitajTaksiSluzbe(String imeFajla) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] podaci = line.trim().split(",");
@@ -155,7 +155,7 @@ public class Liste {
 
 	public void ucitajAutomobila(String imeFajla){
 		try{
-			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while((line = br.readLine()) != null){
 				String[] podaci = line.trim().split(",");
@@ -180,7 +180,7 @@ public class Liste {
 
 	public void ucitavanjeVoznji(String imeFajla){
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("../src/fajlovi/" + imeFajla)));
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
 			String line;
 			while ((line = br.readLine()) != null){
 				String[] podaci = line.trim().split(",");
@@ -221,7 +221,7 @@ public class Liste {
 
 	public void dodavanjeKorisnika() {
 		try {
-			File korisniciFajl = new File("../src/fajlovi/korisnici.txt");
+			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
 			String content = "";
 
 			for (Vozac vozac : vozaci) {
@@ -273,7 +273,7 @@ public class Liste {
 	{
 
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
 			for (TaksiSluzba taksiSluzba : taksiSluzbe) {
 				br.write(taksiSluzba.pripremiZaSnimanjeTaksiSluzbu());
 			}
@@ -286,7 +286,7 @@ public class Liste {
 
 	public void snimanjeAutomobila(String imeFajla){
 		try{
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
 			for (Automobil automobil : automobili){
 				br.write(automobil.pripremiZaSnimanjeAutomobil());
 			}
@@ -299,7 +299,7 @@ public class Liste {
 
 	public void snimanjeVoznji(String imeFajla){
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("../src/fajlovi/" + imeFajla)));
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
 			for (Voznja voznja: voznja){
 				br.write(voznja.pripremiZaSnimanjeVoznju());
 			}
@@ -356,22 +356,11 @@ public class Liste {
 	public Automobil nadjiAutomobilPoStatusuAutomobila(){
 		for(Automobil automobil : automobili){
 			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN){
+				automobil.setStatusAutomobila(StatusAutomobila.ZAUZET);
 				return automobil;
 			}
 		}
 		return null;
-	}
-
-	public boolean nadji(){
-		for(Automobil automobil : automobili){
-			for(Vozac vozac : vozaci){
-				if(automobil.getModel() == vozac.getAutomobili().getModel()){
-					automobil.setStatusAutomobila(StatusAutomobila.ZAUZET);
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 
 	public TaksiSluzba nadjiTaksiSluzbu(int id){

@@ -20,7 +20,7 @@ public class PrikazVozaca extends JFrame {
     public PrikazVozaca(Liste ucitavanje,Vozac vozac){
         this.ucitavanje = ucitavanje;
         this.vozac = vozac;
-        setTitle("Prikaz vozaca" + this.vozac.getIme().substring(0,1).toUpperCase() + this.vozac.getIme().substring(1));
+        setTitle("Prikaz vozaca");
         setSize(1000, 300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

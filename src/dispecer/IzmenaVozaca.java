@@ -15,7 +15,7 @@ public class IzmenaVozaca extends PrikazVozaca{
 
     public IzmenaVozaca(Liste ucitavanje,Vozac vozac) {
         super(ucitavanje,vozac);
-        setTitle("Izmena vozaca" + this.vozac.getIme().substring(0,1) + this.vozac.getIme().substring(1));
+        setTitle("Izmena vozaca");
         initGui();
         initListeners();
     }

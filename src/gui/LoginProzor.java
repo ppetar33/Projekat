@@ -70,7 +70,7 @@ public class LoginProzor extends JFrame{
                 String sifra = new String(pfSifra.getPassword()).trim();
 
 				try {
-					FileWriter fw = new FileWriter("../src/fajlovi/ulogovanKorisnik.txt",false);
+					FileWriter fw = new FileWriter("src/fajlovi/ulogovanKorisnik.txt",false);
 					fw.write(korisnickoIme);
 					fw.close();
 				} catch (IOException ioException) {
