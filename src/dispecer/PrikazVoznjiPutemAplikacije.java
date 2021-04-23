@@ -34,8 +34,7 @@ public class PrikazVoznjiPutemAplikacije extends JFrame {
         Object[][] sadrzaj = new Object[ucitavanje.getVoznja().size()][zaglavnje.length];
         for(int i = 0; i < ucitavanje.getVoznja().size(); i++){
             Voznja voznje = ucitavanje.getVoznja().get(i);
-            if(voznje.getStatusVoznje() != StatusVoznje.KREIRANA){
-                StatusVoznje red = StatusVoznje.KREIRANA;
+            if(voznje.getStatusVoznje() == StatusVoznje.KREIRANA_NA_CEKANJU){
                 sadrzaj[i][0] = voznje.getId();
                 sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
                 sadrzaj[i][2] = voznje.getAdresaPolaska();

@@ -12,11 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-/*
-     Ako je obrisan automobil == false NE DODAVATI GA VOZACU
- */
-
 public class DodavanjeVozaca extends JFrame{
 
     private Container c;
@@ -221,7 +216,7 @@ public class DodavanjeVozaca extends JFrame{
                     int unosBrojClanskeKarte = Integer.parseInt(tbrojClanskeKarte.getText().trim());
 
                     if(osoba != null) {
-                        Vozac vozac = (Vozac)osoba;
+                        Vozac vozac = (Vozac)osoba; //cast
                         vozac.setIme(unosIme);
                         vozac.setPrezime(unosPrezime);
                         vozac.setKorisnickoIme(unosKorisnickoIme);

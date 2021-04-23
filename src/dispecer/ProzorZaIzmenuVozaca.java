@@ -46,7 +46,7 @@ public class ProzorZaIzmenuVozaca extends JFrame {
     public ProzorZaIzmenuVozaca(Liste ucitavanje, Vozac vozac){
         this.ucitavanje = ucitavanje;
         this.vozac = vozac;
-        setTitle("Izmena vozaca " + this.vozac.getIme().substring(0,1).toUpperCase() + this.vozac.getIme().substring(1));
+        setTitle("Izmena vozaca " + vozac.getIme().substring(0,1).toUpperCase() + vozac.getIme().substring(1));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initGUI();
         initListeners();

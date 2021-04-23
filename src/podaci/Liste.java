@@ -351,8 +351,6 @@ public class Liste {
 		return null;
 	}
 
-	// NADJI AUTOMOBIL PO STATUSU AUTOMOBILA
-
 	public Automobil nadjiAutomobilPoStatusuAutomobila(){
 		for(Automobil automobil : automobili){
 			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN && automobil.getObrisan() == Obrisan.TRUE){
@@ -361,8 +359,6 @@ public class Liste {
 		}
 		return null;
 	}
-
-	// NADJI AUTOMOBIL PO MODELU AUTOMOBILA
 
 	public Automobil nadjiAutomobilPoModeluAutomobila(String modelAutomobila){
 		for(Automobil automobil : automobili){

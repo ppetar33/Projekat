@@ -67,10 +67,13 @@ public class NarucivanjeVoznjePrekoTelefona extends JFrame {
                     String adresaPolaska = tadresaPolaska.getText().trim();
                     String adresaDolaska = tadresaDolaska.getText().trim();
 
-                    //vozac koji je preuzeo voznju
-                    //broj km predjenih u voznji
-                    //trajanje voznje
+                    // URADITI:
+                    //      VOZAC KOJI JE PREUZEO VOZNJU
+                    //      kada dispecar dodeli voznju vozacu potrebno je promeniti status sa KREIRANA na DODELJENA
 
+                    double predjeniKilometriUminuti = 0.5; // ogranicenje 50km/h, prosecna brzina 30km/h
+                    int predjeniKilometri = 30; // uraditi predjene kilometre ovo je samo test
+                    double trajanjeVoznje = predjeniKilometri * predjeniKilometriUminuti;
 
                     if(voznja != null){
                         voznja.setId(id);
@@ -78,7 +81,7 @@ public class NarucivanjeVoznjePrekoTelefona extends JFrame {
                         voznja.setAdresaPolaska(adresaPolaska);
                         voznja.setAdresaDestinacije(adresaDolaska);
                     }
-                    Vozac vozac = new Vozac();
+                    Vozac vozac = new Vozac(); // PROBA
                     try {
                         File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
                         Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
@@ -86,7 +89,7 @@ public class NarucivanjeVoznjePrekoTelefona extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-                            Voznja voznja = new Voznja(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,12,StatusVoznje.KREIRANA);
+                            Voznja voznja = new Voznja(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,trajanjeVoznje,StatusVoznje.KREIRANA);
                             ucitavanje.getVoznja().add(voznja);
                         }
                         citanjeUlogovanogKorisnika.close();
