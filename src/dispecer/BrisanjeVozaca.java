@@ -1,6 +1,8 @@
 package dispecer;
 
+import automobili.Automobil;
 import enumi.Obrisan;
+import enumi.StatusAutomobila;
 import osobe.Vozac;
 import podaci.Liste;
 import javax.swing.*;
@@ -25,7 +27,7 @@ public class BrisanjeVozaca extends PrikazVozaca{
 
     public BrisanjeVozaca(Liste ucitavanje,Vozac vozac) {
         super(ucitavanje,vozac);
-        setTitle("Brisanje Vozaca" + this.vozac.getIme().substring(0,1).toUpperCase() + this.vozac.getIme().substring(1));
+        setTitle("Brisanje Vozaca");
         initGUI();
         initListeners();
     }
@@ -48,12 +50,18 @@ public class BrisanjeVozaca extends PrikazVozaca{
                     DefaultTableModel tableModel = (DefaultTableModel)vozaciTabela.getModel();
                     String korisnickoIme = tableModel.getValueAt(red, 0).toString();
                     Vozac vozac = ucitavanje.nadjiVozaca(korisnickoIme);
+                    String modelAutomobila = tableModel.getValueAt(red,8).toString();
+                    Automobil automobil = ucitavanje.nadjiAutomobilPoModeluAutomobila(modelAutomobila);
                     if( vozac != null ){
                         int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete vozaca: " + vozac.getIme().substring(0,1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                         if ( izbor == JOptionPane.YES_OPTION ){
                             vozac.setObrisan(Obrisan.FALSE);
                             tableModel.removeRow(red);
                             ucitavanje.dodavanjeKorisnika();
+                            if(automobil.getModel().equals(vozac.getAutomobili().getModel())){
+                                automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
+                                ucitavanje.snimanjeAutomobila("automobil.txt");
+                            }
                         }
                     }else{
                         JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog vozaca!", "Greska", JOptionPane.ERROR_MESSAGE);

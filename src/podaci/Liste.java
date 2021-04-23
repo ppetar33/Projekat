@@ -355,7 +355,18 @@ public class Liste {
 
 	public Automobil nadjiAutomobilPoStatusuAutomobila(){
 		for(Automobil automobil : automobili){
-			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN){
+			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN && automobil.getObrisan() == Obrisan.TRUE){
+				return automobil;
+			}
+		}
+		return null;
+	}
+
+	// NADJI AUTOMOBIL PO MODELU AUTOMOBILA
+
+	public Automobil nadjiAutomobilPoModeluAutomobila(String modelAutomobila){
+		for(Automobil automobil : automobili){
+			if(automobil.getModel() == modelAutomobila){
 				return automobil;
 			}
 		}

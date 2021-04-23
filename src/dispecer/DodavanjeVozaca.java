@@ -7,17 +7,15 @@ import osobe.Osoba;
 import enumi.Pol;
 import osobe.Vozac;
 import podaci.Liste;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 /*
-    PROVERITI DA LI JE SLOBODAN AUTOMOBIL
-    AKO JE SLOBODAN TREBA GA DODATI VOZACU
-    polje za automobil treba biti padajuca lista sa automobilima koji su slobodni
-*/
+     Ako je obrisan automobil == false NE DODAVATI GA VOZACU
+ */
 
 public class DodavanjeVozaca extends JFrame{
 
@@ -44,8 +42,6 @@ public class DodavanjeVozaca extends JFrame{
     private JTextField tplata;
     private JLabel brojClanskeKarte;
     private JTextField tbrojClanskeKarte;
-//    private JLabel automobil;
-//    private JTextField tautomobil;
     private JButton btnOK;
 
     private Liste ucitavanje;
@@ -198,18 +194,6 @@ public class DodavanjeVozaca extends JFrame{
         tbrojClanskeKarte.setLocation(650, 235);
         c.add(tbrojClanskeKarte);
 
-//        automobil = new JLabel("Automobil: ");
-//        automobil.setFont(new Font("Arial", Font.PLAIN, 18));
-//        automobil.setSize(100, 20);
-//        automobil.setLocation(490, 300);
-//        c.add(automobil);
-//
-//        tautomobil = new JTextField();
-//        tautomobil.setFont(new Font("Arial", Font.PLAIN, 15));
-//        tautomobil.setSize(190, 35);
-//        tautomobil.setLocation(650, 295);
-//        c.add(tautomobil);
-
         btnOK = new JButton("Potvrdi");
         btnOK.setFont(new Font("Arial", Font.PLAIN, 19));
         btnOK.setSize(180, 40);
@@ -235,7 +219,6 @@ public class DodavanjeVozaca extends JFrame{
                     String unosBrojTelefona = tbrojTelefona.getText().trim();
                     String unosPlata = tplata.getText().trim();
                     int unosBrojClanskeKarte = Integer.parseInt(tbrojClanskeKarte.getText().trim());
-//                    String unosAutomobil = tautomobil.getText().trim();
 
                     if(osoba != null) {
                         Vozac vozac = (Vozac)osoba;
@@ -328,10 +311,6 @@ public class DodavanjeVozaca extends JFrame{
             obavestenjeZaGresku += "Broj clanske karte mora biti broj! \n";
             ok = false;
         }
-//        if(tautomobil.getText().trim().equals("")){
-//            obavestenjeZaGresku += "Morate uneti automobil! \n";
-//            ok = false;
-//        }
 
         if(ok == false) {
             JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Morate popuniti polja!", JOptionPane.WARNING_MESSAGE);
