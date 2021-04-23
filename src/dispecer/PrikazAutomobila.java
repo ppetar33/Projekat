@@ -40,7 +40,7 @@ public class PrikazAutomobila extends JFrame {
                 sadrzaj[i][4] = automobil.getRegistarskiBroj();
                 sadrzaj[i][5] = automobil.getBrojVozila();
                 sadrzaj[i][6] = automobil.getVrstaVozila();
-                sadrzaj[i][7] = automobil.getStatusAutomobila();
+                sadrzaj[i][7] = automobil.getStatusAutomobila(); //dodat status automobila
             }
         }
 
