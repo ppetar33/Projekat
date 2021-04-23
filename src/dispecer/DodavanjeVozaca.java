@@ -249,15 +249,6 @@ public class DodavanjeVozaca extends JFrame{
                         vozac.setPlata(unosPlata);
                         vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
                     }
-                    /*
-                        provera da li je automobil slobodan
-                     */
-
-                    // proci kroz txt fajl automobili
-                    // naci automobil kojem je enum statusAutomobila == slobodan
-                    // uzeti model i dodeliti ga vozacu
-                    // nakon toga promeniti status sa slobodan na zauzet
-
 
                     Automobil slobodanAutomobil = ucitavanje.nadjiAutomobilPoStatusuAutomobila();
                     if(slobodanAutomobil != null){

@@ -1,6 +1,6 @@
 package musterija;
 
-import automobili.Voznja;
+import  automobili.Voznja;
 import enumi.StatusVoznje;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;

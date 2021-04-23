@@ -1,17 +1,14 @@
 package dispecer;
 
-
 import automobili.Automobil;
 import enumi.Obrisan;
+import enumi.StatusAutomobila;
 import podaci.Liste;
-
-import javax.lang.model.util.ElementScanner6;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
 
 public class BrisanjeAutomobila extends PrikazAutomobila{
 //brisanje je moguće samo za automobile koji nisu dodeljeni ni jednom vozaču
@@ -42,20 +39,24 @@ public class BrisanjeAutomobila extends PrikazAutomobila{
                     JOptionPane.showMessageDialog(null,"Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     DefaultTableModel tableModel = (DefaultTableModel) automobiliTabela.getModel();
-                    int id = Integer.parseInt((String) tableModel.getValueAt(red, 0));
-                    Automobil automobil = ucitavanje.nadjiAutomobil(id);
-                    if (automobil != null){
-                        int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete automobil:" + automobil.getId() + automobil.getProizvodjac().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION );
-                        if (izbor == JOptionPane.YES_OPTION){
-                            automobil.setObrisan(Obrisan.FALSE);
-                            tableModel.removeRow(red);
-                            ucitavanje.snimanjeAutomobila("automobil.txt");
+                    String id = tableModel.getValueAt(red, 0).toString();
+                    int nadjiId = Integer.parseInt(id);
+                    Automobil automobil = ucitavanje.nadjiAutomobil(nadjiId);
+                    if (automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN) {
+                        if (automobil != null) {
+                            int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete automobil: " + automobil.getModel() + " ?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+                            if (izbor == JOptionPane.YES_OPTION) {
+                                automobil.setObrisan(Obrisan.FALSE);
+                                tableModel.removeRow(red);
+                                ucitavanje.snimanjeAutomobila("automobil.txt");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabran automobil!", "Greska", JOptionPane.ERROR_MESSAGE);
                         }
-                    }else {
-                        JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabran automobil!", "Greska", JOptionPane.ERROR_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Mogu se obrisati samo slobodni automobili!","Greska",JOptionPane.WARNING_MESSAGE);
                     }
                 }
-
             }
         });
     }

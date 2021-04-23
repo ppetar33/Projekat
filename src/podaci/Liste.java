@@ -356,7 +356,6 @@ public class Liste {
 	public Automobil nadjiAutomobilPoStatusuAutomobila(){
 		for(Automobil automobil : automobili){
 			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN){
-				automobil.setStatusAutomobila(StatusAutomobila.ZAUZET);
 				return automobil;
 			}
 		}
