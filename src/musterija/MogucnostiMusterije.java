@@ -1,8 +1,8 @@
 package musterija;
 
-import gui.LoginProzor;
+import loginProzor.LoginProzor;
 import osobe.Musterija;
-import podaci.Liste;
+import liste.Liste;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

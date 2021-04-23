@@ -4,7 +4,7 @@ import automobili.Automobil;
 import enumi.Obrisan;
 import enumi.StatusAutomobila;
 import enumi.VrstaVozila;
-import podaci.Liste;
+import liste.Liste;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

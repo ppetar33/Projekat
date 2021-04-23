@@ -1,7 +1,7 @@
 package dispecer;
 
-import podaci.Liste;
-import taksisluzba.TaksiSluzba;
+import liste.Liste;
+import taksiSluzba.TaksiSluzba;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;

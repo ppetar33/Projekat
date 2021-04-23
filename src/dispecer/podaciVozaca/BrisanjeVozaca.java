@@ -1,27 +1,17 @@
-package dispecer;
+package dispecer.podaciVozaca;
 
 import automobili.Automobil;
 import enumi.Obrisan;
 import enumi.StatusAutomobila;
 import osobe.Vozac;
-import podaci.Liste;
+import liste.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-/*
-
-    Prilikom brisanja vozaca, enum obrisan se menja iz TRUE u FALSE (uradjeno)
-
-    URADITI:
-        Kada se obrise vozac potrebno je automobil prebaciti sa ZAUZET na SLOBODAN
-
-*/
-
-public class BrisanjeVozaca extends PrikazVozaca{
+public class BrisanjeVozaca extends PrikazVozaca {
 
     private JButton btnDelete = new JButton();
 

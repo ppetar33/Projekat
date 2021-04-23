@@ -1,11 +1,11 @@
-package dispecer;
+package dispecer.podaciVozaca;
 
 import automobili.Automobil;
 import enumi.Obrisan;
 import enumi.Pol;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
-import podaci.Liste;
+import liste.Liste;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

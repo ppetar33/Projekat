@@ -1,4 +1,4 @@
-package dispecer;
+package dispecer.podaciVozaca;
 
 import automobili.Automobil;
 import enumi.Obrisan;
@@ -6,7 +6,7 @@ import enumi.StatusAutomobila;
 import osobe.Osoba;
 import enumi.Pol;
 import osobe.Vozac;
-import podaci.Liste;
+import liste.Liste;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -308,8 +308,9 @@ public class DodavanjeVozaca extends JFrame{
         }
 
         if(ok == false) {
-            JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Morate popuniti polja!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Neispravni podaci!", JOptionPane.WARNING_MESSAGE);
         }
+
         return ok;
     }
 }

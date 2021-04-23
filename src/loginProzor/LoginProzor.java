@@ -1,8 +1,7 @@
-package gui;
+package loginProzor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.*;
@@ -13,8 +12,8 @@ import net.miginfocom.swing.MigLayout;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Vozac;
-import podaci.Liste;
-import vozacPaket.MogucnostiVozaca;
+import liste.Liste;
+import vozac.MogucnostiVozaca;
 
 public class LoginProzor extends JFrame{
 
@@ -85,9 +84,9 @@ public class LoginProzor extends JFrame{
                     JOptionPane.showMessageDialog(null, "Neispravni login podaci", "Greska", JOptionPane.WARNING_MESSAGE);
                 }
 				else {
-                	JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili!", "Uspesna prijava", JOptionPane.INFORMATION_MESSAGE);
 					LoginProzor.this.dispose();
 					LoginProzor.this.setVisible(false);
+                	JOptionPane.showMessageDialog(null, "Uspesno ste se prijavili!", "Uspesna prijava", JOptionPane.INFORMATION_MESSAGE);
                 }
 
 				if(prijavljenMusterija instanceof Musterija){

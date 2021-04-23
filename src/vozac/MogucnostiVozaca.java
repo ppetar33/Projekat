@@ -1,8 +1,8 @@
-package vozacPaket;
+package vozac;
 
-import gui.LoginProzor;
+import loginProzor.LoginProzor;
 import osobe.Vozac;
-import podaci.Liste;
+import liste.Liste;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

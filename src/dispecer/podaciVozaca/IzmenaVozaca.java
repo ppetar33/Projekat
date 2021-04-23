@@ -1,7 +1,7 @@
-package dispecer;
+package dispecer.podaciVozaca;
 
 import osobe.Vozac;
-import podaci.Liste;
+import liste.Liste;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class IzmenaVozaca extends PrikazVozaca{
+public class IzmenaVozaca extends PrikazVozaca {
 
     private JButton btnEdit = new JButton();
 

@@ -1,9 +1,14 @@
 package dispecer;
 
-import gui.LoginProzor;
+import dispecer.podaciVozaca.BrisanjeVozaca;
+import dispecer.podaciVozaca.DodavanjeVozaca;
+import dispecer.podaciVozaca.IzmenaVozaca;
+import dispecer.podaciVozaca.PrikazVozaca;
+import dispecer.pretragaVozaca.*;
+import loginProzor.LoginProzor;
 import osobe.Dispecar;
 import osobe.Vozac;
-import podaci.Liste;
+import liste.Liste;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,6 +42,7 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem poPrezimenu = new JMenuItem("Po prezimenu");
 	private JMenuItem poPlati = new JMenuItem("Po plati");
 	private JMenuItem poAutomobilu = new JMenuItem("Po automobilu");
+	private JMenuItem kombinovana = new JMenuItem("Kombinovana");
 
 	private JMenuItem funkcionalnostPretragaAutomobila = new JMenu("Pretraga automobila");
 	private JMenuItem poModelu = new JMenuItem("Po modelu");
@@ -94,6 +100,7 @@ public class MogucnostiDispecera extends JFrame {
 		funkcionalnostPretragaVozaca.add(poPrezimenu);
 		funkcionalnostPretragaVozaca.add(poPlati);
 		funkcionalnostPretragaVozaca.add(poAutomobilu);
+		funkcionalnostPretragaVozaca.add(kombinovana);
 
 		dispecerMenu.add(funkcionalnostPretragaAutomobila);
 		funkcionalnostPretragaAutomobila.add(poModelu);
@@ -194,26 +201,36 @@ public class MogucnostiDispecera extends JFrame {
 		poImenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PretragaVozaca pretragaVozaca = new PretragaVozaca(ucitavanje,vozac);
-				pretragaVozaca.setVisible(true);
+				PoImenu poImenu = new PoImenu(ucitavanje,vozac);
+				poImenu.setVisible(true);
 			}
 		});
 		poPrezimenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				PoPrezimenu poPrezimenu = new PoPrezimenu(ucitavanje,vozac);
+				poPrezimenu.setVisible(true);
 			}
 		});
 		poAutomobilu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				PoAutomobilu poAutomobilu = new PoAutomobilu(ucitavanje,vozac);
+				poAutomobilu.setVisible(true);
 			}
 		});
 		poPlati.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				PoPlati poPlati = new PoPlati(ucitavanje,vozac);
+				poPlati.setVisible(true);
+			}
+		});
+		kombinovana.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Kombinovana kombinovana = new Kombinovana(ucitavanje,vozac);
+				kombinovana.setVisible(true);
 			}
 		});
 		// PRETRAGA AUTOMOBILA TODO 

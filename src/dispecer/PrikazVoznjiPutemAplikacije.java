@@ -2,7 +2,7 @@ package dispecer;
 
 import automobili.Voznja;
 import enumi.StatusVoznje;
-import podaci.Liste;
+import liste.Liste;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

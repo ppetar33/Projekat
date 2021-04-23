@@ -1,4 +1,4 @@
-package podaci;
+package liste;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -11,7 +11,7 @@ import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Odeljenje;
 import osobe.Vozac;
-import taksisluzba.TaksiSluzba;
+import taksiSluzba.TaksiSluzba;
 
 public class Liste {
 
@@ -313,7 +313,42 @@ public class Liste {
 
 	/*
 			PRETRAGA
-	 */
+	*/
+
+	/*
+		BINARNA PRETRAGA
+
+			Prvo je potrebno da imamo sortiranu kolekciju, jer kada uzmemo element u sredini znamo da su levo
+			elementi koji su manji ili jednaki, a desno elementi koji su veci ili jednaki, ako je element koji trazim
+			jednak sredisnjem ja sam zavrsio pretragu, ako nije onda gledam da li je veci ili manji (manji levo, veci desno).
+			Znam na kojoj je strani i drugu stranu odbacujem. Opet dodjem na sredinu leve ili desne strane u zavisnosti
+			koja mi treba, u sustini ponavljam postupak sve dok ne dobijem da mi je low=mid=high.
+
+	public Automobil nadjiAutomobilPoId(int[] array,int target){
+		return binarySearch(array,0,array.length -1);
+	}
+
+	public Automobil binarySearch(int[] array, int target, int low, int high){
+
+		for(Automobil automobil : automobili){
+			if(low > high){
+				return null;
+			}
+			int mid = (low+high)/2;
+
+			if(array[mid] == target){
+				return automobil;
+			}
+			else if(array[mid] > target){
+				return binarySearch(array,target,low,mid-1);
+			}else{
+				return binarySearch(array,target,mid+1,high);
+			}
+		}
+		return null;
+
+	}
+	*/
 
 	public Vozac nadjiVozaca(String korisnickoIme){
 		for(Vozac vozac : vozaci){

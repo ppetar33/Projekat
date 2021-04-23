@@ -1,4 +1,4 @@
-package vozacPaket;
+package vozac;
 
 public class PrikazVoznjiZakazanihPrekoAplikacije {
     /*

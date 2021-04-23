@@ -1,4 +1,4 @@
-package taksisluzba;
+package taksiSluzba;
 
 public class TaksiSluzba {
     private int id;

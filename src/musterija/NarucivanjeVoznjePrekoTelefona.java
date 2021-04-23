@@ -5,7 +5,7 @@ import enumi.StatusVoznje;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
-import podaci.Liste;
+import liste.Liste;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
