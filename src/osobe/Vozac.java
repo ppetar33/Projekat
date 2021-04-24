@@ -57,9 +57,9 @@ public class Vozac extends Osoba {
 	@Override
 	public String toString() {
 		return "Vozac{" +
-				"plata=" + plata +
+				"plata='" + plata + '\'' +
 				", brojClanskeKarte=" + brojClanskeKarte +
-				", automobil='" + automobili + '\'' +
+				", automobili=" + automobili +
 				", obrisan=" + obrisan +
 				"} " + super.toString();
 	}

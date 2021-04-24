@@ -70,7 +70,7 @@ public class TaxiSluzbaMain {
 
     ASIP (uraditi):
     PITANJE = pitati asistenta iz ASIP
-        1. Pretraga dispecera (7.5 bodova) + binarna (5 bodova)
+        1. Pretraga vozaca (7.5 bodova) + binarna (5 bodova)
         2. Izvestaj dispecera (10 bodova) PITANJE: da li se na nedeljni izvestaj misli 7 dana ili ako je sreda onda od ponedeljka do srede?
         3. Aukcija (20 bodova) PITANJE: gde vozac unosi koliko mu je potrebno minuta za voznju? gde treba da bude podatak ocena vozaca, pet friendly? gde cuvamo istoriju aukcija?
         4. Sortiranje svih tabelarnih prikaza u aplikaciji (5 bodova) PITANJE: kakvo sortiranje?

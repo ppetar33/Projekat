@@ -17,7 +17,7 @@ public class PrikazPodatakaTaksiSluzbe extends JFrame {
 
     public PrikazPodatakaTaksiSluzbe(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
-        setTitle("Prikaz podataka taksi sluzbe!");
+        setTitle("Prikaz podataka taksi sluzbe");
         setSize(900,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -34,8 +34,8 @@ public class PrikazPodatakaTaksiSluzbe extends JFrame {
             sadrzaj[i][0] = taksiSluzba.getPib();
             sadrzaj[i][1] = taksiSluzba.getNaziv();
             sadrzaj[i][2] = taksiSluzba.getAdresa();
-            sadrzaj[i][3] = taksiSluzba.getCenaStartaVoznje();
-            sadrzaj[i][4] = taksiSluzba.getCenaPoKilometru();
+            sadrzaj[i][3] = taksiSluzba.getCenaStartaVoznje() + " din";
+            sadrzaj[i][4] = taksiSluzba.getCenaPoKilometru() + " din";
         }
         table_model = new DefaultTableModel(sadrzaj, zaglavlje);
         taksiSluzbaTabela = new JTable(table_model);

@@ -6,6 +6,7 @@ import liste.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.Locale;
 
 public class PrikazAutomobila extends JFrame {
 
@@ -39,8 +40,8 @@ public class PrikazAutomobila extends JFrame {
                 sadrzaj[i][3] = automobil.getGodinaProizvodnje();
                 sadrzaj[i][4] = automobil.getRegistarskiBroj();
                 sadrzaj[i][5] = automobil.getBrojVozila();
-                sadrzaj[i][6] = automobil.getVrstaVozila();
-                sadrzaj[i][7] = automobil.getStatusAutomobila(); //dodat status automobila
+                sadrzaj[i][6] = automobil.getVrstaVozila().toString().toLowerCase().replace("_"," ");
+                sadrzaj[i][7] = automobil.getStatusAutomobila().toString().toLowerCase();
             }
         }
 

@@ -41,20 +41,31 @@ public class BrisanjeVozaca extends PrikazVozaca {
                     String korisnickoIme = tableModel.getValueAt(red, 0).toString();
                     Vozac vozac = ucitavanje.nadjiVozaca(korisnickoIme);
                     String modelAutomobila = tableModel.getValueAt(red,8).toString();
-                    Automobil automobil = ucitavanje.nadjiAutomobilPoModeluAutomobila(modelAutomobila);
-                    if( vozac != null ){
-                        int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete vozaca: " + vozac.getIme().substring(0,1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
-                        if ( izbor == JOptionPane.YES_OPTION ){
-                            vozac.setObrisan(Obrisan.FALSE);
+                    if(modelAutomobila.equals("Vozac nema automobil")){
+                        int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete vozaca: " + vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+                        if( izbor == JOptionPane.YES_OPTION) {
                             tableModel.removeRow(red);
+                            vozac.setObrisan(Obrisan.FALSE);
                             ucitavanje.dodavanjeKorisnika();
-                            if(automobil.getModel().equals(vozac.getAutomobili().getModel())){
-                                automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
+                        }
+                    }else {
+                        Automobil automobil = ucitavanje.nadjiAutomobilPoModeluAutomobila(modelAutomobila);
+                        if (vozac != null) {
+                            int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete vozaca: " + vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+                            if (izbor == JOptionPane.YES_OPTION) {
+                                vozac.setObrisan(Obrisan.FALSE);
+                                tableModel.removeRow(red);
+                                if (automobil.getModel().equals(vozac.getAutomobili().getModel())) {
+                                    automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
+                                } else if (automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN) {
+                                    automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
+                                }
+                                ucitavanje.dodavanjeKorisnika();
                                 ucitavanje.snimanjeAutomobila("automobil.txt");
                             }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog vozaca!", "Greska", JOptionPane.ERROR_MESSAGE);
                         }
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog vozaca!", "Greska", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }

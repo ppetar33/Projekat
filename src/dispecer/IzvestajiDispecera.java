@@ -1,6 +1,6 @@
 package dispecer;
 
-public class Izvestaji {
+public class IzvestajiDispecera {
 
     /*
         Prikaz sumiranog izveštaja na dnevnom, nedeljnom, mesečnom i godišnjem nivou. Izveštaj treba da sadrži
