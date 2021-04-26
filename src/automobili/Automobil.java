@@ -1,6 +1,7 @@
 package automobili;
 
 import enumi.Obrisan;
+import enumi.PetFriendly;
 import enumi.StatusAutomobila;
 import enumi.VrstaVozila;
 
@@ -15,10 +16,11 @@ public class Automobil {
     private VrstaVozila vrstaVozila;
     private Obrisan obrisan;
     private StatusAutomobila statusAutomobila;
+    private PetFriendly petFriendly;
 
     public Automobil(){}
 
-    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila, Obrisan obrisan, StatusAutomobila statusAutomobila) {
+    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila, Obrisan obrisan, StatusAutomobila statusAutomobila, PetFriendly petFriendly) {
         this.id = id;
         this.model = model;
         this.proizvodjac = proizvodjac;
@@ -28,6 +30,7 @@ public class Automobil {
         this.vrstaVozila = vrstaVozila;
         this.obrisan = obrisan;
         this.statusAutomobila = statusAutomobila;
+        this.petFriendly = petFriendly;
     }
 
     public int getId() {
@@ -102,6 +105,18 @@ public class Automobil {
         this.statusAutomobila = statusAutomobila;
     }
 
+    public PetFriendly getPetFriendly() {
+        return petFriendly;
+    }
+
+    public void setPetFriendly(PetFriendly petFriendly) {
+        this.petFriendly = petFriendly;
+    }
+
+    public String pripremiZaSnimanjeAutomobil() {
+        return id + "," + model + "," + proizvodjac + "," + godinaProizvodnje + "," + registarskiBroj + "," + brojVozila +"," + vrstaVozila + "," + obrisan + "," + statusAutomobila + "," + petFriendly +  "\n";
+    }
+
     @Override
     public String toString() {
         return "Automobil{" +
@@ -111,12 +126,10 @@ public class Automobil {
                 ", godinaProizvodnje=" + godinaProizvodnje +
                 ", registarskiBroj='" + registarskiBroj + '\'' +
                 ", brojVozila=" + brojVozila +
-                ", obrisan=" + obrisan +
                 ", vrstaVozila=" + vrstaVozila +
+                ", obrisan=" + obrisan +
+                ", statusAutomobila=" + statusAutomobila +
+                ", petFriendly=" + petFriendly +
                 '}';
-    }
-
-    public String pripremiZaSnimanjeAutomobil() {
-        return id + "," + model + "," + proizvodjac + "," + godinaProizvodnje + "," + registarskiBroj + "," + brojVozila +"," + vrstaVozila + "," + obrisan + "," + statusAutomobila +  "\n";
     }
 }

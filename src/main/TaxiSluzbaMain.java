@@ -73,7 +73,7 @@ public class TaxiSluzbaMain {
         1. Pretraga vozaca (7.5 bodova) + binarna (5 bodova)
         2. Izvestaj dispecera (10 bodova) PITANJE: da li se na nedeljni izvestaj misli 7 dana ili ako je sreda onda od ponedeljka do srede?
         3. Aukcija (20 bodova) PITANJE: gde vozac unosi koliko mu je potrebno minuta za voznju? gde treba da bude podatak ocena vozaca, pet friendly? gde cuvamo istoriju aukcija?
-        4. Sortiranje svih tabelarnih prikaza u aplikaciji (5 bodova) PITANJE: kakvo sortiranje?
+        4. Sortiranje svih tabelarnih prikaza u aplikaciji (5 bodova) PITANJE: kakvo sortiranje? da li se misli npr godina proizvodnje automobila od najmanje do najvise?
         5. Podatke treba cuvati sortirane po kljucu PITANJE: sta moze biti kljuc i u kom smislu sortiranje?
         6. Potrebno je implementirati svoje strukture podataka, za liste i mape. PITANJE: jel moze da da neki primer za liste i mape?
 

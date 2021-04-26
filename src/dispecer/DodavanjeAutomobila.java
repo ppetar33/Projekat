@@ -2,6 +2,7 @@ package dispecer;
 
 import automobili.Automobil;
 import enumi.Obrisan;
+import enumi.PetFriendly;
 import enumi.StatusAutomobila;
 import enumi.VrstaVozila;
 import liste.Liste;
@@ -27,6 +28,10 @@ public class DodavanjeAutomobila extends JFrame {
     private JRadioButton putnickiAutomobil;
     private JRadioButton kombi;
     private ButtonGroup vrstaVozilaDugme;
+    private JLabel petFriendly;
+    private JRadioButton da;
+    private JRadioButton ne;
+    private ButtonGroup petFriendlyDugme;
     private JButton btnOK;
 
     private Liste ucitavanje;
@@ -112,20 +117,45 @@ public class DodavanjeAutomobila extends JFrame {
         putnickiAutomobil = new JRadioButton("Putnicki Automobil");
         putnickiAutomobil.setFont(new Font("Arial", Font.PLAIN, 15));
         putnickiAutomobil.setSelected(true);
-        putnickiAutomobil.setSize(190, 20);
-        putnickiAutomobil.setLocation(180, 180);
+        putnickiAutomobil.setSize(180, 20);
+        putnickiAutomobil.setLocation(170, 180);
         c.add(putnickiAutomobil);
 
         kombi = new JRadioButton("Kombi");
         kombi.setFont(new Font("Arial", Font.PLAIN, 15));
         kombi.setSelected(false);
-        kombi.setSize(195, 20);
+        kombi.setSize(120, 20);
         kombi.setLocation(330, 180);
         c.add(kombi);
 
         vrstaVozilaDugme = new ButtonGroup();
         vrstaVozilaDugme.add(putnickiAutomobil);
         vrstaVozilaDugme.add(kombi);
+
+        petFriendly = new JLabel("Pet Friendly");
+        petFriendly.setFont(new Font("Arial", Font.PLAIN, 18));
+        petFriendly.setSize(130, 20);
+        petFriendly.setLocation(40, 250);
+        c.add(petFriendly);
+
+        da = new JRadioButton("Da");
+        da.setFont(new Font("Arial", Font.PLAIN, 15));
+        da.setSelected(false);
+        da.setSize(70, 20);
+        da.setLocation(190, 250);
+        c.add(da);
+
+        ne = new JRadioButton("Ne");
+        ne.setFont(new Font("Arial", Font.PLAIN, 15));
+        ne.setSelected(false);
+        ne.setSize(70, 20);
+        ne.setLocation(270, 250);
+        c.add(ne);
+
+        petFriendlyDugme = new ButtonGroup();
+        petFriendlyDugme.add(da);
+        petFriendlyDugme.add(ne);
+
 
         btnOK = new JButton("Potvrdi");
         btnOK.setFont(new Font("Arial", Font.PLAIN, 19));
@@ -163,6 +193,11 @@ public class DodavanjeAutomobila extends JFrame {
                         automobil.setVrstaVozila(VrstaVozila.PUTNICKI_AUTOMOBIL);
                     } else if (kombi.isSelected()) {
                         automobil.setVrstaVozila(VrstaVozila.KOMBI);
+                    }
+                    if (da.isSelected()){
+                        automobil.setPetFriendly(PetFriendly.DA);
+                    }else if(ne.isSelected()){
+                        automobil.setPetFriendly(PetFriendly.NE);
                     }
                     ArrayList<Automobil> automobili = ucitavanje.getAutomobili();
                     int id = generisiNoviId(automobili);

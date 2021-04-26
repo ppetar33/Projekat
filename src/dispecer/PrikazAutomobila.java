@@ -20,7 +20,7 @@ public class PrikazAutomobila extends JFrame {
     public PrikazAutomobila(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
         setTitle("Prikaz automobila");
-        setSize(1000,300);
+        setSize(1050,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -29,7 +29,7 @@ public class PrikazAutomobila extends JFrame {
 
     private void initGUI(){
         add(mainToolBar, BorderLayout.SOUTH);
-        String[] zaglavlje = new String[]{"ID", "Model", "Proizvodjac", "Godina proizvodnje", "Broj registarske oznake", "Broj taksi vozila", "Vrsta automobila", "Status Automobila"};
+        String[] zaglavlje = new String[]{"ID", "Model", "Proizvodjac", "Godina proizvodnje", "Broj registarske oznake", "Broj taksi vozila", "Vrsta automobila", "Status Automobila", "Pet Friendly"};
         Object[][] sadrzaj = new Object[ucitavanje.getAutomobili().size()][zaglavlje.length];
         for (int i = 0; i < ucitavanje.getAutomobili().size(); i ++){
             Automobil automobil = ucitavanje.getAutomobili().get(i);
@@ -42,6 +42,7 @@ public class PrikazAutomobila extends JFrame {
                 sadrzaj[i][5] = automobil.getBrojVozila();
                 sadrzaj[i][6] = automobil.getVrstaVozila().toString().toLowerCase().replace("_"," ");
                 sadrzaj[i][7] = automobil.getStatusAutomobila().toString().toLowerCase();
+                sadrzaj[i][8] = automobil.getPetFriendly().toString().toLowerCase();
             }
         }
 

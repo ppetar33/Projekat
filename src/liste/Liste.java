@@ -116,12 +116,14 @@ public class Liste {
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					Automobil automobil = new Automobil();
 					Obrisan obrisan = Obrisan.valueOf(split[12]);
+					String ocenaString = split[13];
+					double ocena = Double.parseDouble(ocenaString);
 					for(Automobil automobil1 : automobili){
 						if(split[10].equalsIgnoreCase(automobil1.getModel())){
 							automobil = automobil1;
 						}
 					}
-					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataString, brojKartice, automobil, obrisan);
+					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataString, brojKartice, automobil, obrisan, ocena);
 					vozaci.add(vozac);
 				}
 			}
@@ -168,7 +170,8 @@ public class Liste {
 				VrstaVozila vrstaVozila = VrstaVozila.valueOf(podaci[6].toUpperCase());
 				Obrisan obrisan = Obrisan.valueOf(podaci[7].toUpperCase());
 				StatusAutomobila statusAutomobila = StatusAutomobila.valueOf(podaci[8].toUpperCase());
-				Automobil aut = new Automobil(id,model,proizvodjac,godinaProizvodnje,registarskiBroj,brojVozila,vrstaVozila,obrisan,statusAutomobila);
+				PetFriendly petFriendly = PetFriendly.valueOf(podaci[9].toUpperCase());
+				Automobil aut = new Automobil(id,model,proizvodjac,godinaProizvodnje,registarskiBroj,brojVozila,vrstaVozila,obrisan,statusAutomobila,petFriendly);
 				automobili.add(aut);
 			}
 			br.close();
@@ -235,7 +238,9 @@ public class Liste {
 						vozac.getBrojTelefona() + "," +
 						vozac.getPlata() + "," +
 						vozac.getBrojClanskeKarte() + "," +
-						vozac.getAutomobili().getModel() + "," + "VOZAC" + "," + vozac.getObrisan() + "\n";
+						vozac.getAutomobili().getModel() + "," + "VOZAC" + "," +
+						vozac.getObrisan() + "," +
+						vozac.getOcena() + "\n";
 			}
 			for (Musterija musterija : musterije) {
 				content += musterija.getKorisnickoIme() + "," +
@@ -324,6 +329,7 @@ public class Liste {
 			Znam na kojoj je strani i drugu stranu odbacujem. Opet dodjem na sredinu leve ili desne strane u zavisnosti
 			koja mi treba, u sustini ponavljam postupak sve dok ne dobijem da mi je low=mid=high.
 
+		hash mapa
 	public Automobil nadjiAutomobilPoId(int[] array,int target){
 		return binarySearch(array,0,array.length -1);
 	}
