@@ -55,6 +55,8 @@ public class TaxiSluzbaMain {
 
 /*
 
+    Prvo uraditi aukciju (ASIP) jer je tad odradjena i prva i treca tacka iz OOP, druga tacka je obican prikaz
+
     OOP (uraditi):
         1. Dodeljivanje vožnji kreiranih putem telefona vozaču (5 bodova)
         2. Pregled dodeljenih vožnji (vožnje kreirane putem telefona) uz mogućnost prihvatanja/odbijanja vožnje (10 bodova)
@@ -67,6 +69,7 @@ public class TaxiSluzbaMain {
         4. Prikaz, izmena, dodavanje, brisanje vozaca (20 bodova)
         5. Naručivanje vožnji putem telefona (5 bodova)
         6. Navigacija kroz aplikaciju (10 bodova)
+
 
     ASIP (uraditi):
     PITANJE = pitati asistenta iz ASIP
