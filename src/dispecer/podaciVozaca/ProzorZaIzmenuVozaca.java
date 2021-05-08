@@ -1,13 +1,11 @@
 package dispecer.podaciVozaca;
 
 import automobili.Automobil;
-import enumi.Obrisan;
 import enumi.Pol;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
-import javax.swing.plaf.metal.OceanTheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -101,10 +99,10 @@ public class ProzorZaIzmenuVozaca extends JFrame {
                     Pol pol = (Pol) polJComboBox.getSelectedItem();
                     String jmbg = vozac.getJmbg();
                     int brojClanskeKarte = vozac.getBrojClanskeKarte();
-                    Obrisan obrisan = vozac.getObrisan();
+                    boolean obrisan = vozac.isObrisan();
                     double ocena = vozac.getOcena();
                     if (vozac == null) {
-                        vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojClanskeKarte, new Automobil(), obrisan, ocena);
+                        vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojClanskeKarte, new Automobil(), ocena);
                     } else {
                         vozac.setKorisnickoIme(korisnickoIme);
                         vozac.setLozinka(lozinka);

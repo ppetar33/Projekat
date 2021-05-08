@@ -41,7 +41,7 @@ public class LoginProzor extends JFrame{
 		MigLayout layout = new MigLayout("wrap 2", "[][]", "[]20[][]20[]");
 		setLayout(layout);
 
-		this.lblPoruka = new JLabel("Dobrodošli. Molimo da se prijavite.");
+		this.lblPoruka = new JLabel("Dobrodošli. Molimo Vas da se prijavite.");
 		this.lblKorisnickoIme = new JLabel("Korisničko ime");
 		this.txtKorisnickoIme = new JTextField(20);
 		this.lblSifra = new JLabel("Šifra");

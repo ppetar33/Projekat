@@ -1,7 +1,6 @@
 package osobe;
 
 import automobili.Automobil;
-import enumi.Obrisan;
 import enumi.Pol;
 
 public class Vozac extends Osoba {
@@ -9,18 +8,21 @@ public class Vozac extends Osoba {
 	private String plata;
 	private int brojClanskeKarte;
 	private Automobil automobili;
-	private Obrisan obrisan;
 	private double ocena;
 
-	public Vozac() {}
+	public Vozac() {
+		this.plata = "";
+		this.brojClanskeKarte = 0;
+		this.automobili = null;
+		this.ocena = 0;
+	}
 
 	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-				 Pol pol, String brojTelefona, String plata, int brojClanskeKarte, Automobil automobili, Obrisan obrisan, double ocena) {
-		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
+				 Pol pol, String brojTelefona, boolean obrisan,String plata, int brojClanskeKarte, Automobil automobili, double ocena) {
+		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
 		this.automobili = automobili;
-		this.obrisan = obrisan;
 		this.ocena = ocena;
 	}
 
@@ -48,14 +50,6 @@ public class Vozac extends Osoba {
 		this.automobili = automobili;
 	}
 
-	public Obrisan getObrisan() {
-		return obrisan;
-	}
-
-	public void setObrisan(Obrisan obrisan) {
-		this.obrisan = obrisan;
-	}
-
 	public double getOcena() {
 		return ocena;
 	}
@@ -70,7 +64,6 @@ public class Vozac extends Osoba {
 				"plata='" + plata + '\'' +
 				", brojClanskeKarte=" + brojClanskeKarte +
 				", automobili=" + automobili +
-				", obrisan=" + obrisan +
 				", ocena=" + ocena +
 				"} " + super.toString();
 	}

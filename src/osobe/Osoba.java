@@ -12,6 +12,7 @@ public abstract class Osoba {
     protected String adresa;
     protected Pol pol;
     protected String brojTelefona;
+    protected boolean obrisan;
 
     public Osoba() {
         this.korisnickoIme = "";
@@ -21,9 +22,11 @@ public abstract class Osoba {
         this.jmbg = "";
         this.adresa = "";
         this.brojTelefona = "";
+        this.pol = Pol.ZENSKI;
+        this.obrisan = true;
     }
 
-    public Osoba(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brojTelefona) {
+    public Osoba(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brojTelefona, boolean obrisan) {
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
         this.ime = ime;
@@ -32,6 +35,7 @@ public abstract class Osoba {
         this.adresa = adresa;
         this.pol = pol;
         this.brojTelefona = brojTelefona;
+        this.obrisan = obrisan;
     }
 
     public String getKorisnickoIme() {
@@ -98,7 +102,14 @@ public abstract class Osoba {
         this.brojTelefona = brojTelefona;
     }
 
-    // string pripremiZaUpis()
+    public boolean isObrisan() {
+        return obrisan;
+    }
+
+    public void setObrisan(boolean obrisan) {
+        this.obrisan = obrisan;
+    }
+
     @Override
     public String toString() {
         return ", korisnickoIme='" + korisnickoIme + '\'' +

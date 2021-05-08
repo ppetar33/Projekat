@@ -1,8 +1,6 @@
 package dispecer;
 
 import automobili.Automobil;
-import enumi.Obrisan;
-import enumi.PetFriendly;
 import enumi.StatusAutomobila;
 import enumi.VrstaVozila;
 import liste.Liste;
@@ -187,7 +185,7 @@ public class DodavanjeAutomobila extends JFrame {
                     automobil.setGodinaProizvodnje(unosGodinaProizvodnje);
                     automobil.setRegistarskiBroj(unosBrojRegistarskeOznake);
                     automobil.setBrojVozila(unosBrojTaksiVozila);
-                    automobil.setObrisan(Obrisan.TRUE);
+                    automobil.setObrisan(true);
                     automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
                     if (putnickiAutomobil.isSelected()) {
                         automobil.setVrstaVozila(VrstaVozila.PUTNICKI_AUTOMOBIL);
@@ -195,9 +193,9 @@ public class DodavanjeAutomobila extends JFrame {
                         automobil.setVrstaVozila(VrstaVozila.KOMBI);
                     }
                     if (da.isSelected()){
-                        automobil.setPetFriendly(PetFriendly.DA);
+                        automobil.setPetFriendly(true);
                     }else if(ne.isSelected()){
-                        automobil.setPetFriendly(PetFriendly.NE);
+                        automobil.setPetFriendly(false);
                     }
                     ArrayList<Automobil> automobili = ucitavanje.getAutomobili();
                     int id = generisiNoviId(automobili);

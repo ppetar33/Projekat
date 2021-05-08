@@ -1,6 +1,6 @@
 package musterija;
 
-import  automobili.Voznja;
+import automobili.Voznja;
 import enumi.StatusVoznje;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
@@ -89,7 +89,7 @@ public class NarucivanjeVoznjePrekoTelefona extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-                            Voznja voznja = new Voznja(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,trajanjeVoznje,StatusVoznje.KREIRANA);
+//                            Voznja voznja = new Voznja(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,trajanjeVoznje,StatusVoznje.KREIRANA);
                             ucitavanje.getVoznja().add(voznja);
                         }
                         citanjeUlogovanogKorisnika.close();

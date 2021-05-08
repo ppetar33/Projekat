@@ -1,7 +1,6 @@
 package dispecer.podaciVozaca;
 
 import automobili.Automobil;
-import enumi.Obrisan;
 import enumi.StatusAutomobila;
 import osobe.Vozac;
 import liste.Liste;
@@ -45,7 +44,7 @@ public class BrisanjeVozaca extends PrikazVozaca {
                         int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete vozaca: " + vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                         if( izbor == JOptionPane.YES_OPTION) {
                             tableModel.removeRow(red);
-                            vozac.setObrisan(Obrisan.FALSE);
+                            vozac.setObrisan(false);
                             ucitavanje.dodavanjeKorisnika();
                         }
                     }else {
@@ -53,9 +52,9 @@ public class BrisanjeVozaca extends PrikazVozaca {
                         if (vozac != null) {
                             int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete vozaca: " + vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                             if (izbor == JOptionPane.YES_OPTION) {
-                                vozac.setObrisan(Obrisan.FALSE);
+                                vozac.setObrisan(false);
                                 tableModel.removeRow(red);
-                                if (automobil.getModel().equals(vozac.getAutomobili().getModel())) {
+                                if (automobil.getId() == vozac.getAutomobili().getId()) {
                                     automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
                                 } else if (automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN) {
                                     automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);

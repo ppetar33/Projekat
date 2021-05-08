@@ -8,7 +8,14 @@ public class TaksiSluzba {
     private double cenaStartaVoznje;
     private double cenaPoKilometru;
 
-    public TaksiSluzba() {}
+    public TaksiSluzba() {
+        this.id = 0;
+        this.pib = "";
+        this.naziv = "";
+        this.adresa = "";
+        this.cenaStartaVoznje = 0;
+        this.cenaPoKilometru = 0;
+    }
 
     public TaksiSluzba(int id, String pib, String naziv, String adresa, double cenaStartaVoznje, double cenaPoKilometru) {
         this.id = id;

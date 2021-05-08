@@ -1,12 +1,10 @@
 package dispecer;
 
 import automobili.Automobil;
-import enumi.Obrisan;
 import liste.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.Locale;
 
 public class PrikazAutomobila extends JFrame {
 
@@ -33,7 +31,7 @@ public class PrikazAutomobila extends JFrame {
         Object[][] sadrzaj = new Object[ucitavanje.getAutomobili().size()][zaglavlje.length];
         for (int i = 0; i < ucitavanje.getAutomobili().size(); i ++){
             Automobil automobil = ucitavanje.getAutomobili().get(i);
-            if (automobil.getObrisan() == Obrisan.TRUE){
+            if (automobil.isObrisan()){
                 sadrzaj[i][0] = automobil.getId();
                 sadrzaj[i][1] = automobil.getModel();
                 sadrzaj[i][2] = automobil.getProizvodjac();
@@ -42,7 +40,11 @@ public class PrikazAutomobila extends JFrame {
                 sadrzaj[i][5] = automobil.getBrojVozila();
                 sadrzaj[i][6] = automobil.getVrstaVozila().toString().toLowerCase().replace("_"," ");
                 sadrzaj[i][7] = automobil.getStatusAutomobila().toString().toLowerCase();
-                sadrzaj[i][8] = automobil.getPetFriendly().toString().toLowerCase();
+                if(automobil.isPetFriendly()){
+                    sadrzaj[i][8] = "da";
+                }else{
+                    sadrzaj[i][8] = "ne";
+                }
             }
         }
 

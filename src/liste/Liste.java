@@ -80,7 +80,7 @@ public class Liste {
 
 	/*
 			UCITAVANJE
-	 */
+	*/
 
 	public void ucitajKorisnike(String imeFajla) {
 		try {
@@ -98,8 +98,9 @@ public class Liste {
 				Pol pol = Pol.valueOf(split[6].toUpperCase());
 				String brojTelefona = split[7];
 				String tipKorisnika = split[11];
+				String obrisanString = split[12];
+				boolean obrisan = Boolean.parseBoolean(obrisanString);
 				if (tipKorisnika.equals("MUSTERIJA")) {
-					Obrisan obrisan = Obrisan.valueOf(split[12]);
 					Musterija musterija = new Musterija(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
 					musterije.add(musterija);
 				} else if (tipKorisnika.equals("DISPECAR")) {
@@ -107,23 +108,23 @@ public class Liste {
 					double plataDispecara = Double.parseDouble(plataString);
 					String brojPozivnogTelefona = split[9];
 					Odeljenje odeljenje = Odeljenje.valueOf(split[10]);
-					Obrisan obrisan = Obrisan.valueOf(split[12]);
-					Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataDispecara, brojPozivnogTelefona, odeljenje, obrisan);
+					Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plataDispecara, brojPozivnogTelefona, odeljenje);
 					dispecari.add(dispecar);
 				} else if (tipKorisnika.equals("VOZAC")) {
 					String plataString = split[8];
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
-					Automobil automobil = new Automobil();
-					Obrisan obrisan = Obrisan.valueOf(split[12]);
 					String ocenaString = split[13];
 					double ocena = Double.parseDouble(ocenaString);
+					String idAutomobilaString = split[10];
+					int idAutomobila = Integer.parseInt(idAutomobilaString);
+					Automobil automobil = new Automobil();
 					for(Automobil automobil1 : automobili){
-						if(split[10].equalsIgnoreCase(automobil1.getModel())){
+						if(idAutomobila == automobil1.getId()){
 							automobil = automobil1;
 						}
 					}
-					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plataString, brojKartice, automobil, obrisan, ocena);
+					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plataString, brojKartice, automobil, ocena);
 					vozaci.add(vozac);
 				}
 			}
@@ -168,9 +169,11 @@ public class Liste {
 				String registarskiBroj = podaci[4];
 				int brojVozila = Integer.parseInt(podaci[5]);
 				VrstaVozila vrstaVozila = VrstaVozila.valueOf(podaci[6].toUpperCase());
-				Obrisan obrisan = Obrisan.valueOf(podaci[7].toUpperCase());
+				String obrisanString = podaci[7];
+				boolean obrisan = Boolean.parseBoolean(obrisanString);
 				StatusAutomobila statusAutomobila = StatusAutomobila.valueOf(podaci[8].toUpperCase());
-				PetFriendly petFriendly = PetFriendly.valueOf(podaci[9].toUpperCase());
+				String petFriendlyString = podaci[9];
+				boolean petFriendly = Boolean.parseBoolean(petFriendlyString);
 				Automobil aut = new Automobil(id,model,proizvodjac,godinaProizvodnje,registarskiBroj,brojVozila,vrstaVozila,obrisan,statusAutomobila,petFriendly);
 				automobili.add(aut);
 			}
@@ -208,8 +211,9 @@ public class Liste {
 						vozac = vozac1;
 					}
 				}
-				Voznja voz = new Voznja(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
-				voznja.add(voz);
+				// voznja je abstract pa je potrebno proveriti da li je narucena telefonom ili aplikacijom i napraviti novu instancu klase
+//				Voznja voz = new Voznja(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
+//				voznja.add(voz);
 			}
 		}catch (Exception e){
 			e.printStackTrace();
@@ -220,7 +224,7 @@ public class Liste {
 
 	/*
 			DODAVANJE
-	 */
+	*/
 
 	public void dodavanjeKorisnika() {
 		try {
@@ -238,8 +242,8 @@ public class Liste {
 						vozac.getBrojTelefona() + "," +
 						vozac.getPlata() + "," +
 						vozac.getBrojClanskeKarte() + "," +
-						vozac.getAutomobili().getModel() + "," + "VOZAC" + "," +
-						vozac.getObrisan() + "," +
+						vozac.getAutomobili().getId() + "," + "VOZAC" + "," +
+						vozac.isObrisan() + "," +
 						vozac.getOcena() + "\n";
 			}
 			for (Musterija musterija : musterije) {
@@ -250,7 +254,7 @@ public class Liste {
 						musterija.getJmbg() + "," +
 						musterija.getAdresa() + "," +
 						musterija.getPol() + "," +
-						musterija.getBrojTelefona() + "," + "," + "," + "," + "MUSTERIJA" + "," + musterija.getObrisan() + "\n";
+						musterija.getBrojTelefona() + "," + "," + "," + "," + "MUSTERIJA" + "," + musterija.isObrisan() + "\n";
 			}
 			for (Dispecar dispecar : dispecari) {
 				content += dispecar.getKorisnickoIme() + "," +
@@ -263,7 +267,7 @@ public class Liste {
 						dispecar.getBrojTelefona() + "," +
 						dispecar.getPlata() + "," +
 						dispecar.getBrojTelefonskeLinije() + "," +
-						dispecar.getOdeljenje() + "," + "DISPECAR" + "," + dispecar.getObrisan() + "\n";
+						dispecar.getOdeljenje() + "," + "DISPECAR" + "," + dispecar.isObrisan() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(korisniciFajl));
 			writer.write(content);
@@ -318,9 +322,8 @@ public class Liste {
 
 	/*
 			PRETRAGA
-	*/
 
-	/*
+
 		BINARNA PRETRAGA
 
 			Prvo je potrebno da imamo sortiranu kolekciju, jer kada uzmemo element u sredini znamo da su levo
@@ -394,7 +397,7 @@ public class Liste {
 
 	public Automobil nadjiAutomobilPoStatusuAutomobila(){
 		for(Automobil automobil : automobili){
-			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN && automobil.getObrisan() == Obrisan.TRUE){
+			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN && automobil.isObrisan()){
 				return automobil;
 			}
 		}
@@ -430,7 +433,7 @@ public class Liste {
 
 	/*
 		GENERISI NOVI ID ZA VOZNJE
-	 */
+	*/
 
 	public int generisiNoviIdZaVoznje() {
 		int maks = -1;

@@ -79,8 +79,58 @@ public class TaxiSluzbaMain {
         4. Sortiranje svih tabelarnih prikaza u aplikaciji (5 bodova) PITANJE: kakvo sortiranje? da li se misli npr godina proizvodnje automobila od najmanje do najvise?
         5. Podatke treba cuvati sortirane po kljucu PITANJE: sta moze biti kljuc i u kom smislu sortiranje?
         6. Potrebno je implementirati svoje strukture podataka, za liste i mape. PITANJE: jel moze da da neki primer za liste i mape?
-
+        double linkedlist
     ASIP (zavrseno):
         1. Kreiranje, izmena i pregled svih potrebnih entiteta. (20 bodova)
         2. Svi entiteti osim korisnika treba da imaju identifikator koji ce biti tipa int ili long
+*/
+
+
+
+/*
+
+    Odraditi:
+
+        1. Dodeljivanje vožnji kreiranih putem telefona vozačima (pri ovom koraku dispečer
+        postavlja vozača I menja status vožnje sa KREIRANA-NA ČEKANJU na DODELJENA)
+            1.1. Naručivanje vožnje putem telefona
+            1.2. Za sve prihvaćene vožnje neophodno je obezbediti da se vožnja može završiti , što podrazumeva promenu statusa vožnje iz PRIHVAĆENA u ZAVRŠENA, unos broja km pređenih u vožnji i trajanje vožnje.
+            1.3. Aukcija
+        2. Pretraga svih vozaca
+            2.1. Pretragu po identifikatoru potrebno je implementirati putem binarne pretrage
+        3. Izvestaj dispecera
+        4. Prikaz dodeljenih vožnji (vožnje kreirane putem telefonskog poziva, koje je dispečer dodelio vozaču), vozač ima mogućnost da prihvati ili odbije vožnju. Prihvatanjem vožnja menja status iz DODELJENA u PRIHVAĆENA, dok odbijanjem vožnja menja status iz DODELJENA U ODBIJENA.
+        5. Napraviti svoje strukture podataka (liste i mape)
+        6. Omogućiti sortiranje svih tabelarnih prikaza u aplikaciji.
+        7. Podatke treba čuvati sortirano po ključu
+
+
+*/
+
+/*
+
+    Odgovori asistenta iz ASIP:
+
+    Odraditi binarnu pretragu tamo gde je moguce.
+    Pretragu vozaca odraditi tako sto cu proci sa for i uporedjivati sa if.
+    Podatke treba cuvati sortirane po kljuci, ID ce biti kljuc
+    Sortiranje u tabeli, znaci da se ubaci strelica npr kod cene i da se sortira po ceni opadajuce/rastuce
+    Odradjena je single linked lista i treba od nje napraviti double linked list i ubaciti je umesto ArrayListe
+    Izvestaj odraditi tako da je dnevni 24h, nedeljni 7 dana, mesecni 30 dana, godisnji 1god i da moze npr
+        izvestaj iz 2014te ili za januar,februar itd
+    Za aukciju treba da napravimo algoritam koji ce da dodeli vozaca kada se naruci voznja. Kao opcija treba
+        da bude da dispecer doda nekog vozaca, ali je potrebno da dodeli vozaca tako sto ce da klikne neko
+        dugme i algoritam ce da izabere ko ce da vozi i prijavljuju se vozaci ono bicu za 3 min ili doci cu
+        za 5 min itd i kada algoritam dobije nekoliko vozaca izabere ko ce voziti. U sustini svaki vozac
+        unese koliko mu je potrebno i ti odlucis ko ce voziti sa tim klikom na dugme.
+    Istoriju aukcija cuvati u txt fajlu sa podacima (koji vozaci su se ponudili, koliko kome vremena treba,
+    kome je dodeljena voznja)
+
+    voznja treba da bude abstrakna klasa i da je nasledi narucivanje putem telefona i aplikacije
+    pretraga automobila da ne bude po modelu nego po id-u
+    popuniti prazne konstruktore
+    zamniti enume petFriendly, obrisan na boolean
+
+
+
 */

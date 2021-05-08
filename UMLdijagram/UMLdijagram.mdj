@@ -5907,7 +5907,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 401,
-									"top": 272,
+									"top": 264,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -5928,7 +5928,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 387,
-									"top": 269,
+									"top": 261,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -5949,7 +5949,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 428,
-									"top": 276,
+									"top": 268,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -6054,7 +6054,7 @@
 							"tail": {
 								"$ref": "AAAAAAF4q+p0JSi+PX8="
 							},
-							"points": "416:304;416:272;992:272;992:360;972:360",
+							"points": "416:296;416:272;992:272;992:360;972:360",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF5H0bxnrZCz6E="
@@ -6716,6 +6716,189 @@
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
 					"name": "Pol",
+					"ownedElements": [
+						{
+							"_type": "UMLAssociation",
+							"_id": "AAAAAAF5O8qj8poddU0=",
+							"_parent": {
+								"$ref": "AAAAAAF49J8JhgjqjFw="
+							},
+							"end1": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5O8qj8poeYdM=",
+								"_parent": {
+									"$ref": "AAAAAAF5O8qj8poddU0="
+								},
+								"reference": {
+									"$ref": "AAAAAAF49J8JhgjqjFw="
+								}
+							},
+							"end2": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5O8qj8pofFUM=",
+								"_parent": {
+									"$ref": "AAAAAAF5O8qj8poddU0="
+								},
+								"reference": {
+									"$ref": "AAAAAAF4q+UGvigZgPg="
+								},
+								"aggregation": "shared"
+							}
+						},
+						{
+							"_type": "UMLAssociation",
+							"_id": "AAAAAAF5O8w8W5x8FH0=",
+							"_parent": {
+								"$ref": "AAAAAAF49J8JhgjqjFw="
+							},
+							"end1": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5O8w8W5x9zEI=",
+								"_parent": {
+									"$ref": "AAAAAAF5O8w8W5x8FH0="
+								},
+								"reference": {
+									"$ref": "AAAAAAF49J8JhgjqjFw="
+								}
+							},
+							"end2": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5O8w8W5x+v2c=",
+								"_parent": {
+									"$ref": "AAAAAAF5O8w8W5x8FH0="
+								},
+								"reference": {
+									"$ref": "AAAAAAF4q+UGvigZgPg="
+								},
+								"aggregation": "composite"
+							}
+						},
+						{
+							"_type": "UMLGeneralization",
+							"_id": "AAAAAAF5O8yktJ84uAI=",
+							"_parent": {
+								"$ref": "AAAAAAF49J8JhgjqjFw="
+							},
+							"source": {
+								"$ref": "AAAAAAF49J8JhgjqjFw="
+							},
+							"target": {
+								"$ref": "AAAAAAF4q+UGvigZgPg="
+							}
+						},
+						{
+							"_type": "UMLAssociation",
+							"_id": "AAAAAAF5O80d46CwNfU=",
+							"_parent": {
+								"$ref": "AAAAAAF49J8JhgjqjFw="
+							},
+							"end1": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5O80d46Cx7A0=",
+								"_parent": {
+									"$ref": "AAAAAAF5O80d46CwNfU="
+								},
+								"reference": {
+									"$ref": "AAAAAAF49J8JhgjqjFw="
+								}
+							},
+							"end2": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5O80d46Cy04c=",
+								"_parent": {
+									"$ref": "AAAAAAF5O80d46CwNfU="
+								},
+								"reference": {
+									"$ref": "AAAAAAF4q+UGvigZgPg="
+								},
+								"aggregation": "shared"
+							}
+						},
+						{
+							"_type": "UMLAssociation",
+							"_id": "AAAAAAF5PAQdPaflpoY=",
+							"_parent": {
+								"$ref": "AAAAAAF49J8JhgjqjFw="
+							},
+							"end1": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5PAQdPafm/z4=",
+								"_parent": {
+									"$ref": "AAAAAAF5PAQdPaflpoY="
+								},
+								"reference": {
+									"$ref": "AAAAAAF49J8JhgjqjFw="
+								}
+							},
+							"end2": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5PAQdPafnCbg=",
+								"_parent": {
+									"$ref": "AAAAAAF5PAQdPaflpoY="
+								},
+								"reference": {
+									"$ref": "AAAAAAF4q+UGvigZgPg="
+								},
+								"aggregation": "shared"
+							}
+						},
+						{
+							"_type": "UMLAssociation",
+							"_id": "AAAAAAF5PMLuNKC/wJY=",
+							"_parent": {
+								"$ref": "AAAAAAF49J8JhgjqjFw="
+							},
+							"end1": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5PMLuNKDAouk=",
+								"_parent": {
+									"$ref": "AAAAAAF5PMLuNKC/wJY="
+								},
+								"reference": {
+									"$ref": "AAAAAAF49J8JhgjqjFw="
+								}
+							},
+							"end2": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5PMLuNKDBCGA=",
+								"_parent": {
+									"$ref": "AAAAAAF5PMLuNKC/wJY="
+								},
+								"reference": {
+									"$ref": "AAAAAAF4q+UGvigZgPg="
+								},
+								"aggregation": "shared"
+							}
+						},
+						{
+							"_type": "UMLAssociation",
+							"_id": "AAAAAAF5PMMSyqJM3wo=",
+							"_parent": {
+								"$ref": "AAAAAAF49J8JhgjqjFw="
+							},
+							"end1": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5PMMSyqJNzCA=",
+								"_parent": {
+									"$ref": "AAAAAAF5PMMSyqJM3wo="
+								},
+								"reference": {
+									"$ref": "AAAAAAF49J8JhgjqjFw="
+								}
+							},
+							"end2": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF5PMMSyqJO7ws=",
+								"_parent": {
+									"$ref": "AAAAAAF5PMMSyqJM3wo="
+								},
+								"reference": {
+									"$ref": "AAAAAAF4q+UGvigZgPg="
+								},
+								"aggregation": "composite"
+							}
+						}
+					],
 					"stereotype": "enum",
 					"attributes": [
 						{

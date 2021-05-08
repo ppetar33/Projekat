@@ -1,6 +1,5 @@
 package dispecer.podaciVozaca;
 
-import enumi.Obrisan;
 import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
@@ -31,9 +30,9 @@ public class PrikazVozaca extends JFrame {
         add(mainToolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"Korisnicko ime", "Ime", "Prezime", "Adresa", "Pol", "Broj telefona", "Plata", "Broj clanske karte", "Automobil"};
         Object[][] sadrzaj = new Object[ucitavanje.getVozaci().size()][zaglavnje.length];
-        for (int i = 0; i < ucitavanje.getVozaci().size(); i++){
+        for (int i = 0; i < ucitavanje.getVozaci().size(); i++) {
             Vozac vozac = ucitavanje.getVozaci().get(i);
-            if(vozac.getObrisan() == Obrisan.TRUE){
+            if(vozac.isObrisan()) {
                 sadrzaj[i][0] = vozac.getKorisnickoIme();
                 sadrzaj[i][1] = vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1);
                 sadrzaj[i][2] = vozac.getPrezime().substring(0, 1).toUpperCase() + vozac.getPrezime().substring(1);
@@ -43,13 +42,13 @@ public class PrikazVozaca extends JFrame {
                 sadrzaj[i][6] = vozac.getPlata();
                 sadrzaj[i][7] = vozac.getBrojClanskeKarte();
                 sadrzaj[i][8] = vozac.getAutomobili().getModel();
-                if(sadrzaj[i][8] == null){
+                if (sadrzaj[i][8] == null) {
                     sadrzaj[i][8] = "Vozac nema automobil";
                 }
             }
         }
-
         table_model = new DefaultTableModel(sadrzaj, zaglavnje);
+
         vozaciTabela = new JTable(table_model);
 
         vozaciTabela.setRowSelectionAllowed(true);

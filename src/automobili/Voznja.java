@@ -6,7 +6,7 @@ import osobe.Vozac;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Voznja {
+public abstract class Voznja {
 
     private int id;
     private LocalDateTime datumIvremePorudzbine;
@@ -19,11 +19,15 @@ public class Voznja {
     private StatusVoznje statusVoznje;
 
     public Voznja(){
-        // snimanje this.getMusterija().getKorisnickoIme()
-        // citanje prvo ucitati musterije i vozace pa tek onda voznju
-        // generlano prvo ucitavamo entitete koji nemaju veze na neke druge slozene tipove
-        // musterija korIme = pera 123
-        // prodji for petljom kroz sve mustrije, ako se pokalap korIme tu musteriju iz petlje dodaj u voznju
+        this.id = 0;
+        this.datumIvremePorudzbine = LocalDateTime.parse("");
+        this.adresaPolaska = "";
+        this.adresaDestinacije = "";
+        this.musterija = null;
+        this.vozac = null;
+        this.brojKMpredjenih = 0;
+        this.trajanjVoznje = 0;
+        this.statusVoznje = null;
     }
 
     public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje) {

@@ -1,7 +1,6 @@
 package dispecer;
 
 import automobili.Automobil;
-import enumi.Obrisan;
 import enumi.StatusAutomobila;
 import liste.Liste;
 import javax.swing.*;
@@ -46,7 +45,7 @@ public class BrisanjeAutomobila extends PrikazAutomobila{
                         if (automobil != null) {
                             int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete automobil: " + automobil.getModel() + " ?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                             if (izbor == JOptionPane.YES_OPTION) {
-                                automobil.setObrisan(Obrisan.FALSE);
+                                automobil.setObrisan(false);
                                 tableModel.removeRow(red);
                                 ucitavanje.snimanjeAutomobila("automobil.txt");
                             }

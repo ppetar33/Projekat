@@ -1,7 +1,5 @@
 package automobili;
 
-import enumi.Obrisan;
-import enumi.PetFriendly;
 import enumi.StatusAutomobila;
 import enumi.VrstaVozila;
 
@@ -14,13 +12,24 @@ public class Automobil {
     private String registarskiBroj;
     private int brojVozila;
     private VrstaVozila vrstaVozila;
-    private Obrisan obrisan;
+    private boolean obrisan;
     private StatusAutomobila statusAutomobila;
-    private PetFriendly petFriendly;
+    private boolean petFriendly;
 
-    public Automobil(){}
+    public Automobil(){
+        this.id = 0;
+        this.model = "";
+        this.proizvodjac = "";
+        this.godinaProizvodnje = 0;
+        this.registarskiBroj = "";
+        this.brojVozila = 0;
+        this.vrstaVozila = null;
+        this.obrisan = true;
+        this.statusAutomobila = null;
+        this.petFriendly = true;
+    }
 
-    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila, Obrisan obrisan, StatusAutomobila statusAutomobila, PetFriendly petFriendly) {
+    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila, boolean obrisan, StatusAutomobila statusAutomobila, boolean petFriendly) {
         this.id = id;
         this.model = model;
         this.proizvodjac = proizvodjac;
@@ -89,11 +98,11 @@ public class Automobil {
         this.vrstaVozila = vrstaVozila;
     }
 
-    public Obrisan getObrisan() {
+    public boolean isObrisan() {
         return obrisan;
     }
 
-    public void setObrisan(Obrisan obrisan) {
+    public void setObrisan(boolean obrisan) {
         this.obrisan = obrisan;
     }
 
@@ -105,11 +114,11 @@ public class Automobil {
         this.statusAutomobila = statusAutomobila;
     }
 
-    public PetFriendly getPetFriendly() {
+    public boolean isPetFriendly() {
         return petFriendly;
     }
 
-    public void setPetFriendly(PetFriendly petFriendly) {
+    public void setPetFriendly(boolean petFriendly) {
         this.petFriendly = petFriendly;
     }
 
