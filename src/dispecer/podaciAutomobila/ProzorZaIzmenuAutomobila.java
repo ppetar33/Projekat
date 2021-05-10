@@ -103,7 +103,7 @@ public class ProzorZaIzmenuAutomobila extends JFrame {
                         automobil.setPetFriendly(petFriendly);
                         automobil.setStatusAutomobila(statusAutomobila);
                     }
-                    ucitavanje.snimanjeAutomobila("automobili.txt");
+                    ucitavanje.snimanjeAutomobila("automobil.txt");
                     JOptionPane.showMessageDialog(null, "Automobil je uspesno izmenjen!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaIzmenuAutomobila.this.setVisible(false);
                     ProzorZaIzmenuAutomobila.this.dispose();

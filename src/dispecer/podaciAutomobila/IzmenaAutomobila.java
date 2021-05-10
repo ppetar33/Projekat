@@ -36,10 +36,11 @@ public class IzmenaAutomobila extends PrikazAutomobila {
                     JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else{
                     DefaultTableModel tableModel = (DefaultTableModel)automobiliTabela.getModel();
-                    int id = Integer.parseInt((String) tableModel.getValueAt(red, 0));
+                    String idString = tableModel.getValueAt(red, 0).toString();
+                    int id = Integer.parseInt(idString);
                     Automobil automobil = ucitavanje.nadjiAutomobil(id);
                     if (automobil != null){
-                        int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete automobil:" + automobil.getId() + automobil.getProizvodjac().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION );
+                        int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da izmenite automobil: " + automobil.getProizvodjac().substring(0,1).toUpperCase() + automobil.getProizvodjac().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION );
                         if (izbor == JOptionPane.YES_OPTION){
                             ProzorZaIzmenuAutomobila prozorZaIzmenuAutomobila = new ProzorZaIzmenuAutomobila(ucitavanje, automobil);
                             prozorZaIzmenuAutomobila.setVisible(true);
