@@ -112,6 +112,7 @@ public class Liste {
 					dispecari.add(dispecar);
 				} else if (tipKorisnika.equals("VOZAC")) {
 					String plataString = split[8];
+					double plata = Double.parseDouble(plataString);
 					String brojKarticeString = split[9];
 					int brojKartice = Integer.parseInt(brojKarticeString);
 					String ocenaString = split[13];
@@ -124,7 +125,7 @@ public class Liste {
 							automobil = automobil1;
 						}
 					}
-					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plataString, brojKartice, automobil, ocena);
+					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojKartice, automobil, ocena);
 					vozaci.add(vozac);
 				}
 			}
@@ -211,6 +212,7 @@ public class Liste {
 						vozac = vozac1;
 					}
 				}
+
 				// voznja je abstract pa je potrebno proveriti da li je narucena telefonom ili aplikacijom i napraviti novu instancu klase
 //				Voznja voz = new Voznja(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
 //				voznja.add(voz);
@@ -406,7 +408,7 @@ public class Liste {
 
 	public Automobil nadjiAutomobilPoModeluAutomobila(String modelAutomobila){
 		for(Automobil automobil : automobili){
-			if(automobil.getModel() == modelAutomobila){
+			if(automobil.getModel().equalsIgnoreCase(modelAutomobila) && automobil.isObrisan()){
 				return automobil;
 			}
 		}

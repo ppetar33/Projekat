@@ -5,20 +5,20 @@ import enumi.Pol;
 
 public class Vozac extends Osoba {
 
-	private String plata;
+	private double plata;
 	private int brojClanskeKarte;
 	private Automobil automobili;
 	private double ocena;
 
 	public Vozac() {
-		this.plata = "";
+		this.plata = 0;
 		this.brojClanskeKarte = 0;
 		this.automobili = null;
 		this.ocena = 0;
 	}
 
 	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-				 Pol pol, String brojTelefona, boolean obrisan,String plata, int brojClanskeKarte, Automobil automobili, double ocena) {
+				 Pol pol, String brojTelefona, boolean obrisan,double plata, int brojClanskeKarte, Automobil automobili, double ocena) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
@@ -26,11 +26,11 @@ public class Vozac extends Osoba {
 		this.ocena = ocena;
 	}
 
-	public String getPlata() {
+	public double getPlata() {
 		return plata;
 	}
 
-	public void setPlata(String plata) {
+	public void setPlata(double plata) {
 		this.plata = plata;
 	}
 

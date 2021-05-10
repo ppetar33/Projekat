@@ -42,7 +42,7 @@ public class PrikazVozaca extends JFrame {
                 sadrzaj[i][6] = vozac.getPlata();
                 sadrzaj[i][7] = vozac.getBrojClanskeKarte();
                 sadrzaj[i][8] = vozac.getAutomobili().getModel();
-                if (sadrzaj[i][8] == null) {
+                if (vozac.getAutomobili().getId() == 0) {
                     sadrzaj[i][8] = "Vozac nema automobil";
                 }
             }

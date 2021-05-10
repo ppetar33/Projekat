@@ -64,8 +64,8 @@ public class MogucnostiMusterije extends JFrame{
         narucivanjeVoznjePrekoTelefona.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(ucitavanje,prijavljenaMusterija);
-                narucivanjeVoznjePrekoTelefona.setVisible(true);
+//                NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(ucitavanje,prijavljenaMusterija);
+//                narucivanjeVoznjePrekoTelefona.setVisible(true);
             }
         });
         potvrdaZaOdjavu.addActionListener(new ActionListener() {

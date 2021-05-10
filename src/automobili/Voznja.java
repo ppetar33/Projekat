@@ -8,15 +8,15 @@ import java.time.format.DateTimeFormatter;
 
 public abstract class Voznja {
 
-    private int id;
-    private LocalDateTime datumIvremePorudzbine;
-    private String adresaPolaska;
-    private String adresaDestinacije;
-    private Musterija musterija;
-    private Vozac vozac;
-    private double brojKMpredjenih;
-    private double trajanjVoznje;
-    private StatusVoznje statusVoznje;
+    protected int id;
+    protected LocalDateTime datumIvremePorudzbine;
+    protected String adresaPolaska;
+    protected String adresaDestinacije;
+    protected Musterija musterija;
+    protected Vozac vozac;
+    protected double brojKMpredjenih;
+    protected double trajanjVoznje;
+    protected StatusVoznje statusVoznje;
 
     public Voznja(){
         this.id = 0;

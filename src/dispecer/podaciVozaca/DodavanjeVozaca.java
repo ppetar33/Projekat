@@ -211,7 +211,7 @@ public class DodavanjeVozaca extends JFrame{
                     String unosAdresa = tadresa.getText().trim();
                     String unosJMBG = tjmbg.getText().trim();
                     String unosBrojTelefona = tbrojTelefona.getText().trim();
-                    String unosPlata = tplata.getText().trim();
+                    double unosPlata = Double.parseDouble(tplata.getText().trim());
                     int unosBrojClanskeKarte = Integer.parseInt(tbrojClanskeKarte.getText().trim());
                     double ocena = 0;
 

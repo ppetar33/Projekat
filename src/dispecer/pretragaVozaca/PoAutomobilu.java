@@ -1,11 +1,16 @@
 package dispecer.pretragaVozaca;
 
+import automobili.Automobil;
+import dispecer.PrikazAutomobila;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PoAutomobilu extends JFrame {
 
@@ -16,10 +21,14 @@ public class PoAutomobilu extends JFrame {
 
     private Liste ucitavanje;
     private Vozac vozac;
+    private ArrayList<Automobil> automobils;
+    private DefaultTableModel table_model;
+    private JTable automobiliTabela;
 
     public PoAutomobilu(Liste ucitavanje, Vozac vozac){
         this.ucitavanje = ucitavanje;
         this.vozac = vozac;
+        this.automobils = new ArrayList<Automobil>();
         setTitle("Pretraga Vozaca Po Automobilu");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -43,7 +52,50 @@ public class PoAutomobilu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(validacija() == true){
+                    String unosModela = tpretragaPoAutomobilu.getText().trim();
 
+                    Automobil rezultatPretrage = ucitavanje.nadjiAutomobilPoModeluAutomobila(unosModela);
+                    automobils.add(rezultatPretrage);
+
+                    /*
+                        podaci su u rezultatPretrage (tipa Automobil) i izgleda ovako:
+
+                        Automobil{id=6, model='G63', proizvodjac='Mercedes', godinaProizvodnje=2021, registarskiBroj='VA-147-BG', brojVozila=630, vrstaVozila=PUTNICKI_AUTOMOBIL, obrisan=true, statusAutomobila=SLOBODAN, petFriendly=true}
+
+
+                    */
+
+                    System.out.println(rezultatPretrage);
+
+                    String[] zaglavlje = new String[]{"ID", "Model", "Proizvodjac", "Godina proizvodnje", "Broj registarske oznake", "Broj taksi vozila", "Vrsta automobila", "Status Automobila", "Pet Friendly"};
+                    Object[][] sadrzaj = new Object[automobils.size()][zaglavlje.length];
+                    for(int i = 0; i<automobils.size(); i++){
+                        Automobil automobil = automobils.get(i);
+                        sadrzaj[i][0] = automobil.getId();
+                        sadrzaj[i][1] = automobil.getModel();
+                        sadrzaj[i][2] = automobil.getProizvodjac();
+                        sadrzaj[i][3] = automobil.getGodinaProizvodnje();
+                        sadrzaj[i][4] = automobil.getRegistarskiBroj();
+                        sadrzaj[i][5] = automobil.getBrojVozila();
+                        sadrzaj[i][6] = automobil.getVrstaVozila().toString().toLowerCase().replace("_"," ");
+                        sadrzaj[i][7] = automobil.getStatusAutomobila().toString().toLowerCase();
+                        if(automobil.isPetFriendly()){
+                            sadrzaj[i][8] = "da";
+                        }else{
+                            sadrzaj[i][8] = "ne";
+                        }
+                    }
+                    table_model = new DefaultTableModel(sadrzaj, zaglavlje);
+                    automobiliTabela = new JTable(table_model);
+
+                    automobiliTabela.setRowSelectionAllowed(true);
+                    automobiliTabela.setColumnSelectionAllowed(false);
+                    automobiliTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                    automobiliTabela.setDefaultEditor(Object.class, null);
+                    automobiliTabela.getTableHeader().setReorderingAllowed(false);
+
+                    JScrollPane jsp = new JScrollPane(automobiliTabela);
+                    add(jsp, BorderLayout.CENTER);
                 }
             }
         });

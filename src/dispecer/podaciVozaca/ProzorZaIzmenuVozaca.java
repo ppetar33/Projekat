@@ -95,7 +95,7 @@ public class ProzorZaIzmenuVozaca extends JFrame {
                     String prezime = tprezime.getText().trim();
                     String adresa = tadresa.getText().trim();
                     String brojTelefona = tbrojTelefona.getText().trim();
-                    String plata = tplata.getText().trim();
+                    double plata = Double.parseDouble(tplata.getText().trim());
                     Pol pol = (Pol) polJComboBox.getSelectedItem();
                     String jmbg = vozac.getJmbg();
                     int brojClanskeKarte = vozac.getBrojClanskeKarte();
@@ -140,7 +140,7 @@ public class ProzorZaIzmenuVozaca extends JFrame {
         tprezime.setText(vozac.getPrezime());
         tadresa.setText(vozac.getAdresa());
         tbrojTelefona.setText(vozac.getBrojTelefona());
-        tplata.setText(vozac.getPlata());
+        tplata.setText(String.valueOf(vozac.getPlata()));
         polJComboBox.setSelectedItem(vozac.getPol());
     }
 
