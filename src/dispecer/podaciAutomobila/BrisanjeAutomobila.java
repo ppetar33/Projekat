@@ -1,4 +1,4 @@
-package dispecer;
+package dispecer.podaciAutomobila;
 
 import automobili.Automobil;
 import enumi.StatusAutomobila;
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BrisanjeAutomobila extends PrikazAutomobila{
+public class BrisanjeAutomobila extends PrikazAutomobila {
 //brisanje je moguće samo za automobile koji nisu dodeljeni ni jednom vozaču
 
     private JButton btnDelete = new JButton();

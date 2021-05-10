@@ -1,4 +1,4 @@
-package dispecer;
+package dispecer.podaciAutomobila;
 
 import automobili.Automobil;
 import dispecer.pretragaVozaca.PoAutomobilu;

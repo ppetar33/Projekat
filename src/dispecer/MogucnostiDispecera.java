@@ -1,5 +1,9 @@
 package dispecer;
 
+import dispecer.podaciAutomobila.BrisanjeAutomobila;
+import dispecer.podaciAutomobila.DodavanjeAutomobila;
+import dispecer.podaciAutomobila.IzmenaAutomobila;
+import dispecer.podaciAutomobila.PrikazAutomobila;
 import dispecer.podaciVozaca.BrisanjeVozaca;
 import dispecer.podaciVozaca.DodavanjeVozaca;
 import dispecer.podaciVozaca.IzmenaVozaca;
@@ -180,7 +184,14 @@ public class MogucnostiDispecera extends JFrame {
 				prozorZaBrisanjeAutomobila.setVisible(true);
 			}
 		});
-		//IZMENA AUTOMOBILA TODO
+		//IZMENA AUTOMOBILA
+		izmenaAutomobila.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				IzmenaAutomobila prozorZaIzmenuAutomobila = new IzmenaAutomobila(ucitavanje);
+				prozorZaIzmenuAutomobila.setVisible(true);
+			}
+		});
 
 		// PRIKAZ VOZNJI
 		putemTelefona.addActionListener(new ActionListener() {
