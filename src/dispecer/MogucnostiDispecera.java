@@ -4,6 +4,9 @@ import dispecer.podaciAutomobila.BrisanjeAutomobila;
 import dispecer.podaciAutomobila.DodavanjeAutomobila;
 import dispecer.podaciAutomobila.IzmenaAutomobila;
 import dispecer.podaciAutomobila.PrikazAutomobila;
+import dispecer.podaciTaksiSluzbe.IzmenaPodatakaTaksiSluzbe;
+import dispecer.podaciTaksiSluzbe.PrikazPodatakaTaksiSluzbe;
+import dispecer.podaciTaksiSluzbe.ProzorZaIzmenuTaksiSluzbe;
 import dispecer.podaciVozaca.BrisanjeVozaca;
 import dispecer.podaciVozaca.DodavanjeVozaca;
 import dispecer.podaciVozaca.IzmenaVozaca;
@@ -13,6 +16,8 @@ import loginProzor.LoginProzor;
 import osobe.Dispecar;
 import osobe.Vozac;
 import liste.Liste;
+import taksiSluzba.TaksiSluzba;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -69,6 +74,7 @@ public class MogucnostiDispecera extends JFrame {
 	private Dispecar prijavljeniDispecar;
 	private Vozac vozac;
 	private Dispecar dispecar;
+	private TaksiSluzba taksiSluzba;
 
 	public MogucnostiDispecera(Liste ucitavanje, Dispecar prijavljeniDispecar){
 		this.ucitavanje = ucitavanje;
@@ -162,14 +168,15 @@ public class MogucnostiDispecera extends JFrame {
 		prikazPodataka.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PrikazPodatakaTaksiSluzbe prozorZaPrikazPodatakaTaksiSluzbe = new PrikazPodatakaTaksiSluzbe(ucitavanje);
+				PrikazPodatakaTaksiSluzbe prozorZaPrikazPodatakaTaksiSluzbe = new PrikazPodatakaTaksiSluzbe(ucitavanje,taksiSluzba);
 				prozorZaPrikazPodatakaTaksiSluzbe.setVisible(true);
 			}
 		});
 		izmenaPodataka.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				IzmenaPodatakaTaksiSluzbe izmenaPodatakaTaksiSluzbe = new IzmenaPodatakaTaksiSluzbe(ucitavanje, taksiSluzba);
+				izmenaPodatakaTaksiSluzbe.setVisible(true);
 			}
 		});
 		dodavanjeAutomobila.addActionListener(new ActionListener() {

@@ -74,6 +74,7 @@ public class TaksiSluzba {
         this.cenaPoKilometru = cenaPoKilometru;
     }
 
+
     @Override
     public String toString() {
         return "TaksiSluzba{" +

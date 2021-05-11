@@ -112,8 +112,6 @@ public class ProzorZaIzmenuAutomobila extends JFrame {
         });
     }
 
-
-
     private void popunjavanjeTextField() {
         tmodel.setText(automobil.getModel());
         tproizvodjac.setText(automobil.getProizvodjac());

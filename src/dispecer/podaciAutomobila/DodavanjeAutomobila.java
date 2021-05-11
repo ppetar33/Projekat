@@ -170,7 +170,7 @@ public class DodavanjeAutomobila extends JFrame {
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (proveraPodataka() == true) {
+                if (proveraPodataka() == true ) {
                     Automobil automobil = new Automobil();
 
                     String unosModel = tmodel.getText().trim();
@@ -179,7 +179,7 @@ public class DodavanjeAutomobila extends JFrame {
                     String unosBrojRegistarskeOznake = tbrojRegistarskeOznake.getText().trim();
                     int unosBrojTaksiVozila = Integer.parseInt(tbrojTaksiVozila.getText().trim());
 
-
+                    //ako je u vozacu 0 on nema automobil
                     automobil.setModel(unosModel);
                     automobil.setProizvodjac(unosProizvodjac);
                     automobil.setGodinaProizvodnje(unosGodinaProizvodnje);
