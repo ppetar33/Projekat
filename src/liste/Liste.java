@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import automobili.Automobil;
 import enumi.*;
 import automobili.Voznja;
+import musterija.NarucivanjeVoznjePrekoAplikacije;
+import musterija.NarucivanjeVoznjePrekoTelefona;
 import osobe.Dispecar;
 import osobe.Musterija;
-import osobe.Odeljenje;
+import enumi.Odeljenje;
 import osobe.Vozac;
 import taksiSluzba.TaksiSluzba;
 
@@ -212,15 +214,21 @@ public class Liste {
 						vozac = vozac1;
 					}
 				}
+				if(statusVoznje == StatusVoznje.KREIRANA){
+					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
+					voznja.add(narucivanjeVoznjePrekoTelefona);
+				}else if(statusVoznje == StatusVoznje.KREIRANA_NA_CEKANJU){
+					String napomena = podaci[9];
+					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena);
+					voznja.add(narucivanjeVoznjePrekoAplikacije);
+				}
 
-				// voznja je abstract pa je potrebno proveriti da li je narucena telefonom ili aplikacijom i napraviti novu instancu klase
-//				Voznja voz = new Voznja(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
-//				voznja.add(voz);
 			}
 		}catch (Exception e){
 			e.printStackTrace();
 			System.out.println("Greska prilikom citanja fajla");
 		}
+
 	}
 
 
@@ -431,6 +439,18 @@ public class Liste {
 			}
 		}
 		return null;
+	}
+
+	public int uporediDatum(String datum){
+		for(Voznja voznja : voznja){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				int counter = 0;
+				counter++;
+				return counter;
+			}
+		}
+		return 0;
 	}
 
 	/*

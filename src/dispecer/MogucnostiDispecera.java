@@ -37,28 +37,33 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem izmenaAutomobila = new JMenuItem("Izmena automobila");
 	private JMenuItem brisanjeAutomobila = new JMenuItem("Brisanje automobila");
 
-	private  JMenu funkcionalnostPrikazVoznji = new JMenu("Prikaz voznji");
+	private JMenu funkcionalnostPrikazVoznji = new JMenu("Prikaz voznji");
 	private JMenuItem putemTelefona = new JMenuItem("Putem telefona");
 	private JMenuItem putemAplikacije = new JMenuItem("Putem aplikacije");
 
-	private JMenuItem funkcionalnostPretragaVozaca = new JMenu("Pretraga vozaca");
+	private JMenu funkcionalnostPretragaVozaca = new JMenu("Pretraga vozaca");
 	private JMenuItem poImenu = new JMenuItem("Po imenu");
 	private JMenuItem poPrezimenu = new JMenuItem("Po prezimenu");
 	private JMenuItem poPlati = new JMenuItem("Po plati");
 	private JMenuItem poAutomobilu = new JMenuItem("Po automobilu");
 	private JMenuItem kombinovana = new JMenuItem("Kombinovana");
 
-	private JMenuItem funkcionalnostPretragaAutomobila = new JMenu("Pretraga automobila");
+	private JMenu funkcionalnostPretragaAutomobila = new JMenu("Pretraga automobila");
 	private JMenuItem poModelu = new JMenuItem("Po modelu");
 	private JMenuItem poProizvodjacu = new JMenuItem("Po proizvodjacu");
 	private JMenuItem poGodiniProizvodnje = new JMenuItem("Po godini poizvodnje");
 	private JMenuItem poBrojuRegistarskeOznake = new JMenuItem("Po broju registarske oznake");
 	private JMenuItem poBrojuTaksiVozila = new JMenuItem("Po broju taksi vozila");
 
+	private JMenu funkcionalnostIzvestaj = new JMenu("Izvestaj");
+	private JMenuItem dnevni = new JMenuItem("Dnevni");
+	private JMenuItem nedeljni = new JMenuItem("Nedeljeni");
+	private JMenuItem mesecni = new JMenuItem("Mesecni");
+	private JMenuItem godisnji = new JMenuItem("Godisnji");
+
 	private JMenu odjava = new JMenu("Odjava");
 	private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
 	private JMenuItem odustaniZaOdjavu = new JMenuItem("Odustani");
-
 
 	private Liste ucitavanje;
 	private Dispecar prijavljeniDispecar;
@@ -70,7 +75,7 @@ public class MogucnostiDispecera extends JFrame {
 		this.prijavljeniDispecar = prijavljeniDispecar;
 		setTitle("Dobrodosli " + prijavljeniDispecar.getIme().substring(0, 1).toUpperCase() + prijavljeniDispecar.getIme().substring(1) + " (Dispecer)");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(720, 300);
+		setSize(790, 300);
 		initGUI();
 		initListeners();
 		setLocationRelativeTo(null);
@@ -112,6 +117,12 @@ public class MogucnostiDispecera extends JFrame {
 		funkcionalnostPretragaAutomobila.add(poGodiniProizvodnje);
 		funkcionalnostPretragaAutomobila.add(poBrojuRegistarskeOznake);
 		funkcionalnostPretragaAutomobila.add(poBrojuTaksiVozila);
+
+		dispecerMenu.add(funkcionalnostIzvestaj);
+		funkcionalnostIzvestaj.add(dnevni);
+		funkcionalnostIzvestaj.add(nedeljni);
+		funkcionalnostIzvestaj.add(mesecni);
+		funkcionalnostIzvestaj.add(godisnji);
 
 		dispecerMenu.add(odjava);
 		odjava.add(potvrdaZaOdjavu);
@@ -247,6 +258,16 @@ public class MogucnostiDispecera extends JFrame {
 		// PRETRAGA AUTOMOBILA TODO 
 
 
+
+		// IZVESTAJ
+
+		dnevni.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				IzvestajiDispecera izvestajiDispecera = new IzvestajiDispecera();
+				izvestajiDispecera.ukupanBrojVoznji(ucitavanje);
+			}
+		});
 
 		//ODJAVLJIVANJE
 		potvrdaZaOdjavu.addActionListener(new ActionListener() {

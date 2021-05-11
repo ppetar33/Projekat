@@ -58,7 +58,7 @@ public class PoAutomobilu extends JFrame {
                     String unosModela = tpretragaPoAutomobilu.getText().trim();
 
                     /*
-                        podaci su u rezultatPretrage (tipa Automobil) i izgleda ovako:
+                        podaci su u listi, rezultatPretrage i izgleda ovako:
 
                         Automobil{id=6, model='G63', proizvodjac='Mercedes', godinaProizvodnje=2021, registarskiBroj='VA-147-BG', brojVozila=630, vrstaVozila=PUTNICKI_AUTOMOBIL, obrisan=true, statusAutomobila=SLOBODAN, petFriendly=true}
 

@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class PrikazVoznjiPutemAplikacije extends JFrame {
 
@@ -46,6 +47,7 @@ public class PrikazVoznjiPutemAplikacije extends JFrame {
                 sadrzaj[i][8] = voznje.getStatusVoznje();
             }
         }
+
         tableModel = new DefaultTableModel(sadrzaj, zaglavnje);
         voznjeTabela = new JTable(tableModel);
 

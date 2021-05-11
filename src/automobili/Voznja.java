@@ -20,7 +20,7 @@ public abstract class Voznja {
 
     public Voznja(){
         this.id = 0;
-        this.datumIvremePorudzbine = LocalDateTime.parse("");
+        this.datumIvremePorudzbine = null;
         this.adresaPolaska = "";
         this.adresaDestinacije = "";
         this.musterija = null;

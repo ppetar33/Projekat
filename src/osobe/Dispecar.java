@@ -1,5 +1,6 @@
 package osobe;
 
+import enumi.Odeljenje;
 import enumi.Pol;
 
 public class Dispecar extends Osoba {
