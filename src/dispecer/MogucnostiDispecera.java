@@ -272,7 +272,7 @@ public class MogucnostiDispecera extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				IzvestajiDispecera izvestajiDispecera = new IzvestajiDispecera();
-				izvestajiDispecera.ukupanBrojVoznji(ucitavanje);
+				izvestajiDispecera.dnevniIzvestaj(ucitavanje);
 			}
 		});
 

@@ -441,17 +441,114 @@ public class Liste {
 		return null;
 	}
 
+	/*
+
+		IZVESTAJI
+
+	*/
 	public int uporediDatum(String datum){
+		int counter = 0;
 		for(Voznja voznja : voznja){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				int counter = 0;
 				counter++;
-				return counter;
 			}
 		}
-		return 0;
+		return counter;
 	}
+	public int uporediDatumIvoznjeAplikacijom(String datum){
+		int counter = 0;
+		for(Voznja voznja : voznja){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusVoznje() == StatusVoznje.KREIRANA_NA_CEKANJU){
+				counter++;
+			}
+		}
+		return counter;
+	}
+	public int uporediDatumIvoznjeTelefonom(String datum){
+		int counter = 0;
+		for(Voznja voznja : voznja){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusVoznje() == StatusVoznje.KREIRANA){
+				counter++;
+			}
+		}
+		return counter;
+	}
+	public int brojAktivnihVozaca(){
+		int counter = 0;
+		for(Vozac vozac : vozaci){
+			if(vozac.isObrisan()){
+				counter++;
+			}
+		}
+		return counter;
+	}
+	public double uporediDatumItrajanjeVoznje(String datum){
+		double rezultat = 0;
+		double counter = 0;
+		double average;
+		for(Voznja voznja : voznja){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getTrajanjVoznje();
+				counter++;
+			}
+		}
+		average = rezultat/counter;
+		return average;
+	}
+	public double uporediDatumIkilometrazu(String datum){
+		double rezultat = 0;
+		double counter = 0;
+		double average;
+		for(Voznja voznja : voznja){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+				counter++;
+			}
+		}
+		average = rezultat/counter;
+		return average;
+	}
+	public double ukupnaZaradaZaSveVoznje(String datum){
+		double ukupnaZarada;
+		double start = 150;
+		double cenaPoKilometru = 30;
+		double rezultat = 0;
+		for(Voznja voznja : voznja){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+			}
+		}
+		ukupnaZarada = (start + rezultat) * cenaPoKilometru;
+		return ukupnaZarada;
+	}
+	public double prosecnaZaradaZaVoznje(String datum){
+		double ukupnaZarada = 0;
+		double average;
+		double rezultat = 0;
+		double counter = 0;
+		for(Voznja voznja : voznja){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+				counter++;
+			}
+		}
+		for(TaksiSluzba taksiSluzba : taksiSluzbe) {
+			double start = taksiSluzba.getCenaStartaVoznje();
+			double cenaPoKilometru = taksiSluzba.getCenaPoKilometru();
+
+			ukupnaZarada = (start + rezultat) * cenaPoKilometru;
+		}
+		average = ukupnaZarada / counter;
+		return average;
+	}
+
 
 	/*
 		GENERISI NOVI ID ZA VOZNJE
@@ -470,7 +567,7 @@ public class Liste {
 
 	/*
 			PROVERA ZA LOGIN
-	 */
+	*/
 
 	public Musterija loginMusterija(String korisnickoIme, String lozinka) {
 		for (Musterija musterija : musterije) {

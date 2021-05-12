@@ -1,8 +1,14 @@
 package main;
 
-import dispecer.IzvestajiDispecera;
 import loginProzor.LoginProzor;
 import liste.Liste;
+
+/*
+
+    Na sta se misli CRUD za dispecere i musterije
+    izmena taksi sluzbe?
+
+*/
 
 public class TaxiSluzbaMain {
 
@@ -126,11 +132,6 @@ public class TaxiSluzbaMain {
         unese koliko mu je potrebno i ti odlucis ko ce voziti sa tim klikom na dugme.
     Istoriju aukcija cuvati u txt fajlu sa podacima (koji vozaci su se ponudili, koliko kome vremena treba,
     kome je dodeljena voznja)
-
-    voznja treba da bude abstrakna klasa i da je nasledi narucivanje putem telefona i aplikacije
-    pretraga automobila da ne bude po modelu nego po id-u
-    popuniti prazne konstruktore
-    zamniti enume petFriendly, obrisan na boolean
 
 
 

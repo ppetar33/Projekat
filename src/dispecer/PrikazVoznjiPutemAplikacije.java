@@ -3,12 +3,10 @@ package dispecer;
 import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class PrikazVoznjiPutemAplikacije extends JFrame {
 

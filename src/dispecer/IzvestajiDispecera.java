@@ -6,22 +6,25 @@ import osobe.Vozac;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/*
+    da li se misli ukupna zarada za odredjenog vozaca
+    ili
+    preuzmem kilometrazu za sve voznje saberem je sa cenom startne voznje i pomnozim sa cenom po kilometru
+*/
+
 public class IzvestajiDispecera {
 
     private LocalDateTime vremeIdatum;
     private Voznja voznja;
     private Liste ucitavanje;
     private Vozac vozac;
-    /*
-        Prikaz sumiranog izveštaja na dnevnom, nedeljnom, mesečnom i godišnjem nivou. Izveštaj treba da sadrži
-        podatke o ukupnom broju vožnji, broju vožnji poručenim putem aplikacije, broju vožnji poručenim putem
-        telefonskog poziva, broju aktivnih vozača, prosečnom trajanju vožnje, prosečnom broju pređenih
-        kilometara, ukupnoj zaradi za sve vožnje, i prosečnoj zaradi po vožnji. Zaradu vozača po vožnji
-        računati po sledećoj formuli:
-            (start + brojPredjenihKilometara) * cenaPoKilometru.
-    */
 
-    public IzvestajiDispecera(){}
+    public IzvestajiDispecera(){
+        this.vremeIdatum = null;
+        this.voznja = null;
+        this.ucitavanje = null;
+        this.vozac = null;
+    }
 
     public IzvestajiDispecera(LocalDateTime vremeIdatum, Voznja voznja, Liste ucitavanje, Vozac vozac){
         this.vremeIdatum = vremeIdatum;
@@ -30,63 +33,115 @@ public class IzvestajiDispecera {
         this.vozac = vozac;
     }
 
-    public void ukupanBrojVoznji(Liste ucitavanje){
-
-        System.out.println("Ukupan broj voznji!");
+    private String trenutniDatum() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime date = LocalDateTime.now();
         String trenutniDatum = formatter.format(date);
-        int uporediDatum = ucitavanje.uporediDatum(trenutniDatum);
+        return trenutniDatum;
+    }
 
+    public void dnevniIzvestaj(Liste ucitavanje){
+        ukupanBrojVoznji(ucitavanje);
+        ukupanBrojVoznjiAplikacija(ucitavanje);
+        ukupanBrojVoznjiTelefon(ucitavanje);
+        ukupanBrojAktivnihVozaca(ucitavanje);
+        prosecnoTrajanjeVoznje(ucitavanje);
+        prosecanBrojPredjenihKm(ucitavanje);
+        ukupnaZaradaZaSveVoznje(ucitavanje);
+        prosecnaZaradaPoVoznji(ucitavanje);
+    }
+
+    public void ukupanBrojVoznji(Liste ucitavanje){
+
+        String trenutniDatum = trenutniDatum();
+        int uporediDatum = ucitavanje.uporediDatum(trenutniDatum);
         if (uporediDatum != 0){
-            int sum = 0;
-            System.out.println(uporediDatum);
+            System.out.println("Ukupan broj voznji: " + uporediDatum);
         }else{
-            System.out.println("jeste null");
+            System.out.println("Za datum: " + trenutniDatum + " nema voznji!");
         }
 
-        // uporediti trenutniDatum sa datumom iz fajla
-        // jedna linija u fajlu = 1
-        // proci kroz sve voznje i ubaciti u sumu
-        // sumu prikazati
     }
+    public void ukupanBrojVoznjiAplikacija(Liste ucitavanje){
 
-    public void ukupanBrojVoznjiAplikacija(){
-
-    }
-    public void ukupanBrojVoznjiTelefon(){
-
-    }
-    public void ukupanBrojAktivnihVozaca(){
+        String trenutniDatum = trenutniDatum();
+        int uporediDatumIvoznjeAplikacijom = ucitavanje.uporediDatumIvoznjeAplikacijom(trenutniDatum);
+        if (uporediDatumIvoznjeAplikacijom != 0){
+            System.out.println("Ukupan broj voznji kreiranih putem aplikacije: " + uporediDatumIvoznjeAplikacijom);
+        }else{
+            System.out.println("Za datum: " + trenutniDatum + " nema voznji kreiranih putem aplikacije!");
+        }
 
     }
-    public void prosecnoTrajanjeVoznje(){
+    public void ukupanBrojVoznjiTelefon(Liste ucitavanje){
+
+        String trenutniDatum = trenutniDatum();
+        int uporediDatumIvoznjeTelefonom = ucitavanje.uporediDatumIvoznjeTelefonom(trenutniDatum);
+        if (uporediDatumIvoznjeTelefonom != 0){
+            System.out.println("Ukupan broj voznji kreiranih putem telefona: " + uporediDatumIvoznjeTelefonom);
+        }else{
+            System.out.println("Za datum: " + trenutniDatum + " nema voznji kreiranih putem telefona!");
+        }
 
     }
-    public void prosecanBrojPredjenihKm(){
+    public void ukupanBrojAktivnihVozaca(Liste ucitavanje){
+
+        int brojAktivnihVozaca = ucitavanje.brojAktivnihVozaca();
+        if (brojAktivnihVozaca != 0){
+            System.out.println("Ukupan broj aktivnih vozaca je: " + brojAktivnihVozaca);
+        }else{
+            System.out.println("Nema aktivnih vozaca.");
+        }
 
     }
-    public void ukupnaZaradaVoznji(){
+    public void prosecnoTrajanjeVoznje(Liste ucitavanje){
+
+        String trenutniDatum = trenutniDatum();
+        double uporediDatumItrajanjeVoznje = ucitavanje.uporediDatumItrajanjeVoznje(trenutniDatum);
+        if (uporediDatumItrajanjeVoznje != 0){
+            System.out.println("Prosecno trajanje voznji: " + uporediDatumItrajanjeVoznje + " min");
+        }else{
+            System.out.println("Za datum: " + trenutniDatum + " nema voznji!");
+        }
 
     }
-    public void prosecnaZaradaPoVoznji(){
+    public void prosecanBrojPredjenihKm(Liste ucitavanje){
+
+        String trenutniDatum = trenutniDatum();
+        double uporediDatumIkilometrazu = ucitavanje.uporediDatumIkilometrazu(trenutniDatum);
+        if (uporediDatumIkilometrazu != 0){
+            System.out.println("Prosecna kilometraza je: " + uporediDatumIkilometrazu + " km");
+        }else{
+            System.out.println("Za datum: " + trenutniDatum + " nema voznji!");
+        }
 
     }
-    /*
-        dnevni
+    public void ukupnaZaradaZaSveVoznje(Liste ucitavanje){
 
-        LocalDateTime trenutna yyyy-mm-dd
-        ukupan broj svih voznji
-            suma = 0;
-            preuzmem liniju u txt fajlu kao broj koji se uvecava i dodam na sumu
-        ukupan broj voznji porucenih putem aplikacije
-        ukupan broj voznji porucenih putem telefonskog poziva
-        ukupan broj aktivinih vozaca (vozaci koji nisu obrisani)
-        prosecno trajanje voznji
-        prosecan broj predjenih kilometara
-        ukupna zarada za sve voznje (start + brojPredjenihKilometara) * cenaPoKilometru
-        prosecna zarada po voznji
-    */
+        String trenutniDatum = trenutniDatum();
+        double ukupnaZaradaZaSveVoznje = ucitavanje.ukupnaZaradaZaSveVoznje(trenutniDatum);
+        if (ukupnaZaradaZaSveVoznje != 0){
+            System.out.println("Ukupna zarada za sve voznje je: " + ukupnaZaradaZaSveVoznje + " din");
+        }else{
+            System.out.println("Za datum: " + trenutniDatum + " nema voznji!");
+        }
+
+    }
+    public void prosecnaZaradaPoVoznji(Liste ucitavanje){
+
+        String trenutniDatum = trenutniDatum();
+        double prosecnaZaradaPoVoznji = ucitavanje.prosecnaZaradaZaVoznje(trenutniDatum);
+        if (prosecnaZaradaPoVoznji != 0){
+            System.out.println("Prosecna zarada po voznji je: " + prosecnaZaradaPoVoznji + " din");
+        }else{
+            System.out.println("Za datum: " + trenutniDatum + " nema voznji!");
+        }
+
+    }
+
+
+
+
 
     /*
         nedeljni
