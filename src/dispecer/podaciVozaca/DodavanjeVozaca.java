@@ -226,7 +226,6 @@ public class DodavanjeVozaca extends JFrame{
                         vozac.setBrojTelefona(unosBrojTelefona);
                         vozac.setPlata(unosPlata);
                         vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
-                        vozac.setObrisan(true);
                     }
 
                     Automobil slobodanAutomobil = ucitavanje.nadjiAutomobilPoStatusuAutomobila();

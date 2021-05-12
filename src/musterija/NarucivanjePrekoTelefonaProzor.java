@@ -63,11 +63,9 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
 
                     int id = ucitavanje.generisiNoviIdZaVoznje();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime date = LocalDateTime.now(); // izvestajDispecera proveriti localDateTime.now
-                    LocalDateTime trenutnoVreme = LocalDateTime.parse(date,formatter);
+                    LocalDateTime trenutnoVreme = LocalDateTime.now(); // izvestajDispecera proveriti localDateTime.now
                     String adresaPolaska = tadresaPolaska.getText().trim();
                     String adresaDolaska = tadresaDolaska.getText().trim();
-
 
                     // URADITI:
                     //      VOZAC KOJI JE PREUZEO VOZNJU
@@ -91,8 +89,8 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-                            NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new Voznja(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,trajanjeVoznje, StatusVoznje.KREIRANA,obrisan);
-                            ucitavanje.getVoznja().add(narucivanjeVoznjePrekoTelefona);
+                            NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,trajanjeVoznje, StatusVoznje.KREIRANA,true);
+                            ucitavanje.getVoznjaTelefoni().add(narucivanjeVoznjePrekoTelefona);
                         }
                         citanjeUlogovanogKorisnika.close();
                     }  catch (IOException ioException) {

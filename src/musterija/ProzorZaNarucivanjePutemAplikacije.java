@@ -89,7 +89,7 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
 //                            Voznja voznja = new Voznja(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,trajanjeVoznje,StatusVoznje.KREIRANA);
-                            ucitavanje.getVoznja().add(voznja);
+//                            ucitavanje.getVoznja().add(voznja);
                         }
                         citanjeUlogovanogKorisnika.close();
                     }  catch (IOException ioException) {

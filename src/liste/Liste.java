@@ -9,6 +9,7 @@ import enumi.*;
 import automobili.Voznja;
 import musterija.NarucivanjeVoznjePrekoAplikacije;
 import musterija.NarucivanjeVoznjePrekoTelefona;
+import musterija.OstaleVoznje;
 import osobe.Dispecar;
 import osobe.Musterija;
 import enumi.Odeljenje;
@@ -22,7 +23,9 @@ public class Liste {
 	private ArrayList<Vozac> vozaci;
 	private ArrayList<TaksiSluzba> taksiSluzbe;
 	private ArrayList<Automobil> automobili;
-	private ArrayList<Voznja> voznja;
+	private ArrayList<OstaleVoznje> voznja;
+	private ArrayList<NarucivanjeVoznjePrekoTelefona> voznjaTelefoni;
+	private ArrayList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije;
 
 	public Liste() {
 		this.musterije = new ArrayList<Musterija>();
@@ -30,7 +33,9 @@ public class Liste {
 		this.vozaci = new ArrayList<Vozac>();
 		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
 		this.automobili = new ArrayList<Automobil>();
-		this.voznja = new ArrayList<Voznja>();
+		this.voznja = new ArrayList<OstaleVoznje>();
+		this.voznjaTelefoni = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+		this.voznjaAplikacije = new ArrayList<NarucivanjeVoznjePrekoAplikacije>();
 	}
 
 	public ArrayList<Musterija> getMusterije() {
@@ -71,14 +76,29 @@ public class Liste {
 		this.automobili = automobili;
 	}
 
-	public ArrayList<Voznja> getVoznja(){
+	public ArrayList<OstaleVoznje> getVoznja() {
 		return voznja;
 	}
 
-	public void setVoznja(ArrayList<Voznja> voznja) {
+	public void setVoznja(ArrayList<OstaleVoznje> voznja) {
 		this.voznja = voznja;
 	}
 
+	public ArrayList<NarucivanjeVoznjePrekoTelefona> getVoznjaTelefoni() {
+		return voznjaTelefoni;
+	}
+
+	public void setVoznjaTelefoni(ArrayList<NarucivanjeVoznjePrekoTelefona> voznjaTelefoni) {
+		this.voznjaTelefoni = voznjaTelefoni;
+	}
+
+	public ArrayList<NarucivanjeVoznjePrekoAplikacije> getVoznjaAplikacije() {
+		return voznjaAplikacije;
+	}
+
+	public void setVoznjaAplikacije(ArrayList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije) {
+		this.voznjaAplikacije = voznjaAplikacije;
+	}
 
 	/*
 			UCITAVANJE
@@ -218,14 +238,19 @@ public class Liste {
 					String obrisanString = podaci[9];
 					boolean obrisan = Boolean.parseBoolean(obrisanString);
 					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan);
-					voznja.add(narucivanjeVoznjePrekoTelefona);
+					voznjaTelefoni.add(narucivanjeVoznjePrekoTelefona);
 
 				}else if(statusVoznje == StatusVoznje.KREIRANA_NA_CEKANJU){
 					String napomena = podaci[9];
 					String obrisanString = podaci[10];
 					boolean obrisan = Boolean.parseBoolean(obrisanString);
 					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan);
-					voznja.add(narucivanjeVoznjePrekoAplikacije);
+					voznjaAplikacije.add(narucivanjeVoznjePrekoAplikacije);
+				}else{
+					String obrisanString = podaci[9];
+					boolean obrisan = Boolean.parseBoolean(obrisanString);
+					OstaleVoznje ostaleVoznje = new OstaleVoznje(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan);
+					voznja.add(ostaleVoznje);
 				}
 
 			}
@@ -323,8 +348,14 @@ public class Liste {
 	public void snimanjeVoznji(String imeFajla){
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
-			for (Voznja voznja: voznja){
-				br.write(voznja.pripremiZaSnimanjeVoznju());
+			for(OstaleVoznje voznja : voznja){
+				br.write(voznja.pripremiZaSnimanje());
+			}
+			for(NarucivanjeVoznjePrekoTelefona voznjaTelefoni : voznjaTelefoni){
+				br.write(voznjaTelefoni.pripremiZaSnimanje());
+			}
+			for(NarucivanjeVoznjePrekoAplikacije voznjaAplikacija : voznjaAplikacije){
+				br.write(voznjaAplikacija.pripremiZaSnimanjePrekoAplikacije());
 			}
 			br.close();
 		}catch (Exception e){
@@ -566,8 +597,18 @@ public class Liste {
 
 	public int generisiNoviIdZaVoznje() {
 		int maks = -1;
-		for (Voznja voznja : voznja) {
-			if (voznja.getId() > maks) {
+		for (NarucivanjeVoznjePrekoTelefona prekoTelefona : voznjaTelefoni) {
+			if (prekoTelefona.getId() > maks) {
+				maks = prekoTelefona.getId();
+			}
+		}
+		for (NarucivanjeVoznjePrekoAplikacije prekoAplikacije : voznjaAplikacije){
+			if (prekoAplikacije.getId() > maks){
+				maks = prekoAplikacije.getId();
+			}
+		}
+		for (Voznja voznja : voznja){
+			if (voznja.getId() > maks){
 				maks = voznja.getId();
 			}
 		}
