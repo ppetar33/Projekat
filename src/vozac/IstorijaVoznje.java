@@ -4,14 +4,13 @@ import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
 import osobe.Vozac;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
 
 public class IstorijaVoznje extends JFrame {
-    //Prikaz istorije sopstvenih vožnji.
+
     private JToolBar mainJToolBar = new JToolBar();
 
     private DefaultTableModel table_model;
@@ -33,11 +32,11 @@ public class IstorijaVoznje extends JFrame {
 
     private void initGUI(){
         add(mainJToolBar, BorderLayout.SOUTH);
-        String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
+        String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Broj predjenih km","Trajanje voznje","Status voznje"};
         Object[][] sadrzaj = new Object[ucitavanje.getVoznja().size()][zaglavnje.length];
         for(int i = 0; i < ucitavanje.getVoznja().size(); i++){
             Voznja voznje = ucitavanje.getVoznja().get(i);
-            if(voznje.getStatusVoznje() == StatusVoznje.ZAVRSENA){
+            if(voznje.getStatusVoznje() == StatusVoznje.KREIRANA){ // putem telefona
                 sadrzaj[i][0] = voznje.getId();
                 sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
                 sadrzaj[i][2] = voznje.getAdresaPolaska();
@@ -46,7 +45,6 @@ public class IstorijaVoznje extends JFrame {
                 sadrzaj[i][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[i][6] = voznje.getTrajanjVoznje();
                 sadrzaj[i][7] = voznje.getStatusVoznje();
-
             }
         }
         table_model = new DefaultTableModel(sadrzaj, zaglavnje);
