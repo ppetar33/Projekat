@@ -6,11 +6,12 @@ import dispecer.podaciAutomobila.IzmenaAutomobila;
 import dispecer.podaciAutomobila.PrikazAutomobila;
 import dispecer.podaciTaksiSluzbe.IzmenaPodatakaTaksiSluzbe;
 import dispecer.podaciTaksiSluzbe.PrikazPodatakaTaksiSluzbe;
-import dispecer.podaciTaksiSluzbe.ProzorZaIzmenuTaksiSluzbe;
 import dispecer.podaciVozaca.BrisanjeVozaca;
 import dispecer.podaciVozaca.DodavanjeVozaca;
 import dispecer.podaciVozaca.IzmenaVozaca;
 import dispecer.podaciVozaca.PrikazVozaca;
+import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
+import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;
 import loginProzor.LoginProzor;
 import osobe.Dispecar;
@@ -73,7 +74,6 @@ public class MogucnostiDispecera extends JFrame {
 	private Liste ucitavanje;
 	private Dispecar prijavljeniDispecar;
 	private Vozac vozac;
-	private Dispecar dispecar;
 	private TaksiSluzba taksiSluzba;
 
 	public MogucnostiDispecera(Liste ucitavanje, Dispecar prijavljeniDispecar){

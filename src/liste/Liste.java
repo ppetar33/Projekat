@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import automobili.Automobil;
 import enumi.*;
 import automobili.Voznja;
-import musterija.IstorijaVoznji;
 import musterija.NarucivanjeVoznjePrekoAplikacije;
 import musterija.NarucivanjeVoznjePrekoTelefona;
 import osobe.Dispecar;
@@ -216,11 +215,15 @@ public class Liste {
 					}
 				}
 				if(statusVoznje == StatusVoznje.KREIRANA){
-					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje);
+					String obrisanString = podaci[9];
+					boolean obrisan = Boolean.parseBoolean(obrisanString);
+					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan);
 					voznja.add(narucivanjeVoznjePrekoTelefona);
 				}else if(statusVoznje == StatusVoznje.KREIRANA_NA_CEKANJU){
 					String napomena = podaci[9];
-					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena);
+					String obrisanString = podaci[10];
+					boolean obrisan = Boolean.parseBoolean(obrisanString);
+					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,napomena);
 					voznja.add(narucivanjeVoznjePrekoAplikacije);
 				}
 
@@ -289,8 +292,7 @@ public class Liste {
 		}
 	}
 
-	public void snimiTaksiSluzbe(String imeFajla)
-	{
+	public void snimiTaksiSluzbe(String imeFajla) {
 
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
@@ -386,6 +388,7 @@ public class Liste {
 		}
 		return null;
 	}
+
 	public Musterija nadjiMusteriju(String korisnickoIme){
 		for(Musterija musterija : musterije){
 			if(musterija.getKorisnickoIme().equals(korisnickoIme)){
@@ -412,7 +415,6 @@ public class Liste {
 		}
 		return null;
 	}
-
 	public Automobil nadjiAutomobilPoStatusuAutomobila(){
 		for(Automobil automobil : automobili){
 			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN && automobil.isObrisan()){
@@ -421,7 +423,6 @@ public class Liste {
 		}
 		return null;
 	}
-
 	public Automobil nadjiAutomobilPoModeluAutomobila(String modelAutomobila){
 		for(Automobil automobil : automobili){
 			if(automobil.getModel().equalsIgnoreCase(modelAutomobila) && automobil.isObrisan()){
@@ -605,5 +606,55 @@ public class Liste {
 			}
 		}
 		return null;
+	}
+
+	/*
+		LISTE NEOBRISANIH ZA PRIKAZ
+	*/
+
+	public ArrayList<Vozac> neobrisaniVozaci(){
+		ArrayList<Vozac> neobrisaniVozaci = new ArrayList<Vozac>();
+		for(Vozac vozac : vozaci){
+			if(vozac.isObrisan()){
+				neobrisaniVozaci.add(vozac);
+			}
+		}
+		return neobrisaniVozaci;
+	}
+	public ArrayList<Musterija> neobrisaneMusterije(){
+		ArrayList<Musterija> neobrisaneMusterije = new ArrayList<Musterija>();
+		for(Musterija musterija : musterije){
+			if(musterija.isObrisan()){
+				neobrisaneMusterije.add(musterija);
+			}
+		}
+		return neobrisaneMusterije;
+	}
+	public ArrayList<Dispecar> neobrisaniDispeceri(){
+		ArrayList<Dispecar> neobrisaniDispeceri = new ArrayList<Dispecar>();
+		for(Dispecar dispecar : dispecari){
+			if(dispecar.isObrisan()){
+				neobrisaniDispeceri.add(dispecar);
+			}
+		}
+		return neobrisaniDispeceri;
+	}
+	public ArrayList<Automobil> neobrisaniAutomobili(){
+		ArrayList<Automobil> neobrisaniAutomobili = new ArrayList<Automobil>();
+		for(Automobil automobil : automobili){
+			if(automobil.isObrisan()){
+				neobrisaniAutomobili.add(automobil);
+			}
+		}
+		return neobrisaniAutomobili;
+	}
+	public ArrayList<Voznja> neobrisaneVoznje(){
+		ArrayList<Voznja> neobrisaneVoznje = new ArrayList<Voznja>();
+		for(Voznja voznja : voznja){
+			if(voznja.isObrisan()){
+				neobrisaneVoznje.add(voznja);
+			}
+		}
+		return neobrisaneVoznje;
 	}
 }

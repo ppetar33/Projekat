@@ -29,9 +29,9 @@ public class PrikazAutomobila extends JFrame {
     private void initGUI(){
         add(mainToolBar, BorderLayout.SOUTH);
         String[] zaglavlje = new String[]{"ID", "Model", "Proizvodjac", "Godina proizvodnje", "Broj registarske oznake", "Broj taksi vozila", "Vrsta automobila", "Status Automobila", "Pet Friendly"};
-        Object[][] sadrzaj = new Object[ucitavanje.getAutomobili().size()][zaglavlje.length];
-        for (int i = 0; i < ucitavanje.getAutomobili().size(); i ++){
-            Automobil automobil = ucitavanje.getAutomobili().get(i);
+        Object[][] sadrzaj = new Object[ucitavanje.neobrisaniAutomobili().size()][zaglavlje.length];
+        for (int i = 0; i < ucitavanje.neobrisaniAutomobili().size(); i ++){
+            Automobil automobil = ucitavanje.neobrisaniAutomobili().get(i);
             if (automobil.isObrisan()){
                 sadrzaj[i][0] = automobil.getId();
                 sadrzaj[i][1] = automobil.getModel();

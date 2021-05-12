@@ -1,15 +1,11 @@
 package dispecer.podaciTaksiSluzbe;
 
-import dispecer.podaciVozaca.ProzorZaIzmenuVozaca;
 import liste.Liste;
 import net.miginfocom.swing.MigLayout;
 import taksiSluzba.TaksiSluzba;
-import vozac.AukcijeVoznje;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.PrivateKey;
 
 public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
     //ID
@@ -164,5 +160,3 @@ public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
 
 
 }
-
-

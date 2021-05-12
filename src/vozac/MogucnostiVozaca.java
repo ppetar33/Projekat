@@ -1,6 +1,5 @@
 package vozac;
 
-import dispecer.podaciTaksiSluzbe.PrikazPodatakaTaksiSluzbe;
 import loginProzor.LoginProzor;
 import osobe.Vozac;
 import liste.Liste;

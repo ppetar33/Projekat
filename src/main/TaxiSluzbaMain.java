@@ -2,13 +2,7 @@ package main;
 
 import loginProzor.LoginProzor;
 import liste.Liste;
-
-/*
-
-    Na sta se misli CRUD za dispecere i musterije
-    izmena taksi sluzbe?
-
-*/
+import taksiSluzba.TaksiSluzba;
 
 public class TaxiSluzbaMain {
 
@@ -22,9 +16,9 @@ public class TaxiSluzbaMain {
         Liste ucitavanje = new Liste();
 
         ucitavanje.ucitajAutomobila(AUTOMOBILI_FAJL);
+        ucitavanje.ucitajTaksiSluzbe(TAKSI_SLUZBA_FAJL);
         ucitavanje.ucitajKorisnike(KORISNICI_FAJL);
         ucitavanje.ucitavanjeVoznji(VOZNJE_FAJL);
-        ucitavanje.ucitajTaksiSluzbe(TAKSI_SLUZBA_FAJL);
 
         LoginProzor lp = new LoginProzor(ucitavanje);
         lp.setVisible(true);
@@ -110,6 +104,12 @@ public class TaxiSluzbaMain {
         5. Napraviti svoje strukture podataka (liste i mape)
         6. Omogućiti sortiranje svih tabelarnih prikaza u aplikaciji.
         7. Podatke treba čuvati sortirano po ključu
+
+
+        Za KT2 (OOP):
+            1. CRUD za dispecera i musteriju
+            2. izmeniti izmenuTaxiSluzbe
+            3. Zavrsiti narucivanje voznje putem telefona
 
 
 */

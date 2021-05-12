@@ -1,4 +1,4 @@
-package dispecer;
+package dispecer.podaciVoznjePrekoAplikacije;
 
 import automobili.Voznja;
 import enumi.StatusVoznje;
@@ -29,13 +29,14 @@ public class PrikazVoznjiPutemAplikacije extends JFrame {
     }
 
     private void initGui(){
+        add(mainJtoolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
-        Object[][] sadrzaj = new Object[ucitavanje.getVoznja().size()][zaglavnje.length];
-        for(int i = 0; i < ucitavanje.getVoznja().size(); i++){
-            Voznja voznje = ucitavanje.getVoznja().get(i);
+        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznje().size()][zaglavnje.length];
+        for(int i = 0; i < ucitavanje.neobrisaneVoznje().size(); i++){
+            Voznja voznje = ucitavanje.neobrisaneVoznje().get(i);
             if(voznje.getStatusVoznje() == StatusVoznje.KREIRANA_NA_CEKANJU){
                 sadrzaj[i][0] = voznje.getId();
-                sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
+                sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
                 sadrzaj[i][2] = voznje.getAdresaPolaska();
                 sadrzaj[i][3] = voznje.getAdresaDestinacije();
                 sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);

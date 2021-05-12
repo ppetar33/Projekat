@@ -29,9 +29,9 @@ public class PrikazVozaca extends JFrame {
     private void initGUI(){
         add(mainToolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"Korisnicko ime", "Ime", "Prezime", "Adresa", "Pol", "Broj telefona", "Plata", "Broj clanske karte", "Automobil"};
-        Object[][] sadrzaj = new Object[ucitavanje.getVozaci().size()][zaglavnje.length];
-        for (int i = 0; i < ucitavanje.getVozaci().size(); i++) {
-            Vozac vozac = ucitavanje.getVozaci().get(i);
+        Object[][] sadrzaj = new Object[ucitavanje.neobrisaniVozaci().size()][zaglavnje.length];
+        for (int i = 0; i < ucitavanje.neobrisaniVozaci().size(); i++) {
+            Vozac vozac = ucitavanje.neobrisaniVozaci().get(i);
             if(vozac.isObrisan()) {
                 sadrzaj[i][0] = vozac.getKorisnickoIme();
                 sadrzaj[i][1] = vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1);

@@ -17,6 +17,7 @@ public abstract class Voznja {
     protected double brojKMpredjenih;
     protected double trajanjVoznje;
     protected StatusVoznje statusVoznje;
+    protected boolean obrisan;
 
     public Voznja(){
         this.id = 0;
@@ -28,9 +29,10 @@ public abstract class Voznja {
         this.brojKMpredjenih = 0;
         this.trajanjVoznje = 0;
         this.statusVoznje = null;
+        this.obrisan = true;
     }
 
-    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje) {
+    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje,boolean obrisan) {
         this.id = id;
         this.datumIvremePorudzbine = datumIvremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -40,6 +42,7 @@ public abstract class Voznja {
         this.brojKMpredjenih = brojKMpredjenih;
         this.trajanjVoznje = trajanjVoznje;
         this.statusVoznje = statusVoznje;
+        this.obrisan = obrisan;
     }
 
     public int getId() {
@@ -114,6 +117,14 @@ public abstract class Voznja {
         this.statusVoznje = statusVoznje;
     }
 
+    public boolean isObrisan() {
+        return obrisan;
+    }
+
+    public void setObrisan(boolean obrisan) {
+        this.obrisan = obrisan;
+    }
+
     @Override
     public String toString() {
         return "Voznja{" +
@@ -126,6 +137,7 @@ public abstract class Voznja {
                 ", brojKMpredjenih=" + brojKMpredjenih +
                 ", trajanjVoznje=" + trajanjVoznje +
                 ", statusVoznje=" + statusVoznje +
+                ", obrisan=" + obrisan +
                 '}';
     }
 

@@ -1,4 +1,4 @@
-package dispecer;
+package dispecer.pretragaAutomobila;
 
 public class PretragaAutomobila {
     /*
