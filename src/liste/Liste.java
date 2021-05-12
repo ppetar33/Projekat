@@ -224,7 +224,7 @@ public class Liste {
 					String napomena = podaci[9];
 					String obrisanString = podaci[10];
 					boolean obrisan = Boolean.parseBoolean(obrisanString);
-					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,napomena);
+					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan);
 					voznja.add(narucivanjeVoznjePrekoAplikacije);
 				}
 

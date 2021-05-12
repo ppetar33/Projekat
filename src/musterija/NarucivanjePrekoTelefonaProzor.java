@@ -1,21 +1,22 @@
 package musterija;
 
 import automobili.Voznja;
+import enumi.StatusVoznje;
 import liste.Liste;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class NarucivanjePrekoTelefonaProzor extends JFrame {
-        //Adresa polaska
+    //Adresa polaska
     private JLabel adresaPolaska = new JLabel("Adresa polaska");
     private JTextField tadresaPolaska = new JTextField(20);
     //Adresa dolaska
@@ -26,7 +27,7 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
     private JButton odustani = new JButton("Odustani");
 
     private Liste ucitavanje;
-    private Voznja voznja;
+    private NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona;
     private Musterija musterija;
 
     public NarucivanjePrekoTelefonaProzor(Liste ucitavanje,Musterija musterija){
@@ -61,10 +62,12 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                 if(validacija() == true){
 
                     int id = ucitavanje.generisiNoviIdZaVoznje();
-                    LocalDateTime trenutnoVreme = LocalDateTime.now();
-
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime date = LocalDateTime.now(); // izvestajDispecera proveriti localDateTime.now
+                    LocalDateTime trenutnoVreme = LocalDateTime.parse(date,formatter);
                     String adresaPolaska = tadresaPolaska.getText().trim();
                     String adresaDolaska = tadresaDolaska.getText().trim();
+
 
                     // URADITI:
                     //      VOZAC KOJI JE PREUZEO VOZNJU
@@ -74,11 +77,11 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                     int predjeniKilometri = 30; // uraditi predjene kilometre ovo je samo test
                     double trajanjeVoznje = predjeniKilometri * predjeniKilometriUminuti;
 
-                    if(voznja != null){
-                        voznja.setId(id);
-                        voznja.setDatumIvremePorudzbine(trenutnoVreme);
-                        voznja.setAdresaPolaska(adresaPolaska);
-                        voznja.setAdresaDestinacije(adresaDolaska);
+                    if(narucivanjeVoznjePrekoTelefona != null){
+                        narucivanjeVoznjePrekoTelefona.setId(id);
+                        narucivanjeVoznjePrekoTelefona.setDatumIvremePorudzbine(trenutnoVreme);
+                        narucivanjeVoznjePrekoTelefona.setAdresaPolaska(adresaPolaska);
+                        narucivanjeVoznjePrekoTelefona.setAdresaDestinacije(adresaDolaska);
                     }
                     Vozac vozac = new Vozac(); // PROBA
                     try {
@@ -88,8 +91,8 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-//                            Voznja voznja = new Voznja(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,trajanjeVoznje,StatusVoznje.KREIRANA);
-                            ucitavanje.getVoznja().add(voznja);
+                            NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new Voznja(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,trajanjeVoznje, StatusVoznje.KREIRANA,obrisan);
+                            ucitavanje.getVoznja().add(narucivanjeVoznjePrekoTelefona);
                         }
                         citanjeUlogovanogKorisnika.close();
                     }  catch (IOException ioException) {
