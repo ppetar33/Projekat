@@ -219,6 +219,7 @@ public class Liste {
 					boolean obrisan = Boolean.parseBoolean(obrisanString);
 					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan);
 					voznja.add(narucivanjeVoznjePrekoTelefona);
+
 				}else if(statusVoznje == StatusVoznje.KREIRANA_NA_CEKANJU){
 					String napomena = podaci[9];
 					String obrisanString = podaci[10];

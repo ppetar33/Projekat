@@ -57,8 +57,8 @@ public class MogucnostiMusterije extends JFrame{
         narucivanjeVoznjePrekoAplikacije.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Narucivanje voznji preko aplikacije","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                // todo class and import
+                ProzorZaNarucivanjePutemAplikacije prozorZaNarucivanjePutemAplikacije = new ProzorZaNarucivanjePutemAplikacije(ucitavanje, prijavljenaMusterija);
+                prozorZaNarucivanjePutemAplikacije.setVisible(true);
             }
         });
         narucivanjeVoznjePrekoTelefona.addActionListener(new ActionListener() {
