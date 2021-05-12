@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import automobili.Automobil;
 import enumi.*;
 import automobili.Voznja;
+import musterija.IstorijaVoznji;
 import musterija.NarucivanjeVoznjePrekoAplikacije;
 import musterija.NarucivanjeVoznjePrekoTelefona;
 import osobe.Dispecar;
@@ -377,7 +378,14 @@ public class Liste {
 		}
 		return null;
 	}
-
+	public Vozac nadjiVozacaKojiNemaAutomobil(){
+		for(Vozac vozac : vozaci){
+			if(vozac.getAutomobili().getId() == 0){
+				return vozac;
+			}
+		}
+		return null;
+	}
 	public Musterija nadjiMusteriju(String korisnickoIme){
 		for(Musterija musterija : musterije){
 			if(musterija.getKorisnickoIme().equals(korisnickoIme)){

@@ -4,6 +4,8 @@ import automobili.Automobil;
 import enumi.StatusAutomobila;
 import enumi.VrstaVozila;
 import liste.Liste;
+import osobe.Vozac;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -145,7 +147,7 @@ public class DodavanjeAutomobila extends JFrame {
 
         ne = new JRadioButton("Ne");
         ne.setFont(new Font("Arial", Font.PLAIN, 15));
-        ne.setSelected(false);
+        ne.setSelected(true);
         ne.setSize(70, 20);
         ne.setLocation(270, 250);
         c.add(ne);
@@ -179,7 +181,6 @@ public class DodavanjeAutomobila extends JFrame {
                     String unosBrojRegistarskeOznake = tbrojRegistarskeOznake.getText().trim();
                     int unosBrojTaksiVozila = Integer.parseInt(tbrojTaksiVozila.getText().trim());
 
-                    //ako je u vozacu 0 on nema automobil
                     automobil.setModel(unosModel);
                     automobil.setProizvodjac(unosProizvodjac);
                     automobil.setGodinaProizvodnje(unosGodinaProizvodnje);
@@ -200,6 +201,12 @@ public class DodavanjeAutomobila extends JFrame {
                     ArrayList<Automobil> automobili = ucitavanje.getAutomobili();
                     int id = generisiNoviId(automobili);
                     automobil.setId(id);
+                    Vozac vozacaKojiNemaAutomobil = ucitavanje.nadjiVozacaKojiNemaAutomobil();
+                    if(vozacaKojiNemaAutomobil != null){
+                        vozacaKojiNemaAutomobil.setAutomobili(automobil);
+                        automobil.setStatusAutomobila(StatusAutomobila.ZAUZET);
+                        ucitavanje.dodavanjeKorisnika();
+                    }
                     automobili.add(automobil);
                     ucitavanje.snimanjeAutomobila("automobil.txt");
                     JOptionPane.showMessageDialog(null, "Automobil je uspesno dodat!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
