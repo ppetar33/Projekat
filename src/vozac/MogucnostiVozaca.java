@@ -1,5 +1,6 @@
 package vozac;
 
+import dispecer.podaciTaksiSluzbe.PrikazPodatakaTaksiSluzbe;
 import loginProzor.LoginProzor;
 import osobe.Vozac;
 import liste.Liste;
@@ -12,7 +13,7 @@ public class MogucnostiVozaca extends JFrame {
     private JMenuBar vozacMenu = new JMenuBar();
 
     private JMenu funkcionalnostiVozaca = new JMenu("Voznje");
-    private JMenuItem prikazVoznje = new JMenuItem("Prikaz sopstvenih voznji");
+    private JMenuItem prikazIstorijeSopstvenihVoznjiVoznje = new JMenuItem("Prikaz istorije sopstvenih voznji");
     private JMenuItem prikazVoznjeZakazanihPrekoAplikacije = new JMenuItem("Prikaz voznji zakazanih preko aplikacije");
     private JMenuItem prikazDodeljenihVoznji = new JMenuItem("Prikaz dodeljenih voznji");
     private JMenuItem sumiraneStatistikeVoznji = new JMenuItem("Prikaz sumiraze statistike voznji");
@@ -40,7 +41,7 @@ public class MogucnostiVozaca extends JFrame {
         setJMenuBar(vozacMenu);
 
         vozacMenu.add(funkcionalnostiVozaca);
-        funkcionalnostiVozaca.add(prikazVoznje);
+        funkcionalnostiVozaca.add(prikazIstorijeSopstvenihVoznjiVoznje);
         funkcionalnostiVozaca.add(prikazVoznjeZakazanihPrekoAplikacije);
         funkcionalnostiVozaca.add(prikazDodeljenihVoznji);
         funkcionalnostiVozaca.add(sumiraneStatistikeVoznji);
@@ -52,10 +53,11 @@ public class MogucnostiVozaca extends JFrame {
     }
 
     private void initListeners(){
-        prikazVoznje.addActionListener(new ActionListener() {
+        prikazIstorijeSopstvenihVoznjiVoznje.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // todo
+                IstorijaVoznje prozorZaPrikazIstorijeVoznji = new IstorijaVoznje(ucitavanje, prijavljeniVozac);
+                prozorZaPrikazIstorijeVoznji.setVisible(true);
             }
         });
         prikazVoznjeZakazanihPrekoAplikacije.addActionListener(new ActionListener() {

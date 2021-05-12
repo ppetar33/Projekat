@@ -31,7 +31,7 @@ public class IstorijaVoznje extends JFrame {
         initGUI();
     }
 
-    private void initGUI() {
+    private void initGUI(){
         add(mainJToolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
         Object[][] sadrzaj = new Object[ucitavanje.getVoznja().size()][zaglavnje.length];
@@ -46,6 +46,7 @@ public class IstorijaVoznje extends JFrame {
                 sadrzaj[i][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[i][6] = voznje.getTrajanjVoznje();
                 sadrzaj[i][7] = voznje.getStatusVoznje();
+
             }
         }
         table_model = new DefaultTableModel(sadrzaj, zaglavnje);
