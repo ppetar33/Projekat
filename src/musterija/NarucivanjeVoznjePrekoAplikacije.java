@@ -17,7 +17,7 @@ public class NarucivanjeVoznjePrekoAplikacije extends Voznja {
         this.napomena = "";
     }
 
-    public NarucivanjeVoznjePrekoAplikacije(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, String napomena, boolean obrisan) {
+    public NarucivanjeVoznjePrekoAplikacije(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, String napomena) {
         super(id, datumIvremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojKMpredjenih, trajanjVoznje, statusVoznje, obrisan);
         this.napomena = napomena;
     }

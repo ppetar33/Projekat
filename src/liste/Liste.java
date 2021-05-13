@@ -222,6 +222,8 @@ public class Liste {
 				double brojKMpredjenih = Double.parseDouble(podaci[6]);
 				double trajanjVoznje = Double.parseDouble(podaci[7]);
 				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8].toUpperCase());
+				String obrisanString = podaci[10];
+				boolean obrisan = Boolean.parseBoolean(obrisanString);
 				Musterija musterija = new Musterija();
 				Vozac vozac = new Vozac();
 				for(Musterija musterija1 : musterije){
@@ -235,20 +237,15 @@ public class Liste {
 					}
 				}
 				if(statusVoznje == StatusVoznje.KREIRANA){
-					String obrisanString = podaci[9];
-					boolean obrisan = Boolean.parseBoolean(obrisanString);
-					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan);
+					String prazanString = podaci[9];
+					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,prazanString);
 					voznjaTelefoni.add(narucivanjeVoznjePrekoTelefona);
 
 				}else if(statusVoznje == StatusVoznje.KREIRANA_NA_CEKANJU){
 					String napomena = podaci[9];
-					String obrisanString = podaci[10];
-					boolean obrisan = Boolean.parseBoolean(obrisanString);
-					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan);
+					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,napomena);
 					voznjaAplikacije.add(narucivanjeVoznjePrekoAplikacije);
 				}else{
-					String obrisanString = podaci[9];
-					boolean obrisan = Boolean.parseBoolean(obrisanString);
 					OstaleVoznje ostaleVoznje = new OstaleVoznje(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan);
 					voznja.add(ostaleVoznje);
 				}
@@ -690,9 +687,27 @@ public class Liste {
 		}
 		return neobrisaniAutomobili;
 	}
-	public ArrayList<Voznja> neobrisaneVoznje(){
-		ArrayList<Voznja> neobrisaneVoznje = new ArrayList<Voznja>();
-		for(Voznja voznja : voznja){
+	public ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona(){
+		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			if(voznja.isObrisan()){
+				neobrisaneVoznje.add(voznja);
+			}
+		}
+		return neobrisaneVoznje;
+	}
+	public ArrayList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznjeKreiranePutemAplikacije(){
+		ArrayList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoAplikacije>();
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			if(voznja.isObrisan()){
+				neobrisaneVoznje.add(voznja);
+			}
+		}
+		return neobrisaneVoznje;
+	}
+	public ArrayList<OstaleVoznje> neobrisaneVoznje(){
+		ArrayList<OstaleVoznje> neobrisaneVoznje = new ArrayList<OstaleVoznje>();
+		for(OstaleVoznje voznja : voznja){
 			if(voznja.isObrisan()){
 				neobrisaneVoznje.add(voznja);
 			}

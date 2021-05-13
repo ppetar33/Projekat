@@ -4,6 +4,10 @@ import dispecer.podaciAutomobila.BrisanjeAutomobila;
 import dispecer.podaciAutomobila.DodavanjeAutomobila;
 import dispecer.podaciAutomobila.IzmenaAutomobila;
 import dispecer.podaciAutomobila.PrikazAutomobila;
+import dispecer.podaciDispeceraZaKT2.BrisanjeDispecera;
+import dispecer.podaciDispeceraZaKT2.DodavanjeDispecera;
+import dispecer.podaciDispeceraZaKT2.IzmenaDispecera;
+import dispecer.podaciDispeceraZaKT2.PrikazDispecera;
 import dispecer.podaciTaksiSluzbe.IzmenaPodatakaTaksiSluzbe;
 import dispecer.podaciTaksiSluzbe.PrikazPodatakaTaksiSluzbe;
 import dispecer.podaciVozaca.BrisanjeVozaca;
@@ -14,6 +18,7 @@ import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;
 import loginProzor.LoginProzor;
+import musterija.podaciMusterijeZaKT2.DodavanjeMusterija;
 import osobe.Dispecar;
 import osobe.Vozac;
 import liste.Liste;
@@ -244,8 +249,10 @@ public class MogucnostiDispecera extends JFrame {
 		poAutomobilu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PoAutomobilu poAutomobilu = new PoAutomobilu(ucitavanje,vozac);
-				poAutomobilu.setVisible(true);
+//				PoAutomobilu poAutomobilu = new PoAutomobilu(ucitavanje,vozac);
+//				poAutomobilu.setVisible(true);
+				DodavanjeDispecera prikazDispecera = new DodavanjeDispecera(ucitavanje,prijavljeniDispecar);
+				prikazDispecera.setVisible(true);
 			}
 		});
 		poPlati.addActionListener(new ActionListener() {

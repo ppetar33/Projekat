@@ -1,6 +1,7 @@
 package vozac;
 
 import loginProzor.LoginProzor;
+import osobe.Musterija;
 import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
@@ -24,6 +25,7 @@ public class MogucnostiVozaca extends JFrame {
 
     private Liste ucitavanje;
     private Vozac prijavljeniVozac;
+    private Musterija musterija;
 
     public MogucnostiVozaca(Liste ucitavanje, Vozac prijavljeniVozac){
         this.ucitavanje = ucitavanje;
@@ -62,25 +64,21 @@ public class MogucnostiVozaca extends JFrame {
         prikazVoznjeZakazanihPrekoAplikacije.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // todo
             }
         });
         prikazDodeljenihVoznji.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // todo
             }
         });
         sumiraneStatistikeVoznji.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // todo
             }
         });
         aukcijeVoznje.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // todo
             }
         });
         potvrdaZaOdjavu.addActionListener(new ActionListener() {

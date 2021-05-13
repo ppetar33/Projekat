@@ -31,9 +31,9 @@ public class PrikazVoznjiPutemAplikacije extends JFrame {
     private void initGui(){
         add(mainJtoolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
-        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznje().size()][zaglavnje.length];
-        for(int i = 0; i < ucitavanje.neobrisaneVoznje().size(); i++){
-            Voznja voznje = ucitavanje.neobrisaneVoznje().get(i);
+        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size()][zaglavnje.length];
+        for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size(); i++){
+            Voznja voznje = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().get(i);
             if(voznje.getStatusVoznje() == StatusVoznje.KREIRANA_NA_CEKANJU){
                 sadrzaj[i][0] = voznje.getId();
                 sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));

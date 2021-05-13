@@ -1,6 +1,8 @@
 package musterija;
 
 import loginProzor.LoginProzor;
+import musterija.podaciMusterijeZaKT2.PrikazMusterija;
+import osobe.Dispecar;
 import osobe.Musterija;
 import liste.Liste;
 
@@ -23,6 +25,7 @@ public class MogucnostiMusterije extends JFrame{
 
     private Liste ucitavanje;
     private Musterija prijavljenaMusterija;
+    private Dispecar dispecar;
 
     public MogucnostiMusterije(Liste ucitavanje, Musterija prijavljenaMusterija){
         this.ucitavanje = ucitavanje;
@@ -50,8 +53,6 @@ public class MogucnostiMusterije extends JFrame{
         istorijaVoznji.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Istorija voznji","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                // todo class and import
             }
         });
         narucivanjeVoznjePrekoAplikacije.addActionListener(new ActionListener() {
