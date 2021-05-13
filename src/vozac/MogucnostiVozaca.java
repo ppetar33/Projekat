@@ -57,13 +57,15 @@ public class MogucnostiVozaca extends JFrame {
         prikazIstorijeSopstvenihVoznjiVoznje.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IstorijaVoznje prozorZaPrikazIstorijeVoznji = new IstorijaVoznje(ucitavanje, prijavljeniVozac);
+                IstorijaVoznjeVozac prozorZaPrikazIstorijeVoznji = new IstorijaVoznjeVozac(ucitavanje, prijavljeniVozac);
                 prozorZaPrikazIstorijeVoznji.setVisible(true);
             }
         });
         prikazVoznjeZakazanihPrekoAplikacije.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                PrikazVoznjiZakazanihPrekoAplikacije prikazVoznjiZakazanihPrekoAplikacije = new PrikazVoznjiZakazanihPrekoAplikacije(ucitavanje, prijavljeniVozac);
+                prikazVoznjiZakazanihPrekoAplikacije.setVisible(true);
             }
         });
         prikazDodeljenihVoznji.addActionListener(new ActionListener() {

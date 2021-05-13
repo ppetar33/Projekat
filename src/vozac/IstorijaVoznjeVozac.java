@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class IstorijaVoznje extends JFrame {
+public class IstorijaVoznjeVozac extends JFrame {
 
     private JToolBar mainJToolBar = new JToolBar();
 
@@ -21,11 +21,11 @@ public class IstorijaVoznje extends JFrame {
     private JTable istorijaVoznjeTabela;
 
     private Liste ucitavanje;
-    private Vozac prijavljaniVozac;
+    private Vozac ulogovaniVozac;
 
-    public IstorijaVoznje(Liste ucitavanje, Vozac prijavljaniVozac){
+    public IstorijaVoznjeVozac(Liste ucitavanje, Vozac ulogovaniVozac){
         this.ucitavanje = ucitavanje;
-        this.prijavljaniVozac = prijavljaniVozac;
+        this.ulogovaniVozac = ulogovaniVozac;
         setTitle("Prikaz istorije sopstvene voznje");
         setSize(1050,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -38,15 +38,17 @@ public class IstorijaVoznje extends JFrame {
         add(mainJToolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Broj predjenih km","Trajanje voznje","Status voznje"};
         Object[][] sadrzaj = new Object[ucitavanje.getVoznja().size()][zaglavnje.length];
+        int j = 0;
         for(int i = 0; i < ucitavanje.getVoznja().size(); i++){
             Voznja voznje = ucitavanje.getVoznja().get(i);
 
+            Vozac ulogovaniVozac = null;
             try {
                 File ulogovanVozac = new File("src/fajlovi/ulogovanKorisnik.txt");
                 Scanner citanjeUlogovanogVozaca = new Scanner(ulogovanVozac);
                 while (citanjeUlogovanogVozaca.hasNextLine()) {
                     String data = citanjeUlogovanogVozaca.nextLine();
-                    Vozac ulogovaniVozac = new Vozac();
+                    ulogovaniVozac = new Vozac();
                     ulogovaniVozac.setKorisnickoIme(data);
                 }
                 citanjeUlogovanogVozaca.close();
@@ -55,15 +57,17 @@ public class IstorijaVoznje extends JFrame {
                 System.out.println("Greska");
             }
 
-            if(voznje.getStatusVoznje() == StatusVoznje.PRIHVACENA){ // putem telefona
-                sadrzaj[i][0] = voznje.getId();
-                sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
-                sadrzaj[i][2] = voznje.getAdresaPolaska();
-                sadrzaj[i][3] = voznje.getAdresaDestinacije();
-                sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-                sadrzaj[i][5] = voznje.getBrojKMpredjenih();
-                sadrzaj[i][6] = voznje.getTrajanjVoznje();
-                sadrzaj[i][7] = voznje.getStatusVoznje();
+            //TODO: DA PRIKAZUJE SAMO VOZNJE OD PRIJAVLJENOG VOZACA
+            if(voznje.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) && voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
+                sadrzaj[j][0] = voznje.getId();
+                sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
+                sadrzaj[j][2] = voznje.getAdresaPolaska();
+                sadrzaj[j][3] = voznje.getAdresaDestinacije();
+                sadrzaj[j][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
+                sadrzaj[j][5] = voznje.getBrojKMpredjenih();
+                sadrzaj[j][6] = voznje.getTrajanjVoznje();
+                sadrzaj[j][7] = voznje.getStatusVoznje();
+                j++;
             }
         }
         table_model = new DefaultTableModel(sadrzaj, zaglavnje);

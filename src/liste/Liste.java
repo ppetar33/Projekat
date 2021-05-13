@@ -221,7 +221,20 @@ public class Liste {
 				String adresaDestinacije = podaci[3];
 				double brojKMpredjenih = Double.parseDouble(podaci[6]);
 				double trajanjVoznje = Double.parseDouble(podaci[7]);
-				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8].toUpperCase());
+				StatusVoznje statusVoznje;
+				if (podaci[8].toUpperCase().equals("KREIRANA")){
+					statusVoznje = StatusVoznje.KREIRANA;
+				} else if(podaci[8].toUpperCase().equals("ZAVRSENA")){
+					statusVoznje = StatusVoznje.ZAVRSENA;
+				} else if(podaci[8].toUpperCase().equals("ODBIJENA")){
+					statusVoznje = StatusVoznje.ODBIJENA;
+				} else if(podaci[8].toUpperCase().equals("DODELJENA")){
+					statusVoznje = StatusVoznje.DODELJENA;
+				} else if(podaci[8].toUpperCase().equals("KREIRANA_NA_CEKANJU")){
+					statusVoznje = StatusVoznje.KREIRANA_NA_CEKANJU;
+				} else{
+					statusVoznje = StatusVoznje.PRIHVACENA;
+				}
 				String obrisanString = podaci[10];
 				boolean obrisan = Boolean.parseBoolean(obrisanString);
 				Musterija musterija = new Musterija();
@@ -236,12 +249,12 @@ public class Liste {
 						vozac = vozac1;
 					}
 				}
-				if(statusVoznje == StatusVoznje.KREIRANA){
+				if(statusVoznje.equals(StatusVoznje.KREIRANA)){
 					String prazanString = podaci[9];
 					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,prazanString);
 					voznjaTelefoni.add(narucivanjeVoznjePrekoTelefona);
 
-				}else if(statusVoznje == StatusVoznje.KREIRANA_NA_CEKANJU){
+				}else if(statusVoznje.equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
 					String napomena = podaci[9];
 					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,napomena);
 					voznjaAplikacije.add(narucivanjeVoznjePrekoAplikacije);

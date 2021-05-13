@@ -53,6 +53,8 @@ public class MogucnostiMusterije extends JFrame{
         istorijaVoznji.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                IstorijaVoznjiMusterija istorijaVoznjiMusterija = new IstorijaVoznjiMusterija(ucitavanje, prijavljenaMusterija);
+                istorijaVoznjiMusterija.setVisible(true);
             }
         });
         narucivanjeVoznjePrekoAplikacije.addActionListener(new ActionListener() {
