@@ -53,5 +53,4 @@ public class IzmenaPodatakaTaksiSluzbe extends PrikazPodatakaTaksiSluzbe{
         });
     }
 
-
 }

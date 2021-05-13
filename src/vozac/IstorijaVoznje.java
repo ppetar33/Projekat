@@ -34,30 +34,27 @@ public class IstorijaVoznje extends JFrame {
         initGUI();
     }
 
-//    Vozac vozac = new Vozac(); // PROBA
-//    try {
-//        File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
-//        Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
-//        while (citanjeUlogovanogKorisnika.hasNextLine()) {
-//            String data = citanjeUlogovanogKorisnika.nextLine();
-//            Musterija ulogovanaMusterija = new Musterija();
-//            ulogovanaMusterija.setKorisnickoIme(data);
-//            Voznja voznja = new Voznja(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,trajanjeVoznje,StatusVoznje.KREIRANA);
-//            ucitavanje.getVoznja().add(voznja);
-//        }
-//        citanjeUlogovanogKorisnika.close();
-//    }  catch (
-//    IOException ioException) {
-//        ioException.printStackTrace();
-//        System.out.println("Greska");
-//    }
-
     private void initGUI(){
         add(mainJToolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Broj predjenih km","Trajanje voznje","Status voznje"};
         Object[][] sadrzaj = new Object[ucitavanje.getVoznja().size()][zaglavnje.length];
         for(int i = 0; i < ucitavanje.getVoznja().size(); i++){
             Voznja voznje = ucitavanje.getVoznja().get(i);
+
+            try {
+                File ulogovanVozac = new File("src/fajlovi/ulogovanKorisnik.txt");
+                Scanner citanjeUlogovanogVozaca = new Scanner(ulogovanVozac);
+                while (citanjeUlogovanogVozaca.hasNextLine()) {
+                    String data = citanjeUlogovanogVozaca.nextLine();
+                    Vozac ulogovaniVozac = new Vozac();
+                    ulogovaniVozac.setKorisnickoIme(data);
+                }
+                citanjeUlogovanogVozaca.close();
+            }  catch (IOException ioException) {
+                ioException.printStackTrace();
+                System.out.println("Greska");
+            }
+
             if(voznje.getStatusVoznje() == StatusVoznje.PRIHVACENA){ // putem telefona
                 sadrzaj[i][0] = voznje.getId();
                 sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
