@@ -2,11 +2,8 @@ package vozac;
 
 import automobili.Voznja;
 import enumi.StatusNaruceneVoznje;
-import enumi.StatusVoznje;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoAplikacije;
 import osobe.Vozac;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -18,16 +15,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
-    /*
-        Prikaz svih vožnji zakazanih putem aplikacije kao i mogućnost da se “prihvati” ili “odbije”
-        određena vožnja. Prihvatanjem vožnje menja se status iz KREIRANA u PRIHVAĆENA, a odbijanjem
-        vožnje menja se status iz KREIRANA u ODBIJENA.
-    */
+
     private JToolBar mainJToolBar = new JToolBar();
-    private JButton btnPrihvati = new JButton();
-    private JButton btnOdbi = new JButton();
-
-
+    private JButton btnPrihvati = new JButton("Prihvati");
+    private JButton btnOdbi = new JButton("Odbij");
 
     private DefaultTableModel table_model;
     private JTable istorijaVoznjeTabela;
@@ -39,21 +30,20 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
     public PrikazVoznjiZakazanihPrekoAplikacije(Liste ucitavanje, Vozac ulogovaniVozac){
         this.ucitavanje = ucitavanje;
         this.ulogovaniVozac = ulogovaniVozac;
-        btnPrihvati.setText("Prihvati");
-        btnOdbi.setText("Odbi");
-        setTitle("Prikaz istorije sopstvene voznje");
+        mainJToolBar.add(btnPrihvati);
+        mainJToolBar.add(btnOdbi);
+        setTitle("Prikaz svih voznji zakazanih preko aplikacije");
         setSize(1050,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setResizable(false);
         setLocationRelativeTo(null);
         initGUI();
-//        initListeners();
+        initListeners();
     }
 
 
     private void initGUI(){
         add(mainJToolBar, BorderLayout.SOUTH);
-        String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena", "Prihvati", "Odbi"};
+        String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena"};
         Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size()][zaglavnje.length];
         int j = 0;
         for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size(); i++){
@@ -74,8 +64,6 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 System.out.println("Greska");
             }
 
-            System.out.println(voznje.getClass());
-
             if(voznje.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA) && voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
                 sadrzaj[j][0] = voznje.getId();
                 sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
@@ -86,11 +74,8 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();
                 sadrzaj[j][8] = voznje.getNapomena();
-                sadrzaj[j][9] = btnPrihvati;
-                sadrzaj[j][10] = btnOdbi;
                 j++;
             }
-
         }
 
         table_model = new DefaultTableModel(sadrzaj, zaglavnje);
@@ -107,20 +92,29 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
 
     }
 
-//    private void initListeners() {
-//        btnPrihvati.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                //iz kreirana u prihvacena
-//
-//            }
-//        });
-//        btnOdbi.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                //iz kreirana u odbijena
-//            }
-//        });
-//    }
+    private void initListeners() {
+        btnPrihvati.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = istorijaVoznjeTabela.getSelectedRow();
+                if (red == -1){
+                    JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE PRIHVATITI
+                }
+            }
+        });
+        btnOdbi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = istorijaVoznjeTabela.getSelectedRow();
+                if (red == -1){
+                    JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE ODBITI
+                }
+            }
+        });
+    }
 
 }

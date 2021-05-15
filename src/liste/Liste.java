@@ -471,9 +471,9 @@ public class Liste {
 		return null;
 	}
 
-	public Voznja nadjiVoznju(int id){
-		for(Voznja voznja : voznja){
-			if(voznja.getId() == id){
+	public NarucivanjeVoznjePrekoAplikacije nadjiVoznju(){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			if(voznja.getStatusVoznje() == StatusVoznje.KREIRANA_NA_CEKANJU && voznja.isObrisan()){
 				return voznja;
 			}
 		}
