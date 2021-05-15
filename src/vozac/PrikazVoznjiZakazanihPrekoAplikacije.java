@@ -54,10 +54,10 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
     private void initGUI(){
         add(mainJToolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena", "Prihvati", "Odbi"};
-        Object[][] sadrzaj = new Object[ucitavanje.getVoznja().size()][zaglavnje.length];
+        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size()][zaglavnje.length];
         int j = 0;
-        for(int i = 0; i < ucitavanje.getVoznja().size(); i++){
-            Voznja voznje = ucitavanje.getVoznja().get(i);
+        for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size(); i++){
+            Voznja voznje = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().get(i);
 
             Vozac ulogovaniVozac = null;
             try {
@@ -75,7 +75,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
             }
 
             System.out.println(voznje.getClass());
-            //NE RADI ZATO STO DOBIJAM SAMO OSTALE VOZNJE instanceof
+
             if(voznje.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA) && voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
                 sadrzaj[j][0] = voznje.getId();
                 sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
