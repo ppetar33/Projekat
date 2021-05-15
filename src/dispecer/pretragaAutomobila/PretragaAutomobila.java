@@ -2,9 +2,10 @@ package dispecer.pretragaAutomobila;
 
 import automobili.Automobil;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
-public class PretragaAutomobila {
+public class PretragaAutomobila extends JFrame {
     /*
     * Kombinovana pretraga svih automobila po modelu, proizvođaču, godini proizvodnje,
     * broju registarske oznake i broju taksi vozila;

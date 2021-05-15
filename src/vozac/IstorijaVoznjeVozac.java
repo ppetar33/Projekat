@@ -57,7 +57,6 @@ public class IstorijaVoznjeVozac extends JFrame {
                 System.out.println("Greska");
             }
 
-            //TODO: DA PRIKAZUJE SAMO VOZNJE OD PRIJAVLJENOG VOZACA
             if(voznje.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) && voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
                 sadrzaj[j][0] = voznje.getId();
                 sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));

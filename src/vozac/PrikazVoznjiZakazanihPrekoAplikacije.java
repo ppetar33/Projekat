@@ -9,6 +9,8 @@ import osobe.Vozac;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +23,10 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
         vožnje menja se status iz KREIRANA u ODBIJENA.
     */
     private JToolBar mainJToolBar = new JToolBar();
+    private JButton btnPrihvati = new JButton();
+    private JButton btnOdbi = new JButton();
+
+
 
     private DefaultTableModel table_model;
     private JTable istorijaVoznjeTabela;
@@ -32,17 +38,21 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
     public PrikazVoznjiZakazanihPrekoAplikacije(Liste ucitavanje, Vozac ulogovaniVozac){
         this.ucitavanje = ucitavanje;
         this.ulogovaniVozac = ulogovaniVozac;
+        btnPrihvati.setText("Prihvati");
+        btnOdbi.setText("Odbi");
         setTitle("Prikaz istorije sopstvene voznje");
         setSize(1050,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
         initGUI();
+//        initListeners();
     }
+
 
     private void initGUI(){
         add(mainJToolBar, BorderLayout.SOUTH);
-        String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena", "Prihbati", "Odbi"};
+        String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena", "Prihvati", "Odbi"};
         Object[][] sadrzaj = new Object[ucitavanje.getVoznja().size()][zaglavnje.length];
         int j = 0;
         for(int i = 0; i < ucitavanje.getVoznja().size(); i++){
@@ -64,8 +74,8 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
             }
 
             System.out.println(voznje.getClass());
-            //NE RADI ZATO STO DOBIJAM SAMO OSTALE VOZNJE
-            if(voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
+            //NE RADI ZATO STO DOBIJAM SAMO OSTALE VOZNJE instanceof
+            if(voznje.getStatusVoznje().equals(StatusVoznje.ODBIJENA) && voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
                 sadrzaj[j][0] = voznje.getId();
                 sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
                 sadrzaj[j][2] = voznje.getAdresaPolaska();
@@ -74,11 +84,14 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 sadrzaj[j][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();
-                sadrzaj[j][8] = "OK";
-                sadrzaj[j][9] = "OK";
+//                sadrzaj[j][8] = NAPOMENA
+                sadrzaj[j][9] = btnPrihvati;
+                sadrzaj[j][10] = btnOdbi;
                 j++;
             }
+
         }
+
         table_model = new DefaultTableModel(sadrzaj, zaglavnje);
         istorijaVoznjeTabela = new JTable(table_model);
 
@@ -90,5 +103,23 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
 
         JScrollPane jsp = new JScrollPane(istorijaVoznjeTabela);
         add(jsp, BorderLayout.CENTER);
+
     }
+
+//    private void initListeners() {
+//        btnPrihvati.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                //iz kreirana u prihvacena
+//
+//            }
+//        });
+//        btnOdbi.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                //iz kreirana u odbijena
+//            }
+//        });
+//    }
+
 }
