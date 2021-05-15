@@ -1,6 +1,7 @@
 package vozac;
 
 import automobili.Voznja;
+import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoAplikacije;
@@ -75,7 +76,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
 
             System.out.println(voznje.getClass());
             //NE RADI ZATO STO DOBIJAM SAMO OSTALE VOZNJE instanceof
-            if(voznje.getStatusVoznje().equals(StatusVoznje.ODBIJENA) && voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
+            if(voznje.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA) && voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
                 sadrzaj[j][0] = voznje.getId();
                 sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
                 sadrzaj[j][2] = voznje.getAdresaPolaska();
@@ -84,7 +85,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 sadrzaj[j][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();
-//                sadrzaj[j][8] = NAPOMENA
+                sadrzaj[j][8] = voznje.getNapomena();
                 sadrzaj[j][9] = btnPrihvati;
                 sadrzaj[j][10] = btnOdbi;
                 j++;

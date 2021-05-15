@@ -238,11 +238,12 @@ public class Liste {
 						vozac = vozac1;
 					}
 				}
-				if(statusVoznje.equals(StatusVoznje.KREIRANA)){
+
+				if(cimeJeNarucenaVoznja.equals(StatusNaruceneVoznje.TELEFON)){
 					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja);
 					voznjaTelefoni.add(narucivanjeVoznjePrekoTelefona);
 
-				}else if(statusVoznje.equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
+				}else if(cimeJeNarucenaVoznja.equals(StatusNaruceneVoznje.APLIKACIJA)){
 					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja);
 					voznjaAplikacije.add(narucivanjeVoznjePrekoAplikacije);
 				}else{

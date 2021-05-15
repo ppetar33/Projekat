@@ -5,7 +5,6 @@ import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import osobe.Musterija;
 import osobe.Vozac;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
