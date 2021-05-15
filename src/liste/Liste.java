@@ -222,23 +222,10 @@ public class Liste {
 				double brojKMpredjenih = Double.parseDouble(podaci[6]);
 				double trajanjVoznje = Double.parseDouble(podaci[7]);
 				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8]);
-//				StatusVoznje statusVoznje;
-//				if (podaci[8].equalsIgnoreCase("KREIRANA")){
-//					statusVoznje = StatusVoznje.KREIRANA;
-//				} else if(podaci[8].equalsIgnoreCase("ZAVRSENA")){
-//					statusVoznje = StatusVoznje.ZAVRSENA;
-//				} else if(podaci[8].equalsIgnoreCase("ODBIJENA")){
-//					statusVoznje = StatusVoznje.ODBIJENA;
-//				} else if(podaci[8].equalsIgnoreCase("DODELJENA")){
-//					statusVoznje = StatusVoznje.DODELJENA;
-//				} else if(podaci[8].equalsIgnoreCase("KREIRANA_NA_CEKANJU")){
-//					statusVoznje = StatusVoznje.KREIRANA_NA_CEKANJU;
-//				} else{
-//					statusVoznje = StatusVoznje.PRIHVACENA;
-//				}
 				String napomena = podaci[9];
 				String obrisanString = podaci[10];
 				boolean obrisan = Boolean.parseBoolean(obrisanString);
+				StatusNaruceneVoznje cimeJeNarucenaVoznja = StatusNaruceneVoznje.valueOf(podaci[11]);
 				Musterija musterija = new Musterija();
 				Vozac vozac = new Vozac();
 				for(Musterija musterija1 : musterije){
@@ -252,14 +239,14 @@ public class Liste {
 					}
 				}
 				if(statusVoznje.equals(StatusVoznje.KREIRANA)){
-					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan);
+					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja);
 					voznjaTelefoni.add(narucivanjeVoznjePrekoTelefona);
 
 				}else if(statusVoznje.equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
-					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan);
+					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja);
 					voznjaAplikacije.add(narucivanjeVoznjePrekoAplikacije);
 				}else{
-					OstaleVoznje ostaleVoznje = new OstaleVoznje(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan);
+					OstaleVoznje ostaleVoznje = new OstaleVoznje(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja);
 					voznja.add(ostaleVoznje);
 				}
 

@@ -1,7 +1,7 @@
 package dispecer.podaciVoznjePrekoAplikacije;
 
 import automobili.Voznja;
-import enumi.StatusVoznje;
+import enumi.StatusNaruceneVoznje;
 import liste.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -34,7 +34,7 @@ public class PrikazVoznjiPutemAplikacije extends JFrame {
         Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size()][zaglavnje.length];
         for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size(); i++){
             Voznja voznje = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().get(i);
-            if(voznje.getStatusVoznje() == StatusVoznje.KREIRANA_NA_CEKANJU){
+            if(voznje.getStatusNaruceneVoznje() == StatusNaruceneVoznje.APLIKACIJA){
                 sadrzaj[i][0] = voznje.getId();
                 sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
                 sadrzaj[i][2] = voznje.getAdresaPolaska();

@@ -1,5 +1,6 @@
 package automobili;
 
+import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -17,7 +18,9 @@ public abstract class Voznja {
     protected double brojKMpredjenih;
     protected double trajanjVoznje;
     protected StatusVoznje statusVoznje;
+    protected String napomena;
     protected boolean obrisan;
+    protected StatusNaruceneVoznje statusNaruceneVoznje;
 
     public Voznja(){
         this.id = 0;
@@ -29,10 +32,12 @@ public abstract class Voznja {
         this.brojKMpredjenih = 0;
         this.trajanjVoznje = 0;
         this.statusVoznje = null;
+        this.napomena = "";
         this.obrisan = true;
+        this.statusNaruceneVoznje = null;
     }
 
-    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje,boolean obrisan) {
+    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, String napomena, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje) {
         this.id = id;
         this.datumIvremePorudzbine = datumIvremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -42,7 +47,9 @@ public abstract class Voznja {
         this.brojKMpredjenih = brojKMpredjenih;
         this.trajanjVoznje = trajanjVoznje;
         this.statusVoznje = statusVoznje;
+        this.napomena = napomena;
         this.obrisan = obrisan;
+        this.statusNaruceneVoznje = statusNaruceneVoznje;
     }
 
     public int getId() {
@@ -125,6 +132,22 @@ public abstract class Voznja {
         this.obrisan = obrisan;
     }
 
+    public String getNapomena() {
+        return napomena;
+    }
+
+    public void setNapomena(String napomena) {
+        this.napomena = napomena;
+    }
+
+    public StatusNaruceneVoznje getStatusNaruceneVoznje() {
+        return statusNaruceneVoznje;
+    }
+
+    public void setStatusNaruceneVoznje(StatusNaruceneVoznje statusNaruceneVoznje) {
+        this.statusNaruceneVoznje = statusNaruceneVoznje;
+    }
+
     @Override
     public String toString() {
         return "Voznja{" +
@@ -137,8 +160,9 @@ public abstract class Voznja {
                 ", brojKMpredjenih=" + brojKMpredjenih +
                 ", trajanjVoznje=" + trajanjVoznje +
                 ", statusVoznje=" + statusVoznje +
+                ", napomena='" + napomena + '\'' +
                 ", obrisan=" + obrisan +
+                ", statusNaruceneVoznje=" + statusNaruceneVoznje +
                 '}';
     }
-
 }

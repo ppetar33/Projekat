@@ -1,6 +1,7 @@
 package musterija;
 
 import automobili.Voznja;
+import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -9,35 +10,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class NarucivanjeVoznjePrekoAplikacije extends Voznja {
-    //Za sve porudžbine preko aplikacije potrebno je evidentirati tekstualnu napomenu koju unose korisnici.
-    // Kada se kreira ova vožnja njen inicijalni status je KREIRANA-NA ČEKANJU.
-    private String napomena;
 
-    public NarucivanjeVoznjePrekoAplikacije(){
-        this.napomena = "";
-    }
-
-    public NarucivanjeVoznjePrekoAplikacije(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, String napomena,boolean obrisan) {
-        super(id, datumIvremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojKMpredjenih, trajanjVoznje, statusVoznje, obrisan);
-        this.napomena = napomena;
-    }
-
-    public String getNapomena() {
-        return napomena;
-    }
-
-    public void setNapomena(String napomena) {
-        this.napomena = napomena;
+    public NarucivanjeVoznjePrekoAplikacije(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, String napomena, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje) {
+        super(id, datumIvremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojKMpredjenih, trajanjVoznje, statusVoznje, napomena, obrisan, statusNaruceneVoznje);
     }
 
     @Override
     public String toString() {
-        return "NarucivanjeVoznjePrekoAplikacije{" +
-                "napomena='" + napomena + '\'' +
-                "} " + super.toString();
+        return "NarucivanjeVoznjePrekoAplikacije{} " + super.toString();
     }
 
     public String pripremiZaSnimanjePrekoAplikacije() {
-        return id + "," + datumIvremePorudzbine.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija.getKorisnickoIme() + "," + vozac.getKorisnickoIme() + "," + brojKMpredjenih + "," + trajanjVoznje + "," + statusVoznje + "," + napomena + "," + obrisan + "\n";
+        return id + "," + datumIvremePorudzbine.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija.getKorisnickoIme() + "," + vozac.getKorisnickoIme() + "," + brojKMpredjenih + "," + trajanjVoznje + "," + statusVoznje + "," + napomena + "," + obrisan + "," + statusNaruceneVoznje + "\n";
     }
 }

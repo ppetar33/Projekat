@@ -1,6 +1,7 @@
 package musterija;
 
 import automobili.Voznja;
+import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import liste.Liste;
 import net.miginfocom.swing.MigLayout;
@@ -94,7 +95,7 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-                            NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,trenutnoVreme,adresaPolaska,adresaDestinacije,ulogovanaMusterija,vozac,12,trajanjeVoznje, StatusVoznje.KREIRANA_NA_CEKANJU,napomena,true);
+                            NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,trenutnoVreme,adresaPolaska,adresaDestinacije,ulogovanaMusterija,vozac,12,trajanjeVoznje, StatusVoznje.KREIRANA_NA_CEKANJU,napomena,true, StatusNaruceneVoznje.APLIKACIJA);
                             ucitavanje.getVoznjaAplikacije().add(narucivanjeVoznjePrekoAplikacije);
 
                         }
