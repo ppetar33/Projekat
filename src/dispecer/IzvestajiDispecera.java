@@ -41,10 +41,11 @@ public class IzvestajiDispecera {
     }
 
     public void dnevniIzvestaj(Liste ucitavanje){
+        System.out.println("");
+        ukupanBrojAktivnihVozaca(ucitavanje);
         ukupanBrojVoznji(ucitavanje);
         ukupanBrojVoznjiAplikacija(ucitavanje);
         ukupanBrojVoznjiTelefon(ucitavanje);
-        ukupanBrojAktivnihVozaca(ucitavanje);
         prosecnoTrajanjeVoznje(ucitavanje);
         prosecanBrojPredjenihKm(ucitavanje);
         ukupnaZaradaZaSveVoznje(ucitavanje);
@@ -56,9 +57,9 @@ public class IzvestajiDispecera {
         String trenutniDatum = trenutniDatum();
         int uporediDatum = ucitavanje.uporediDatum(trenutniDatum);
         if (uporediDatum != 0){
-            System.out.println("Ukupan broj voznji: " + uporediDatum);
+            System.out.println("Za datum: " + trenutniDatum + ", ukupan broj voznji je: " + uporediDatum);
         }else{
-            System.out.println("Za datum: " + trenutniDatum + " nema voznji!");
+            System.out.println("Za datum: " + trenutniDatum + ", nema voznji!");
         }
 
     }
@@ -67,9 +68,9 @@ public class IzvestajiDispecera {
         String trenutniDatum = trenutniDatum();
         int uporediDatumIvoznjeAplikacijom = ucitavanje.uporediDatumIvoznjeAplikacijom(trenutniDatum);
         if (uporediDatumIvoznjeAplikacijom != 0){
-            System.out.println("Ukupan broj voznji kreiranih putem aplikacije: " + uporediDatumIvoznjeAplikacijom);
+            System.out.println("Za datum: " + trenutniDatum + ", ukupan broj voznji kreiranih putem aplikacije je: " + uporediDatumIvoznjeAplikacijom);
         }else{
-            System.out.println("Za datum: " + trenutniDatum + " nema voznji kreiranih putem aplikacije!");
+            System.out.println("Za datum: " + trenutniDatum + ", nema voznji kreiranih putem aplikacije!");
         }
 
     }
@@ -78,9 +79,9 @@ public class IzvestajiDispecera {
         String trenutniDatum = trenutniDatum();
         int uporediDatumIvoznjeTelefonom = ucitavanje.uporediDatumIvoznjeTelefonom(trenutniDatum);
         if (uporediDatumIvoznjeTelefonom != 0){
-            System.out.println("Ukupan broj voznji kreiranih putem telefona: " + uporediDatumIvoznjeTelefonom);
+            System.out.println("Za datum: " + trenutniDatum + ", ukupan broj voznji kreiranih putem telefona je: " + uporediDatumIvoznjeTelefonom);
         }else{
-            System.out.println("Za datum: " + trenutniDatum + " nema voznji kreiranih putem telefona!");
+            System.out.println("Za datum: " + trenutniDatum + ", nema voznji kreiranih putem telefona!");
         }
 
     }
@@ -99,9 +100,9 @@ public class IzvestajiDispecera {
         String trenutniDatum = trenutniDatum();
         double uporediDatumItrajanjeVoznje = ucitavanje.uporediDatumItrajanjeVoznje(trenutniDatum);
         if (uporediDatumItrajanjeVoznje != 0){
-            System.out.println("Prosecno trajanje voznji: " + uporediDatumItrajanjeVoznje + " min");
+            System.out.println("Za datum: " + trenutniDatum + ", prosecno trajanje voznji je: " + Math.round(uporediDatumItrajanjeVoznje) + " min");
         }else{
-            System.out.println("Za datum: " + trenutniDatum + " nema voznji!");
+            System.out.println("Za datum: " + trenutniDatum + ", nema voznji!");
         }
 
     }
@@ -110,9 +111,9 @@ public class IzvestajiDispecera {
         String trenutniDatum = trenutniDatum();
         double uporediDatumIkilometrazu = ucitavanje.uporediDatumIkilometrazu(trenutniDatum);
         if (uporediDatumIkilometrazu != 0){
-            System.out.println("Prosecna kilometraza je: " + uporediDatumIkilometrazu + " km");
+            System.out.println("Za datum: " + trenutniDatum + ", prosecna kilometraza je: " + Math.round(uporediDatumIkilometrazu) + " km");
         }else{
-            System.out.println("Za datum: " + trenutniDatum + " nema voznji!");
+            System.out.println("Za datum: " + trenutniDatum + ", nema voznji!");
         }
 
     }
@@ -121,9 +122,9 @@ public class IzvestajiDispecera {
         String trenutniDatum = trenutniDatum();
         double ukupnaZaradaZaSveVoznje = ucitavanje.ukupnaZaradaZaSveVoznje(trenutniDatum);
         if (ukupnaZaradaZaSveVoznje != 0){
-            System.out.println("Ukupna zarada za sve voznje je: " + ukupnaZaradaZaSveVoznje + " din");
+            System.out.println("Za datum: " + trenutniDatum + ", ukupna zarada za sve voznje je: " + ukupnaZaradaZaSveVoznje + " din");
         }else{
-            System.out.println("Za datum: " + trenutniDatum + " nema voznji!");
+            System.out.println("Za datum: " + trenutniDatum + ", nema voznji!");
         }
 
     }
@@ -132,9 +133,9 @@ public class IzvestajiDispecera {
         String trenutniDatum = trenutniDatum();
         double prosecnaZaradaPoVoznji = ucitavanje.prosecnaZaradaZaVoznje(trenutniDatum);
         if (prosecnaZaradaPoVoznji != 0){
-            System.out.println("Prosecna zarada po voznji je: " + prosecnaZaradaPoVoznji + " din");
+            System.out.println("Za datum: " + trenutniDatum + ", prosecna zarada po voznji je: " + prosecnaZaradaPoVoznji + " din");
         }else{
-            System.out.println("Za datum: " + trenutniDatum + " nema voznji!");
+            System.out.println("Za datum: " + trenutniDatum + ", nema voznji!");
         }
 
     }

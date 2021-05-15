@@ -11,34 +11,24 @@ import java.awt.event.ActionListener;
 
 public class ProzorZaIzmenuVozaca extends JFrame {
 
-    // korisnicko ime
     private JLabel korisnickoIme = new JLabel("Korisnicko ime");
     private JTextField tkorisnickoIme = new JTextField(20);
-    // lozinka
     private JLabel lozinka = new JLabel("Lozinka");
     private JPasswordField tlozinka = new JPasswordField(20);
-    // ime
     private JLabel ime = new JLabel("Ime");
     private JTextField time = new JTextField(20);
-    // prezime
     private JLabel prezime = new JLabel("Prezime");
     private JTextField tprezime = new JTextField(20);
-    // adresa
     private JLabel adresa = new JLabel("Adresa");
     private JTextField tadresa = new JTextField(20);
-    // pol
     private JLabel pol = new JLabel("Pol");
     private JComboBox<Pol> polJComboBox = new JComboBox<Pol>(Pol.values());
-    // brojTel
     private JLabel brojTelefona = new JLabel("Broj telefona");
     private JTextField tbrojTelefona = new JTextField(20);
-    // plata
     private JLabel plata = new JLabel("Plata");
     private JTextField tplata = new JTextField(20);
-
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
-
     private Liste ucitavanje;
     private Vozac vozac;
 

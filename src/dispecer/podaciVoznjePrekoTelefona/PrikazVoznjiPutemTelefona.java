@@ -35,7 +35,7 @@ public class PrikazVoznjiPutemTelefona extends JFrame {
         Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().size()][zaglavnje.length];
         for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().size(); i++){
             Voznja voznje = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().get(i);
-            if(voznje.getStatusVoznje() == StatusVoznje.KREIRANA){ // putem telefona
+            if(voznje.getStatusVoznje() == StatusVoznje.KREIRANA){
                 sadrzaj[i][0] = voznje.getId();
                 sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
                 sadrzaj[i][2] = voznje.getAdresaPolaska();

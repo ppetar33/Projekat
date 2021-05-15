@@ -9,15 +9,23 @@ import java.time.format.DateTimeFormatter;
 
 public class NarucivanjeVoznjePrekoTelefona extends Voznja{
 
-    private String prazanString;
+    private String napomena;
 
     public NarucivanjeVoznjePrekoTelefona(){
-        this.prazanString = "";
+        this.napomena = "";
     }
 
-    public NarucivanjeVoznjePrekoTelefona (int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, String prazanString) {
+    public NarucivanjeVoznjePrekoTelefona (int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, String napomena, boolean obrisan) {
         super(id, datumIvremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojKMpredjenih, trajanjVoznje, statusVoznje, obrisan);
-        this.prazanString = prazanString;
+        this.napomena = napomena;
+    }
+
+    public String getNapomena() {
+        return napomena;
+    }
+
+    public void setNapomena(String napomena) {
+        this.napomena = napomena;
     }
 
     @Override
@@ -27,7 +35,7 @@ public class NarucivanjeVoznjePrekoTelefona extends Voznja{
 
 
     public String pripremiZaSnimanje() {
-        return id + "," + datumIvremePorudzbine.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija.getKorisnickoIme() + "," + vozac.getKorisnickoIme() + "," + brojKMpredjenih + "," + trajanjVoznje + "," + statusVoznje + "," + prazanString + "," + obrisan + "\n";
+        return id + "," + datumIvremePorudzbine.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija.getKorisnickoIme() + "," + vozac.getKorisnickoIme() + "," + brojKMpredjenih + "," + trajanjVoznje + "," + statusVoznje + "," + napomena + "," + obrisan + "\n";
     }
 
 }

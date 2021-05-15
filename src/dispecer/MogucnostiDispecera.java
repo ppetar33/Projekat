@@ -4,10 +4,6 @@ import dispecer.podaciAutomobila.BrisanjeAutomobila;
 import dispecer.podaciAutomobila.DodavanjeAutomobila;
 import dispecer.podaciAutomobila.IzmenaAutomobila;
 import dispecer.podaciAutomobila.PrikazAutomobila;
-import dispecer.podaciDispeceraZaKT2.BrisanjeDispecera;
-import dispecer.podaciDispeceraZaKT2.DodavanjeDispecera;
-import dispecer.podaciDispeceraZaKT2.IzmenaDispecera;
-import dispecer.podaciDispeceraZaKT2.PrikazDispecera;
 import dispecer.podaciTaksiSluzbe.IzmenaPodatakaTaksiSluzbe;
 import dispecer.podaciTaksiSluzbe.PrikazPodatakaTaksiSluzbe;
 import dispecer.podaciVozaca.BrisanjeVozaca;
@@ -18,7 +14,7 @@ import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;
 import loginProzor.LoginProzor;
-import musterija.podaciMusterijeZaKT2.DodavanjeMusterija;
+import musterija.NarucivanjeVoznjePrekoTelefona;
 import osobe.Dispecar;
 import osobe.Vozac;
 import liste.Liste;
@@ -72,6 +68,9 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem mesecni = new JMenuItem("Mesecni");
 	private JMenuItem godisnji = new JMenuItem("Godisnji");
 
+	private JMenu funkcionalnostDodavanjeVoznji = new JMenu("Dodeljivanje voznji");
+	private JMenuItem dodeliVoznju = new JMenuItem("Dodeli voznji");
+
 	private JMenu odjava = new JMenu("Odjava");
 	private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
 	private JMenuItem odustaniZaOdjavu = new JMenuItem("Odustani");
@@ -80,13 +79,14 @@ public class MogucnostiDispecera extends JFrame {
 	private Dispecar prijavljeniDispecar;
 	private Vozac vozac;
 	private TaksiSluzba taksiSluzba;
+	private NarucivanjeVoznjePrekoTelefona voznja;
 
 	public MogucnostiDispecera(Liste ucitavanje, Dispecar prijavljeniDispecar){
 		this.ucitavanje = ucitavanje;
 		this.prijavljeniDispecar = prijavljeniDispecar;
 		setTitle("Dobrodosli " + prijavljeniDispecar.getIme().substring(0, 1).toUpperCase() + prijavljeniDispecar.getIme().substring(1) + " (Dispecer)");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(790, 300);
+		setSize(920, 300);
 		initGUI();
 		initListeners();
 		setLocationRelativeTo(null);
@@ -134,6 +134,9 @@ public class MogucnostiDispecera extends JFrame {
 		funkcionalnostIzvestaj.add(nedeljni);
 		funkcionalnostIzvestaj.add(mesecni);
 		funkcionalnostIzvestaj.add(godisnji);
+
+		dispecerMenu.add(funkcionalnostDodavanjeVoznji);
+		funkcionalnostDodavanjeVoznji.add(dodeliVoznju);
 
 		dispecerMenu.add(odjava);
 		odjava.add(potvrdaZaOdjavu);
@@ -191,7 +194,6 @@ public class MogucnostiDispecera extends JFrame {
 				prozorZaDodavanjeAutomobila.setVisible(true);
 			}
 		});
-		// PRIKAZ AUTOMOBILA
 		prikazAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -199,7 +201,6 @@ public class MogucnostiDispecera extends JFrame {
 				prozorZaPrikazAutomobila.setVisible(true);
 			}
 		});
-		//BRISANJE AUTOMOBILA
 		brisanjeAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -207,7 +208,6 @@ public class MogucnostiDispecera extends JFrame {
 				prozorZaBrisanjeAutomobila.setVisible(true);
 			}
 		});
-		//IZMENA AUTOMOBILA
 		izmenaAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -249,10 +249,8 @@ public class MogucnostiDispecera extends JFrame {
 		poAutomobilu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				PoAutomobilu poAutomobilu = new PoAutomobilu(ucitavanje,vozac);
-//				poAutomobilu.setVisible(true);
-				DodavanjeDispecera prikazDispecera = new DodavanjeDispecera(ucitavanje,prijavljeniDispecar);
-				prikazDispecera.setVisible(true);
+				PoAutomobilu poAutomobilu = new PoAutomobilu(ucitavanje,vozac);
+				poAutomobilu.setVisible(true);
 			}
 		});
 		poPlati.addActionListener(new ActionListener() {
@@ -280,6 +278,15 @@ public class MogucnostiDispecera extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				IzvestajiDispecera izvestajiDispecera = new IzvestajiDispecera();
 				izvestajiDispecera.dnevniIzvestaj(ucitavanje);
+			}
+		});
+
+		// DODELI VOZNJU
+		dodeliVoznju.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ProzorZaDodeljivanjeVoznji dodeljivanjeVoznji = new ProzorZaDodeljivanjeVoznji(ucitavanje,voznja);
+				dodeljivanjeVoznji.setVisible(true);
 			}
 		});
 

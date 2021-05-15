@@ -94,7 +94,7 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-                            NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,trenutnoVreme,adresaPolaska,adresaDestinacije,ulogovanaMusterija,vozac,12,trajanjeVoznje, StatusVoznje.KREIRANA_NA_CEKANJU,true,napomena);
+                            NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,trenutnoVreme,adresaPolaska,adresaDestinacije,ulogovanaMusterija,vozac,12,trajanjeVoznje, StatusVoznje.KREIRANA_NA_CEKANJU,napomena,true);
                             ucitavanje.getVoznjaAplikacije().add(narucivanjeVoznjePrekoAplikacije);
 
                         }

@@ -105,11 +105,8 @@ public class TaxiSluzbaMain {
         6. Omogućiti sortiranje svih tabelarnih prikaza u aplikaciji.
         7. Podatke treba čuvati sortirano po ključu
 
-
-        Za KT2 (OOP):
-            1. CRUD za dispecera i musteriju
-            2. izmeniti izmenuTaxiSluzbe
-            3. Zavrsiti narucivanje voznje putem telefona
+        KT2 OOP:
+            CRUD za voznju
 
 
 */

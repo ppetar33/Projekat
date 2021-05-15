@@ -221,20 +221,22 @@ public class Liste {
 				String adresaDestinacije = podaci[3];
 				double brojKMpredjenih = Double.parseDouble(podaci[6]);
 				double trajanjVoznje = Double.parseDouble(podaci[7]);
-				StatusVoznje statusVoznje;
-				if (podaci[8].toUpperCase().equals("KREIRANA")){
-					statusVoznje = StatusVoznje.KREIRANA;
-				} else if(podaci[8].toUpperCase().equals("ZAVRSENA")){
-					statusVoznje = StatusVoznje.ZAVRSENA;
-				} else if(podaci[8].toUpperCase().equals("ODBIJENA")){
-					statusVoznje = StatusVoznje.ODBIJENA;
-				} else if(podaci[8].toUpperCase().equals("DODELJENA")){
-					statusVoznje = StatusVoznje.DODELJENA;
-				} else if(podaci[8].toUpperCase().equals("KREIRANA_NA_CEKANJU")){
-					statusVoznje = StatusVoznje.KREIRANA_NA_CEKANJU;
-				} else{
-					statusVoznje = StatusVoznje.PRIHVACENA;
-				}
+				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8]);
+//				StatusVoznje statusVoznje;
+//				if (podaci[8].equalsIgnoreCase("KREIRANA")){
+//					statusVoznje = StatusVoznje.KREIRANA;
+//				} else if(podaci[8].equalsIgnoreCase("ZAVRSENA")){
+//					statusVoznje = StatusVoznje.ZAVRSENA;
+//				} else if(podaci[8].equalsIgnoreCase("ODBIJENA")){
+//					statusVoznje = StatusVoznje.ODBIJENA;
+//				} else if(podaci[8].equalsIgnoreCase("DODELJENA")){
+//					statusVoznje = StatusVoznje.DODELJENA;
+//				} else if(podaci[8].equalsIgnoreCase("KREIRANA_NA_CEKANJU")){
+//					statusVoznje = StatusVoznje.KREIRANA_NA_CEKANJU;
+//				} else{
+//					statusVoznje = StatusVoznje.PRIHVACENA;
+//				}
+				String napomena = podaci[9];
 				String obrisanString = podaci[10];
 				boolean obrisan = Boolean.parseBoolean(obrisanString);
 				Musterija musterija = new Musterija();
@@ -250,16 +252,14 @@ public class Liste {
 					}
 				}
 				if(statusVoznje.equals(StatusVoznje.KREIRANA)){
-					String prazanString = podaci[9];
-					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,prazanString);
+					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan);
 					voznjaTelefoni.add(narucivanjeVoznjePrekoTelefona);
 
 				}else if(statusVoznje.equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
-					String napomena = podaci[9];
-					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,napomena);
+					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan);
 					voznjaAplikacije.add(narucivanjeVoznjePrekoAplikacije);
 				}else{
-					OstaleVoznje ostaleVoznje = new OstaleVoznje(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan);
+					OstaleVoznje ostaleVoznje = new OstaleVoznje(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan);
 					voznja.add(ostaleVoznje);
 				}
 
@@ -505,11 +505,23 @@ public class Liste {
 				counter++;
 			}
 		}
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				counter++;
+			}
+		}
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				counter++;
+			}
+		}
 		return counter;
 	}
 	public int uporediDatumIvoznjeAplikacijom(String datum){
 		int counter = 0;
-		for(Voznja voznja : voznja){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusVoznje() == StatusVoznje.KREIRANA_NA_CEKANJU){
 				counter++;
@@ -519,7 +531,7 @@ public class Liste {
 	}
 	public int uporediDatumIvoznjeTelefonom(String datum){
 		int counter = 0;
-		for(Voznja voznja : voznja){
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusVoznje() == StatusVoznje.KREIRANA){
 				counter++;
@@ -547,6 +559,20 @@ public class Liste {
 				counter++;
 			}
 		}
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getTrajanjVoznje();
+				counter++;
+			}
+		}
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getTrajanjVoznje();
+				counter++;
+			}
+		}
 		average = rezultat/counter;
 		return average;
 	}
@@ -555,6 +581,20 @@ public class Liste {
 		double counter = 0;
 		double average;
 		for(Voznja voznja : voznja){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+				counter++;
+			}
+		}
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+				counter++;
+			}
+		}
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
 				rezultat += voznja.getBrojKMpredjenih();
@@ -575,6 +615,18 @@ public class Liste {
 				rezultat += voznja.getBrojKMpredjenih();
 			}
 		}
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+			}
+		}
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+			}
+		}
 		ukupnaZarada = (start + rezultat) * cenaPoKilometru;
 		return ukupnaZarada;
 	}
@@ -584,6 +636,20 @@ public class Liste {
 		double rezultat = 0;
 		double counter = 0;
 		for(Voznja voznja : voznja){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+				counter++;
+			}
+		}
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+				counter++;
+			}
+		}
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
 				rezultat += voznja.getBrojKMpredjenih();
