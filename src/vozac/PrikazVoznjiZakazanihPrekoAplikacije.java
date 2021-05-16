@@ -2,7 +2,9 @@ package vozac;
 
 import automobili.Voznja;
 import enumi.StatusNaruceneVoznje;
+import enumi.StatusVoznje;
 import liste.Liste;
+import musterija.NarucivanjeVoznjePrekoAplikacije;
 import osobe.Vozac;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -101,6 +103,16 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else{
                     // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE PRIHVATITI
+                    /*
+                        ako status voznje nije kreirana na cekanju
+                        JOptionPane.showMessageDialog(null, "Morate prihvatiti samo kreirane voznje", "Greska", JOptionPane.WARNING_MESSAGE);
+                    */
+                    NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznju();
+                    if(narucivanjeVoznjePrekoAplikacije != null){
+                        JOptionPane.showMessageDialog(null, "Mozete prihvatiti samo kreirane voznje!", "Greska", JOptionPane.WARNING_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Uspesno prihvacena voznja!", "Greska", JOptionPane.WARNING_MESSAGE);
+                    }
                 }
             }
         });

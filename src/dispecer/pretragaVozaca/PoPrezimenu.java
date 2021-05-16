@@ -6,10 +6,11 @@ import liste.Liste;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PoPrezimenu extends JFrame{
 
-    public JLabel pretragaPoPrezimenu = new JLabel("Unesi prezime");
+    private JLabel pretragaPoPrezimenu = new JLabel("Unesi prezime");
     private JTextField tpretragaPoPrezimenu = new JTextField(20);
     private JButton btnOK = new JButton("Pretrazi");
     private JButton cancel = new JButton("Odustani");
@@ -43,7 +44,16 @@ public class PoPrezimenu extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(validacija() == true){
+                    String unosPrezimena = tpretragaPoPrezimenu.getText().trim();
 
+                    ArrayList<Vozac> rezultatPretrage = ucitavanje.nadjiVozacaPoPrezimenu(unosPrezimena);
+
+                    if(rezultatPretrage.isEmpty()) {
+                        JOptionPane.showMessageDialog(null,"Vozac sa prezimenom (" + unosPrezimena + ") ne postoji!","Greska",JOptionPane.WARNING_MESSAGE);
+                    }else{
+                        ProzorZaPrikazRezultataPretragePoPrezimenu prozor = new ProzorZaPrikazRezultataPretragePoPrezimenu(rezultatPretrage);
+                        prozor.setVisible(true);
+                    }
                 }
             }
         });

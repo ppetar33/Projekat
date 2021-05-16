@@ -57,6 +57,13 @@ public class Kombinovana extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(validacija() == true){
 
+                    String unosIme = time.getText().trim();
+                    String unosPrezime = tprezime.getText().trim();
+                    String unosModelAutomobila = tautomobil.getText().trim();
+                    String unosPlataString = tplata.getText().trim();
+                    double unosPlata = Double.parseDouble(unosPlataString);
+
+
                 }
             }
         });
@@ -73,8 +80,10 @@ public class Kombinovana extends JFrame {
     private boolean validacija(){
         boolean ok = true;
         String poruka = "Napravili ste gresku! \n";
-        if(tplata.getText().equals("")){
-            poruka += "Polje za platu ne sme biti prazno!\n";
+        try{
+            Double.parseDouble(tplata.getText().trim());
+        }catch (NumberFormatException e){
+            poruka += "Plata mora biti broj! \n";
             ok = false;
         }
         if(tautomobil.getText().equals("")){
@@ -89,7 +98,7 @@ public class Kombinovana extends JFrame {
             poruka += "Polje za prezime ne sme biti prazno!\n";
             ok = false;
         }
-        if( ok == false){
+        if(ok == false){
             JOptionPane.showMessageDialog(null,poruka,"Greska",JOptionPane.WARNING_MESSAGE);
         }
         return ok;

@@ -1,37 +1,31 @@
-package dispecer.podaciVozaca;
+package dispecer.pretragaVozaca;
 
 import osobe.Vozac;
-import liste.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.ArrayList;
 
-public class PrikazVozaca extends JFrame {
+public class ProzorZaPrikazRezultataPretragePoAutomobilu extends JFrame{
 
-    public JToolBar mainToolBar = new JToolBar();
+    private DefaultTableModel table_model;
+    private JTable vozaciTabela;
 
-    public DefaultTableModel table_model;
-    public JTable vozaciTabela;
+    public ProzorZaPrikazRezultataPretragePoAutomobilu(ArrayList<Vozac> vozaci) {
 
-    public Liste ucitavanje;
-    public Vozac vozac;
-
-    public PrikazVozaca(Liste ucitavanje,Vozac vozac){
-        this.ucitavanje = ucitavanje;
-        this.vozac = vozac;
-        setTitle("Prikaz vozaca");
-        setSize(1000, 300);
+        setTitle("Prikaz pretrage");
+        setSize(1050, 200);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        initGUI();
+        initGui(vozaci);
+
     }
 
-    private void initGUI(){
-        add(mainToolBar, BorderLayout.SOUTH);
+    private void initGui(ArrayList<Vozac> vozaci){
         String[] zaglavnje = new String[] {"Korisnicko ime", "Ime", "Prezime", "Adresa", "Pol", "Broj telefona", "Plata", "Broj clanske karte", "ID automobila"};
-        Object[][] sadrzaj = new Object[ucitavanje.neobrisaniVozaci().size()][zaglavnje.length];
-        for (int i = 0; i < ucitavanje.neobrisaniVozaci().size(); i++) {
-            Vozac vozac = ucitavanje.neobrisaniVozaci().get(i);
+        Object[][] sadrzaj = new Object[vozaci.size()][zaglavnje.length];
+        for (int i = 0; i < vozaci.size(); i++) {
+            Vozac vozac = vozaci.get(i);
             if(vozac.isObrisan()) {
                 sadrzaj[i][0] = vozac.getKorisnickoIme();
                 sadrzaj[i][1] = vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1);
@@ -60,4 +54,6 @@ public class PrikazVozaca extends JFrame {
         JScrollPane jsp = new JScrollPane(vozaciTabela);
         add(jsp, BorderLayout.CENTER);
     }
+
+
 }

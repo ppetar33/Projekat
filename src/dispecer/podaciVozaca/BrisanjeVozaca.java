@@ -39,8 +39,8 @@ public class BrisanjeVozaca extends PrikazVozaca {
                     DefaultTableModel tableModel = (DefaultTableModel)vozaciTabela.getModel();
                     String korisnickoIme = tableModel.getValueAt(red, 0).toString();
                     Vozac vozac = ucitavanje.nadjiVozaca(korisnickoIme);
-                    String modelAutomobila = tableModel.getValueAt(red,8).toString();
-                    if(modelAutomobila.equals("Vozac nema automobil")){
+                    String idAutomobilaString = tableModel.getValueAt(red,8).toString();
+                    if(idAutomobilaString.equals("Vozac nema automobil")){
                         int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete vozaca: " + vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                         if( izbor == JOptionPane.YES_OPTION) {
                             tableModel.removeRow(red);
@@ -48,13 +48,14 @@ public class BrisanjeVozaca extends PrikazVozaca {
                             ucitavanje.dodavanjeKorisnika();
                         }
                     }else {
-                        Automobil automobil = ucitavanje.nadjiAutomobilPoModeluAutomobila(modelAutomobila);
+                        int idAutomobila = Integer.parseInt(idAutomobilaString);
+                        Automobil automobil = ucitavanje.nadjiAutomobil(idAutomobila);
                         if (vozac != null) {
                             int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete vozaca: " + vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                             if (izbor == JOptionPane.YES_OPTION) {
                                 vozac.setObrisan(false);
                                 tableModel.removeRow(red);
-                                if (automobil.getId() == vozac.getAutomobili().getId()) {
+                                if (idAutomobila == vozac.getAutomobili().getId()) {
                                     automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
                                 } else if (automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN) {
                                     automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);

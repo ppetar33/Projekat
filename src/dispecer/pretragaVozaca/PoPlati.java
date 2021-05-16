@@ -6,10 +6,11 @@ import liste.Liste;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PoPlati extends JFrame {
 
-    public JLabel pretragaPoPlati = new JLabel("Unesi platu");
+    private JLabel pretragaPoPlati = new JLabel("Unesi platu");
     private JTextField tpretragaPoPlati = new JTextField(20);
     private JButton btnOK = new JButton("Pretrazi");
     private JButton cancel = new JButton("Odustani");
@@ -43,7 +44,17 @@ public class PoPlati extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(validacija() == true){
+                    String unosPlataString = tpretragaPoPlati.getText().trim();
+                    double unosPlata = Double.parseDouble(unosPlataString);
 
+                    ArrayList<Vozac> rezultatPretrage = ucitavanje.nadjiVozacaPoPlati(unosPlata);
+
+                    if(rezultatPretrage.isEmpty()){
+                        JOptionPane.showMessageDialog(null,"Vozac sa platom (" + unosPlataString + ") ne postoji!","Greska",JOptionPane.WARNING_MESSAGE);
+                    }else{
+                        ProzorZaPrikazRezultataPretragePoPlati prozor = new ProzorZaPrikazRezultataPretragePoPlati(rezultatPretrage);
+                        prozor.setVisible(true);
+                    }
                 }
             }
         });
@@ -60,8 +71,10 @@ public class PoPlati extends JFrame {
     private boolean validacija(){
         boolean ok = true;
         String poruka = "Napravili ste gresku!\n";
-        if(tpretragaPoPlati.getText().equals("")){
-            poruka += "Polje ne sme biti prazno!\n";
+        try{
+            Double.parseDouble(tpretragaPoPlati.getText().trim());
+        }catch (NumberFormatException e){
+            poruka += "Plata mora biti broj! \n";
             ok = false;
         }
         if( ok == false){

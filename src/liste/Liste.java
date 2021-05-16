@@ -376,35 +376,37 @@ public class Liste {
 			koja mi treba, u sustini ponavljam postupak sve dok ne dobijem da mi je low=mid=high.
 
 		hash mapa
-	public Automobil nadjiAutomobilPoId(int[] array,int target){
-		return binarySearch(array,0,array.length -1);
-	}
 
-	public Automobil binarySearch(int[] array, int target, int low, int high){
+	 */
+//	public Automobil nadjiAutomobilPoId(int[] array,int target){
+//
+//		return binarySearch(array,0,array.length -1);
+//	}
+//
+//	public int binarySearch(int[] array, int target, int low, int high){
+//
+//		for(Automobil automobil : automobili){
+//			if(low > high){
+//				return -1;
+//			}
+//			int mid = (low+high)/2;
+//
+//			if(array[mid] == target){
+//				return mid;
+//			}
+//			else if(array[mid] > target){
+//				return binarySearch(array,target,low,mid-1);
+//			}else{
+//				return binarySearch(array,target,mid+1,high);
+//			}
+//		}
+//		return -1;
+//	}
 
-		for(Automobil automobil : automobili){
-			if(low > high){
-				return null;
-			}
-			int mid = (low+high)/2;
-
-			if(array[mid] == target){
-				return automobil;
-			}
-			else if(array[mid] > target){
-				return binarySearch(array,target,low,mid-1);
-			}else{
-				return binarySearch(array,target,mid+1,high);
-			}
-		}
-		return null;
-
-	}
-	*/
 
 	public Vozac nadjiVozaca(String korisnickoIme){
 		for(Vozac vozac : vozaci){
-			if(vozac.getKorisnickoIme().equals(korisnickoIme)){
+			if(vozac.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && vozac.isObrisan()){
 				return vozac;
 			}
 		}
@@ -412,16 +414,52 @@ public class Liste {
 	}
 	public Vozac nadjiVozacaKojiNemaAutomobil(){
 		for(Vozac vozac : vozaci){
-			if(vozac.getAutomobili().getId() == 0){
+			if(vozac.getAutomobili().getId() == 0 && vozac.isObrisan()){
 				return vozac;
 			}
 		}
 		return null;
 	}
+	public ArrayList<Vozac> nadjiVozacaPoPlati(double plataUnos){
+		ArrayList<Vozac> sviVozaci = new ArrayList<Vozac>();
+		for(Vozac vozac : vozaci){
+			if(vozac.getPlata() == plataUnos && vozac.isObrisan()){
+				sviVozaci.add(vozac);
+			}
+		}
+		return sviVozaci;
+	}
+	public ArrayList<Vozac> nadjiVozacaPoImenu(String unosIme){
+		ArrayList<Vozac> sviVozaci = new ArrayList<Vozac>();
+		for(Vozac vozac : vozaci){
+			if(vozac.getIme().equalsIgnoreCase(unosIme) && vozac.isObrisan()){
+				sviVozaci.add(vozac);
+			}
+		}
+		return sviVozaci;
+	}
+	public ArrayList<Vozac> nadjiVozacaPoPrezimenu(String unosPrezime){
+		ArrayList<Vozac> sviVozaci = new ArrayList<Vozac>();
+		for(Vozac vozac : vozaci){
+			if(vozac.getPrezime().equalsIgnoreCase(unosPrezime) && vozac.isObrisan()){
+				sviVozaci.add(vozac);
+			}
+		}
+		return sviVozaci;
+	}
+	public ArrayList<Vozac> nadjiVozacaPoAutomobilu(String model){
+		ArrayList<Vozac> sviVozaci = new ArrayList<Vozac>();
+		for(Vozac vozac : vozaci){
+			if(vozac.getAutomobili().getModel().equalsIgnoreCase(model) && vozac.isObrisan()){
+				sviVozaci.add(vozac);
+			}
+		}
+		return sviVozaci;
+	}
 
 	public Musterija nadjiMusteriju(String korisnickoIme){
 		for(Musterija musterija : musterije){
-			if(musterija.getKorisnickoIme().equals(korisnickoIme)){
+			if(musterija.getKorisnickoIme().equals(korisnickoIme) && musterija.isObrisan()){
 				return musterija;
 			}
 		}
@@ -430,7 +468,7 @@ public class Liste {
 
 	public Dispecar nadjiDispecera(String korisnickoIme){
 		for(Dispecar dispecar : dispecari){
-			if(dispecar.getKorisnickoIme().equals(korisnickoIme)){
+			if(dispecar.getKorisnickoIme().equals(korisnickoIme) && dispecar.isObrisan()){
 				return dispecar;
 			}
 		}
@@ -439,7 +477,7 @@ public class Liste {
 
 	public Automobil nadjiAutomobil(int id){
 		for(Automobil automobil : automobili){
-			if(automobil.getId() == id){
+			if(automobil.getId() == id && automobil.isObrisan()){
 				return automobil;
 			}
 		}
@@ -473,7 +511,7 @@ public class Liste {
 
 	public NarucivanjeVoznjePrekoAplikacije nadjiVoznju(){
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
-			if(voznja.getStatusVoznje() == StatusVoznje.KREIRANA_NA_CEKANJU && voznja.isObrisan()){
+			if(voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU) && voznja.isObrisan()){
 				return voznja;
 			}
 		}
