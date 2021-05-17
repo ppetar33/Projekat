@@ -62,19 +62,10 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(validacija() == true){
 
-                    int id = ucitavanje.generisiNoviIdZaVoznje();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime trenutnoVreme = LocalDateTime.now(); // izvestajDispecera proveriti localDateTime.now
+                    int id = ucitavanje.generisiNoviIdZaVoznjePutemTelefona();
+                    LocalDateTime trenutnoVreme = LocalDateTime.now();
                     String adresaPolaska = tadresaPolaska.getText().trim();
                     String adresaDolaska = tadresaDolaska.getText().trim();
-
-                    // URADITI:
-                    //      VOZAC KOJI JE PREUZEO VOZNJU
-                    //      kada dispecar dodeli voznju vozacu potrebno je promeniti status sa KREIRANA na DODELJENA
-
-                    double predjeniKilometriUminuti = 0.5; // ogranicenje 50km/h, prosecna brzina 30km/h
-                    int predjeniKilometri = 30; // uraditi predjene kilometre ovo je samo test
-                    double trajanjeVoznje = predjeniKilometri * predjeniKilometriUminuti;
 
                     if(narucivanjeVoznjePrekoTelefona != null){
                         narucivanjeVoznjePrekoTelefona.setId(id);
@@ -90,7 +81,7 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-                            NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,12,trajanjeVoznje, StatusVoznje.KREIRANA,"",true, StatusNaruceneVoznje.TELEFON);
+                            NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,0,0, StatusVoznje.KREIRANA,"",true, StatusNaruceneVoznje.TELEFON);
                             ucitavanje.getVoznjaTelefoni().add(narucivanjeVoznjePrekoTelefona);
                         }
                         citanjeUlogovanogKorisnika.close();

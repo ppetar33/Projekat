@@ -14,6 +14,7 @@ import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;
 import loginProzor.LoginProzor;
+import main.TaxiSluzbaMain;
 import musterija.NarucivanjeVoznjePrekoTelefona;
 import osobe.Dispecar;
 import osobe.Vozac;
@@ -154,22 +155,34 @@ public class MogucnostiDispecera extends JFrame {
 		prikazVozaca.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PrikazVozaca prozorZaPrikazVozaca = new PrikazVozaca(ucitavanje,vozac);
-				prozorZaPrikazVozaca.setVisible(true);
+				if(ucitavanje.neobrisaniVozaci().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema aktivnih vozaca.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					PrikazVozaca prozorZaPrikazVozaca = new PrikazVozaca(ucitavanje, vozac);
+					prozorZaPrikazVozaca.setVisible(true);
+				}
 			}
 		});
 		brisanjeVozaca.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BrisanjeVozaca prozorZaBrisanjeVozaca = new BrisanjeVozaca(ucitavanje,vozac);
-				prozorZaBrisanjeVozaca.setVisible(true);
+				if(ucitavanje.neobrisaniVozaci().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema aktivnih vozaca.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					BrisanjeVozaca prozorZaBrisanjeVozaca = new BrisanjeVozaca(ucitavanje, vozac);
+					prozorZaBrisanjeVozaca.setVisible(true);
+				}
 			}
 		});
 		izmenaVozaca.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				IzmenaVozaca prozorZaIzmenuVozaca = new IzmenaVozaca(ucitavanje,vozac);
-				prozorZaIzmenuVozaca.setVisible(true);
+				if(ucitavanje.neobrisaniVozaci().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema aktivnih vozaca.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					IzmenaVozaca prozorZaIzmenuVozaca = new IzmenaVozaca(ucitavanje, vozac);
+					prozorZaIzmenuVozaca.setVisible(true);
+				}
 			}
 		});
 		// TAKSI SLUZBA
@@ -197,22 +210,34 @@ public class MogucnostiDispecera extends JFrame {
 		prikazAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PrikazAutomobila prozorZaPrikazAutomobila = new PrikazAutomobila(ucitavanje);
-				prozorZaPrikazAutomobila.setVisible(true);
+				if(ucitavanje.neobrisaniAutomobili().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema aktivnih automobila.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					PrikazAutomobila prozorZaPrikazAutomobila = new PrikazAutomobila(ucitavanje);
+					prozorZaPrikazAutomobila.setVisible(true);
+				}
 			}
 		});
 		brisanjeAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BrisanjeAutomobila prozorZaBrisanjeAutomobila = new BrisanjeAutomobila(ucitavanje);
-				prozorZaBrisanjeAutomobila.setVisible(true);
+				if(ucitavanje.neobrisaniAutomobili().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema aktivnih automobila.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					BrisanjeAutomobila prozorZaBrisanjeAutomobila = new BrisanjeAutomobila(ucitavanje);
+					prozorZaBrisanjeAutomobila.setVisible(true);
+				}
 			}
 		});
 		izmenaAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				IzmenaAutomobila prozorZaIzmenuAutomobila = new IzmenaAutomobila(ucitavanje);
-				prozorZaIzmenuAutomobila.setVisible(true);
+				if(ucitavanje.neobrisaniAutomobili().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema aktivnih automobila.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					IzmenaAutomobila prozorZaIzmenuAutomobila = new IzmenaAutomobila(ucitavanje);
+					prozorZaIzmenuAutomobila.setVisible(true);
+				}
 			}
 		});
 
@@ -285,8 +310,12 @@ public class MogucnostiDispecera extends JFrame {
 		dodeliVoznju.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ProzorZaDodeljivanjeVoznji dodeljivanjeVoznji = new ProzorZaDodeljivanjeVoznji(ucitavanje,voznja);
-				dodeljivanjeVoznji.setVisible(true);
+				if(ucitavanje.neobrisaneVoznjeKreiranePutemTelefona2().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					DodeljivanjeVoznje dodeljivanjeVoznji = new DodeljivanjeVoznje(ucitavanje, voznja);
+					dodeljivanjeVoznji.setVisible(true);
+				}
 			}
 		});
 
@@ -297,8 +326,7 @@ public class MogucnostiDispecera extends JFrame {
 				JOptionPane.showMessageDialog(null, "Uspesno ste se odjavili!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
 				MogucnostiDispecera.this.dispose();
 				MogucnostiDispecera.this.setVisible(false);
-				LoginProzor loginProzor = new LoginProzor(ucitavanje);
-				loginProzor.setVisible(true);
+				TaxiSluzbaMain.main(null);
 			}
 		});
 		odustaniZaOdjavu.addActionListener(new ActionListener() {

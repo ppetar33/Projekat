@@ -2,8 +2,17 @@ package vozac;
 
 public class PrikazDodeljenihVoznji {
     /*
-        Prikaz dodeljenih vožnji (vožnje kreirane putem telefonskog poziva, koje je dispečer dodelio vozaču),
-        vozač ima mogućnost da prihvati ili odbije vožnju. Prihvatanjem vožnja menja status iz DODELJENA u
-        PRIHVAĆENA, dok odbijanjem vožnja menja status iz DODELJENA U ODBIJENA.
+        Ako je:
+             Status voznje = dodeljena
+             +
+             Status narucene voznje = telefon
+             +
+             Ulogovan korisnik = korisniku u fajlu
+        Prikazati podatke, ako nije ispisati poruku da vozac.getIme nema dodeljenih voznji
+
+        Staviti dugmad za prihvatanje i odbijanje voznje.
+            Ako se voznja prihvati status se menja sa dodeljena na prihvacena
+            Ako se voznja odbije status se menja sa dodeljena na odbijena i tu se zavrsava program
+
     */
 }

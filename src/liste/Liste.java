@@ -511,7 +511,16 @@ public class Liste {
 
 	public NarucivanjeVoznjePrekoAplikacije nadjiVoznju(){
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
-			if(voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU) && voznja.isObrisan()){
+			if(voznja.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA) && voznja.isObrisan()){
+				return voznja;
+			}
+		}
+		return null;
+	}
+
+	public NarucivanjeVoznjePrekoTelefona nadjiVoznjuPoId(int id){
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			if(voznja.getId() == id){
 				return voznja;
 			}
 		}
@@ -549,7 +558,7 @@ public class Liste {
 		int counter = 0;
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusVoznje() == StatusVoznje.KREIRANA_NA_CEKANJU){
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusNaruceneVoznje() == StatusNaruceneVoznje.APLIKACIJA){
 				counter++;
 			}
 		}
@@ -559,7 +568,7 @@ public class Liste {
 		int counter = 0;
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusVoznje() == StatusVoznje.KREIRANA){
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusNaruceneVoznje() == StatusNaruceneVoznje.TELEFON){
 				counter++;
 			}
 		}
@@ -697,21 +706,20 @@ public class Liste {
 		GENERISI NOVI ID ZA VOZNJE
 	*/
 
-	public int generisiNoviIdZaVoznje() {
+	public int generisiNoviIdZaVoznjePutemTelefona(){
 		int maks = -1;
 		for (NarucivanjeVoznjePrekoTelefona prekoTelefona : voznjaTelefoni) {
 			if (prekoTelefona.getId() > maks) {
 				maks = prekoTelefona.getId();
 			}
 		}
+		return maks + 1;
+	}
+	public int generisiNoviIdZaVoznjePutemAplikacije() {
+		int maks = -1;
 		for (NarucivanjeVoznjePrekoAplikacije prekoAplikacije : voznjaAplikacije){
 			if (prekoAplikacije.getId() > maks){
 				maks = prekoAplikacije.getId();
-			}
-		}
-		for (Voznja voznja : voznja){
-			if (voznja.getId() > maks){
-				maks = voznja.getId();
 			}
 		}
 		return maks + 1;
@@ -796,6 +804,15 @@ public class Liste {
 		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			if(voznja.isObrisan()){
+				neobrisaneVoznje.add(voznja);
+			}
+		}
+		return neobrisaneVoznje;
+	}
+	public ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona2(){
+		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA)){
 				neobrisaneVoznje.add(voznja);
 			}
 		}

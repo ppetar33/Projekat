@@ -1,6 +1,7 @@
 package musterija;
 
 import loginProzor.LoginProzor;
+import main.TaxiSluzbaMain;
 import musterija.podaciMusterijeZaKT2.PrikazMusterija;
 import osobe.Dispecar;
 import osobe.Musterija;
@@ -77,8 +78,7 @@ public class MogucnostiMusterije extends JFrame{
                 JOptionPane.showMessageDialog(null, "Uspesno ste se odjavili!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
                 MogucnostiMusterije.this.dispose();
                 MogucnostiMusterije.this.setVisible(false);
-                LoginProzor loginProzor = new LoginProzor(ucitavanje);
-                loginProzor.setVisible(true);
+                TaxiSluzbaMain.main(null);
             }
         });
         odustaniZaOdjavu.addActionListener(new ActionListener() {

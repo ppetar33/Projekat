@@ -68,7 +68,7 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (validacija() == true) {
 
-                    int id = ucitavanje.generisiNoviIdZaVoznje();
+                    int id = ucitavanje.generisiNoviIdZaVoznjePutemAplikacije();
                     LocalDateTime trenutnoVreme = LocalDateTime.now();
                     String adresaPolaska = tadresaPolaska.getText().trim();
                     String adresaDestinacije = tadresaDestinacije.getText().trim();

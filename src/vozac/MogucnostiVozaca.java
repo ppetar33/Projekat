@@ -1,7 +1,6 @@
 package vozac;
 
-import loginProzor.LoginProzor;
-import musterija.NarucivanjeVoznjePrekoAplikacije;
+import main.TaxiSluzbaMain;
 import osobe.Musterija;
 import osobe.Vozac;
 import liste.Liste;
@@ -90,8 +89,7 @@ public class MogucnostiVozaca extends JFrame {
                 JOptionPane.showMessageDialog(null, "Uspesno ste se odjavili!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
                 MogucnostiVozaca.this.dispose();
                 MogucnostiVozaca.this.setVisible(false);
-                LoginProzor loginProzor = new LoginProzor(ucitavanje);
-                loginProzor.setVisible(true);
+                TaxiSluzbaMain.main(null);
             }
         });
         odustaniZaOdjavu.addActionListener(new ActionListener() {
