@@ -15,9 +15,10 @@ public class MogucnostiVozaca extends JFrame {
     private JMenu funkcionalnostiVozaca = new JMenu("Voznje");
     private JMenuItem prikazIstorijeSopstvenihVoznjiVoznje = new JMenuItem("Prikaz istorije sopstvenih voznji");
     private JMenuItem prikazVoznjeZakazanihPrekoAplikacije = new JMenuItem("Prikaz voznji zakazanih preko aplikacije");
-    private JMenuItem prikazDodeljenihVoznji = new JMenuItem("Prikaz dodeljenih voznji");
+    private JMenuItem prikazDodeljenihVoznji = new JMenuItem("Prikaz dodeljenih voznji kreiranih putem telefona");
     private JMenuItem sumiraneStatistikeVoznji = new JMenuItem("Prikaz sumiraze statistike voznji");
     private JMenuItem aukcijeVoznje = new JMenuItem("Aukcije voznje");
+    private JMenuItem zavrsavanjeVoznje = new JMenuItem("Zavrsavanje voznje");
 
     private JMenu odjava = new JMenu("Odjava");
     private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
@@ -47,6 +48,7 @@ public class MogucnostiVozaca extends JFrame {
         funkcionalnostiVozaca.add(prikazDodeljenihVoznji);
         funkcionalnostiVozaca.add(sumiraneStatistikeVoznji);
         funkcionalnostiVozaca.add(aukcijeVoznje);
+        funkcionalnostiVozaca.add(zavrsavanjeVoznje);
 
         vozacMenu.add(odjava);
         odjava.add(potvrdaZaOdjavu);
@@ -71,6 +73,12 @@ public class MogucnostiVozaca extends JFrame {
         prikazDodeljenihVoznji.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(ucitavanje.neobrisaneVoznjeKreiranePutemTelefona3().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Nema dodeljenih voznji!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    PrikazDodeljenihVoznji prikazDodeljenihVoznji = new PrikazDodeljenihVoznji(ucitavanje);
+                    prikazDodeljenihVoznji.setVisible(true);
+                }
             }
         });
         sumiraneStatistikeVoznji.addActionListener(new ActionListener() {
@@ -81,6 +89,17 @@ public class MogucnostiVozaca extends JFrame {
         aukcijeVoznje.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            }
+        });
+        zavrsavanjeVoznje.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(ucitavanje.neobrisaneVoznjeKreiranePutemTelefona4().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Nema prihvacenih voznji!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    ZavrsavanjeVoznje zavrsavanjeVoznje = new ZavrsavanjeVoznje(ucitavanje);
+                    zavrsavanjeVoznje.setVisible(true);
+                }
             }
         });
         potvrdaZaOdjavu.addActionListener(new ActionListener() {

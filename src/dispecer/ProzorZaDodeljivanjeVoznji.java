@@ -89,8 +89,8 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
                     String musterija = voznja.getMusterija().getKorisnickoIme();
                     Musterija musterija1 = new Musterija();
                     musterija1.setKorisnickoIme(musterija);
-//                    String vozac = tvozac.getText().trim();
-                    Vozac vozac = new Vozac();
+                    Vozac vozac = voznja.getVozac();
+                    vozac.getKorisnickoIme();
                     double brojKmPredjenih = voznja.getBrojKMpredjenih();
                     double trajanjeVoznje = voznja.getTrajanjVoznje();
                     StatusVoznje statusVoznje1 = StatusVoznje.DODELJENA;
@@ -138,6 +138,6 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
         tadresaPolaska.setText(voznja.getAdresaPolaska());
         tadresaDolaska.setText(voznja.getAdresaDestinacije());
         tmusterija.setText(voznja.getMusterija().getKorisnickoIme());
-        tvozac.setText(voznja.getVozac().getIme());
+        tvozac.setText(voznja.getVozac().getKorisnickoIme());
     }
 }

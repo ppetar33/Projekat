@@ -2,6 +2,7 @@ package dispecer.podaciVozaca;
 
 import automobili.Automobil;
 import enumi.StatusAutomobila;
+import enumi.StatusVozaca;
 import osobe.Osoba;
 import enumi.Pol;
 import osobe.Vozac;
@@ -214,6 +215,7 @@ public class DodavanjeVozaca extends JFrame{
                     double unosPlata = Double.parseDouble(tplata.getText().trim());
                     int unosBrojClanskeKarte = Integer.parseInt(tbrojClanskeKarte.getText().trim());
                     double ocena = 0;
+                    StatusVozaca statusVozaca = vozac.getStatusVozaca();
 
                     if(osoba != null) {
                         Vozac vozac = (Vozac) osoba;
@@ -226,6 +228,7 @@ public class DodavanjeVozaca extends JFrame{
                         vozac.setBrojTelefona(unosBrojTelefona);
                         vozac.setPlata(unosPlata);
                         vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
+                        vozac.setStatusVozaca(statusVozaca);
                     }
 
                     Automobil slobodanAutomobil = ucitavanje.nadjiAutomobilPoStatusuAutomobila();
@@ -239,11 +242,11 @@ public class DodavanjeVozaca extends JFrame{
 
                     if (muski.isSelected()) {
                         Pol pol = Pol.MUSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true , unosPlata, unosBrojClanskeKarte, slobodanAutomobil, ocena);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true , unosPlata, unosBrojClanskeKarte, slobodanAutomobil, ocena, statusVozaca);
                         ucitavanje.getVozaci().add(vozac);
                     } else if (zenski.isSelected()) {
                         Pol pol = Pol.ZENSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, slobodanAutomobil, ocena);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, slobodanAutomobil, ocena, statusVozaca);
                         ucitavanje.getVozaci().add(vozac);
                     }
                     ucitavanje.dodavanjeKorisnika();

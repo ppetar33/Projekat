@@ -2,6 +2,7 @@ package dispecer.podaciVozaca;
 
 import automobili.Automobil;
 import enumi.Pol;
+import enumi.StatusVozaca;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import liste.Liste;
@@ -91,8 +92,9 @@ public class ProzorZaIzmenuVozaca extends JFrame {
                     int brojClanskeKarte = vozac.getBrojClanskeKarte();
                     boolean obrisan = vozac.isObrisan();
                     double ocena = vozac.getOcena();
+                    StatusVozaca statusVozaca = vozac.getStatusVozaca();
                     if (vozac == null) {
-                        vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojClanskeKarte, new Automobil(), ocena);
+                        vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojClanskeKarte, new Automobil(), ocena, statusVozaca);
                     } else {
                         vozac.setKorisnickoIme(korisnickoIme);
                         vozac.setLozinka(lozinka);
@@ -105,6 +107,7 @@ public class ProzorZaIzmenuVozaca extends JFrame {
                         vozac.setPlata(plata);
                         vozac.setBrojClanskeKarte(brojClanskeKarte);
                         vozac.setObrisan(obrisan);
+                        vozac.setStatusVozaca(statusVozaca);
                     }
                     ucitavanje.dodavanjeKorisnika();
                     JOptionPane.showMessageDialog(null, "Vozac: " + vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1) + " je uspesno izmenjen!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);

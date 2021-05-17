@@ -4,6 +4,8 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import automobili.Automobil;
 import enumi.*;
 import automobili.Voznja;
@@ -147,7 +149,7 @@ public class Liste {
 							automobil = automobil1;
 						}
 					}
-					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojKartice, automobil, ocena);
+					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojKartice, automobil, ocena, StatusVozaca.SLOBODAN);
 					vozaci.add(vozac);
 				}
 			}
@@ -238,7 +240,6 @@ public class Liste {
 						vozac = vozac1;
 					}
 				}
-
 				if(cimeJeNarucenaVoznja.equals(StatusNaruceneVoznje.TELEFON)){
 					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja);
 					voznjaTelefoni.add(narucivanjeVoznjePrekoTelefona);
@@ -282,7 +283,8 @@ public class Liste {
 						vozac.getBrojClanskeKarte() + "," +
 						vozac.getAutomobili().getId() + "," + "VOZAC" + "," +
 						vozac.isObrisan() + "," +
-						vozac.getOcena() + "\n";
+						vozac.getOcena() +  "," +
+						vozac.getStatusVozaca() + "\n";
 			}
 			for (Musterija musterija : musterije) {
 				content += musterija.getKorisnickoIme() + "," +
@@ -406,7 +408,15 @@ public class Liste {
 
 	public Vozac nadjiVozaca(String korisnickoIme){
 		for(Vozac vozac : vozaci){
-			if(vozac.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && vozac.isObrisan()){
+			if(vozac.getKorisnickoIme().equals(korisnickoIme) && vozac.isObrisan()){
+				return vozac;
+			}
+		}
+		return null;
+	}
+	public Vozac nadjiVozacaZaMenjanjeStatusa(String korisnickoIme){
+		for(Vozac vozac : vozaci){
+			if(vozac.getKorisnickoIme().equals(korisnickoIme) && vozac.isObrisan() && vozac.getStatusVozaca().equals(StatusVozaca.ZAUZET)){
 				return vozac;
 			}
 		}
@@ -455,6 +465,14 @@ public class Liste {
 			}
 		}
 		return sviVozaci;
+	}
+	public Vozac nadjiVozacaKojiJeSlobodan(){
+		for(Vozac vozac : vozaci){
+			if(vozac.isObrisan() && vozac.getStatusVozaca().equals(StatusVozaca.SLOBODAN)){
+				return vozac;
+			}
+		}
+		return null;
 	}
 
 	public Musterija nadjiMusteriju(String korisnickoIme){
@@ -518,7 +536,7 @@ public class Liste {
 		return null;
 	}
 
-	public NarucivanjeVoznjePrekoTelefona nadjiVoznjuPoId(int id){
+	public NarucivanjeVoznjePrekoTelefona nadjiVoznjuNarucenuPrekoTelefonaPoId(int id){
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			if(voznja.getId() == id){
 				return voznja;
@@ -814,6 +832,52 @@ public class Liste {
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA)){
 				neobrisaneVoznje.add(voznja);
+			}
+		}
+		return neobrisaneVoznje;
+	}
+	public ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona3(){
+		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			Vozac ulogovanVozac = null;
+			try {
+				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
+				Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
+				while (citanjeUlogovanogKorisnika.hasNextLine()) {
+					String data = citanjeUlogovanogKorisnika.nextLine();
+					ulogovanVozac = new Vozac();
+					ulogovanVozac.setKorisnickoIme(data);
+					if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.DODELJENA) && voznja.getVozac().getKorisnickoIme().equals(ulogovanVozac.getKorisnickoIme())){
+						neobrisaneVoznje.add(voznja);
+					}
+				}
+				citanjeUlogovanogKorisnika.close();
+			}  catch (IOException ioException) {
+				ioException.printStackTrace();
+				System.out.println("Greska");
+			}
+		}
+		return neobrisaneVoznje;
+	}
+	public ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona4(){
+		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			Vozac ulogovanVozac = null;
+			try {
+				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
+				Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
+				while (citanjeUlogovanogKorisnika.hasNextLine()) {
+					String data = citanjeUlogovanogKorisnika.nextLine();
+					ulogovanVozac = new Vozac();
+					ulogovanVozac.setKorisnickoIme(data);
+					if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.PRIHVACENA) && voznja.getVozac().getKorisnickoIme().equals(ulogovanVozac.getKorisnickoIme())){
+						neobrisaneVoznje.add(voznja);
+					}
+				}
+				citanjeUlogovanogKorisnika.close();
+			}  catch (IOException ioException) {
+				ioException.printStackTrace();
+				System.out.println("Greska");
 			}
 		}
 		return neobrisaneVoznje;

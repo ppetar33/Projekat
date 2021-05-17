@@ -1,7 +1,7 @@
 package musterija;
 
-import automobili.Voznja;
 import enumi.StatusNaruceneVoznje;
+import enumi.StatusVozaca;
 import enumi.StatusVoznje;
 import liste.Liste;
 import net.miginfocom.swing.MigLayout;
@@ -13,20 +13,16 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class NarucivanjePrekoTelefonaProzor extends JFrame {
-    //Adresa polaska
+
     private JLabel adresaPolaska = new JLabel("Adresa polaska");
     private JTextField tadresaPolaska = new JTextField(20);
-    //Adresa dolaska
     private JLabel adresaDolaska = new JLabel("Adresa dolaska");
     private JTextField tadresaDolaska = new JTextField(20);
-
     private JButton naruci = new JButton("Naruci");
     private JButton odustani = new JButton("Odustani");
-
     private Liste ucitavanje;
     private NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona;
     private Musterija musterija;
@@ -66,14 +62,23 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                     LocalDateTime trenutnoVreme = LocalDateTime.now();
                     String adresaPolaska = tadresaPolaska.getText().trim();
                     String adresaDolaska = tadresaDolaska.getText().trim();
+                    Vozac vozac = ucitavanje.nadjiVozacaKojiJeSlobodan();
+                    if(vozac != null){
+                        vozac.getKorisnickoIme();
+                        vozac.setStatusVozaca(StatusVozaca.ZAUZET);
+                        ucitavanje.dodavanjeKorisnika();
+                    }else{
+                        Vozac nePostojiSlobodanVozac = new Vozac();
+                        vozac = nePostojiSlobodanVozac;
+                    }
 
                     if(narucivanjeVoznjePrekoTelefona != null){
                         narucivanjeVoznjePrekoTelefona.setId(id);
                         narucivanjeVoznjePrekoTelefona.setDatumIvremePorudzbine(trenutnoVreme);
                         narucivanjeVoznjePrekoTelefona.setAdresaPolaska(adresaPolaska);
                         narucivanjeVoznjePrekoTelefona.setAdresaDestinacije(adresaDolaska);
+                        narucivanjeVoznjePrekoTelefona.setVozac(vozac);
                     }
-                    Vozac vozac = new Vozac(); // PROBA
                     try {
                         File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
                         Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
