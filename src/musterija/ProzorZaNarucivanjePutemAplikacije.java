@@ -74,11 +74,6 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                     String adresaDestinacije = tadresaDestinacije.getText().trim();
                     String napomena = tnapomena.getText().trim();
 
-                    // TODO
-                    double predjeniKilometriUminuti = 0.5; // ogranicenje 50km/h, prosecna brzina 30km/h
-                    int predjeniKilometri = 30; // uraditi predjene kilometre ovo je samo test
-                    double trajanjeVoznje = predjeniKilometri * predjeniKilometriUminuti;
-
 
                     if (narucivanjeVoznjePrekoAplikacije != null){
                         narucivanjeVoznjePrekoAplikacije.setId(id);
@@ -87,7 +82,7 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                         narucivanjeVoznjePrekoAplikacije.setAdresaDestinacije(adresaDestinacije);
                         narucivanjeVoznjePrekoAplikacije.setNapomena(napomena);
                     }
-                    Vozac vozac = new Vozac(); // PROBA
+                    Vozac vozac = new Vozac();
                     try {
                         File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
                         Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
@@ -95,7 +90,7 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-                            NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,trenutnoVreme,adresaPolaska,adresaDestinacije,ulogovanaMusterija,vozac,12,trajanjeVoznje, StatusVoznje.KREIRANA_NA_CEKANJU,napomena,true, StatusNaruceneVoznje.APLIKACIJA);
+                            NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,trenutnoVreme,adresaPolaska,adresaDestinacije,ulogovanaMusterija,vozac,0,0, StatusVoznje.KREIRANA_NA_CEKANJU,napomena,true, StatusNaruceneVoznje.APLIKACIJA);
                             ucitavanje.getVoznjaAplikacije().add(narucivanjeVoznjePrekoAplikacije);
 
                         }

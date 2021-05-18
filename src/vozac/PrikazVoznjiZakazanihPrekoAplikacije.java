@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
@@ -27,7 +28,6 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
 
     private Liste ucitavanje;
     private Vozac ulogovaniVozac;
-
 
     public PrikazVoznjiZakazanihPrekoAplikacije(Liste ucitavanje, Vozac ulogovaniVozac){
         this.ucitavanje = ucitavanje;
@@ -92,6 +92,8 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
         JScrollPane jsp = new JScrollPane(istorijaVoznjeTabela);
         add(jsp, BorderLayout.CENTER);
 
+
+
     }
 
     private void initListeners() {
@@ -99,10 +101,16 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int red = istorijaVoznjeTabela.getSelectedRow();
+
+
                 if (red == -1){
                     JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
-                }else{
-                    // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE PRIHVATITI
+//                }else if (){
+                    // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE PRIHVATITI I  NAKON TOGA DODATI KILOMETRE I TRAJANJE VOZNJE
+                    System.out.println("USPESNO JE PRIHVACENA");
+//                }else if (){
+                    JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce prihvatiti!", "Greska", JOptionPane.WARNING_MESSAGE);
+                    System.out.println("NE MOZETE OVU VOZNJU PRIHVATITI");
                     /*
                         ako status voznje nije kreirana na cekanju
                         JOptionPane.showMessageDialog(null, "Morate prihvatiti samo kreirane voznje", "Greska", JOptionPane.WARNING_MESSAGE);
@@ -120,10 +128,14 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int red = istorijaVoznjeTabela.getSelectedRow();
+
                 if (red == -1){
                     JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
-                }else{
+//                }else if (){
                     // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE ODBITI
+                    System.out.println("USPESNO JE ODIJENA");
+                } else{
+                    JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce odbiti!", "Greska", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });

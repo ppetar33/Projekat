@@ -68,8 +68,7 @@ public class IstorijaVoznjiMusterija extends JFrame {
                 sadrzaj[j][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();
-                //TODO
-//                sadrzaj[i][8] = narucivanjeVoznjePrekoAplikacije.getNapomena();
+                sadrzaj[j][8] = voznje.getNapomena();
                 j++;
             }
         }

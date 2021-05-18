@@ -10,11 +10,13 @@ import dispecer.podaciVozaca.BrisanjeVozaca;
 import dispecer.podaciVozaca.DodavanjeVozaca;
 import dispecer.podaciVozaca.IzmenaVozaca;
 import dispecer.podaciVozaca.PrikazVozaca;
+import dispecer.podaciVoznjePrekoAplikacije.IzmenaVoznjiNarucenihPrekoAplikacije;
 import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;
 import loginProzor.LoginProzor;
 import main.TaxiSluzbaMain;
+import musterija.NarucivanjeVoznjePrekoAplikacije;
 import musterija.NarucivanjeVoznjePrekoTelefona;
 import osobe.Dispecar;
 import osobe.Vozac;
@@ -48,6 +50,10 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenu funkcionalnostPrikazVoznji = new JMenu("Prikaz voznji");
 	private JMenuItem putemTelefona = new JMenuItem("Putem telefona");
 	private JMenuItem putemAplikacije = new JMenuItem("Putem aplikacije");
+	private JMenuItem izmenaVoznjiPutemAplikacije = new JMenuItem("Izmena voznji putem aplikacije");
+	private JMenuItem izmenaVoznjiPutemTelefona = new JMenuItem("Izmena voznji putem telefona");
+
+
 
 	private JMenu funkcionalnostPretragaVozaca = new JMenu("Pretraga vozaca");
 	private JMenuItem poImenu = new JMenuItem("Po imenu");
@@ -81,6 +87,7 @@ public class MogucnostiDispecera extends JFrame {
 	private Vozac vozac;
 	private TaksiSluzba taksiSluzba;
 	private NarucivanjeVoznjePrekoTelefona voznja;
+	private NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije;
 
 	public MogucnostiDispecera(Liste ucitavanje, Dispecar prijavljeniDispecar){
 		this.ucitavanje = ucitavanje;
@@ -115,6 +122,9 @@ public class MogucnostiDispecera extends JFrame {
 		dispecerMenu.add(funkcionalnostPrikazVoznji);
 		funkcionalnostPrikazVoznji.add(putemTelefona);
 		funkcionalnostPrikazVoznji.add(putemAplikacije);
+		funkcionalnostPrikazVoznji.add(izmenaVoznjiPutemAplikacije);
+		funkcionalnostPrikazVoznji.add(izmenaVoznjiPutemTelefona);
+
 
 		dispecerMenu.add(funkcionalnostPretragaVozaca);
 		funkcionalnostPretragaVozaca.add(poImenu);
@@ -256,6 +266,14 @@ public class MogucnostiDispecera extends JFrame {
 				prozorZaPrikazVoznjiPutemAplikacije.setVisible(true);
 			}
 		});
+		izmenaVoznjiPutemAplikacije.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				IzmenaVoznjiNarucenihPrekoAplikacije izmenaVoznjiNarucenihPrekoAplikacije = new IzmenaVoznjiNarucenihPrekoAplikacije(ucitavanje, voznjePrekoAplikacije);
+				izmenaVoznjiNarucenihPrekoAplikacije.setVisible(true);
+			}
+		});
+
 		// PRETRAGA VOZACA
 		poImenu.addActionListener(new ActionListener() {
 			@Override
