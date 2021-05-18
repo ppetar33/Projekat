@@ -494,13 +494,15 @@ public class Liste {
 		}
 		return null;
 	}
-	public Automobil nadjiAutomobilPoStatusuAutomobila(){
+	public ArrayList<Integer> listaSlobodnihAutomobila(){
+		ArrayList<Integer> slobodniAutomobil = new ArrayList<>();
 		for(Automobil automobil : automobili){
 			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN && automobil.isObrisan()){
-				return automobil;
+				int autoID = automobil.getId();
+				slobodniAutomobil.add(autoID);
 			}
 		}
-		return null;
+		return slobodniAutomobil;
 	}
 
 	public TaksiSluzba nadjiTaksiSluzbu(int id){

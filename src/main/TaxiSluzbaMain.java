@@ -43,29 +43,17 @@ public class TaxiSluzbaMain {
 }
 /*
 
-    Ako se naruci nova voznja a vozac nije slobodan potrebno je da vozac zavrsi ili odbije voznju
-    ako odbije voznju to znaci da ce taj vozac ako je u voznji "" biti dodeljen
-    isto vazi za zavrsavanje voznje
+    Kod dodavanja vozaca, ako vozac nema auto (id automobila = 0) ne moze da vozi
+    +
+    voznja mora da ima dodeljenog vozaca i vozac mora da ima idAutomobila != 0
 
- */
-/*
-                    Vozac vozac = ucitavanje.nadjiVozacaKojiJeSlobodan();
-                    if(vozac != null){
-                        vozac.getKorisnickoIme();
-                        vozac.setStatusVozaca(StatusVozaca.ZAUZET);
-                        ucitavanje.dodavanjeKorisnika();
-                    }else{
-                        Vozac nePostojiSlobodanVozac = new Vozac();
-                        vozac = nePostojiSlobodanVozac;
-                    }
- */
+*/
 
 /*
+
 
     Odraditi OOP:
-        1. Dodeliti vozaca voznji
-        2. Pregled dodeljenih voznji i prihvati/odbij voznju
-        3. Zavrsavanje voznje i unos broja km predjenih i trajanje voznje
+        Dodavanje vozaca, prikazati slobodne automobile u padajucu listu
 
     Odraditi ASIP:
         1. Zavrsiti pretragu i izvestaje

@@ -3,6 +3,7 @@ package dispecer.podaciVozaca;
 import automobili.Automobil;
 import enumi.StatusAutomobila;
 import enumi.StatusVozaca;
+import enumi.StatusVoznje;
 import osobe.Osoba;
 import enumi.Pol;
 import osobe.Vozac;
@@ -11,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class DodavanjeVozaca extends JFrame{
 
@@ -37,6 +39,8 @@ public class DodavanjeVozaca extends JFrame{
     private JTextField tplata;
     private JLabel brojClanskeKarte;
     private JTextField tbrojClanskeKarte;
+    private JLabel automobil;
+    private JComboBox<Automobil> slobodniAutomobil;
     private JButton btnOK;
 
     private Liste ucitavanje;
@@ -49,7 +53,7 @@ public class DodavanjeVozaca extends JFrame{
         this.vozac = vozac;
 
         setTitle("Dodavanje Vozaca");
-        setSize(900, 550);
+        setSize(900, 570);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -127,14 +131,14 @@ public class DodavanjeVozaca extends JFrame{
         muski.setFont(new Font("Arial", Font.PLAIN, 15));
         muski.setSelected(true);
         muski.setSize(75, 20);
-        muski.setLocation(570, 300);
+        muski.setLocation(650, 300);
         c.add(muski);
 
         zenski = new JRadioButton("Zenski");
         zenski.setFont(new Font("Arial", Font.PLAIN, 15));
         zenski.setSelected(false);
         zenski.setSize(80, 20);
-        zenski.setLocation(660, 300);
+        zenski.setLocation(740, 300);
         c.add(zenski);
 
         polDugme = new ButtonGroup();
@@ -189,10 +193,27 @@ public class DodavanjeVozaca extends JFrame{
         tbrojClanskeKarte.setLocation(650, 235);
         c.add(tbrojClanskeKarte);
 
+        automobil = new JLabel("Automobil:");
+        automobil.setFont(new Font("Arial", Font.PLAIN, 18));
+        automobil.setSize(190, 35);
+        automobil.setLocation(40, 350);
+        c.add(automobil);
+
+        ArrayList<Integer> auto = ucitavanje.listaSlobodnihAutomobila();
+        String[] array = new String[auto.size()];
+        for(int i = 0; i < array.length; i++) {
+            array[i] = String.valueOf(auto.get(i));
+        }
+        slobodniAutomobil = new JComboBox(array);
+        slobodniAutomobil.setFont(new Font("Arial", Font.PLAIN, 15));
+        slobodniAutomobil.setSize(190, 35);
+        slobodniAutomobil.setLocation(180, 350);
+        c.add(slobodniAutomobil);
+
         btnOK = new JButton("Potvrdi");
         btnOK.setFont(new Font("Arial", Font.PLAIN, 19));
         btnOK.setSize(180, 40);
-        btnOK.setLocation(350, 400);
+        btnOK.setLocation(350, 450);
         btnOK.setBackground(Color.BLUE);
         c.add(btnOK);
 
@@ -215,7 +236,20 @@ public class DodavanjeVozaca extends JFrame{
                     double unosPlata = Double.parseDouble(tplata.getText().trim());
                     int unosBrojClanskeKarte = Integer.parseInt(tbrojClanskeKarte.getText().trim());
                     double ocena = 0;
-                    StatusVozaca statusVozaca = vozac.getStatusVozaca();
+                    StatusVozaca statusVozaca = StatusVozaca.SLOBODAN;
+
+                    Automobil automobil = new Automobil();
+                    if(slobodniAutomobil.getSelectedItem() != null) {
+                        int automobilID = Integer.parseInt(slobodniAutomobil.getSelectedItem().toString());
+                        automobil.setId(automobilID);
+                        Automobil automobil1 = ucitavanje.nadjiAutomobil(automobilID);
+                        if(automobilID == automobil1.getId()){
+                            automobil1.setStatusAutomobila(StatusAutomobila.ZAUZET);
+                            ucitavanje.snimanjeAutomobila("automobil.txt");
+                        }
+                    }else{
+                        automobil.setId(0);
+                    }
 
                     if(osoba != null) {
                         Vozac vozac = (Vozac) osoba;
@@ -231,22 +265,14 @@ public class DodavanjeVozaca extends JFrame{
                         vozac.setStatusVozaca(statusVozaca);
                     }
 
-                    Automobil slobodanAutomobil = ucitavanje.nadjiAutomobilPoStatusuAutomobila();
-                    if(slobodanAutomobil != null){
-                        slobodanAutomobil.setStatusAutomobila(StatusAutomobila.ZAUZET);
-                        ucitavanje.snimanjeAutomobila("automobil.txt");
-                    }else{
-                        Automobil automobil = new Automobil();
-                        slobodanAutomobil = automobil;
-                    }
 
                     if (muski.isSelected()) {
                         Pol pol = Pol.MUSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true , unosPlata, unosBrojClanskeKarte, slobodanAutomobil, ocena, statusVozaca);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true , unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca);
                         ucitavanje.getVozaci().add(vozac);
                     } else if (zenski.isSelected()) {
                         Pol pol = Pol.ZENSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, slobodanAutomobil, ocena, statusVozaca);
+                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca);
                         ucitavanje.getVozaci().add(vozac);
                     }
                     ucitavanje.dodavanjeKorisnika();
