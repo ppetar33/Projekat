@@ -13,12 +13,12 @@ import java.time.format.DateTimeFormatter;
 public class PrikazVoznjiPutemAplikacije extends JFrame {
 
 
-    private JToolBar mainJtoolBar = new JToolBar();
+    public JToolBar mainJtoolBar = new JToolBar();
 
-    private DefaultTableModel tableModel;
-    private JTable voznjeTabela;
+    public DefaultTableModel tableModel;
+    public JTable voznjeTabela;
 
-    private Liste ucitavanje;
+    public Liste ucitavanje;
 
     public PrikazVoznjiPutemAplikacije(Liste ucitavanje) {
         this.ucitavanje = ucitavanje;
@@ -32,7 +32,7 @@ public class PrikazVoznjiPutemAplikacije extends JFrame {
 
     private void initGui(){
         add(mainJtoolBar, BorderLayout.SOUTH);
-        String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
+        String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena"};
         Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size()][zaglavnje.length];
         for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size(); i++){
             Voznja voznje = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().get(i);
@@ -42,12 +42,25 @@ public class PrikazVoznjiPutemAplikacije extends JFrame {
                 sadrzaj[i][2] = voznje.getAdresaPolaska();
                 sadrzaj[i][3] = voznje.getAdresaDestinacije();
                 sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-                sadrzaj[i][5] = voznje.getVozac().getIme().substring(0,1).toUpperCase() + voznje.getVozac().getIme().substring(1);
-                sadrzaj[i][6] = voznje.getBrojKMpredjenih();
-                sadrzaj[i][7] = voznje.getTrajanjVoznje();
+                if(voznje.getVozac().getKorisnickoIme() != "") {
+                    sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
+                }else{
+                    sadrzaj[i][5] = "Nema slobodan vozac";
+                }
+                if(voznje.getBrojKMpredjenih() == 0){
+                    sadrzaj[i][6] = "/";
+                }else {
+                    sadrzaj[i][6] = voznje.getBrojKMpredjenih();
+                }
+                if(voznje.getTrajanjVoznje() == 0){
+                    sadrzaj[i][7] = "/";
+                }else {
+                    sadrzaj[i][7] = voznje.getTrajanjVoznje();
+                }
                 sadrzaj[i][8] = voznje.getStatusVoznje();
             }
-        }
+                sadrzaj[i][9] = voznje.getNapomena();
+            }
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavnje);
         voznjeTabela = new JTable(tableModel);
@@ -60,5 +73,7 @@ public class PrikazVoznjiPutemAplikacije extends JFrame {
 
         JScrollPane jsp = new JScrollPane(voznjeTabela);
         add(jsp, BorderLayout.CENTER);
+
+        }
     }
-}
+
