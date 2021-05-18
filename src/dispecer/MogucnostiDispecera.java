@@ -13,6 +13,7 @@ import dispecer.podaciVozaca.PrikazVozaca;
 import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;
+import enumi.StatusVoznje;
 import loginProzor.LoginProzor;
 import main.TaxiSluzbaMain;
 import musterija.NarucivanjeVoznjePrekoTelefona;
@@ -310,7 +311,7 @@ public class MogucnostiDispecera extends JFrame {
 		dodeliVoznju.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(ucitavanje.neobrisaneVoznjeKreiranePutemTelefona2().isEmpty()){
+				if(ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().isEmpty() && voznja.getStatusVoznje() != (StatusVoznje.KREIRANA)){
 					JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
 				}else {
 					DodeljivanjeVoznje dodeljivanjeVoznji = new DodeljivanjeVoznje(ucitavanje, voznja);

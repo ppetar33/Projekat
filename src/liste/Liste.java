@@ -263,7 +263,7 @@ public class Liste {
 
 
 	/*
-			DODAVANJE
+			DODAVANJE / SNIMANJE
 	*/
 
 	public void dodavanjeKorisnika() {
@@ -415,14 +415,6 @@ public class Liste {
 		}
 		return null;
 	}
-	public Vozac nadjiVozacaZaMenjanjeStatusa(String korisnickoIme){
-		for(Vozac vozac : vozaci){
-			if(vozac.getKorisnickoIme().equals(korisnickoIme) && vozac.isObrisan() && vozac.getStatusVozaca().equals(StatusVozaca.ZAUZET)){
-				return vozac;
-			}
-		}
-		return null;
-	}
 	public Vozac nadjiVozacaKojiNemaAutomobil(){
 		for(Vozac vozac : vozaci){
 			if(vozac.getAutomobili().getId() == 0 && vozac.isObrisan()){
@@ -510,14 +502,6 @@ public class Liste {
 		}
 		return null;
 	}
-	public Automobil nadjiAutomobilPoModeluAutomobila(String modelAutomobila){
-		for(Automobil automobil : automobili){
-			if(automobil.getModel().equalsIgnoreCase(modelAutomobila) && automobil.isObrisan()){
-				return automobil;
-			}
-		}
-		return null;
-	}
 
 	public TaksiSluzba nadjiTaksiSluzbu(int id){
 		for(TaksiSluzba taksiSluzba : taksiSluzbe){
@@ -528,7 +512,7 @@ public class Liste {
 		return null;
 	}
 
-	public NarucivanjeVoznjePrekoAplikacije nadjiVoznju(){
+	public NarucivanjeVoznjePrekoAplikacije nadjiVoznjuZakazanuPrekoAplikacije(){
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			if(voznja.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA) && voznja.isObrisan()){
 				return voznja;
@@ -828,17 +812,8 @@ public class Liste {
 		}
 		return neobrisaneVoznje;
 	}
-	public ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona2(){
-		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
-			if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA)){
-				neobrisaneVoznje.add(voznja);
-			}
-		}
-		return neobrisaneVoznje;
-	}
-	public ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona3(){
-		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+	public ArrayList<NarucivanjeVoznjePrekoTelefona> poredjenjeUlogovanogKorisnikaSaVozacem(){
+		ArrayList<NarucivanjeVoznjePrekoTelefona> voznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			Vozac ulogovanVozac = null;
 			try {
@@ -848,8 +823,8 @@ public class Liste {
 					String data = citanjeUlogovanogKorisnika.nextLine();
 					ulogovanVozac = new Vozac();
 					ulogovanVozac.setKorisnickoIme(data);
-					if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.DODELJENA) && voznja.getVozac().getKorisnickoIme().equals(ulogovanVozac.getKorisnickoIme())){
-						neobrisaneVoznje.add(voznja);
+					if(voznja.isObrisan() && voznja.getVozac().getKorisnickoIme().equalsIgnoreCase(ulogovanVozac.getKorisnickoIme())){
+						voznje.add(voznja);
 					}
 				}
 				citanjeUlogovanogKorisnika.close();
@@ -858,10 +833,10 @@ public class Liste {
 				System.out.println("Greska");
 			}
 		}
-		return neobrisaneVoznje;
+		return voznje;
 	}
-	public ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona4(){
-		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+	public ArrayList<NarucivanjeVoznjePrekoTelefona> prikazDodeljenihVoznji(){
+		ArrayList<NarucivanjeVoznjePrekoTelefona> voznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			Vozac ulogovanVozac = null;
 			try {
@@ -871,8 +846,8 @@ public class Liste {
 					String data = citanjeUlogovanogKorisnika.nextLine();
 					ulogovanVozac = new Vozac();
 					ulogovanVozac.setKorisnickoIme(data);
-					if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.PRIHVACENA) && voznja.getVozac().getKorisnickoIme().equals(ulogovanVozac.getKorisnickoIme())){
-						neobrisaneVoznje.add(voznja);
+					if(voznja.isObrisan() && voznja.getVozac().getKorisnickoIme().equalsIgnoreCase(ulogovanVozac.getKorisnickoIme()) && voznja.getStatusVoznje().equals(StatusVoznje.DODELJENA)){
+						voznje.add(voznja);
 					}
 				}
 				citanjeUlogovanogKorisnika.close();
@@ -881,7 +856,7 @@ public class Liste {
 				System.out.println("Greska");
 			}
 		}
-		return neobrisaneVoznje;
+		return voznje;
 	}
 	public ArrayList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznjeKreiranePutemAplikacije(){
 		ArrayList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoAplikacije>();
@@ -892,22 +867,22 @@ public class Liste {
 		}
 		return neobrisaneVoznje;
 	}
-	public ArrayList<OstaleVoznje> neobrisaneVoznje(){
-		ArrayList<OstaleVoznje> neobrisaneVoznje = new ArrayList<OstaleVoznje>();
-		for(OstaleVoznje voznja : voznja){
-			if(voznja.isObrisan()){
-				neobrisaneVoznje.add(voznja);
-			}
-		}
-		return neobrisaneVoznje;
-	}
 
 	public NarucivanjeVoznjePrekoTelefona nadjiVoznjuKojaNemaVozaca(){
 		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
-			if(voznjePrekoTelefona.getVozac().getKorisnickoIme() == ""){
+			if(voznjePrekoTelefona.getVozac().getKorisnickoIme().equals("")){
 				return voznjePrekoTelefona;
 			}
 		}
 		return null;
+	}
+	public ArrayList<NarucivanjeVoznjePrekoTelefona> listaVoznjiKojeNemajuVozaca(){
+		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+		for(NarucivanjeVoznjePrekoTelefona prekoTelefona : voznjaTelefoni){
+			if(prekoTelefona.getVozac().getKorisnickoIme().equals("")){
+				neobrisaneVoznje.add(prekoTelefona);
+			}
+		}
+		return neobrisaneVoznje;
 	}
 }

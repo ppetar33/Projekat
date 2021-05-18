@@ -47,10 +47,10 @@ public class ZavrsavanjeVoznje extends JFrame {
     private void initGUI(){
         add(mainJtoolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
-        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemTelefona4().size()][zaglavnje.length];
-        for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemTelefona4().size(); i++){
-            Voznja voznje = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona4().get(i);
-            if(voznje.getStatusNaruceneVoznje() == StatusNaruceneVoznje.TELEFON){
+        Object[][] sadrzaj = new Object[ucitavanje.poredjenjeUlogovanogKorisnikaSaVozacem().size()][zaglavnje.length];
+        for(int i = 0; i < ucitavanje.poredjenjeUlogovanogKorisnikaSaVozacem().size(); i++){
+            Voznja voznje = ucitavanje.poredjenjeUlogovanogKorisnikaSaVozacem().get(i);
+            if(voznje.getStatusVoznje().equals(StatusVoznje.PRIHVACENA)){
                 sadrzaj[i][0] = voznje.getId();
                 sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
                 sadrzaj[i][2] = voznje.getAdresaPolaska();

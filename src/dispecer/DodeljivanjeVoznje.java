@@ -49,9 +49,9 @@ public class DodeljivanjeVoznje extends JFrame {
     private void initTable(){
         add(mainJtoolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
-        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemTelefona2().size()][zaglavnje.length];
-        for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemTelefona2().size(); i++){
-            Voznja voznje = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona2().get(i);
+        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().size()][zaglavnje.length];
+        for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().size(); i++){
+            Voznja voznje = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().get(i);
             if(voznje.getStatusVoznje() == StatusVoznje.KREIRANA){
                 sadrzaj[i][0] = voznje.getId();
                 sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));

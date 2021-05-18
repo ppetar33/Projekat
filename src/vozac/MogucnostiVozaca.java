@@ -1,6 +1,9 @@
 package vozac;
 
+import enumi.StatusVoznje;
+import jdk.jshell.Snippet;
 import main.TaxiSluzbaMain;
+import musterija.NarucivanjeVoznjePrekoTelefona;
 import osobe.Musterija;
 import osobe.Vozac;
 import liste.Liste;
@@ -73,8 +76,8 @@ public class MogucnostiVozaca extends JFrame {
         prikazDodeljenihVoznji.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(ucitavanje.neobrisaneVoznjeKreiranePutemTelefona3().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"Nema dodeljenih voznji!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                if(ucitavanje.prikazDodeljenihVoznji().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Nema dodeljenih voznji!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                 }else {
                     PrikazDodeljenihVoznji prikazDodeljenihVoznji = new PrikazDodeljenihVoznji(ucitavanje);
                     prikazDodeljenihVoznji.setVisible(true);
@@ -94,7 +97,7 @@ public class MogucnostiVozaca extends JFrame {
         zavrsavanjeVoznje.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(ucitavanje.neobrisaneVoznjeKreiranePutemTelefona4().isEmpty()){
+                if(ucitavanje.poredjenjeUlogovanogKorisnikaSaVozacem().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Nema prihvacenih voznji!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
                 }else {
                     ZavrsavanjeVoznje zavrsavanjeVoznje = new ZavrsavanjeVoznje(ucitavanje);

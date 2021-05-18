@@ -107,7 +107,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                         ako status voznje nije kreirana na cekanju
                         JOptionPane.showMessageDialog(null, "Morate prihvatiti samo kreirane voznje", "Greska", JOptionPane.WARNING_MESSAGE);
                     */
-                    NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznju();
+                    NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznjuZakazanuPrekoAplikacije();
                     if(narucivanjeVoznjePrekoAplikacije != null){
                         JOptionPane.showMessageDialog(null, "Mozete prihvatiti samo kreirane voznje!", "Greska", JOptionPane.WARNING_MESSAGE);
                     }else{

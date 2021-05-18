@@ -25,15 +25,17 @@ public class TaxiSluzbaMain {
         LoginProzor lp = new LoginProzor(ucitavanje);
         lp.setVisible(true);
 
-        Vozac slobodanVozac = ucitavanje.nadjiVozacaKojiJeSlobodan();
-        NarucivanjeVoznjePrekoTelefona voznjaKojaNemaVozaca = ucitavanje.nadjiVoznjuKojaNemaVozaca();
-        if(slobodanVozac != null){
-            voznjaKojaNemaVozaca.getVozac().setKorisnickoIme(slobodanVozac.getKorisnickoIme());
-            slobodanVozac.setStatusVozaca(StatusVozaca.ZAUZET);
-            ucitavanje.dodavanjeKorisnika();
-            ucitavanje.snimanjeVoznji(VOZNJE_FAJL);
-        }else{
+        if(ucitavanje.listaVoznjiKojeNemajuVozaca().isEmpty()){
             System.out.println("Sve voznje imaju vozaca");
+        }else {
+            Vozac slobodanVozac = ucitavanje.nadjiVozacaKojiJeSlobodan();
+            NarucivanjeVoznjePrekoTelefona voznjaKojaNemaVozaca = ucitavanje.nadjiVoznjuKojaNemaVozaca();
+            if (slobodanVozac != null) {
+                voznjaKojaNemaVozaca.getVozac().setKorisnickoIme(slobodanVozac.getKorisnickoIme());
+                slobodanVozac.setStatusVozaca(StatusVozaca.ZAUZET);
+                ucitavanje.dodavanjeKorisnika();
+                ucitavanje.snimanjeVoznji(VOZNJE_FAJL);
+            }
         }
 
     }
