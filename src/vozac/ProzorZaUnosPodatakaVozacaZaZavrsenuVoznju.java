@@ -55,20 +55,18 @@ public class ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju extends JFrame {
                     double unosBrojaKm = Double.parseDouble(unosBrojaKmString);
                     String unosTrajanjaVoznjeString = ttrajanjeVoznje.getText().trim();
                     double unosTrajanjaVoznje = Double.parseDouble(unosTrajanjaVoznjeString);
-
                     nadjiVoznju.setBrojKMpredjenih(unosBrojaKm);
                     nadjiVoznju.setTrajanjVoznje(unosTrajanjaVoznje);
                     nadjiVoznju.setStatusVoznje(StatusVoznje.ZAVRSENA);
-
                     String vozacString = nadjiVoznju.getVozac().getKorisnickoIme();
                     Vozac vozac = ucitavanje.nadjiVozaca(vozacString);
                     vozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
                     ucitavanje.dodavanjeKorisnika();
-
                     ucitavanje.snimanjeVoznji("voznje.txt");
                     JOptionPane.showMessageDialog(null,"Uspesno ste uneli podatke!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju.this.setVisible(false);
                     ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju.this.dispose();
+
                 }
             }
         });
