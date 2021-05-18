@@ -10,8 +10,10 @@ import dispecer.podaciVozaca.BrisanjeVozaca;
 import dispecer.podaciVozaca.DodavanjeVozaca;
 import dispecer.podaciVozaca.IzmenaVozaca;
 import dispecer.podaciVozaca.PrikazVozaca;
+import dispecer.podaciVoznjePrekoAplikacije.BrisanjeVoznjiNarucenihPrekoAplikacije;
 import dispecer.podaciVoznjePrekoAplikacije.IzmenaVoznjiNarucenihPrekoAplikacije;
 import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
+import dispecer.podaciVoznjePrekoTelefona.BrisanjeVoznjiNarucenihPrekoTelefona;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;
 import enumi.StatusVoznje;
@@ -53,8 +55,8 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem putemAplikacije = new JMenuItem("Putem aplikacije");
 	private JMenuItem izmenaVoznjiPutemAplikacije = new JMenuItem("Izmena voznji putem aplikacije");
 	private JMenuItem izmenaVoznjiPutemTelefona = new JMenuItem("Izmena voznji putem telefona");
-
-
+	private JMenuItem brisanjeVoznjiPutemAplikacije = new JMenuItem("Brisanje voznji putem aplikacije");
+	private JMenuItem brisanjeVoznjiPutemTelefona = new JMenuItem("Brisanje voznji putem telefona");
 
 	private JMenu funkcionalnostPretragaVozaca = new JMenu("Pretraga vozaca");
 	private JMenuItem poImenu = new JMenuItem("Po imenu");
@@ -125,6 +127,8 @@ public class MogucnostiDispecera extends JFrame {
 		funkcionalnostPrikazVoznji.add(putemAplikacije);
 		funkcionalnostPrikazVoznji.add(izmenaVoznjiPutemAplikacije);
 		funkcionalnostPrikazVoznji.add(izmenaVoznjiPutemTelefona);
+		funkcionalnostPrikazVoznji.add(brisanjeVoznjiPutemTelefona);
+		funkcionalnostPrikazVoznji.add(brisanjeVoznjiPutemAplikacije);
 
 
 		dispecerMenu.add(funkcionalnostPretragaVozaca);
@@ -252,7 +256,7 @@ public class MogucnostiDispecera extends JFrame {
 			}
 		});
 
-		// PRIKAZ VOZNJI
+		// PRIKAZ VOZNJI, BRISANJE VOZNJI, IZMENA VOZNJI
 		putemTelefona.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -272,6 +276,26 @@ public class MogucnostiDispecera extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				IzmenaVoznjiNarucenihPrekoAplikacije izmenaVoznjiNarucenihPrekoAplikacije = new IzmenaVoznjiNarucenihPrekoAplikacije(ucitavanje, voznjePrekoAplikacije);
 				izmenaVoznjiNarucenihPrekoAplikacije.setVisible(true);
+			}
+		});
+		izmenaVoznjiPutemTelefona.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//TODO
+			}
+		});
+		brisanjeVoznjiPutemAplikacije.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BrisanjeVoznjiNarucenihPrekoAplikacije brisanjeVoznjiNarucenihPrekoAplikacije = new BrisanjeVoznjiNarucenihPrekoAplikacije(ucitavanje);
+				brisanjeVoznjiNarucenihPrekoAplikacije.setVisible(true);
+			}
+		});
+		brisanjeVoznjiPutemTelefona.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BrisanjeVoznjiNarucenihPrekoTelefona brisanjeVoznjiNarucenihPrekoTelefona = new BrisanjeVoznjiNarucenihPrekoTelefona(ucitavanje);
+				brisanjeVoznjiNarucenihPrekoTelefona.setVisible(true);
 			}
 		});
 

@@ -530,6 +530,15 @@ public class Liste {
 		return null;
 	}
 
+	public NarucivanjeVoznjePrekoAplikacije nadjiVoznjuNarucenuPrekoAplikacijePoId(int id){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			if(voznja.getId() == id){
+				return voznja;
+			}
+		}
+		return null;
+	}
+
 	/*
 
 		IZVESTAJI

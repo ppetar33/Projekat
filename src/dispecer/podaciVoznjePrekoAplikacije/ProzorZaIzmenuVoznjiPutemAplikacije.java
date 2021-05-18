@@ -90,6 +90,7 @@ public class ProzorZaIzmenuVoznjiPutemAplikacije extends JFrame {
         add(btnOk, "split 2");
         add(btnCancel);
 
+        //TODO NE ZNAM STA OVO ZNACI
         tadresaPolaska.setEditable(false);
         tadresaDestinacije.setEditable(false);
         tmusterija.setEditable(false);

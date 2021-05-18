@@ -38,7 +38,8 @@ public class BrisanjeVoznjiNarucenihPrekoAplikacije extends PrikazVoznjiPutemApl
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String id = tableModel.getValueAt(red,0).toString();
                     int nadjiId = Integer.parseInt(id);
-                    Voznja voznja = ucitavanje.nadjiVoznju();
+                    //TODO NE MOZE OVA LINIJA ISPOD OVAKO
+                    Voznja voznja = ucitavanje.nadjiVoznjuNarucenuPrekoAplikacijePoId(nadjiId);
                     if (voznja != null) {
                         int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete voznju?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                         if (izbor == JOptionPane.YES_OPTION) {

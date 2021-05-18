@@ -92,8 +92,7 @@ public class IzmenaVoznjiNarucenihPrekoAplikacije extends JFrame {
                     DefaultTableModel tableModel = (DefaultTableModel)voznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-
-                    Voznja voznja = ucitavanje.nadjiVoznju();
+                    //TODO LINIJA ISPOD NE MOZE OVAK0
                     if (voznja != null){
                         int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da izmenite voznju? ", "Potvrda brisanja", JOptionPane.YES_NO_OPTION );
                         if (izbor == JOptionPane.YES_OPTION){

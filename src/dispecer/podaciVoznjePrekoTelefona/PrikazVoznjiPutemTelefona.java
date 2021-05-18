@@ -11,12 +11,12 @@ import java.time.format.DateTimeFormatter;
 
 public class PrikazVoznjiPutemTelefona extends JFrame {
 
-    private JToolBar mainJtoolBar = new JToolBar();
+    public JToolBar mainJtoolBar = new JToolBar();
 
-    private DefaultTableModel tableModel;
-    private JTable voznjeTabela;
+    public DefaultTableModel tableModel;
+    public JTable voznjeTabela;
 
-    private Liste ucitavanje;
+    public Liste ucitavanje;
 
     public PrikazVoznjiPutemTelefona(Liste ucitavanje){
         this.ucitavanje = ucitavanje;

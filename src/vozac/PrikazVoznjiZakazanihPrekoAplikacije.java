@@ -5,6 +5,7 @@ import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoAplikacije;
+import musterija.NarucivanjeVoznjePrekoTelefona;
 import osobe.Vozac;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -101,25 +102,26 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int red = istorijaVoznjeTabela.getSelectedRow();
-
-
                 if (red == -1){
                     JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
-//                }else if (){
-                    // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE PRIHVATITI I  NAKON TOGA DODATI KILOMETRE I TRAJANJE VOZNJE
-                    System.out.println("USPESNO JE PRIHVACENA");
-//                }else if (){
-                    JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce prihvatiti!", "Greska", JOptionPane.WARNING_MESSAGE);
-                    System.out.println("NE MOZETE OVU VOZNJU PRIHVATITI");
-                    /*
-                        ako status voznje nije kreirana na cekanju
-                        JOptionPane.showMessageDialog(null, "Morate prihvatiti samo kreirane voznje", "Greska", JOptionPane.WARNING_MESSAGE);
-                    */
-                    NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznjuZakazanuPrekoAplikacije();
-                    if(narucivanjeVoznjePrekoAplikacije != null){
-                        JOptionPane.showMessageDialog(null, "Mozete prihvatiti samo kreirane voznje!", "Greska", JOptionPane.WARNING_MESSAGE);
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Uspesno prihvacena voznja!", "Greska", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE PRIHVATITI
+                    DefaultTableModel tableModel = (DefaultTableModel) istorijaVoznjeTabela.getModel();
+                    String idString = tableModel.getValueAt(red, 0).toString();
+                    int id = Integer.parseInt(idString);
+                    NarucivanjeVoznjePrekoAplikacije nadjiVoznju = ucitavanje.nadjiVoznjuNarucenuPrekoAplikacijePoId(id);
+                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
+                        JOptionPane.showMessageDialog(null, "Uspesno ste prihvatili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                        nadjiVoznju.setStatusVoznje(StatusVoznje.PRIHVACENA);
+                        ucitavanje.snimanjeVoznji("voznje.txt");
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce prihvatiti!", "Greska", JOptionPane.WARNING_MESSAGE);
+                        NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznjuZakazanuPrekoAplikacije();
+                        if(narucivanjeVoznjePrekoAplikacije != null){
+                            JOptionPane.showMessageDialog(null, "Mozete prihvatiti samo voznje koje su kreirane na cekanju!", "Greska", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Uspesno prihvacena voznja!", "Greska", JOptionPane.WARNING_MESSAGE);
+                        }
                     }
                 }
             }
@@ -128,17 +130,36 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int red = istorijaVoznjeTabela.getSelectedRow();
-
                 if (red == -1){
                     JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
-//                }else if (){
+                }else{
                     // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE ODBITI
-                    System.out.println("USPESNO JE ODIJENA");
-                } else{
-                    JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce odbiti!", "Greska", JOptionPane.WARNING_MESSAGE);
+                    DefaultTableModel tableModel = (DefaultTableModel) istorijaVoznjeTabela.getModel();
+                    String idString = tableModel.getValueAt(red, 0).toString();
+                    int id = Integer.parseInt(idString);
+                    NarucivanjeVoznjePrekoAplikacije nadjiVoznju = ucitavanje.nadjiVoznjuNarucenuPrekoAplikacijePoId(id);
+                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
+                        JOptionPane.showMessageDialog(null, "Uspesno ste odbili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                        nadjiVoznju.setStatusVoznje(StatusVoznje.ODBIJENA);
+                        ucitavanje.snimanjeVoznji("voznje.txt");
+                        tableModel.fireTableDataChanged();
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce odbiti!", "Greska", JOptionPane.WARNING_MESSAGE);
+                        NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznjuZakazanuPrekoAplikacije();
+                        if(narucivanjeVoznjePrekoAplikacije != null){
+                            JOptionPane.showMessageDialog(null, "Mozete odbiti samo voznje koje su kreirane na cekanju!", "Greska", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Uspesno odbijena voznja!", "Greska", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
                 }
             }
         });
     }
 
 }
+
+                    /*
+                        ako status voznje nije kreirana na cekanju
+                        JOptionPane.showMessageDialog(null, "Morate prihvatiti samo kreirane voznje", "Greska", JOptionPane.WARNING_MESSAGE);
+                    */
