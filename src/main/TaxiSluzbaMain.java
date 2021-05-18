@@ -32,6 +32,8 @@ public class TaxiSluzbaMain {
             slobodanVozac.setStatusVozaca(StatusVozaca.ZAUZET);
             ucitavanje.dodavanjeKorisnika();
             ucitavanje.snimanjeVoznji(VOZNJE_FAJL);
+        }else{
+            System.out.println("Sve voznje imaju vozaca");
         }
 
     }

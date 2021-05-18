@@ -99,6 +99,8 @@ public class PrikazDodeljenihVoznji extends JFrame{
                         nadjiVoznju.setStatusVoznje(StatusVoznje.PRIHVACENA);
                         ucitavanje.snimanjeVoznji("voznje.txt");
                         tableModel.removeRow(red);
+                        PrikazDodeljenihVoznji.this.setVisible(false);
+                        PrikazDodeljenihVoznji.this.dispose();
                     }
                 }
             }
