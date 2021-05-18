@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import automobili.Automobil;
 import enumi.*;
 import automobili.Voznja;
@@ -143,7 +142,7 @@ public class Liste {
 					double ocena = Double.parseDouble(ocenaString);
 					String idAutomobilaString = split[10];
 					int idAutomobila = Integer.parseInt(idAutomobilaString);
-					StatusVozaca statusVozaca = StatusVozaca.valueOf(split[14]);
+					StatusVozacaIautomobila statusVozaca = StatusVozacaIautomobila.valueOf(split[14]);
 					Automobil automobil = new Automobil();
 					for(Automobil automobil1 : automobili){
 						if(idAutomobila == automobil1.getId()){
@@ -197,10 +196,10 @@ public class Liste {
 				VrstaVozila vrstaVozila = VrstaVozila.valueOf(podaci[6].toUpperCase());
 				String obrisanString = podaci[7];
 				boolean obrisan = Boolean.parseBoolean(obrisanString);
-				StatusAutomobila statusAutomobila = StatusAutomobila.valueOf(podaci[8].toUpperCase());
+				StatusVozacaIautomobila statusVozacaIautomobila = StatusVozacaIautomobila.valueOf(podaci[8].toUpperCase());
 				String petFriendlyString = podaci[9];
 				boolean petFriendly = Boolean.parseBoolean(petFriendlyString);
-				Automobil aut = new Automobil(id,model,proizvodjac,godinaProizvodnje,registarskiBroj,brojVozila,vrstaVozila,obrisan,statusAutomobila,petFriendly);
+				Automobil aut = new Automobil(id,model,proizvodjac,godinaProizvodnje,registarskiBroj,brojVozila,vrstaVozila,obrisan, statusVozacaIautomobila,petFriendly);
 				automobili.add(aut);
 			}
 			br.close();
@@ -461,7 +460,7 @@ public class Liste {
 	}
 	public Vozac nadjiVozacaKojiJeSlobodan(){
 		for(Vozac vozac : vozaci){
-			if(vozac.isObrisan() && vozac.getStatusVozaca().equals(StatusVozaca.SLOBODAN)){
+			if(vozac.isObrisan() && vozac.getStatusVozaca().equals(StatusVozacaIautomobila.SLOBODAN) && vozac.getAutomobili().getId() != 0){
 				return vozac;
 			}
 		}
@@ -497,7 +496,7 @@ public class Liste {
 	public ArrayList<Integer> listaSlobodnihAutomobila(){
 		ArrayList<Integer> slobodniAutomobil = new ArrayList<>();
 		for(Automobil automobil : automobili){
-			if(automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN && automobil.isObrisan()){
+			if(automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN && automobil.isObrisan()){
 				int autoID = automobil.getId();
 				slobodniAutomobil.add(autoID);
 			}

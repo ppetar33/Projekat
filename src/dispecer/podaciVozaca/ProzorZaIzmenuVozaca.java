@@ -2,7 +2,7 @@ package dispecer.podaciVozaca;
 
 import automobili.Automobil;
 import enumi.Pol;
-import enumi.StatusVozaca;
+import enumi.StatusVozacaIautomobila;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import liste.Liste;
@@ -92,7 +92,7 @@ public class ProzorZaIzmenuVozaca extends JFrame {
                     int brojClanskeKarte = vozac.getBrojClanskeKarte();
                     boolean obrisan = vozac.isObrisan();
                     double ocena = vozac.getOcena();
-                    StatusVozaca statusVozaca = vozac.getStatusVozaca();
+                    StatusVozacaIautomobila statusVozaca = vozac.getStatusVozaca();
                     if (vozac == null) {
                         vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojClanskeKarte, new Automobil(), ocena, statusVozaca);
                     } else {

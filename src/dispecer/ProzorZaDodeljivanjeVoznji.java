@@ -1,16 +1,12 @@
 package dispecer;
 
-import automobili.Voznja;
-import enumi.Pol;
 import enumi.StatusNaruceneVoznje;
-import enumi.StatusVozaca;
 import enumi.StatusVoznje;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -120,10 +116,6 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
                     ProzorZaDodeljivanjeVoznji.this.setVisible(false);
                     ProzorZaDodeljivanjeVoznji.this.dispose();
                 }
-
-
-
-//                JOptionPane.showMessageDialog(null,"Voznja uspesno dodeljena!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
             }
         });
         btnCancel.addActionListener(new ActionListener() {

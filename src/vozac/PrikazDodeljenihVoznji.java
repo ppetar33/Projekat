@@ -1,7 +1,7 @@
 package vozac;
 
 import automobili.Voznja;
-import enumi.StatusVozaca;
+import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoTelefona;
@@ -119,7 +119,7 @@ public class PrikazDodeljenihVoznji extends JFrame{
                         JOptionPane.showMessageDialog(null, "Uspesno ste odbili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         nadjiVoznju.setStatusVoznje(StatusVoznje.ODBIJENA);
                         Vozac vozac = ucitavanje.nadjiVozaca(vozacString);
-                        vozac.setStatusVozaca(StatusVozaca.SLOBODAN);
+                        vozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
                         ucitavanje.dodavanjeKorisnika();
                         ucitavanje.snimanjeVoznji("voznje.txt");
                         tableModel.removeRow(red);

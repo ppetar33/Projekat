@@ -1,7 +1,7 @@
 package dispecer.podaciVozaca;
 
 import automobili.Automobil;
-import enumi.StatusAutomobila;
+import enumi.StatusVozacaIautomobila;
 import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
@@ -56,9 +56,9 @@ public class BrisanjeVozaca extends PrikazVozaca {
                                 vozac.setObrisan(false);
                                 tableModel.removeRow(red);
                                 if (idAutomobila == vozac.getAutomobili().getId()) {
-                                    automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
-                                } else if (automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN) {
-                                    automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
+                                    automobil.setStatusAutomobila(StatusVozacaIautomobila.SLOBODAN);
+                                } else if (automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN) {
+                                    automobil.setStatusAutomobila(StatusVozacaIautomobila.SLOBODAN);
                                 }
                                 ucitavanje.dodavanjeKorisnika();
                                 ucitavanje.snimanjeAutomobila("automobil.txt");

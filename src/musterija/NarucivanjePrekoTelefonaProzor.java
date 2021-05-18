@@ -1,7 +1,7 @@
 package musterija;
 
 import enumi.StatusNaruceneVoznje;
-import enumi.StatusVozaca;
+import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
 import net.miginfocom.swing.MigLayout;
@@ -65,7 +65,7 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                     Vozac vozac = ucitavanje.nadjiVozacaKojiJeSlobodan();
                     if(vozac != null){
                         vozac.getKorisnickoIme();
-                        vozac.setStatusVozaca(StatusVozaca.ZAUZET);
+                        vozac.setStatusVozaca(StatusVozacaIautomobila.ZAUZET);
                         ucitavanje.dodavanjeKorisnika();
                     }else{
                         Vozac nePostojiSlobodanVozac = new Vozac();

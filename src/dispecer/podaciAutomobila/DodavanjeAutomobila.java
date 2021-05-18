@@ -1,11 +1,10 @@
 package dispecer.podaciAutomobila;
 
 import automobili.Automobil;
-import enumi.StatusAutomobila;
+import enumi.StatusVozacaIautomobila;
 import enumi.VrstaVozila;
 import liste.Liste;
 import osobe.Vozac;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class DodavanjeAutomobila extends JFrame {
+
     private Container c;
     private JLabel model;
     private JTextField tmodel;
@@ -187,7 +187,7 @@ public class DodavanjeAutomobila extends JFrame {
                     automobil.setRegistarskiBroj(unosBrojRegistarskeOznake);
                     automobil.setBrojVozila(unosBrojTaksiVozila);
                     automobil.setObrisan(true);
-                    automobil.setStatusAutomobila(StatusAutomobila.SLOBODAN);
+                    automobil.setStatusAutomobila(StatusVozacaIautomobila.SLOBODAN);
                     if (putnickiAutomobil.isSelected()) {
                         automobil.setVrstaVozila(VrstaVozila.PUTNICKI_AUTOMOBIL);
                     } else if (kombi.isSelected()) {
@@ -204,7 +204,7 @@ public class DodavanjeAutomobila extends JFrame {
                     Vozac vozacaKojiNemaAutomobil = ucitavanje.nadjiVozacaKojiNemaAutomobil();
                     if(vozacaKojiNemaAutomobil != null){
                         vozacaKojiNemaAutomobil.setAutomobili(automobil);
-                        automobil.setStatusAutomobila(StatusAutomobila.ZAUZET);
+                        automobil.setStatusAutomobila(StatusVozacaIautomobila.ZAUZET);
                         ucitavanje.dodavanjeKorisnika();
                     }
                     automobili.add(automobil);

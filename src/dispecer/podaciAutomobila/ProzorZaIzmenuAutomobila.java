@@ -1,11 +1,10 @@
 package dispecer.podaciAutomobila;
 
 import automobili.Automobil;
-import enumi.StatusAutomobila;
+import enumi.StatusVozacaIautomobila;
 import enumi.VrstaVozila;
 import net.miginfocom.swing.MigLayout;
 import liste.Liste;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,25 +13,18 @@ public class ProzorZaIzmenuAutomobila extends JFrame {
 
     private JLabel model = new JLabel("Model");
     private JTextField tmodel = new JTextField(20);
-
     private JLabel proizvodjac = new JLabel("Model");
     private JTextField tproizvodjac = new JTextField(20);
-
     private JLabel godinaProizvodnje = new JLabel("Model");
     private JTextField tgodinaProizvodnje = new JTextField(20);
-
     private JLabel brojRegistarskeOznake = new JLabel("Model");
     private JTextField tbrojRegistarskeOznake = new JTextField(20);
-
     private JLabel brojTaksiVozila = new JLabel("Model");
     private JTextField tbrojTaksiVozila = new JTextField(20);
-
     private JLabel vrstaVozila = new JLabel("Vrsta vozila");
     private JComboBox<VrstaVozila> vrstaVozilaJComboBox = new JComboBox<VrstaVozila>(VrstaVozila.values());
-
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
-    
     private Liste ucitavanje;
     private Automobil automobil;
     
@@ -87,10 +79,10 @@ public class ProzorZaIzmenuAutomobila extends JFrame {
                     int brojTaksiVozila = Integer.parseInt(tbrojTaksiVozila.getText().trim());
                     VrstaVozila vrstaVozila = (VrstaVozila) vrstaVozilaJComboBox.getSelectedItem();
                     boolean obrisan = automobil.isObrisan();
-                    StatusAutomobila statusAutomobila = automobil.getStatusAutomobila();
+                    StatusVozacaIautomobila statusVozacaIautomobila = automobil.getStatusAutomobila();
                     boolean petFriendly = automobil.isPetFriendly();
                     if (automobil == null){
-                        automobil = new Automobil(id,model,proizvodjac,godinaProizvodnje,brojRegistarskeOznake,brojTaksiVozila,vrstaVozila,obrisan,statusAutomobila,petFriendly);
+                        automobil = new Automobil(id,model,proizvodjac,godinaProizvodnje,brojRegistarskeOznake,brojTaksiVozila,vrstaVozila,obrisan, statusVozacaIautomobila,petFriendly);
                     }else{
                         automobil.setId(id);
                         automobil.setModel(model);
@@ -101,7 +93,7 @@ public class ProzorZaIzmenuAutomobila extends JFrame {
                         automobil.setVrstaVozila(vrstaVozila);
                         automobil.setObrisan(obrisan);
                         automobil.setPetFriendly(petFriendly);
-                        automobil.setStatusAutomobila(statusAutomobila);
+                        automobil.setStatusAutomobila(statusVozacaIautomobila);
                     }
                     ucitavanje.snimanjeAutomobila("automobil.txt");
                     JOptionPane.showMessageDialog(null, "Automobil je uspesno izmenjen!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);

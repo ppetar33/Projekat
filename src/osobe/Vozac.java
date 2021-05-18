@@ -2,7 +2,7 @@ package osobe;
 
 import automobili.Automobil;
 import enumi.Pol;
-import enumi.StatusVozaca;
+import enumi.StatusVozacaIautomobila;
 
 public class Vozac extends Osoba {
 
@@ -10,7 +10,7 @@ public class Vozac extends Osoba {
 	private int brojClanskeKarte;
 	private Automobil automobili;
 	private double ocena;
-	private StatusVozaca statusVozaca;
+	private StatusVozacaIautomobila statusVozaca;
 
 	public Vozac() {
 		this.plata = 0;
@@ -21,7 +21,7 @@ public class Vozac extends Osoba {
 	}
 
 	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-				 Pol pol, String brojTelefona, boolean obrisan,double plata, int brojClanskeKarte, Automobil automobili, double ocena, StatusVozaca statusVozaca) {
+				 Pol pol, String brojTelefona, boolean obrisan,double plata, int brojClanskeKarte, Automobil automobili, double ocena, StatusVozacaIautomobila statusVozaca) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
@@ -62,11 +62,11 @@ public class Vozac extends Osoba {
 		this.ocena = ocena;
 	}
 
-	public StatusVozaca getStatusVozaca() {
+	public StatusVozacaIautomobila getStatusVozaca() {
 		return statusVozaca;
 	}
 
-	public void setStatusVozaca(StatusVozaca statusVozaca) {
+	public void setStatusVozaca(StatusVozacaIautomobila statusVozaca) {
 		this.statusVozaca = statusVozaca;
 	}
 

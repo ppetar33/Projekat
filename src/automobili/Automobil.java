@@ -1,6 +1,6 @@
 package automobili;
 
-import enumi.StatusAutomobila;
+import enumi.StatusVozacaIautomobila;
 import enumi.VrstaVozila;
 
 public class Automobil {
@@ -13,7 +13,7 @@ public class Automobil {
     private int brojVozila;
     private VrstaVozila vrstaVozila;
     private boolean obrisan;
-    private StatusAutomobila statusAutomobila;
+    private StatusVozacaIautomobila statusVozacaIautomobila;
     private boolean petFriendly;
 
     public Automobil(){
@@ -25,11 +25,11 @@ public class Automobil {
         this.brojVozila = 0;
         this.vrstaVozila = null;
         this.obrisan = true;
-        this.statusAutomobila = null;
+        this.statusVozacaIautomobila = null;
         this.petFriendly = true;
     }
 
-    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila, boolean obrisan, StatusAutomobila statusAutomobila, boolean petFriendly) {
+    public Automobil(int id, String model, String proizvodjac, int godinaProizvodnje, String registarskiBroj, int brojVozila, VrstaVozila vrstaVozila, boolean obrisan, StatusVozacaIautomobila statusVozacaIautomobila, boolean petFriendly) {
         this.id = id;
         this.model = model;
         this.proizvodjac = proizvodjac;
@@ -38,7 +38,7 @@ public class Automobil {
         this.brojVozila = brojVozila;
         this.vrstaVozila = vrstaVozila;
         this.obrisan = obrisan;
-        this.statusAutomobila = statusAutomobila;
+        this.statusVozacaIautomobila = statusVozacaIautomobila;
         this.petFriendly = petFriendly;
     }
 
@@ -106,12 +106,12 @@ public class Automobil {
         this.obrisan = obrisan;
     }
 
-    public StatusAutomobila getStatusAutomobila() {
-        return statusAutomobila;
+    public StatusVozacaIautomobila getStatusAutomobila() {
+        return statusVozacaIautomobila;
     }
 
-    public void setStatusAutomobila(StatusAutomobila statusAutomobila) {
-        this.statusAutomobila = statusAutomobila;
+    public void setStatusAutomobila(StatusVozacaIautomobila statusVozacaIautomobila) {
+        this.statusVozacaIautomobila = statusVozacaIautomobila;
     }
 
     public boolean isPetFriendly() {
@@ -123,7 +123,7 @@ public class Automobil {
     }
 
     public String pripremiZaSnimanjeAutomobil() {
-        return id + "," + model + "," + proizvodjac + "," + godinaProizvodnje + "," + registarskiBroj + "," + brojVozila +"," + vrstaVozila + "," + obrisan + "," + statusAutomobila + "," + petFriendly +  "\n";
+        return id + "," + model + "," + proizvodjac + "," + godinaProizvodnje + "," + registarskiBroj + "," + brojVozila +"," + vrstaVozila + "," + obrisan + "," + statusVozacaIautomobila + "," + petFriendly +  "\n";
     }
 
     @Override
@@ -137,7 +137,7 @@ public class Automobil {
                 ", brojVozila=" + brojVozila +
                 ", vrstaVozila=" + vrstaVozila +
                 ", obrisan=" + obrisan +
-                ", statusAutomobila=" + statusAutomobila +
+                ", statusAutomobila=" + statusVozacaIautomobila +
                 ", petFriendly=" + petFriendly +
                 '}';
     }

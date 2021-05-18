@@ -1,7 +1,7 @@
 package dispecer.podaciAutomobila;
 
 import automobili.Automobil;
-import enumi.StatusAutomobila;
+import enumi.StatusVozacaIautomobila;
 import liste.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BrisanjeAutomobila extends PrikazAutomobila {
-//brisanje je moguće samo za automobile koji nisu dodeljeni ni jednom vozaču
 
     private JButton btnDelete = new JButton();
     
@@ -41,7 +40,7 @@ public class BrisanjeAutomobila extends PrikazAutomobila {
                     String id = tableModel.getValueAt(red, 0).toString();
                     int nadjiId = Integer.parseInt(id);
                     Automobil automobil = ucitavanje.nadjiAutomobil(nadjiId);
-                    if (automobil.getStatusAutomobila() == StatusAutomobila.SLOBODAN) {
+                    if (automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN) {
                         if (automobil != null) {
                             int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete automobil: " + automobil.getModel() + " ?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                             if (izbor == JOptionPane.YES_OPTION) {

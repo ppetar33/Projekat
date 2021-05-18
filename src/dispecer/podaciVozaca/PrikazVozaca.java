@@ -9,10 +9,8 @@ import java.awt.*;
 public class PrikazVozaca extends JFrame {
 
     public JToolBar mainToolBar = new JToolBar();
-
     public DefaultTableModel table_model;
     public JTable vozaciTabela;
-
     public Liste ucitavanje;
     public Vozac vozac;
 

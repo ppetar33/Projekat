@@ -2,7 +2,6 @@ package dispecer.podaciDispeceraZaKT2;
 
 import liste.Liste;
 import osobe.Dispecar;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;

@@ -1,5 +1,5 @@
 package enumi;
 
-public enum StatusVozaca {
+public enum StatusVozacaIautomobila {
     SLOBODAN,ZAUZET
 }

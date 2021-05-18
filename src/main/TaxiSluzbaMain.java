@@ -1,6 +1,6 @@
 package main;
 
-import enumi.StatusVozaca;
+import enumi.StatusVozacaIautomobila;
 import loginProzor.LoginProzor;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoTelefona;
@@ -32,7 +32,7 @@ public class TaxiSluzbaMain {
             NarucivanjeVoznjePrekoTelefona voznjaKojaNemaVozaca = ucitavanje.nadjiVoznjuKojaNemaVozaca();
             if (slobodanVozac != null) {
                 voznjaKojaNemaVozaca.getVozac().setKorisnickoIme(slobodanVozac.getKorisnickoIme());
-                slobodanVozac.setStatusVozaca(StatusVozaca.ZAUZET);
+                slobodanVozac.setStatusVozaca(StatusVozacaIautomobila.ZAUZET);
                 ucitavanje.dodavanjeKorisnika();
                 ucitavanje.snimanjeVoznji(VOZNJE_FAJL);
             }
@@ -41,25 +41,12 @@ public class TaxiSluzbaMain {
     }
 
 }
-/*
-
-    Kod dodavanja vozaca, ako vozac nema auto (id automobila = 0) ne moze da vozi
-    +
-    voznja mora da ima dodeljenog vozaca i vozac mora da ima idAutomobila != 0
-
-*/
 
 /*
-
-
-    Odraditi OOP:
-        Dodavanje vozaca, prikazati slobodne automobile u padajucu listu
-
     Odraditi ASIP:
         1. Zavrsiti pretragu i izvestaje
         2. Aukcija
         3. Binarna pretraga
         4. Sortiranje u tabeli
         5. Doubly linked list
-
 */

@@ -1,28 +1,22 @@
 package dispecer;
 
 import automobili.Voznja;
-import enumi.StatusVoznje;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoTelefona;
-import osobe.Vozac;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class DodeljivanjeVoznje extends JFrame {
 
     private JToolBar mainJtoolBar = new JToolBar();
-
     private DefaultTableModel tableModel;
     private JToolBar mainToolBar = new JToolBar();
     private JTable voznjeTabela;
     private JButton btnEdit = new JButton("Dodeli");
-
     private Liste ucitavanje;
     private NarucivanjeVoznjePrekoTelefona voznja;
 

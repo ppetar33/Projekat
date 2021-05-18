@@ -2,7 +2,6 @@ package dispecer.podaciDispeceraZaKT2;
 
 import liste.Liste;
 import osobe.Dispecar;
-import osobe.Musterija;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -10,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BrisanjeDispecera extends PrikazDispecera{
+
     private JButton btnDelete = new JButton();
 
     public BrisanjeDispecera(Liste ucitavanje, Dispecar dispecer) {

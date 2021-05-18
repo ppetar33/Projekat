@@ -1,9 +1,7 @@
 package dispecer.podaciVozaca;
 
 import automobili.Automobil;
-import enumi.StatusAutomobila;
-import enumi.StatusVozaca;
-import enumi.StatusVoznje;
+import enumi.StatusVozacaIautomobila;
 import osobe.Osoba;
 import enumi.Pol;
 import osobe.Vozac;
@@ -42,13 +40,11 @@ public class DodavanjeVozaca extends JFrame{
     private JLabel automobil;
     private JComboBox<Automobil> slobodniAutomobil;
     private JButton btnOK;
-
     private Liste ucitavanje;
     private Vozac vozac;
     private Osoba osoba;
 
-    public DodavanjeVozaca(Liste ucitavanje, Vozac vozac)
-    {
+    public DodavanjeVozaca(Liste ucitavanje, Vozac vozac) {
         this.ucitavanje = ucitavanje;
         this.vozac = vozac;
 
@@ -236,7 +232,7 @@ public class DodavanjeVozaca extends JFrame{
                     double unosPlata = Double.parseDouble(tplata.getText().trim());
                     int unosBrojClanskeKarte = Integer.parseInt(tbrojClanskeKarte.getText().trim());
                     double ocena = 0;
-                    StatusVozaca statusVozaca = StatusVozaca.SLOBODAN;
+                    StatusVozacaIautomobila statusVozaca = StatusVozacaIautomobila.SLOBODAN;
 
                     Automobil automobil = new Automobil();
                     if(slobodniAutomobil.getSelectedItem() != null) {
@@ -244,7 +240,7 @@ public class DodavanjeVozaca extends JFrame{
                         automobil.setId(automobilID);
                         Automobil automobil1 = ucitavanje.nadjiAutomobil(automobilID);
                         if(automobilID == automobil1.getId()){
-                            automobil1.setStatusAutomobila(StatusAutomobila.ZAUZET);
+                            automobil1.setStatusAutomobila(StatusVozacaIautomobila.ZAUZET);
                             ucitavanje.snimanjeAutomobila("automobil.txt");
                         }
                     }else{

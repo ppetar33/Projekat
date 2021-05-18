@@ -8,28 +8,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
-    //ID
+
     private JLabel id = new JLabel("ID");
     private JTextField tid = new JTextField(20);
-    //PIB
     private JLabel pib = new JLabel("PIB");
     private JTextField tpib = new JTextField(20);
-    //NAZIV
     private JLabel naziv = new JLabel("Naziv");
     private JTextField tnaziv = new JTextField(20);
-    //ADRESA
     private JLabel adresa = new JLabel("Adresa");
     private JTextField tadresa = new JTextField(20);
-    //CENA STARTA VOZNJE
     private JLabel cenaStartaVoznje = new JLabel("Cena starta voznje");
     private JTextField tcenaStartaVoznje = new JTextField(20);
-    //CENA PO KM
     private JLabel cenaVoznjePoKilometru = new JLabel("Cena voznje po kilometru");
     private JTextField tcenaVoznjePoKilometru = new JTextField(20);
-
     private JButton btnOK = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
-
     private Liste ucitavanje;
     private TaksiSluzba taksiSluzba;
 

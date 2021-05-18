@@ -200,7 +200,6 @@ public class MogucnostiDispecera extends JFrame {
 				}
 			}
 		});
-		// TAKSI SLUZBA
 		prikazPodataka.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -255,8 +254,6 @@ public class MogucnostiDispecera extends JFrame {
 				}
 			}
 		});
-
-		// PRIKAZ VOZNJI, BRISANJE VOZNJI, IZMENA VOZNJI
 		putemTelefona.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -306,8 +303,6 @@ public class MogucnostiDispecera extends JFrame {
 				brisanjeVoznjiNarucenihPrekoTelefona.setVisible(true);
 			}
 		});
-
-		// PRETRAGA VOZACA
 		poImenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -343,12 +338,6 @@ public class MogucnostiDispecera extends JFrame {
 				kombinovana.setVisible(true);
 			}
 		});
-		// PRETRAGA AUTOMOBILA TODO 
-
-
-
-		// IZVESTAJ
-
 		dnevni.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -356,8 +345,6 @@ public class MogucnostiDispecera extends JFrame {
 				izvestajiDispecera.dnevniIzvestaj(ucitavanje);
 			}
 		});
-
-		// DODELI VOZNJU
 		dodeliVoznju.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -369,8 +356,6 @@ public class MogucnostiDispecera extends JFrame {
 				}
 			}
 		});
-
-		//ODJAVLJIVANJE
 		potvrdaZaOdjavu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

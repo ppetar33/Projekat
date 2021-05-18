@@ -2,7 +2,6 @@ package dispecer.podaciVozaca;
 
 import osobe.Vozac;
 import liste.Liste;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;

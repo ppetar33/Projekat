@@ -1,8 +1,6 @@
 package dispecer.podaciVoznjePrekoTelefona;
 
 import automobili.Voznja;
-import dispecer.DodeljivanjeVoznje;
-import enumi.StatusNaruceneVoznje;
 import liste.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -35,29 +33,27 @@ public class PrikazVoznjiPutemTelefona extends JFrame {
         Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().size()][zaglavnje.length];
         for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().size(); i++){
             Voznja voznje = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().get(i);
-            if(voznje.getStatusNaruceneVoznje() == StatusNaruceneVoznje.TELEFON){
-                sadrzaj[i][0] = voznje.getId();
-                sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-                sadrzaj[i][2] = voznje.getAdresaPolaska();
-                sadrzaj[i][3] = voznje.getAdresaDestinacije();
-                sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-                if(voznje.getVozac().getKorisnickoIme() != "") {
-                    sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
-                }else{
-                    sadrzaj[i][5] = "Nema slobodan vozac";
-                }
-                if(voznje.getBrojKMpredjenih() == 0){
-                    sadrzaj[i][6] = "/";
-                }else {
-                    sadrzaj[i][6] = voznje.getBrojKMpredjenih();
-                }
-                if(voznje.getTrajanjVoznje() == 0){
-                    sadrzaj[i][7] = "/";
-                }else {
-                    sadrzaj[i][7] = voznje.getTrajanjVoznje();
-                }
-                sadrzaj[i][8] = voznje.getStatusVoznje();
+            sadrzaj[i][0] = voznje.getId();
+            sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            sadrzaj[i][2] = voznje.getAdresaPolaska();
+            sadrzaj[i][3] = voznje.getAdresaDestinacije();
+            sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
+            if(voznje.getVozac().getKorisnickoIme() != "") {
+                sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
+            }else{
+                sadrzaj[i][5] = "Nema slobodan vozac";
             }
+            if(voznje.getBrojKMpredjenih() == 0){
+                sadrzaj[i][6] = "/";
+            }else {
+                sadrzaj[i][6] = voznje.getBrojKMpredjenih();
+            }
+            if(voznje.getTrajanjVoznje() == 0){
+                sadrzaj[i][7] = "/";
+            }else {
+                sadrzaj[i][7] = voznje.getTrajanjVoznje();
+            }
+            sadrzaj[i][8] = voznje.getStatusVoznje();
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavnje);
         voznjeTabela = new JTable(tableModel);
@@ -71,5 +67,4 @@ public class PrikazVoznjiPutemTelefona extends JFrame {
         JScrollPane jsp = new JScrollPane(voznjeTabela);
         add(jsp, BorderLayout.CENTER);
     }
-
 }

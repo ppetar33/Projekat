@@ -1,7 +1,6 @@
 package dispecer.podaciAutomobila;
 
 import automobili.Automobil;
-import dispecer.pretragaVozaca.PoAutomobilu;
 import liste.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,10 +9,8 @@ import java.awt.*;
 public class PrikazAutomobila extends JFrame {
 
     public JToolBar mainToolBar = new JToolBar();
-
     public DefaultTableModel table_model;
     public JTable automobiliTabela;
-
     public Liste ucitavanje;
 
     public PrikazAutomobila(Liste ucitavanje){

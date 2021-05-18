@@ -6,12 +6,6 @@ import osobe.Vozac;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/*
-    da li se misli ukupna zarada za odredjenog vozaca
-    ili
-    preuzmem kilometrazu za sve voznje saberem je sa cenom startne voznje i pomnozim sa cenom po kilometru
-*/
-
 public class IzvestajiDispecera {
 
     private LocalDateTime vremeIdatum;
@@ -139,23 +133,5 @@ public class IzvestajiDispecera {
         }
 
     }
-
-
-
-
-
-    /*
-        nedeljni
-    */
-
-    /*
-        mesecni
-    */
-
-    /*
-        godisnji
-    */
-
-
 
 }

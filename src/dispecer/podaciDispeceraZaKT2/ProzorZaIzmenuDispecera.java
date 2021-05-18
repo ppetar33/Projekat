@@ -3,7 +3,6 @@ package dispecer.podaciDispeceraZaKT2;
 import enumi.Odeljenje;
 import enumi.Pol;
 import liste.Liste;
-import musterija.podaciMusterijeZaKT2.ProzorZaIzmenuMusterije;
 import net.miginfocom.swing.MigLayout;
 import osobe.Dispecar;
 import javax.swing.*;

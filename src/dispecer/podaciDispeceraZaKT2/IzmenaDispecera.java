@@ -1,7 +1,6 @@
 package dispecer.podaciDispeceraZaKT2;
 
 import liste.Liste;
-import musterija.podaciMusterijeZaKT2.ProzorZaIzmenuMusterije;
 import osobe.Dispecar;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
