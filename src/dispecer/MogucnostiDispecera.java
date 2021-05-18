@@ -260,15 +260,23 @@ public class MogucnostiDispecera extends JFrame {
 		putemTelefona.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PrikazVoznjiPutemTelefona prozorZaPrikazVoznjiPutemTelefona = new PrikazVoznjiPutemTelefona(ucitavanje);
-				prozorZaPrikazVoznjiPutemTelefona.setVisible(true);
+				if(ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema voznji narucenih preko telefona.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					PrikazVoznjiPutemTelefona prozorZaPrikazVoznjiPutemTelefona = new PrikazVoznjiPutemTelefona(ucitavanje);
+					prozorZaPrikazVoznjiPutemTelefona.setVisible(true);
+				}
 			}
 		});
 		putemAplikacije.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PrikazVoznjiPutemAplikacije prozorZaPrikazVoznjiPutemAplikacije = new PrikazVoznjiPutemAplikacije(ucitavanje);
-				prozorZaPrikazVoznjiPutemAplikacije.setVisible(true);
+				if(ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema voznji narucenih preko aplikacije.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					PrikazVoznjiPutemAplikacije prozorZaPrikazVoznjiPutemAplikacije = new PrikazVoznjiPutemAplikacije(ucitavanje);
+					prozorZaPrikazVoznjiPutemAplikacije.setVisible(true);
+				}
 			}
 		});
 		izmenaVoznjiPutemAplikacije.addActionListener(new ActionListener() {
@@ -353,7 +361,7 @@ public class MogucnostiDispecera extends JFrame {
 		dodeliVoznju.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().isEmpty() && voznja.getStatusVoznje() != (StatusVoznje.KREIRANA)){
+				if(ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().isEmpty()){
 					JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
 				}else {
 					DodeljivanjeVoznje dodeljivanjeVoznji = new DodeljivanjeVoznje(ucitavanje, voznja);

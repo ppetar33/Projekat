@@ -97,7 +97,7 @@ public class MogucnostiVozaca extends JFrame {
         zavrsavanjeVoznje.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(ucitavanje.poredjenjeUlogovanogKorisnikaSaVozacem().isEmpty()){
+                if(ucitavanje.prikazVoznjeZaZavrsavanjeVoznje().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Nema prihvacenih voznji!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
                 }else {
                     ZavrsavanjeVoznje zavrsavanjeVoznje = new ZavrsavanjeVoznje(ucitavanje);

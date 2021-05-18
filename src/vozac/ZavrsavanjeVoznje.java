@@ -47,32 +47,30 @@ public class ZavrsavanjeVoznje extends JFrame {
     private void initGUI(){
         add(mainJtoolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
-        Object[][] sadrzaj = new Object[ucitavanje.poredjenjeUlogovanogKorisnikaSaVozacem().size()][zaglavnje.length];
-        for(int i = 0; i < ucitavanje.poredjenjeUlogovanogKorisnikaSaVozacem().size(); i++){
-            Voznja voznje = ucitavanje.poredjenjeUlogovanogKorisnikaSaVozacem().get(i);
-            if(voznje.getStatusVoznje().equals(StatusVoznje.PRIHVACENA)){
-                sadrzaj[i][0] = voznje.getId();
-                sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-                sadrzaj[i][2] = voznje.getAdresaPolaska();
-                sadrzaj[i][3] = voznje.getAdresaDestinacije();
-                sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-                if(voznje.getVozac().getKorisnickoIme() != "") {
-                    sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
-                }else{
-                    sadrzaj[i][5] = "Nema slobodan vozac";
-                }
-                if(voznje.getBrojKMpredjenih() == 0){
-                    sadrzaj[i][6] = "/";
-                }else {
-                    sadrzaj[i][6] = voznje.getBrojKMpredjenih();
-                }
-                if(voznje.getTrajanjVoznje() == 0){
-                    sadrzaj[i][7] = "/";
-                }else {
-                    sadrzaj[i][7] = voznje.getTrajanjVoznje();
-                }
-                sadrzaj[i][8] = voznje.getStatusVoznje();
+        Object[][] sadrzaj = new Object[ucitavanje.prikazVoznjeZaZavrsavanjeVoznje().size()][zaglavnje.length];
+        for(int i = 0; i < ucitavanje.prikazVoznjeZaZavrsavanjeVoznje().size(); i++){
+            Voznja voznje = ucitavanje.prikazVoznjeZaZavrsavanjeVoznje().get(i);
+            sadrzaj[i][0] = voznje.getId();
+            sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            sadrzaj[i][2] = voznje.getAdresaPolaska();
+            sadrzaj[i][3] = voznje.getAdresaDestinacije();
+            sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
+            if(voznje.getVozac().getKorisnickoIme() != "") {
+                sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
+            }else{
+                sadrzaj[i][5] = "Nema slobodan vozac";
             }
+            if(voznje.getBrojKMpredjenih() == 0){
+                sadrzaj[i][6] = "/";
+            }else {
+                sadrzaj[i][6] = voznje.getBrojKMpredjenih();
+            }
+            if(voznje.getTrajanjVoznje() == 0){
+                sadrzaj[i][7] = "/";
+            }else {
+                sadrzaj[i][7] = voznje.getTrajanjVoznje();
+            }
+            sadrzaj[i][8] = voznje.getStatusVoznje();
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavnje);
         voznjeTabela = new JTable(tableModel);

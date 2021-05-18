@@ -821,6 +821,15 @@ public class Liste {
 		}
 		return neobrisaneVoznje;
 	}
+	public ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneIkreiraneVoznjeNarucenePutemTelefona(){
+		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA)){
+				neobrisaneVoznje.add(voznja);
+			}
+		}
+		return neobrisaneVoznje;
+	}
 	public ArrayList<NarucivanjeVoznjePrekoTelefona> poredjenjeUlogovanogKorisnikaSaVozacem(){
 		ArrayList<NarucivanjeVoznjePrekoTelefona> voznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
@@ -833,6 +842,29 @@ public class Liste {
 					ulogovanVozac = new Vozac();
 					ulogovanVozac.setKorisnickoIme(data);
 					if(voznja.isObrisan() && voznja.getVozac().getKorisnickoIme().equalsIgnoreCase(ulogovanVozac.getKorisnickoIme())){
+						voznje.add(voznja);
+					}
+				}
+				citanjeUlogovanogKorisnika.close();
+			}  catch (IOException ioException) {
+				ioException.printStackTrace();
+				System.out.println("Greska");
+			}
+		}
+		return voznje;
+	}
+	public ArrayList<NarucivanjeVoznjePrekoTelefona> prikazVoznjeZaZavrsavanjeVoznje(){
+		ArrayList<NarucivanjeVoznjePrekoTelefona> voznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			Vozac ulogovanVozac = null;
+			try {
+				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
+				Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
+				while (citanjeUlogovanogKorisnika.hasNextLine()) {
+					String data = citanjeUlogovanogKorisnika.nextLine();
+					ulogovanVozac = new Vozac();
+					ulogovanVozac.setKorisnickoIme(data);
+					if(voznja.isObrisan() && voznja.getVozac().getKorisnickoIme().equalsIgnoreCase(ulogovanVozac.getKorisnickoIme()) && voznja.getStatusVoznje().equals(StatusVoznje.PRIHVACENA)){
 						voznje.add(voznja);
 					}
 				}
