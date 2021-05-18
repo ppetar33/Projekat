@@ -143,13 +143,14 @@ public class Liste {
 					double ocena = Double.parseDouble(ocenaString);
 					String idAutomobilaString = split[10];
 					int idAutomobila = Integer.parseInt(idAutomobilaString);
+					StatusVozaca statusVozaca = StatusVozaca.valueOf(split[14]);
 					Automobil automobil = new Automobil();
 					for(Automobil automobil1 : automobili){
 						if(idAutomobila == automobil1.getId()){
 							automobil = automobil1;
 						}
 					}
-					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojKartice, automobil, ocena, StatusVozaca.SLOBODAN);
+					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojKartice, automobil, ocena, statusVozaca);
 					vozaci.add(vozac);
 				}
 			}
@@ -899,5 +900,14 @@ public class Liste {
 			}
 		}
 		return neobrisaneVoznje;
+	}
+
+	public NarucivanjeVoznjePrekoTelefona nadjiVoznjuKojaNemaVozaca(){
+		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
+			if(voznjePrekoTelefona.getVozac().getKorisnickoIme() == ""){
+				return voznjePrekoTelefona;
+			}
+		}
+		return null;
 	}
 }

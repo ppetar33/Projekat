@@ -71,7 +71,6 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                         Vozac nePostojiSlobodanVozac = new Vozac();
                         vozac = nePostojiSlobodanVozac;
                     }
-
                     if(narucivanjeVoznjePrekoTelefona != null){
                         narucivanjeVoznjePrekoTelefona.setId(id);
                         narucivanjeVoznjePrekoTelefona.setDatumIvremePorudzbine(trenutnoVreme);

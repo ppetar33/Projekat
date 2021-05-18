@@ -4,12 +4,15 @@ import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoTelefona;
+import osobe.Vozac;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class DodeljivanjeVoznje extends JFrame {
 
@@ -55,10 +58,10 @@ public class DodeljivanjeVoznje extends JFrame {
                 sadrzaj[i][2] = voznje.getAdresaPolaska();
                 sadrzaj[i][3] = voznje.getAdresaDestinacije();
                 sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-                if(voznje.getVozac().getKorisnickoIme() != "") {
-                    sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
-                }else{
+                if(voznje.getVozac().getKorisnickoIme() == "") {
                     sadrzaj[i][5] = "Nema slobodan vozac";
+                }else{
+                    sadrzaj[i][5] = voznje.getVozac().getKorisnickoIme();
                 }
                 if(voznje.getBrojKMpredjenih() == 0){
                     sadrzaj[i][6] = "/";

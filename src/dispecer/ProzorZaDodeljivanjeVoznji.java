@@ -3,6 +3,7 @@ package dispecer;
 import automobili.Voznja;
 import enumi.Pol;
 import enumi.StatusNaruceneVoznje;
+import enumi.StatusVozaca;
 import enumi.StatusVoznje;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoTelefona;
@@ -89,8 +90,9 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
                     String musterija = voznja.getMusterija().getKorisnickoIme();
                     Musterija musterija1 = new Musterija();
                     musterija1.setKorisnickoIme(musterija);
-                    Vozac vozac = voznja.getVozac();
-                    vozac.getKorisnickoIme();
+                    String vozac = voznja.getVozac().getKorisnickoIme();
+                    Vozac vozac1 = new Vozac();
+                    vozac1.setKorisnickoIme(vozac);
                     double brojKmPredjenih = voznja.getBrojKMpredjenih();
                     double trajanjeVoznje = voznja.getTrajanjVoznje();
                     StatusVoznje statusVoznje1 = StatusVoznje.DODELJENA;
@@ -98,14 +100,14 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
                     boolean obrisan = voznja.isObrisan();
                     StatusNaruceneVoznje statusNaruceneVoznje = voznja.getStatusNaruceneVoznje();
                     if(voznja == null){
-                        voznja = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDolaska,musterija1,vozac,brojKmPredjenih,trajanjeVoznje,statusVoznje1,napomena,obrisan,statusNaruceneVoznje);
+                        voznja = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDolaska,musterija1,vozac1,brojKmPredjenih,trajanjeVoznje,statusVoznje1,napomena,obrisan,statusNaruceneVoznje);
                     }else{
                         voznja.setId(id);
                         voznja.setDatumIvremePorudzbine(dateTime);
                         voznja.setAdresaPolaska(adresaPolaska);
                         voznja.setAdresaDestinacije(adresaDolaska);
                         voznja.setMusterija(musterija1);
-                        voznja.setVozac(vozac);
+                        voznja.setVozac(vozac1);
                         voznja.setBrojKMpredjenih(brojKmPredjenih);
                         voznja.setTrajanjVoznje(trajanjeVoznje);
                         voznja.setStatusVoznje(statusVoznje1);
