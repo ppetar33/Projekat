@@ -915,6 +915,31 @@ public class Liste {
 		}
 		return voznje;
 	}
+
+	public ArrayList<NarucivanjeVoznjePrekoAplikacije> prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije(){
+		ArrayList<NarucivanjeVoznjePrekoAplikacije> voznje = new ArrayList<NarucivanjeVoznjePrekoAplikacije>();
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			Vozac ulogovanVozac = null;
+			try {
+				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
+				Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
+				while (citanjeUlogovanogKorisnika.hasNextLine()) {
+					String data = citanjeUlogovanogKorisnika.nextLine();
+					ulogovanVozac = new Vozac();
+					ulogovanVozac.setKorisnickoIme(data);
+					if(voznja.isObrisan() && voznja.getVozac().getKorisnickoIme().equalsIgnoreCase(ulogovanVozac.getKorisnickoIme()) && voznja.getStatusVoznje().equals(StatusVoznje.PRIHVACENA)){
+						voznje.add(voznja);
+					}
+				}
+				citanjeUlogovanogKorisnika.close();
+			}  catch (IOException ioException) {
+				ioException.printStackTrace();
+				System.out.println("Greska");
+			}
+		}
+		return voznje;
+	}
+
 	public ArrayList<NarucivanjeVoznjePrekoTelefona> prikazDodeljenihVoznji(){
 		ArrayList<NarucivanjeVoznjePrekoTelefona> voznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){

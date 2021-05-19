@@ -22,6 +22,8 @@ public class MogucnostiVozaca extends JFrame {
     private JMenuItem sumiraneStatistikeVoznji = new JMenuItem("Prikaz sumiraze statistike voznji");
     private JMenuItem aukcijeVoznje = new JMenuItem("Aukcije voznje");
     private JMenuItem zavrsavanjeVoznje = new JMenuItem("Zavrsavanje voznje");
+    private JMenuItem zavrsavanjeVoznjePutemAplikacije = new JMenuItem("Zavrsavanje voznje kreirane putem aplikacije");
+
 
     private JMenu odjava = new JMenu("Odjava");
     private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
@@ -52,6 +54,7 @@ public class MogucnostiVozaca extends JFrame {
         funkcionalnostiVozaca.add(sumiraneStatistikeVoznji);
         funkcionalnostiVozaca.add(aukcijeVoznje);
         funkcionalnostiVozaca.add(zavrsavanjeVoznje);
+        funkcionalnostiVozaca.add(zavrsavanjeVoznjePutemAplikacije);
 
         vozacMenu.add(odjava);
         odjava.add(potvrdaZaOdjavu);
@@ -102,6 +105,17 @@ public class MogucnostiVozaca extends JFrame {
                 }else {
                     ZavrsavanjeVoznje zavrsavanjeVoznje = new ZavrsavanjeVoznje(ucitavanje);
                     zavrsavanjeVoznje.setVisible(true);
+                }
+            }
+        });
+        zavrsavanjeVoznjePutemAplikacije.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (ucitavanje.prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Nema prihvacenih voznji!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    ZavrsavanjeVoznjePutemAplikacije zavrsavanjeVoznjePutemAplikacije = new ZavrsavanjeVoznjePutemAplikacije(ucitavanje);
+                    zavrsavanjeVoznjePutemAplikacije.setVisible(true);
                 }
             }
         });
