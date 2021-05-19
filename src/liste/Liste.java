@@ -5,6 +5,8 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 import automobili.Automobil;
 import enumi.*;
@@ -402,25 +404,26 @@ public class Liste {
 			if(automobil.isObrisan()) {
 				int autoID = automobil.getId();
 				listaAutomobila.add(autoID);
+				Collections.sort(listaAutomobila);
 			}
 		}
 		return listaAutomobila;
 	}
 
-	public int nadjiAutomobilPoId(int array[], int target){
-		return binarySearch(array,target,0,array.length-1);
+	public int nadjiAutomobilPoId(ArrayList<Integer> array, int target){
+		return binarySearch(array,target,0,array.size());
 	}
 
-	public int binarySearch(int[] array, int target, int low, int high){
+	public int binarySearch(ArrayList<Integer> array, int target, int low, int high){
 
 		if(low > high){ // situacija kad ne pronalazimo
-			return -1; // vraticemo -1 ako ne postoji
+			return 0; // vraticemo -1 ako ne postoji
 		}
 		int mid = (low+high)/2;
-		if(array[mid] == target){
+		if(array.get(mid) == target){
 			return mid;
 		}
-		else if(array[mid] > target){ // nalazi se na levoj strani
+		else if(array.get(mid) > target){ // nalazi se na levoj strani
 			return binarySearch(array,target,low,mid-1); // ponavljam rekurziju
 		}else{ // nalazi se na desnoj strani
 			return binarySearch(array,target,mid+1,high); // ponavljam rekurziju
@@ -428,6 +431,7 @@ public class Liste {
 
 	}
 
+	
 
 	public Vozac nadjiVozaca(String korisnickoIme){
 		for(Vozac vozac : vozaci){
