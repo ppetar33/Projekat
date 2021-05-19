@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class BrisanjeAutomobila extends PrikazAutomobila {
 
@@ -37,9 +38,18 @@ public class BrisanjeAutomobila extends PrikazAutomobila {
                     JOptionPane.showMessageDialog(null,"Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     DefaultTableModel tableModel = (DefaultTableModel) automobiliTabela.getModel();
+
+
                     String id = tableModel.getValueAt(red, 0).toString();
                     int nadjiId = Integer.parseInt(id);
                     Automobil automobil = ucitavanje.nadjiAutomobil(nadjiId);
+                    ArrayList<Integer> listaIDevaAutomobila = ucitavanje.listaIDautomobila();
+                    int listaID = Integer.parseInt(listaIDevaAutomobila.toString());
+//                    Automobil automobil = ucitavanje.nadjiAutomobilPoId(listaID,nadjiId);
+
+
+
+                    
                     if (automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN) {
                         if (automobil != null) {
                             int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete automobil: " + automobil.getModel() + " ?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);

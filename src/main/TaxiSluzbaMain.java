@@ -37,9 +37,7 @@ public class TaxiSluzbaMain {
                 ucitavanje.snimanjeVoznji(VOZNJE_FAJL);
             }
         }
-
     }
-
 }
 
 /*
@@ -49,4 +47,19 @@ public class TaxiSluzbaMain {
         3. Binarna pretraga
         4. Sortiranje u tabeli
         5. Doubly linked list
+
+
+    Omogućiti vozačima da učestvuju u aukciji za novu vožnju. Vozač unosi koliko minuta mu je potrebno
+    da stigne do date adrese. Dizajnirati algoritam koji će dodeljivati vozačima vožnje. Na dodeljivanje
+    vožnje može uticati potrebno vreme dolaska, ocena vozača, zarada vozača u nekom intervalu,
+    starost vozila (mušterija može da traži novija vozila), pet friendly itd. Kreirati simulaciju ponuda
+    više vozača i dodelu vožnje. Potrebno je čuvati istoriju aukcija. Za veći broj bodova potrebno je
+    proširiti podatke o vozilima ili vozačima, takođe, potrebno je omogućiti mušterijama da ocene vozača
+    nakon vožnje (ocena od 1 do 5).
+
+    Gde unose vozaci koliko im je potrebno da dodju do date adrese?
+    Izaberem vozaca kojem treba najmanje vremena i koji ima najbolju ocenu i koji je najjeftiniji
+    Da li musterija pri narucivanju voznje trazi pet friendly i novija vozila?
+    I da li treba da postoji funkcionalnost oceni vozaca kod musterije to radim ako je voznja zavrsena?
+    ako nije ispisacu da ne moze da oceni vozaca jer voznja nije zavrsena
 */

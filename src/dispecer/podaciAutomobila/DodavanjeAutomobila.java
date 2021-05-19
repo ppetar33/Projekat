@@ -36,15 +36,13 @@ public class DodavanjeAutomobila extends JFrame {
     private JRadioButton ne;
     private ButtonGroup petFriendlyDugme;
     private JButton btnOK;
-    private Automobil automobil;
     private Osoba osoba;
     private Liste ucitavanje;
 
-    public DodavanjeAutomobila(Liste ucitavanje,Automobil automobil) {
+    public DodavanjeAutomobila(Liste ucitavanje) {
         this.ucitavanje = ucitavanje;
-        this.automobil = automobil;
         setTitle("Dodavanje Automobila");
-        setSize(900, 400);
+        setSize(900, 440);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -181,7 +179,7 @@ public class DodavanjeAutomobila extends JFrame {
         btnOK = new JButton("Potvrdi");
         btnOK.setFont(new Font("Arial", Font.PLAIN, 19));
         btnOK.setSize(180, 40);
-        btnOK.setLocation(350, 300);
+        btnOK.setLocation(350, 340);
         btnOK.setBackground(Color.BLUE);
         c.add(btnOK);
 
@@ -195,6 +193,8 @@ public class DodavanjeAutomobila extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (proveraPodataka() == true ) {
 
+                    Automobil automobil = new Automobil();
+
                     String unosModel = tmodel.getText().trim();
                     String unosProizvodjac = tproizvodjac.getText().trim();
                     int unosGodinaProizvodnje = Integer.parseInt(tgodinaProizvodnje.getText().trim());
@@ -202,27 +202,14 @@ public class DodavanjeAutomobila extends JFrame {
                     int unosBrojTaksiVozila = Integer.parseInt(tbrojTaksiVozila.getText().trim());
                     StatusVozacaIautomobila statusAutomobila = StatusVozacaIautomobila.SLOBODAN;
 
-                    Vozac vozac = new Vozac();
-                    if (slobodniVozac.getSelectedItem() != null){
-                        String vozacID = slobodniVozac.getSelectedItem().toString();
-                        vozac.setKorisnickoIme(vozacID);
-                        Vozac vozac1 = ucitavanje.nadjiVozaca(vozacID);
-                        if (vozacID == vozac1.getKorisnickoIme()){
-                            vozac.setStatusVozaca(StatusVozacaIautomobila.ZAUZET);
-                            ucitavanje.snimanjeVoznji("korisnici.txt");
-                        }
-                    }else {
-                        vozac.setKorisnickoIme("nemaaa");
-                    }
-                    if (automobil != null){
-                        automobil.setModel(unosModel);
-                        automobil.setProizvodjac(unosProizvodjac);
-                        automobil.setGodinaProizvodnje(unosGodinaProizvodnje);
-                        automobil.setRegistarskiBroj(unosBrojRegistarskeOznake);
-                        automobil.setBrojVozila(unosBrojTaksiVozila);
-                        automobil.setObrisan(true);
-                        automobil.setStatusAutomobila(statusAutomobila);
-                    }
+
+                    automobil.setModel(unosModel);
+                    automobil.setProizvodjac(unosProizvodjac);
+                    automobil.setGodinaProizvodnje(unosGodinaProizvodnje);
+                    automobil.setRegistarskiBroj(unosBrojRegistarskeOznake);
+                    automobil.setBrojVozila(unosBrojTaksiVozila);
+                    automobil.setObrisan(true);
+                    automobil.setStatusAutomobila(statusAutomobila);
 
                     if (putnickiAutomobil.isSelected()) {
                         automobil.setVrstaVozila(VrstaVozila.PUTNICKI_AUTOMOBIL);
@@ -234,6 +221,22 @@ public class DodavanjeAutomobila extends JFrame {
                     }else if(ne.isSelected()){
                         automobil.setPetFriendly(false);
                     }
+
+                    ArrayList<Automobil> automobili = ucitavanje.getAutomobili();
+                    int id = generisiNoviId(automobili);
+                    automobil.setId(id);
+
+                    if (slobodniVozac.getSelectedItem() != null){
+                        String vozacKorisnickoIme = slobodniVozac.getSelectedItem().toString();
+                        Vozac vozac1 = ucitavanje.nadjiVozaca(vozacKorisnickoIme);
+                        if(vozac1 != null){
+                            vozac1.setAutomobili(automobil);
+                            automobil.setStatusAutomobila(StatusVozacaIautomobila.ZAUZET);
+                            ucitavanje.dodavanjeKorisnika();
+                        }
+                    }
+
+                    automobili.add(automobil);
                     ucitavanje.snimanjeAutomobila("automobil.txt");
                     JOptionPane.showMessageDialog(null, "Automobil je uspesno dodat!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                     DodavanjeAutomobila.this.dispose();

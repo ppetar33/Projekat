@@ -219,7 +219,7 @@ public class MogucnostiDispecera extends JFrame {
 		dodavanjeAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DodavanjeAutomobila prozorZaDodavanjeAutomobila = new DodavanjeAutomobila(ucitavanje, automobil);
+				DodavanjeAutomobila prozorZaDodavanjeAutomobila = new DodavanjeAutomobila(ucitavanje);
 				prozorZaDodavanjeAutomobila.setVisible(true);
 			}
 		});

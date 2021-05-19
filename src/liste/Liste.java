@@ -381,30 +381,52 @@ public class Liste {
 		hash mapa
 
 	 */
-//	public Automobil nadjiAutomobilPoId(int[] array,int target){
-//
-//		return binarySearch(array,0,array.length -1);
-//	}
-//
-//	public int binarySearch(int[] array, int target, int low, int high){
-//
+
+	// vracamo idex da li postoji a mi treba citav objekat
+	// vracamo -1 ako ne postoji
+
+//	public ArrayList<Integer> listaSlobodnihAutomobila(){
+//		ArrayList<Integer> slobodniAutomobil = new ArrayList<>();
 //		for(Automobil automobil : automobili){
-//			if(low > high){
-//				return -1;
-//			}
-//			int mid = (low+high)/2;
-//
-//			if(array[mid] == target){
-//				return mid;
-//			}
-//			else if(array[mid] > target){
-//				return binarySearch(array,target,low,mid-1);
-//			}else{
-//				return binarySearch(array,target,mid+1,high);
+//			if(automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN && automobil.isObrisan()){
+//				int autoID = automobil.getId();
+//				slobodniAutomobil.add(autoID);
 //			}
 //		}
-//		return -1;
+//		return slobodniAutomobil;
 //	}
+
+	public ArrayList<Integer> listaIDautomobila(){ // [1,2,3,4,5,6,7,8,9]
+		ArrayList<Integer> listaAutomobila = new ArrayList<>();
+		for(Automobil automobil : automobili){
+			if(automobil.isObrisan()) {
+				int autoID = automobil.getId();
+				listaAutomobila.add(autoID);
+			}
+		}
+		return listaAutomobila;
+	}
+
+	public int nadjiAutomobilPoId(int array[], int target){
+		return binarySearch(array,target,0,array.length-1);
+	}
+
+	public int binarySearch(int[] array, int target, int low, int high){
+
+		if(low > high){ // situacija kad ne pronalazimo
+			return -1; // vraticemo -1 ako ne postoji
+		}
+		int mid = (low+high)/2;
+		if(array[mid] == target){
+			return mid;
+		}
+		else if(array[mid] > target){ // nalazi se na levoj strani
+			return binarySearch(array,target,low,mid-1); // ponavljam rekurziju
+		}else{ // nalazi se na desnoj strani
+			return binarySearch(array,target,mid+1,high); // ponavljam rekurziju
+		}
+
+	}
 
 
 	public Vozac nadjiVozaca(String korisnickoIme){
@@ -508,9 +530,9 @@ public class Liste {
 	public ArrayList<String> listaSlovodnihVozaca(){
 		ArrayList<String> slobodanVozac = new ArrayList<>();
 		for (Vozac vozac : vozaci){
-			if (vozac.getStatusVozaca() == StatusVozacaIautomobila.SLOBODAN & vozac.isObrisan()){
-				String vozacID = vozac.getKorisnickoIme();
-				slobodanVozac.add(vozacID);
+			if (vozac.getAutomobili().getId() == 0 & vozac.isObrisan()){
+				String vozacIme = vozac.getKorisnickoIme();
+				slobodanVozac.add(vozacIme);
 			}
 		}
 		return slobodanVozac;
