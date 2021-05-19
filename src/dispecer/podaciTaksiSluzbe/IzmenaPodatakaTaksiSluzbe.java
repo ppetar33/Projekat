@@ -26,7 +26,7 @@ public class IzmenaPodatakaTaksiSluzbe extends PrikazPodatakaTaksiSluzbe{
         add(mainToolBar, BorderLayout.NORTH);
     }
 
-    private void initListeners() {
+        private void initListeners() {
         btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,3 +54,5 @@ public class IzmenaPodatakaTaksiSluzbe extends PrikazPodatakaTaksiSluzbe{
     }
 
 }
+
+
