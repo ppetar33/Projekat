@@ -4,6 +4,7 @@ import automobili.Automobil;
 import enumi.StatusVozacaIautomobila;
 import enumi.VrstaVozila;
 import liste.Liste;
+import osobe.Osoba;
 import osobe.Vozac;
 import javax.swing.*;
 import java.awt.*;
@@ -28,17 +29,20 @@ public class DodavanjeAutomobila extends JFrame {
     private JRadioButton putnickiAutomobil;
     private JRadioButton kombi;
     private ButtonGroup vrstaVozilaDugme;
+    private JLabel vozac;
+    private JComboBox<Vozac> slobodniVozac;
     private JLabel petFriendly;
     private JRadioButton da;
     private JRadioButton ne;
     private ButtonGroup petFriendlyDugme;
     private JButton btnOK;
-
+    private Automobil automobil;
+    private Osoba osoba;
     private Liste ucitavanje;
 
-    public DodavanjeAutomobila(Liste ucitavanje) {
+    public DodavanjeAutomobila(Liste ucitavanje,Automobil automobil) {
         this.ucitavanje = ucitavanje;
-
+        this.automobil = automobil;
         setTitle("Dodavanje Automobila");
         setSize(900, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -98,7 +102,7 @@ public class DodavanjeAutomobila extends JFrame {
 
         brojTaksiVozila = new JLabel("Broj taksi vozila: ");
         brojTaksiVozila.setFont(new Font("Arial", Font.PLAIN, 18));
-        brojTaksiVozila.setSize(200, 20); //100
+        brojTaksiVozila.setSize(200, 20);
         brojTaksiVozila.setLocation(430, 180);
         c.add(brojTaksiVozila);
 
@@ -156,6 +160,23 @@ public class DodavanjeAutomobila extends JFrame {
         petFriendlyDugme.add(da);
         petFriendlyDugme.add(ne);
 
+        vozac = new JLabel("Vozac:");
+        vozac.setFont(new Font("Arial", Font.PLAIN, 18));
+        vozac.setSize(190, 35);
+        vozac.setLocation(430, 250);
+        c.add(vozac);
+
+        ArrayList<String> vozac = ucitavanje.listaSlovodnihVozaca();
+        String[] array = new String[vozac.size()];
+        for(int i = 0; i < array.length; i++) {
+            array[i] = String.valueOf(vozac.get(i));
+        }
+        slobodniVozac = new JComboBox(array);
+        slobodniVozac.setFont(new Font("Arial", Font.PLAIN, 15));
+        slobodniVozac.setSize(190, 35);
+        slobodniVozac.setLocation(645, 250);
+        c.add(slobodniVozac);
+        //        tbrojTaksiVozila.setLocation(650, 175);
 
         btnOK = new JButton("Potvrdi");
         btnOK.setFont(new Font("Arial", Font.PLAIN, 19));
@@ -173,21 +194,36 @@ public class DodavanjeAutomobila extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (proveraPodataka() == true ) {
-                    Automobil automobil = new Automobil();
 
                     String unosModel = tmodel.getText().trim();
                     String unosProizvodjac = tproizvodjac.getText().trim();
                     int unosGodinaProizvodnje = Integer.parseInt(tgodinaProizvodnje.getText().trim());
                     String unosBrojRegistarskeOznake = tbrojRegistarskeOznake.getText().trim();
                     int unosBrojTaksiVozila = Integer.parseInt(tbrojTaksiVozila.getText().trim());
+                    StatusVozacaIautomobila statusAutomobila = StatusVozacaIautomobila.SLOBODAN;
 
-                    automobil.setModel(unosModel);
-                    automobil.setProizvodjac(unosProizvodjac);
-                    automobil.setGodinaProizvodnje(unosGodinaProizvodnje);
-                    automobil.setRegistarskiBroj(unosBrojRegistarskeOznake);
-                    automobil.setBrojVozila(unosBrojTaksiVozila);
-                    automobil.setObrisan(true);
-                    automobil.setStatusAutomobila(StatusVozacaIautomobila.SLOBODAN);
+                    Vozac vozac = new Vozac();
+                    if (slobodniVozac.getSelectedItem() != null){
+                        String vozacID = slobodniVozac.getSelectedItem().toString();
+                        vozac.setKorisnickoIme(vozacID);
+                        Vozac vozac1 = ucitavanje.nadjiVozaca(vozacID);
+                        if (vozacID == vozac1.getKorisnickoIme()){
+                            vozac.setStatusVozaca(StatusVozacaIautomobila.ZAUZET);
+                            ucitavanje.snimanjeVoznji("korisnici.txt");
+                        }
+                    }else {
+                        vozac.setKorisnickoIme("nemaaa");
+                    }
+                    if (automobil != null){
+                        automobil.setModel(unosModel);
+                        automobil.setProizvodjac(unosProizvodjac);
+                        automobil.setGodinaProizvodnje(unosGodinaProizvodnje);
+                        automobil.setRegistarskiBroj(unosBrojRegistarskeOznake);
+                        automobil.setBrojVozila(unosBrojTaksiVozila);
+                        automobil.setObrisan(true);
+                        automobil.setStatusAutomobila(statusAutomobila);
+                    }
+
                     if (putnickiAutomobil.isSelected()) {
                         automobil.setVrstaVozila(VrstaVozila.PUTNICKI_AUTOMOBIL);
                     } else if (kombi.isSelected()) {
@@ -198,16 +234,6 @@ public class DodavanjeAutomobila extends JFrame {
                     }else if(ne.isSelected()){
                         automobil.setPetFriendly(false);
                     }
-                    ArrayList<Automobil> automobili = ucitavanje.getAutomobili();
-                    int id = generisiNoviId(automobili);
-                    automobil.setId(id);
-                    Vozac vozacaKojiNemaAutomobil = ucitavanje.nadjiVozacaKojiNemaAutomobil();
-                    if(vozacaKojiNemaAutomobil != null){
-                        vozacaKojiNemaAutomobil.setAutomobili(automobil);
-                        automobil.setStatusAutomobila(StatusVozacaIautomobila.ZAUZET);
-                        ucitavanje.dodavanjeKorisnika();
-                    }
-                    automobili.add(automobil);
                     ucitavanje.snimanjeAutomobila("automobil.txt");
                     JOptionPane.showMessageDialog(null, "Automobil je uspesno dodat!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                     DodavanjeAutomobila.this.dispose();

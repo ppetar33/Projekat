@@ -2,6 +2,7 @@ package automobili;
 
 import enumi.StatusVozacaIautomobila;
 import enumi.VrstaVozila;
+import osobe.Vozac;
 
 public class Automobil {
 

@@ -44,7 +44,7 @@ public class ProzorZaIzmenuVoznjiPutemAplikacije extends JFrame {
     private JLabel statusVoznje = new JLabel("Status voznje");
     private JComboBox<StatusVoznje> statusVoznjeJComboBox= new JComboBox<StatusVoznje>(StatusVoznje.values());
     //napomena
-    private JLabel napomena = new JLabel("Adresa destinacije");
+    private JLabel napomena = new JLabel("Napomena");
     private JTextField tnapomena = new JTextField(20);
 
     private JButton btnOk = new JButton("OK");
@@ -90,12 +90,9 @@ public class ProzorZaIzmenuVoznjiPutemAplikacije extends JFrame {
         add(btnOk, "split 2");
         add(btnCancel);
 
-        //TODO NE ZNAM STA OVO ZNACI
-        tadresaPolaska.setEditable(false);
-        tadresaDestinacije.setEditable(false);
+        //da ne moze da se menja
         tmusterija.setEditable(false);
         tvozac.setEditable(false);
-        tnapomena.setEditable(false);
 
         if (this.voznja != null){
             popunjavanjeTextField();

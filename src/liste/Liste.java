@@ -1,5 +1,6 @@
 package liste;
 
+import java.awt.font.FontRenderContext;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -502,6 +503,17 @@ public class Liste {
 			}
 		}
 		return slobodniAutomobil;
+	}
+
+	public ArrayList<String> listaSlovodnihVozaca(){
+		ArrayList<String> slobodanVozac = new ArrayList<>();
+		for (Vozac vozac : vozaci){
+			if (vozac.getStatusVozaca() == StatusVozacaIautomobila.SLOBODAN & vozac.isObrisan()){
+				String vozacID = vozac.getKorisnickoIme();
+				slobodanVozac.add(vozacID);
+			}
+		}
+		return slobodanVozac;
 	}
 
 	public TaksiSluzba nadjiTaksiSluzbu(int id){

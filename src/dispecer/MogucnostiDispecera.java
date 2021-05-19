@@ -1,5 +1,6 @@
 package dispecer;
 
+import automobili.Automobil;
 import dispecer.podaciAutomobila.BrisanjeAutomobila;
 import dispecer.podaciAutomobila.DodavanjeAutomobila;
 import dispecer.podaciAutomobila.IzmenaAutomobila;
@@ -88,6 +89,7 @@ public class MogucnostiDispecera extends JFrame {
 	private Liste ucitavanje;
 	private Dispecar prijavljeniDispecar;
 	private Vozac vozac;
+	private Automobil automobil;
 	private TaksiSluzba taksiSluzba;
 	private NarucivanjeVoznjePrekoTelefona voznja;
 	private NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije;
@@ -217,7 +219,7 @@ public class MogucnostiDispecera extends JFrame {
 		dodavanjeAutomobila.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DodavanjeAutomobila prozorZaDodavanjeAutomobila = new DodavanjeAutomobila(ucitavanje);
+				DodavanjeAutomobila prozorZaDodavanjeAutomobila = new DodavanjeAutomobila(ucitavanje, automobil);
 				prozorZaDodavanjeAutomobila.setVisible(true);
 			}
 		});
