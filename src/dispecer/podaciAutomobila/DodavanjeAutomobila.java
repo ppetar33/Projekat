@@ -4,6 +4,7 @@ import automobili.Automobil;
 import enumi.StatusVozacaIautomobila;
 import enumi.VrstaVozila;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import osobe.Osoba;
 import osobe.Vozac;
 import javax.swing.*;
@@ -164,7 +165,7 @@ public class DodavanjeAutomobila extends JFrame {
         vozac.setLocation(430, 250);
         c.add(vozac);
 
-        ArrayList<String> vozac = ucitavanje.listaSlovodnihVozaca();
+        DoublyLinkedList<String> vozac = ucitavanje.listaSlovodnihVozaca();
         String[] array = new String[vozac.size()];
         for(int i = 0; i < array.length; i++) {
             array[i] = String.valueOf(vozac.get(i));
@@ -222,7 +223,7 @@ public class DodavanjeAutomobila extends JFrame {
                         automobil.setPetFriendly(false);
                     }
 
-                    ArrayList<Automobil> automobili = ucitavanje.getAutomobili();
+                    DoublyLinkedList<Automobil> automobili = ucitavanje.getAutomobili();
                     int id = generisiNoviId(automobili);
                     automobil.setId(id);
 
@@ -246,7 +247,7 @@ public class DodavanjeAutomobila extends JFrame {
         });
     }
 
-    private int generisiNoviId(ArrayList<Automobil> automobili) {
+    private int generisiNoviId(DoublyLinkedList<Automobil> automobili) {
         int maks = -1;
         for (Automobil a : automobili) {
             if (a.getId() > maks) {

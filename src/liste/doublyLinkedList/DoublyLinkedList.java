@@ -45,7 +45,7 @@ public class DoublyLinkedList<T> implements Iterable<T>{
             listSize++;
         }
     }
-    public void add(int index, T element){
+    public void addAtIndex(int index, T element){
         if(index == 0 && listSize == 0){
             addFirst(element);
         }
@@ -64,6 +64,20 @@ public class DoublyLinkedList<T> implements Iterable<T>{
         currentNode.setNext(newNode);
         listSize++;
     }
+    public void add(T element) {
+
+        ListNode<T> temp = new ListNode<T>(element);
+        if (head == null) {
+            head = temp;
+            tail = head;
+        } else {
+            tail.next = temp;
+            temp.previous = tail;
+            tail = temp;
+        }
+        listSize++;
+    }
+
     public void deleteFromEnd() {
         if(head == null) {
             return;

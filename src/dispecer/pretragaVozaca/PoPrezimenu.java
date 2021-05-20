@@ -1,12 +1,12 @@
 package dispecer.pretragaVozaca;
 
+import liste.doublyLinkedList.DoublyLinkedList;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class PoPrezimenu extends JFrame{
 
@@ -46,7 +46,7 @@ public class PoPrezimenu extends JFrame{
                 if(validacija() == true){
                     String unosPrezimena = tpretragaPoPrezimenu.getText().trim();
 
-                    ArrayList<Vozac> rezultatPretrage = ucitavanje.nadjiVozacaPoPrezimenu(unosPrezimena);
+                    DoublyLinkedList<Vozac> rezultatPretrage = ucitavanje.nadjiVozacaPoPrezimenu(unosPrezimena);
 
                     if(rezultatPretrage.isEmpty()) {
                         JOptionPane.showMessageDialog(null,"Vozac sa prezimenom (" + unosPrezimena + ") ne postoji!","Greska",JOptionPane.WARNING_MESSAGE);

@@ -19,25 +19,26 @@ import taksiSluzba.TaksiSluzba;
 
 public class Liste {
 
-	private ArrayList<Musterija> musterije;
-	private ArrayList<Dispecar> dispecari;
-	private ArrayList<Vozac> vozaci;
-	private ArrayList<TaksiSluzba> taksiSluzbe;
-	private ArrayList<Automobil> automobili;
-	private ArrayList<NarucivanjeVoznjePrekoTelefona> voznjaTelefoni;
-	private ArrayList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije;
+	private DoublyLinkedList<Musterija> musterije;
+	private DoublyLinkedList<Dispecar> dispecari;
+	private DoublyLinkedList<Vozac> vozaci;
+	private DoublyLinkedList<TaksiSluzba> taksiSluzbe;
+	private DoublyLinkedList<Automobil> automobili;
+	private DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznjaTelefoni;
+	private DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije;
 
 	public Liste() {
-		this.musterije = new ArrayList<Musterija>();
-		this.dispecari = new ArrayList<Dispecar>();
-		this.vozaci = new ArrayList<Vozac>();
-		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
-		this.automobili = new ArrayList<Automobil>();
-		this.voznjaTelefoni = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
-		this.voznjaAplikacije = new ArrayList<NarucivanjeVoznjePrekoAplikacije>();
+		this.musterije = new DoublyLinkedList<Musterija>();
+		this.dispecari = new DoublyLinkedList<Dispecar>();
+		this.vozaci = new DoublyLinkedList<Vozac>();
+		this.taksiSluzbe = new DoublyLinkedList<TaksiSluzba>();
+		this.automobili = new DoublyLinkedList<Automobil>();
+		this.voznjaTelefoni = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
+		this.voznjaAplikacije = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
+		this.automobili = new DoublyLinkedList<Automobil>();
 	}
 
-	public ArrayList<Musterija> getMusterije() {
+	public DoublyLinkedList<Musterija> getMusterije() {
 		return musterije;
 	}
 
@@ -45,7 +46,7 @@ public class Liste {
 		this.musterije.add(musterija);
 	}
 
-	public ArrayList<Dispecar> getDispecari() {
+	public DoublyLinkedList<Dispecar> getDispecari() {
 		return dispecari;
 	}
 
@@ -53,39 +54,38 @@ public class Liste {
 		this.dispecari.add(dispecar);
 	}
 
-	public ArrayList<Vozac> getVozaci() {
+	public DoublyLinkedList<Vozac> getVozaci() {
 		return vozaci;
 	}
 
-	public void setVozaci(ArrayList<Vozac> vozaci) {
+	public void setVozaci(DoublyLinkedList<Vozac> vozaci) {
 		this.vozaci = vozaci;
 	}
 
-	public ArrayList<TaksiSluzba> getTaksiSluzbe() {
+	public DoublyLinkedList<TaksiSluzba> getTaksiSluzbe() {
 		return taksiSluzbe;
 	}
 
-	public ArrayList<Automobil> getAutomobili() {
+	public DoublyLinkedList<Automobil> getAutomobili() {
 		return automobili;
 	}
 
-	public void setAutomobili(ArrayList<Automobil> automobili) {
+	public void setAutomobili(DoublyLinkedList<Automobil> automobili) {
 		this.automobili = automobili;
 	}
 
-	public ArrayList<NarucivanjeVoznjePrekoTelefona> getVoznjaTelefoni() {
+	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> getVoznjaTelefoni() {
 		return voznjaTelefoni;
 	}
 
-	public void setVoznjaTelefoni(ArrayList<NarucivanjeVoznjePrekoTelefona> voznjaTelefoni) {
+	public void setVoznjaTelefoni(DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznjaTelefoni) {
 		this.voznjaTelefoni = voznjaTelefoni;
 	}
-
-	public ArrayList<NarucivanjeVoznjePrekoAplikacije> getVoznjaAplikacije() {
+	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> getVoznjaAplikacije() {
 		return voznjaAplikacije;
 	}
 
-	public void setVoznjaAplikacije(ArrayList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije) {
+	public void setVoznjaAplikacije(DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije) {
 		this.voznjaAplikacije = voznjaAplikacije;
 	}
 
@@ -376,6 +376,8 @@ public class Liste {
 //		return slobodniAutomobil;
 //	}
 
+
+	// zameniti arrayList sa DoublyLinkedList
 	public ArrayList<Integer> listaIDautomobila(){ // [1,2,3,4,5,6,7,8,9]
 		ArrayList<Integer> listaAutomobila = new ArrayList<>();
 		for(Automobil automobil : automobili){
@@ -426,8 +428,8 @@ public class Liste {
 		}
 		return null;
 	}
-	public ArrayList<Vozac> nadjiVozacaPoPlati(double plataUnos){
-		ArrayList<Vozac> sviVozaci = new ArrayList<Vozac>();
+	public DoublyLinkedList<Vozac> nadjiVozacaPoPlati(double plataUnos){
+		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
 		for(Vozac vozac : vozaci){
 			if(vozac.getPlata() == plataUnos && vozac.isObrisan()){
 				sviVozaci.add(vozac);
@@ -435,8 +437,8 @@ public class Liste {
 		}
 		return sviVozaci;
 	}
-	public ArrayList<Vozac> nadjiVozacaPoImenu(String unosIme){
-		ArrayList<Vozac> sviVozaci = new ArrayList<Vozac>();
+	public DoublyLinkedList<Vozac> nadjiVozacaPoImenu(String unosIme){
+		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
 		for(Vozac vozac : vozaci){
 			if(vozac.getIme().equalsIgnoreCase(unosIme) && vozac.isObrisan()){
 				sviVozaci.add(vozac);
@@ -444,8 +446,8 @@ public class Liste {
 		}
 		return sviVozaci;
 	}
-	public ArrayList<Vozac> nadjiVozacaPoPrezimenu(String unosPrezime){
-		ArrayList<Vozac> sviVozaci = new ArrayList<Vozac>();
+	public DoublyLinkedList<Vozac> nadjiVozacaPoPrezimenu(String unosPrezime){
+		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
 		for(Vozac vozac : vozaci){
 			if(vozac.getPrezime().equalsIgnoreCase(unosPrezime) && vozac.isObrisan()){
 				sviVozaci.add(vozac);
@@ -453,8 +455,8 @@ public class Liste {
 		}
 		return sviVozaci;
 	}
-	public ArrayList<Vozac> nadjiVozacaPoAutomobilu(String model){
-		ArrayList<Vozac> sviVozaci = new ArrayList<Vozac>();
+	public DoublyLinkedList<Vozac> nadjiVozacaPoAutomobilu(String model){
+		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
 		for(Vozac vozac : vozaci){
 			if(vozac.getAutomobili().getModel().equalsIgnoreCase(model) && vozac.isObrisan()){
 				sviVozaci.add(vozac);
@@ -497,8 +499,8 @@ public class Liste {
 		}
 		return null;
 	}
-	public ArrayList<Integer> listaSlobodnihAutomobila(){
-		ArrayList<Integer> slobodniAutomobil = new ArrayList<>();
+	public DoublyLinkedList<Integer> listaSlobodnihAutomobila(){
+		DoublyLinkedList<Integer> slobodniAutomobil = new DoublyLinkedList<>();
 		for(Automobil automobil : automobili){
 			if(automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN && automobil.isObrisan()){
 				int autoID = automobil.getId();
@@ -508,8 +510,8 @@ public class Liste {
 		return slobodniAutomobil;
 	}
 
-	public ArrayList<String> listaSlovodnihVozaca(){
-		ArrayList<String> slobodanVozac = new ArrayList<>();
+	public DoublyLinkedList<String> listaSlovodnihVozaca(){
+		DoublyLinkedList<String> slobodanVozac = new DoublyLinkedList<>();
 		for (Vozac vozac : vozaci){
 			if (vozac.getAutomobili().getId() == 0 & vozac.isObrisan()){
 				String vozacIme = vozac.getKorisnickoIme();
@@ -759,8 +761,8 @@ public class Liste {
 		LISTE NEOBRISANIH ZA PRIKAZ
 	*/
 
-	public ArrayList<Vozac> neobrisaniVozaci(){
-		ArrayList<Vozac> neobrisaniVozaci = new ArrayList<Vozac>();
+	public DoublyLinkedList<Vozac> neobrisaniVozaci(){
+		DoublyLinkedList<Vozac> neobrisaniVozaci = new DoublyLinkedList<Vozac>();
 		for(Vozac vozac : vozaci){
 			if(vozac.isObrisan()){
 				neobrisaniVozaci.add(vozac);
@@ -768,8 +770,8 @@ public class Liste {
 		}
 		return neobrisaniVozaci;
 	}
-	public ArrayList<Musterija> neobrisaneMusterije(){
-		ArrayList<Musterija> neobrisaneMusterije = new ArrayList<Musterija>();
+	public DoublyLinkedList<Musterija> neobrisaneMusterije(){
+		DoublyLinkedList<Musterija> neobrisaneMusterije = new DoublyLinkedList<Musterija>();
 		for(Musterija musterija : musterije){
 			if(musterija.isObrisan()){
 				neobrisaneMusterije.add(musterija);
@@ -777,8 +779,8 @@ public class Liste {
 		}
 		return neobrisaneMusterije;
 	}
-	public ArrayList<Dispecar> neobrisaniDispeceri(){
-		ArrayList<Dispecar> neobrisaniDispeceri = new ArrayList<Dispecar>();
+	public DoublyLinkedList<Dispecar> neobrisaniDispeceri(){
+		DoublyLinkedList<Dispecar> neobrisaniDispeceri = new DoublyLinkedList<Dispecar>();
 		for(Dispecar dispecar : dispecari){
 			if(dispecar.isObrisan()){
 				neobrisaniDispeceri.add(dispecar);
@@ -786,17 +788,17 @@ public class Liste {
 		}
 		return neobrisaniDispeceri;
 	}
-	public ArrayList<Automobil> neobrisaniAutomobili(){
-		ArrayList<Automobil> neobrisaniAutomobili = new ArrayList<Automobil>();
+	public DoublyLinkedList<Automobil> neobrisaniAutomobili(){
+		DoublyLinkedList<Automobil> neobAutomobili = new DoublyLinkedList<Automobil>();
 		for(Automobil automobil : automobili){
 			if(automobil.isObrisan()){
-				neobrisaniAutomobili.add(automobil);
+				neobAutomobili.add(automobil);
 			}
 		}
-		return neobrisaniAutomobili;
+		return neobAutomobili;
 	}
-	public ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona(){
-		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			if(voznja.isObrisan()){
 				neobrisaneVoznje.add(voznja);
@@ -804,8 +806,8 @@ public class Liste {
 		}
 		return neobrisaneVoznje;
 	}
-	public ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneIkreiraneVoznjeNarucenePutemTelefona(){
-		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneIkreiraneVoznjeNarucenePutemTelefona(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA)){
 				neobrisaneVoznje.add(voznja);
@@ -813,8 +815,8 @@ public class Liste {
 		}
 		return neobrisaneVoznje;
 	}
-	public ArrayList<NarucivanjeVoznjePrekoTelefona> poredjenjeUlogovanogKorisnikaSaVozacem(){
-		ArrayList<NarucivanjeVoznjePrekoTelefona> voznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> poredjenjeUlogovanogKorisnikaSaVozacem(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			Vozac ulogovanVozac = null;
 			try {
@@ -836,8 +838,8 @@ public class Liste {
 		}
 		return voznje;
 	}
-	public ArrayList<NarucivanjeVoznjePrekoTelefona> prikazVoznjeZaZavrsavanjeVoznje(){
-		ArrayList<NarucivanjeVoznjePrekoTelefona> voznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> prikazVoznjeZaZavrsavanjeVoznje(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			Vozac ulogovanVozac = null;
 			try {
@@ -860,8 +862,8 @@ public class Liste {
 		return voznje;
 	}
 
-	public ArrayList<NarucivanjeVoznjePrekoAplikacije> prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije(){
-		ArrayList<NarucivanjeVoznjePrekoAplikacije> voznje = new ArrayList<NarucivanjeVoznjePrekoAplikacije>();
+	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			Vozac ulogovanVozac = null;
 			try {
@@ -884,8 +886,8 @@ public class Liste {
 		return voznje;
 	}
 
-	public ArrayList<NarucivanjeVoznjePrekoTelefona> prikazDodeljenihVoznji(){
-		ArrayList<NarucivanjeVoznjePrekoTelefona> voznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> prikazDodeljenihVoznji(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			Vozac ulogovanVozac = null;
 			try {
@@ -907,8 +909,8 @@ public class Liste {
 		}
 		return voznje;
 	}
-	public ArrayList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznjeKreiranePutemAplikacije(){
-		ArrayList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoAplikacije>();
+	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznjeKreiranePutemAplikacije(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			if(voznja.isObrisan()){
 				neobrisaneVoznje.add(voznja);
@@ -926,8 +928,8 @@ public class Liste {
 		}
 		return null;
 	}
-	public ArrayList<NarucivanjeVoznjePrekoTelefona> listaVoznjiKojeNemajuVozaca(){
-		ArrayList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
+	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> listaVoznjiKojeNemajuVozaca(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona prekoTelefona : voznjaTelefoni){
 			if(prekoTelefona.getVozac().getKorisnickoIme().equals("")){
 				neobrisaneVoznje.add(prekoTelefona);

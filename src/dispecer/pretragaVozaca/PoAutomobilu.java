@@ -1,12 +1,12 @@
 package dispecer.pretragaVozaca;
 
+import liste.doublyLinkedList.DoublyLinkedList;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class PoAutomobilu extends JFrame {
 
@@ -49,7 +49,7 @@ public class PoAutomobilu extends JFrame {
 
                     String unosModela = tpretragaPoAutomobilu.getText().trim();
 
-                    ArrayList<Vozac> rezultatPretrage = ucitavanje.nadjiVozacaPoAutomobilu(unosModela);
+                    DoublyLinkedList<Vozac> rezultatPretrage = ucitavanje.nadjiVozacaPoAutomobilu(unosModela);
 
                     if(rezultatPretrage.isEmpty()) {
                         JOptionPane.showMessageDialog(null,"Korisnik sa modelom automobila (" + unosModela + ") ne postoji!","Greska",JOptionPane.WARNING_MESSAGE);
