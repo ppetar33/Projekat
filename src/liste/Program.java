@@ -19,6 +19,7 @@ public class Program {
 
 
 
+
         Object x = doublyLinkedList.getFirst().toString() + doublyLinkedList.getLast().toString();
         System.out.println(x);
 

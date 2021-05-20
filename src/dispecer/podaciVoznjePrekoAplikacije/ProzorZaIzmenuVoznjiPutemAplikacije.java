@@ -1,16 +1,12 @@
 package dispecer.podaciVoznjePrekoAplikacije;
 
-import automobili.Voznja;
-import dispecer.ProzorZaDodeljivanjeVoznji;
 import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
-import enumi.VrstaVozila;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoAplikacije;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,31 +15,22 @@ import java.time.format.DateTimeFormatter;
 
 public class ProzorZaIzmenuVoznjiPutemAplikacije extends JFrame {
 
-    //datum i vreme porudzbina
     private JLabel datumIVremePorudzbine = new JLabel("Datum i vreme porudzbine");
     private JTextField tdatumIVremePorudzbine = new JTextField(20);
-    //adresa polaska
     private JLabel adresaPolaska = new JLabel("Adresa polaska");
     private JTextField tadresaPolaska = new JTextField(20);
-    //adresa destinacije
     private JLabel adresaDestinacije = new JLabel("Adresa destinacije");
     private JTextField tadresaDestinacije = new JTextField(20);
-    //musterija
     private JLabel musterija = new JLabel("Musterija");
     private JTextField tmusterija = new JTextField(20);
-    //vozac
     private JLabel vozac = new JLabel("Vozac");
     private JTextField tvozac = new JTextField(20);
-    //broj predjenih km
     private JLabel brojPredjenihKilometara = new JLabel("Broj predjenih kilometara");
     private JTextField tbrojPredjenihKilometara = new JTextField(20);
-    //trajanje voznje
     private JLabel trajanjeVoznje = new JLabel("Trajanje voznje");
     private JTextField ttrajanjeVoznje = new JTextField(20);
-    //status voznje
     private JLabel statusVoznje = new JLabel("Status voznje");
     private JComboBox<StatusVoznje> statusVoznjeJComboBox= new JComboBox<StatusVoznje>(StatusVoznje.values());
-    //napomena
     private JLabel napomena = new JLabel("Napomena");
     private JTextField tnapomena = new JTextField(20);
 
