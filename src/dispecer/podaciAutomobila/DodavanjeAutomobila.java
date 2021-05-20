@@ -175,7 +175,6 @@ public class DodavanjeAutomobila extends JFrame {
         slobodniVozac.setSize(190, 35);
         slobodniVozac.setLocation(645, 250);
         c.add(slobodniVozac);
-        //        tbrojTaksiVozila.setLocation(650, 175);
 
         btnOK = new JButton("Potvrdi");
         btnOK.setFont(new Font("Arial", Font.PLAIN, 19));
