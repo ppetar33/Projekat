@@ -3,15 +3,17 @@ package dispecer.pretragaAutomobila;
 import automobili.Automobil;
 import dispecer.pretragaVozaca.PoAutomobilu;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.jar.JarEntry;
 
 public class PoModelu extends JFrame {
@@ -23,14 +25,14 @@ public class PoModelu extends JFrame {
 
     private Liste ucitavanje;
     private Automobil automobil;
-    private ArrayList<Automobil> automobils;
+    private DoublyLinkedList<Automobil> automobils;
     private DefaultTableModel table_model;
     private JTable automobiliPoModeliTabela;
 
     public PoModelu(Liste ucitavanje, Automobil automobil){
         this.ucitavanje = ucitavanje;
         this.automobil = automobil;
-        this.automobils = new ArrayList<Automobil>();
+        this.automobils = new DoublyLinkedList<Automobil>();
         setTitle("Pretraga automobila po modelu");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -51,8 +53,8 @@ public class PoModelu extends JFrame {
     }
 
 
-    public ArrayList<Automobil> pretragaPoModelu(ArrayList<Automobil> automobili, String model ){
-        ArrayList<Automobil> pretrazeni = new ArrayList<Automobil>();
+    public DoublyLinkedList<Automobil> pretragaPoModelu(DoublyLinkedList<Automobil> automobili, String model ){
+        DoublyLinkedList<Automobil> pretrazeni = new DoublyLinkedList<Automobil>();
         for (Automobil a: automobili) {
             if (a.getModel().equals(model)){
                 pretrazeni.add(a);
@@ -104,10 +106,11 @@ public class PoModelu extends JFrame {
                     automobiliPoModeliTabela.setDefaultEditor(Object.class, null);
                     automobiliPoModeliTabela.getTableHeader().setReorderingAllowed(false);
 
+                    RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table_model);
+                    automobiliPoModeliTabela.setRowSorter(sorter);
+
                     JScrollPane jsp = new JScrollPane(automobiliPoModeliTabela);
                     add(jsp, BorderLayout.CENTER);
-
-
 
                 }
             }
