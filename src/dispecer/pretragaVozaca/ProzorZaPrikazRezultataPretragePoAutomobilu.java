@@ -1,17 +1,17 @@
 package dispecer.pretragaVozaca;
 
+import liste.doublyLinkedList.DoublyLinkedList;
 import osobe.Vozac;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class ProzorZaPrikazRezultataPretragePoAutomobilu extends JFrame{
 
     private DefaultTableModel table_model;
     private JTable vozaciTabela;
 
-    public ProzorZaPrikazRezultataPretragePoAutomobilu(ArrayList<Vozac> vozaci) {
+    public ProzorZaPrikazRezultataPretragePoAutomobilu(DoublyLinkedList<Vozac> vozaci) {
 
         setTitle("Prikaz pretrage");
         setSize(1050, 200);
@@ -21,7 +21,7 @@ public class ProzorZaPrikazRezultataPretragePoAutomobilu extends JFrame{
 
     }
 
-    private void initGui(ArrayList<Vozac> vozaci){
+    private void initGui(DoublyLinkedList<Vozac> vozaci){
         String[] zaglavnje = new String[] {"Korisnicko ime", "Ime", "Prezime", "Adresa", "Pol", "Broj telefona", "Plata", "Broj clanske karte", "ID automobila"};
         Object[][] sadrzaj = new Object[vozaci.size()][zaglavnje.length];
         for (int i = 0; i < vozaci.size(); i++) {

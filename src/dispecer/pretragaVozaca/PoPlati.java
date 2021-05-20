@@ -1,12 +1,12 @@
 package dispecer.pretragaVozaca;
 
+import liste.doublyLinkedList.DoublyLinkedList;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class PoPlati extends JFrame {
 
@@ -47,7 +47,7 @@ public class PoPlati extends JFrame {
                     String unosPlataString = tpretragaPoPlati.getText().trim();
                     double unosPlata = Double.parseDouble(unosPlataString);
 
-                    ArrayList<Vozac> rezultatPretrage = ucitavanje.nadjiVozacaPoPlati(unosPlata);
+                    DoublyLinkedList<Vozac> rezultatPretrage = ucitavanje.nadjiVozacaPoPlati(unosPlata);
 
                     if(rezultatPretrage.isEmpty()){
                         JOptionPane.showMessageDialog(null,"Vozac sa platom (" + unosPlataString + ") ne postoji!","Greska",JOptionPane.WARNING_MESSAGE);

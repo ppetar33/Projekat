@@ -17,8 +17,6 @@ import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
 import dispecer.podaciVoznjePrekoTelefona.BrisanjeVoznjiNarucenihPrekoTelefona;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;
-import enumi.StatusVoznje;
-import loginProzor.LoginProzor;
 import main.TaxiSluzbaMain;
 import musterija.NarucivanjeVoznjePrekoAplikacije;
 import musterija.NarucivanjeVoznjePrekoTelefona;

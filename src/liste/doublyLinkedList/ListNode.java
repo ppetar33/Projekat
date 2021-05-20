@@ -1,11 +1,13 @@
 package liste.doublyLinkedList;
 
-
 public class ListNode <T> {
 
     public T element;
     public ListNode<T> previous;
     public ListNode<T> next;
+
+    public ListNode() {
+    }
 
     public ListNode(T element) {
         this.element = element;
@@ -13,7 +15,13 @@ public class ListNode <T> {
         next = null;
     }
 
-    public ListNode(T element,ListNode next){
+    public ListNode(T element,ListNode<T> next){
+        this.element = element;
+        this.next = next;
+    }
+
+    public ListNode(T element, ListNode<T> next, ListNode<T> previous){
+        this.previous = previous;
         this.element = element;
         this.next = next;
     }

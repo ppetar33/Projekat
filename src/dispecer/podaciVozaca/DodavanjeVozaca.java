@@ -2,6 +2,7 @@ package dispecer.podaciVozaca;
 
 import automobili.Automobil;
 import enumi.StatusVozacaIautomobila;
+import liste.doublyLinkedList.DoublyLinkedList;
 import osobe.Osoba;
 import enumi.Pol;
 import osobe.Vozac;
@@ -195,7 +196,7 @@ public class DodavanjeVozaca extends JFrame{
         automobil.setLocation(40, 350);
         c.add(automobil);
 
-        ArrayList<Integer> auto = ucitavanje.listaSlobodnihAutomobila();
+        DoublyLinkedList<Integer> auto = ucitavanje.listaSlobodnihAutomobila();
         String[] array = new String[auto.size()];
         for(int i = 0; i < array.length; i++) {
             array[i] = String.valueOf(auto.get(i));
