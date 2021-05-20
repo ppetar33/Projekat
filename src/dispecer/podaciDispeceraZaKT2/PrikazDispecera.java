@@ -4,6 +4,8 @@ import liste.Liste;
 import osobe.Dispecar;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 public class PrikazDispecera extends JFrame {
@@ -54,6 +56,9 @@ public class PrikazDispecera extends JFrame {
         dispecerTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dispecerTabela.setDefaultEditor(Object.class, null);
         dispecerTabela.getTableHeader().setReorderingAllowed(false);
+
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table_model);
+        dispecerTabela.setRowSorter(sorter);
 
         JScrollPane jsp = new JScrollPane(dispecerTabela);
         add(jsp, BorderLayout.CENTER);

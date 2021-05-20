@@ -7,6 +7,8 @@ import osobe.Musterija;
 import osobe.Vozac;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -77,6 +79,9 @@ public class IstorijaVoznjeVozac extends JFrame {
         istorijaVoznjeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         istorijaVoznjeTabela.setDefaultEditor(Object.class, null);
         istorijaVoznjeTabela.getTableHeader().setReorderingAllowed(false);
+
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table_model);
+        istorijaVoznjeTabela.setRowSorter(sorter);
 
         JScrollPane jsp = new JScrollPane(istorijaVoznjeTabela);
         add(jsp, BorderLayout.CENTER);

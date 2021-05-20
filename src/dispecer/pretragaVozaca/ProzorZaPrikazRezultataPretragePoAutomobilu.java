@@ -4,6 +4,8 @@ import liste.doublyLinkedList.DoublyLinkedList;
 import osobe.Vozac;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 public class ProzorZaPrikazRezultataPretragePoAutomobilu extends JFrame{
@@ -50,6 +52,9 @@ public class ProzorZaPrikazRezultataPretragePoAutomobilu extends JFrame{
         vozaciTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         vozaciTabela.setDefaultEditor(Object.class, null);
         vozaciTabela.getTableHeader().setReorderingAllowed(false);
+
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table_model);
+        vozaciTabela.setRowSorter(sorter);
 
         JScrollPane jsp = new JScrollPane(vozaciTabela);
         add(jsp, BorderLayout.CENTER);

@@ -4,6 +4,8 @@ import automobili.Automobil;
 import liste.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 public class PrikazAutomobila extends JFrame {
@@ -54,6 +56,9 @@ public class PrikazAutomobila extends JFrame {
         automobiliTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         automobiliTabela.setDefaultEditor(Object.class, null);
         automobiliTabela.getTableHeader().setReorderingAllowed(false);
+
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table_model);
+        automobiliTabela.setRowSorter(sorter);
 
         JScrollPane jsp = new JScrollPane(automobiliTabela);
         add(jsp, BorderLayout.CENTER);

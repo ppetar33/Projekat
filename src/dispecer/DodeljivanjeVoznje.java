@@ -5,6 +5,8 @@ import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoTelefona;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,6 +78,9 @@ public class DodeljivanjeVoznje extends JFrame {
         voznjeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         voznjeTabela.setDefaultEditor(Object.class, null);
         voznjeTabela.getTableHeader().setReorderingAllowed(false);
+
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableModel);
+        voznjeTabela.setRowSorter(sorter);
 
         JScrollPane jsp = new JScrollPane(voznjeTabela);
         add(jsp, BorderLayout.CENTER);

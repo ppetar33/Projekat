@@ -4,6 +4,8 @@ import liste.Liste;
 import taksiSluzba.TaksiSluzba;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 public class PrikazPodatakaTaksiSluzbe extends JFrame {
@@ -48,6 +50,9 @@ public class PrikazPodatakaTaksiSluzbe extends JFrame {
         taksiSluzbaTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         taksiSluzbaTabela.setDefaultEditor(Object.class, null);
         taksiSluzbaTabela.getTableHeader().setReorderingAllowed(false);
+
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table_model);
+        taksiSluzbaTabela.setRowSorter(sorter);
 
         JScrollPane jsp = new JScrollPane(taksiSluzbaTabela);
         add(jsp, BorderLayout.CENTER);

@@ -4,6 +4,8 @@ import liste.Liste;
 import osobe.Musterija;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 public class PrikazMusterija extends JFrame {
@@ -53,6 +55,9 @@ public class PrikazMusterija extends JFrame {
         musterijaTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         musterijaTabela.setDefaultEditor(Object.class, null);
         musterijaTabela.getTableHeader().setReorderingAllowed(false);
+
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table_model);
+        musterijaTabela.setRowSorter(sorter);
 
         JScrollPane jsp = new JScrollPane(musterijaTabela);
         add(jsp, BorderLayout.CENTER);

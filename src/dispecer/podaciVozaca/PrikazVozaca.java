@@ -4,6 +4,8 @@ import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 public class PrikazVozaca extends JFrame {
@@ -53,7 +55,12 @@ public class PrikazVozaca extends JFrame {
         vozaciTabela.setDefaultEditor(Object.class, null);
         vozaciTabela.getTableHeader().setReorderingAllowed(false);
 
+
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table_model);
+        vozaciTabela.setRowSorter(sorter);
+
         JScrollPane jsp = new JScrollPane(vozaciTabela);
         add(jsp, BorderLayout.CENTER);
+
     }
 }
