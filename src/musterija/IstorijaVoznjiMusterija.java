@@ -4,15 +4,12 @@ import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
 import osobe.Musterija;
-import osobe.Osoba;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.util.IllegalFormatCodePointException;
 import java.util.Scanner;
 
 public class IstorijaVoznjiMusterija extends JFrame {
@@ -39,10 +36,10 @@ public class IstorijaVoznjiMusterija extends JFrame {
     private void initGUI() {
         add(mainJToolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Vozac","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena"};
-        Object[][] sadrzaj = new Object[ucitavanje.getVoznja().size()][zaglavnje.length];
+        Object[][] sadrzaj = new Object[ucitavanje.getVoznjaTelefoni().size()][zaglavnje.length];
         int j = 0;
-        for (int i = 0; i < ucitavanje.getVoznja().size(); i ++){
-            Voznja voznje = ucitavanje.getVoznja().get(i);
+        for (int i = 0; i < ucitavanje.getVoznjaTelefoni().size(); i ++){
+            Voznja voznje = ucitavanje.getVoznjaTelefoni().get(i);
 
             Musterija ulogovanaMusterija = null;
             try {
@@ -68,7 +65,7 @@ public class IstorijaVoznjiMusterija extends JFrame {
                 sadrzaj[j][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();
-                sadrzaj[j][8] = voznje.getNapomena();
+//                sadrzaj[j][8] = voznje.getNapomena();
                 j++;
             }
         }

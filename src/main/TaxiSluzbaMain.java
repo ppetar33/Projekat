@@ -62,4 +62,12 @@ public class TaxiSluzbaMain {
     Da li musterija pri narucivanju voznje trazi pet friendly i novija vozila?
     I da li treba da postoji funkcionalnost oceni vozaca kod musterije to radim ako je voznja zavrsena?
     ako nije ispisacu da ne moze da oceni vozaca jer voznja nije zavrsena
+
+    kada napravim svoju listu ja treba da napravim algoritam za sortiranje te nove liste
+    i kada pokrenem program ja te sve podatke treba da sortiram to kljucu a kljuc mi je ID
+    i onda ja tek kad sortiram sve mogu da implementiram binarnu pretragu i onda mogu da omogucim sortiranje
+    svih podataka za ovo tabelarno pirazivanje u aplikaciji
+    i kako da vratim objekat jer mi u binarnoj pretrazi vraca samo id gde se taj objekat nalazi
+
+    kod svoje liste previous mi je null
 */

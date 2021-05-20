@@ -92,11 +92,10 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
                     double brojKmPredjenih = voznja.getBrojKMpredjenih();
                     double trajanjeVoznje = voznja.getTrajanjVoznje();
                     StatusVoznje statusVoznje1 = StatusVoznje.DODELJENA;
-                    String napomena = voznja.getNapomena();
                     boolean obrisan = voznja.isObrisan();
                     StatusNaruceneVoznje statusNaruceneVoznje = voznja.getStatusNaruceneVoznje();
                     if(voznja == null){
-                        voznja = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDolaska,musterija1,vozac1,brojKmPredjenih,trajanjeVoznje,statusVoznje1,napomena,obrisan,statusNaruceneVoznje);
+                        voznja = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDolaska,musterija1,vozac1,brojKmPredjenih,trajanjeVoznje,statusVoznje1,obrisan,statusNaruceneVoznje);
                     }else{
                         voznja.setId(id);
                         voznja.setDatumIvremePorudzbine(dateTime);
@@ -107,7 +106,6 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
                         voznja.setBrojKMpredjenih(brojKmPredjenih);
                         voznja.setTrajanjVoznje(trajanjeVoznje);
                         voznja.setStatusVoznje(statusVoznje1);
-                        voznja.setNapomena(napomena);
                         voznja.setObrisan(obrisan);
                         voznja.setStatusNaruceneVoznje(statusNaruceneVoznje);
                     }

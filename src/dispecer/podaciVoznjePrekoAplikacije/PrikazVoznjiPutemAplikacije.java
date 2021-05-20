@@ -54,7 +54,7 @@ public class PrikazVoznjiPutemAplikacije extends JFrame {
                 sadrzaj[i][7] = voznje.getTrajanjVoznje();
             }
             sadrzaj[i][8] = voznje.getStatusVoznje();
-            sadrzaj[i][9] = voznje.getNapomena();
+//            sadrzaj[i][9] = voznje.getNapomena;
         }
 
         tableModel = new DefaultTableModel(sadrzaj, zaglavnje);
