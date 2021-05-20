@@ -4,15 +4,12 @@ import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
 import osobe.Musterija;
-import osobe.Osoba;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.util.IllegalFormatCodePointException;
 import java.util.Scanner;
 
 public class IstorijaVoznjiMusterija extends JFrame {
@@ -68,7 +65,7 @@ public class IstorijaVoznjiMusterija extends JFrame {
                 sadrzaj[j][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();
-                sadrzaj[j][8] = voznje.getNapomena();
+//                sadrzaj[j][8] = voznje.getNapomena();
                 j++;
             }
         }

@@ -5,7 +5,6 @@ import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoAplikacije;
-import musterija.NarucivanjeVoznjePrekoTelefona;
 import osobe.Vozac;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +14,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
@@ -67,7 +65,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 System.out.println("Greska");
             }
 
-            if(voznje.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA) && voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
+            if(voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
                 sadrzaj[j][0] = voznje.getId();
                 sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
                 sadrzaj[j][2] = voznje.getAdresaPolaska();
@@ -76,7 +74,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 sadrzaj[j][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();
-                sadrzaj[j][8] = voznje.getNapomena();
+//                sadrzaj[j][8] = voznje.getNapomena();
                 j++;
             }
         }

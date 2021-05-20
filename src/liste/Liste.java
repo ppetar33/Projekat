@@ -212,7 +212,6 @@ public class Liste {
 				double brojKMpredjenih = Double.parseDouble(podaci[6]);
 				double trajanjVoznje = Double.parseDouble(podaci[7]);
 				StatusVoznje statusVoznje = StatusVoznje.valueOf(podaci[8]);
-				String napomena = podaci[9];
 				String obrisanString = podaci[10];
 				boolean obrisan = Boolean.parseBoolean(obrisanString);
 				StatusNaruceneVoznje cimeJeNarucenaVoznja = StatusNaruceneVoznje.valueOf(podaci[11]);
@@ -229,10 +228,11 @@ public class Liste {
 					}
 				}
 				if(cimeJeNarucenaVoznja.equals(StatusNaruceneVoznje.TELEFON)){
-					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja);
+					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,cimeJeNarucenaVoznja);
 					voznjaTelefoni.add(narucivanjeVoznjePrekoTelefona);
 
 				}else if(cimeJeNarucenaVoznja.equals(StatusNaruceneVoznje.APLIKACIJA)){
+					String napomena = podaci[9];
 					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja);
 					voznjaAplikacije.add(narucivanjeVoznjePrekoAplikacije);
 				}
@@ -917,6 +917,7 @@ public class Liste {
 		}
 		return neobrisaneVoznje;
 	}
+
 
 	public NarucivanjeVoznjePrekoTelefona nadjiVoznjuKojaNemaVozaca(){
 		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){

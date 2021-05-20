@@ -10,8 +10,22 @@ import java.time.format.DateTimeFormatter;
 
 public class NarucivanjeVoznjePrekoAplikacije extends Voznja {
 
+    private String napomena;
+
+    public NarucivanjeVoznjePrekoAplikacije(){
+        this.napomena = "";
+    }
     public NarucivanjeVoznjePrekoAplikacije(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, String napomena, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje) {
-        super(id, datumIvremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojKMpredjenih, trajanjVoznje, statusVoznje, napomena, obrisan, statusNaruceneVoznje);
+        super(id, datumIvremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojKMpredjenih, trajanjVoznje, statusVoznje, obrisan, statusNaruceneVoznje);
+        this.napomena = napomena;
+    }
+
+    public String getNapomena() {
+        return napomena;
+    }
+
+    public void setNapomena(String napomena) {
+        this.napomena = napomena;
     }
 
     @Override
