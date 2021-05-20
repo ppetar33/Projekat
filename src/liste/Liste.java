@@ -387,7 +387,6 @@ public class Liste {
 		}
 		return listaAutomobila;
 	}
-
 	public int nadjiAutomobilPoId(ArrayList<Integer> array, int target){
 		return binarySearch(array,target,0,array.size());
 	}
