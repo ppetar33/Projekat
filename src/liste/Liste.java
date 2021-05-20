@@ -1,19 +1,16 @@
 package liste;
 
-import java.awt.font.FontRenderContext;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 import automobili.Automobil;
 import enumi.*;
-import automobili.Voznja;
+import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.NarucivanjeVoznjePrekoAplikacije;
 import musterija.NarucivanjeVoznjePrekoTelefona;
-import musterija.OstaleVoznje;
 import osobe.Dispecar;
 import osobe.Musterija;
 import enumi.Odeljenje;
@@ -27,7 +24,6 @@ public class Liste {
 	private ArrayList<Vozac> vozaci;
 	private ArrayList<TaksiSluzba> taksiSluzbe;
 	private ArrayList<Automobil> automobili;
-	private ArrayList<OstaleVoznje> voznja;
 	private ArrayList<NarucivanjeVoznjePrekoTelefona> voznjaTelefoni;
 	private ArrayList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije;
 
@@ -37,7 +33,6 @@ public class Liste {
 		this.vozaci = new ArrayList<Vozac>();
 		this.taksiSluzbe = new ArrayList<TaksiSluzba>();
 		this.automobili = new ArrayList<Automobil>();
-		this.voznja = new ArrayList<OstaleVoznje>();
 		this.voznjaTelefoni = new ArrayList<NarucivanjeVoznjePrekoTelefona>();
 		this.voznjaAplikacije = new ArrayList<NarucivanjeVoznjePrekoAplikacije>();
 	}
@@ -50,7 +45,6 @@ public class Liste {
 		this.musterije.add(musterija);
 	}
 
-
 	public ArrayList<Dispecar> getDispecari() {
 		return dispecari;
 	}
@@ -58,7 +52,6 @@ public class Liste {
 	public void dodajDispecera(Dispecar dispecar) {
 		this.dispecari.add(dispecar);
 	}
-
 
 	public ArrayList<Vozac> getVozaci() {
 		return vozaci;
@@ -78,14 +71,6 @@ public class Liste {
 
 	public void setAutomobili(ArrayList<Automobil> automobili) {
 		this.automobili = automobili;
-	}
-
-	public ArrayList<OstaleVoznje> getVoznja() {
-		return voznja;
-	}
-
-	public void setVoznja(ArrayList<OstaleVoznje> voznja) {
-		this.voznja = voznja;
 	}
 
 	public ArrayList<NarucivanjeVoznjePrekoTelefona> getVoznjaTelefoni() {
@@ -250,11 +235,7 @@ public class Liste {
 				}else if(cimeJeNarucenaVoznja.equals(StatusNaruceneVoznje.APLIKACIJA)){
 					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja);
 					voznjaAplikacije.add(narucivanjeVoznjePrekoAplikacije);
-				}else{
-					OstaleVoznje ostaleVoznje = new OstaleVoznje(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja);
-					voznja.add(ostaleVoznje);
 				}
-
 			}
 		}catch (Exception e){
 			e.printStackTrace();
@@ -351,9 +332,6 @@ public class Liste {
 	public void snimanjeVoznji(String imeFajla){
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
-			for(OstaleVoznje voznja : voznja){
-				br.write(voznja.pripremiZaSnimanje());
-			}
 			for(NarucivanjeVoznjePrekoTelefona voznjaTelefoni : voznjaTelefoni){
 				br.write(voznjaTelefoni.pripremiZaSnimanje());
 			}
@@ -585,12 +563,6 @@ public class Liste {
 	*/
 	public int uporediDatum(String datum){
 		int counter = 0;
-		for(Voznja voznja : voznja){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				counter++;
-			}
-		}
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
@@ -638,13 +610,6 @@ public class Liste {
 		double rezultat = 0;
 		double counter = 0;
 		double average;
-		for(Voznja voznja : voznja){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				rezultat += voznja.getTrajanjVoznje();
-				counter++;
-			}
-		}
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
@@ -666,13 +631,6 @@ public class Liste {
 		double rezultat = 0;
 		double counter = 0;
 		double average;
-		for(Voznja voznja : voznja){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				rezultat += voznja.getBrojKMpredjenih();
-				counter++;
-			}
-		}
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
@@ -695,12 +653,6 @@ public class Liste {
 		double start = 150;
 		double cenaPoKilometru = 30;
 		double rezultat = 0;
-		for(Voznja voznja : voznja){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				rezultat += voznja.getBrojKMpredjenih();
-			}
-		}
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
@@ -721,13 +673,6 @@ public class Liste {
 		double average;
 		double rezultat = 0;
 		double counter = 0;
-		for(Voznja voznja : voznja){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				rezultat += voznja.getBrojKMpredjenih();
-				counter++;
-			}
-		}
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){

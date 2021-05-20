@@ -1,14 +1,14 @@
-package liste;
+package liste.doublyLinkedList;
 
 import java.util.Iterator;
 
 public class LinkedListIterator<T> implements Iterator<T> {
+
     private ListNode<T> currentNode;
 
-    public LinkedListIterator(LinkedList<T> list){
+    public LinkedListIterator(DoublyLinkedList<T> list){
         currentNode = list.getHead();
     }
-
     @Override
     public boolean hasNext() {
         return currentNode != null;
