@@ -63,7 +63,10 @@ public class ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju extends JFrame {
                     vozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
                     ucitavanje.dodavanjeKorisnika();
                     ucitavanje.snimanjeVoznji("voznje.txt");
-                    JOptionPane.showMessageDialog(null,"Uspesno ste uneli podatke!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
+                    double start = 150;
+                    double cenaPoKilometru = 30;
+                    double cenaVoznje = start + (unosBrojaKm * cenaPoKilometru);
+                    JOptionPane.showMessageDialog(null,"Cena voznje je: " + cenaVoznje + "din","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju.this.setVisible(false);
                     ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju.this.dispose();
 

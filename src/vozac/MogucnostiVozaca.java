@@ -1,9 +1,6 @@
 package vozac;
 
-import enumi.StatusVoznje;
-import jdk.jshell.Snippet;
 import main.TaxiSluzbaMain;
-import musterija.NarucivanjeVoznjePrekoTelefona;
 import osobe.Musterija;
 import osobe.Vozac;
 import liste.Liste;
@@ -21,7 +18,7 @@ public class MogucnostiVozaca extends JFrame {
     private JMenuItem prikazDodeljenihVoznji = new JMenuItem("Prikaz dodeljenih voznji kreiranih putem telefona");
     private JMenuItem sumiraneStatistikeVoznji = new JMenuItem("Prikaz sumiraze statistike voznji");
     private JMenuItem aukcijeVoznje = new JMenuItem("Aukcije voznje");
-    private JMenuItem zavrsavanjeVoznje = new JMenuItem("Zavrsavanje voznje");
+    private JMenuItem zavrsavanjeVoznje = new JMenuItem("Zavrsavanje voznje kreirane putem telefona");
     private JMenuItem zavrsavanjeVoznjePutemAplikacije = new JMenuItem("Zavrsavanje voznje kreirane putem aplikacije");
 
 

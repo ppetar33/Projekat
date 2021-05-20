@@ -341,8 +341,8 @@ public class MogucnostiDispecera extends JFrame {
 		dnevni.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				IzvestajiDispecera izvestajiDispecera = new IzvestajiDispecera();
-				izvestajiDispecera.dnevniIzvestaj(ucitavanje);
+				IzvestajiDispecera izvestajiDispecera = new IzvestajiDispecera(ucitavanje);
+				izvestajiDispecera.setVisible(true);
 			}
 		});
 		dodeliVoznju.addActionListener(new ActionListener() {
