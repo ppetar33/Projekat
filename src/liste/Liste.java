@@ -521,6 +521,17 @@ public class Liste {
 		return slobodanVozac;
 	}
 
+	public DoublyLinkedList<String> listaVozacaKojiNemajuVoznju(){
+		DoublyLinkedList<String> slobodanVozac = new DoublyLinkedList<>();
+		for (Vozac vozac : vozaci){
+			if (vozac.getStatusVozaca().equals(StatusVozacaIautomobila.SLOBODAN) && vozac.isObrisan()){
+				String vozacIme = vozac.getKorisnickoIme();
+				slobodanVozac.add(vozacIme);
+			}
+		}
+		return slobodanVozac;
+	}
+
 	public TaksiSluzba nadjiTaksiSluzbu(int id){
 		for(TaksiSluzba taksiSluzba : taksiSluzbe){
 			if(taksiSluzba.getId() == id){

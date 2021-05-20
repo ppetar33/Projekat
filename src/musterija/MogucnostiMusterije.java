@@ -61,8 +61,12 @@ public class MogucnostiMusterije extends JFrame{
         narucivanjeVoznjePrekoAplikacije.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ProzorZaNarucivanjePutemAplikacije prozorZaNarucivanjePutemAplikacije = new ProzorZaNarucivanjePutemAplikacije(ucitavanje, prijavljenaMusterija);
-                prozorZaNarucivanjePutemAplikacije.setVisible(true);
+                if (ucitavanje.listaVozacaKojiNemajuVoznju().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Nazalost, nema slobodnih vozaca, pokusajte kasnije!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    ProzorZaNarucivanjePutemAplikacije prozorZaNarucivanjePutemAplikacije = new ProzorZaNarucivanjePutemAplikacije(ucitavanje, prijavljenaMusterija);
+                    prozorZaNarucivanjePutemAplikacije.setVisible(true);
+                }
             }
         });
         narucivanjeVoznjePrekoTelefona.addActionListener(new ActionListener() {

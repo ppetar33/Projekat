@@ -2,6 +2,7 @@ package musterija;
 
 import automobili.Voznja;
 import enumi.StatusNaruceneVoznje;
+import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
 import net.miginfocom.swing.MigLayout;
@@ -73,7 +74,12 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                     String adresaPolaska = tadresaPolaska.getText().trim();
                     String adresaDestinacije = tadresaDestinacije.getText().trim();
                     String napomena = tnapomena.getText().trim();
-
+                    Vozac vozac = ucitavanje.nadjiVozacaKojiJeSlobodan();
+                    if (vozac != null){
+                        vozac.getKorisnickoIme();
+                        vozac.setStatusVozaca(StatusVozacaIautomobila.ZAUZET);
+                        ucitavanje.dodavanjeKorisnika();
+                    }
 
                     if (narucivanjeVoznjePrekoAplikacije != null){
                         narucivanjeVoznjePrekoAplikacije.setId(id);
@@ -81,8 +87,9 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                         narucivanjeVoznjePrekoAplikacije.setAdresaPolaska(adresaPolaska);
                         narucivanjeVoznjePrekoAplikacije.setAdresaDestinacije(adresaDestinacije);
                         narucivanjeVoznjePrekoAplikacije.setNapomena(napomena);
+                        narucivanjeVoznjePrekoAplikacije.setVozac(vozac);
                     }
-                    Vozac vozac = new Vozac();
+
                     try {
                         File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
                         Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
@@ -92,7 +99,6 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                             ulogovanaMusterija.setKorisnickoIme(data);
                             NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,trenutnoVreme,adresaPolaska,adresaDestinacije,ulogovanaMusterija,vozac,0,0, StatusVoznje.KREIRANA_NA_CEKANJU,napomena,true, StatusNaruceneVoznje.APLIKACIJA);
                             ucitavanje.getVoznjaAplikacije().add(narucivanjeVoznjePrekoAplikacije);
-
                         }
                         citanjeUlogovanogKorisnika.close();
                     }  catch (IOException ioException) {
@@ -119,15 +125,15 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
     private boolean validacija() {
         boolean ok = true;
         String porukaObavestenja = "Molimo Vas ispravite sta je potrebno! \n";
-        if (tadresaPolaska.getText().trim() == "") {
+        if (tadresaPolaska.getText().trim().equals("")) {
             porukaObavestenja += "Polje za adresu polaska mora biti popunjeno! \n";
             ok = false;
         }
-        if (tadresaDestinacije.getText().trim() == "") {
+        if (tadresaDestinacije.getText().trim().equals("")) {
             porukaObavestenja += "Polje za adresu destinacije mora biti popunjeno! \n";
             ok = false;
         }
-        if (napomena.getText().trim() == "") {
+        if (napomena.getText().trim().equals("")) {
             porukaObavestenja += "Polje za napomenu mora biti popunjeno! \n";
             ok = false;
         }

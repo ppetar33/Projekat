@@ -77,7 +77,6 @@ public class ProzorZaIzmenuVoznjiPutemAplikacije extends JFrame {
         add(btnOk, "split 2");
         add(btnCancel);
 
-        //da ne moze da se menja
         tmusterija.setEditable(false);
         tvozac.setEditable(false);
 

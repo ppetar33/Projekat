@@ -49,7 +49,7 @@ public class IzmenaVoznjiNarucenihPrekoAplikacije extends PrikazVoznjiPutemAplik
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String id = tableModel.getValueAt(red,0).toString();
                     int nadjiId = Integer.parseInt(id);
-                    Voznja voznja = ucitavanje.nadjiVoznjuNarucenuPrekoAplikacijePoId(nadjiId);
+                    NarucivanjeVoznjePrekoAplikacije voznja = ucitavanje.nadjiVoznjuNarucenuPrekoAplikacijePoId(nadjiId);
                     if (voznja != null){
                         int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da izmenite voznju? ", "Potvrda brisanja", JOptionPane.YES_NO_OPTION );
                         if (izbor == JOptionPane.YES_OPTION){
