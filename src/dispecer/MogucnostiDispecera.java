@@ -1,6 +1,7 @@
 package dispecer;
 
 import automobili.Automobil;
+import dispecer.izvestaj.IzvestajiDispecera;
 import dispecer.podaciAutomobila.BrisanjeAutomobila;
 import dispecer.podaciAutomobila.DodavanjeAutomobila;
 import dispecer.podaciAutomobila.IzmenaAutomobila;
@@ -11,10 +12,8 @@ import dispecer.podaciVozaca.BrisanjeVozaca;
 import dispecer.podaciVozaca.DodavanjeVozaca;
 import dispecer.podaciVozaca.IzmenaVozaca;
 import dispecer.podaciVozaca.PrikazVozaca;
-import dispecer.podaciVoznjePrekoAplikacije.BrisanjeVoznjiNarucenihPrekoAplikacije;
 import dispecer.podaciVoznjePrekoAplikacije.IzmenaVoznjiNarucenihPrekoAplikacije;
 import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
-import dispecer.podaciVoznjePrekoTelefona.BrisanjeVoznjiNarucenihPrekoTelefona;
 import dispecer.podaciVoznjePrekoTelefona.IzmenaVoznjiNarucenihPrekoTelefona;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;

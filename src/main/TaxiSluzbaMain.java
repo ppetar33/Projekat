@@ -52,10 +52,11 @@ public class TaxiSluzbaMain {
         1. Izvestaji
 
     GOTOVO:
-        1. Pretraga
-        2. Sortiranje u tabeli
+        1. Pretraga (7.5 bodova)
+        2. Sortiranje u tabeli (5 bodova)
         3. Doubly linked list
-        4. Kreiranje, izmena i pregled svih potrebnih entiteta
+        4. Hash map
+        5. Kreiranje, izmena i pregled svih potrebnih entiteta (20 bodova)
 
 
 

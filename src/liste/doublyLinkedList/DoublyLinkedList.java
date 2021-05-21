@@ -153,15 +153,13 @@ public class DoublyLinkedList<T> implements Iterable<T>{
     public int size(){
         return listSize;
     }
+
     public boolean isEmpty() {
         if(listSize == 0){
             return true;
         }
         return false;
     }
-
-
-
 
 
 

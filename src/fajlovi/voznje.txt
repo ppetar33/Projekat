@@ -1,6 +1,20 @@
 1,2019-12-13 12:35,Nenada Mitrova 12,Sime Matavulja 15,petar123,mirko123,10.0,20.0,KREIRANA,,true,TELEFON
 2,2019-11-17 08:50,Nikole Tesle 12,Primorska 31,milos123,jovana123,12.0,25.0,ZAVRSENA,,true,TELEFON
 3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,stefan123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,stefan123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,stefan123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,stefan123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,stefan123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,stefan123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,stefan123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,stefan123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,mirko123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,mirko123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,mirko123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,nemanja123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,nemanja123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,nemanja123,4.0,10.0,ZAVRSENA,,true,TELEFON
+3,2021-05-17 12:00,Valentina Vodnika 40,Strazilovska 13,jelena123,nemanja123,4.0,10.0,ZAVRSENA,,true,TELEFON
 1,2019-03-07 04:40,Futoska pijaca 13,Dimitrija Davidovica 11,jovan123,stefan123,4.0,10.0,ZAVRSENA,,true,APLIKACIJA
 2,2021-05-17 14:59,d,d,petar123,stefan123,12.0,15.0,ZAVRSENA,cekam 5 min,true,APLIKACIJA
 3,2018-08-15 10:10,Devet Jugovica 44,Josifa Marinkovica 26,milos123,stefan123,20.0,40.0,ZAVRSENA,,true,APLIKACIJA

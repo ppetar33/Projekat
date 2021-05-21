@@ -81,6 +81,7 @@ public class Liste {
 	public void setVoznjaTelefoni(DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznjaTelefoni) {
 		this.voznjaTelefoni = voznjaTelefoni;
 	}
+
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> getVoznjaAplikacije() {
 		return voznjaAplikacije;
 	}
@@ -634,14 +635,23 @@ public class Liste {
 		}
 		return counter;
 	}
-	public int brojAktivnihVozaca(){
-		int counter = 0;
-		for(Vozac vozac : vozaci){
-			if(vozac.isObrisan()){
-				counter++;
+	public DoublyLinkedList<String> aktivniVozaci(String datum){
+		DoublyLinkedList<String> vozacc = new DoublyLinkedList<String>();
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getVozac().getKorisnickoIme() != "" && voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				String vozac = voznja.getVozac().getKorisnickoIme();
+				vozacc.add(vozac);
 			}
 		}
-		return counter;
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getVozac().getKorisnickoIme() != "" && voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				String vozac = voznja.getVozac().getKorisnickoIme();
+				vozacc.add(vozac);
+			}
+		}
+		return vozacc;
 	}
 	public double uporediDatumItrajanjeVoznje(String datum){
 		double rezultat = 0;
@@ -693,6 +703,26 @@ public class Liste {
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+			}
+		}
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				rezultat += voznja.getBrojKMpredjenih();
+			}
+		}
+		ukupnaZarada = (start) + (rezultat * cenaPoKilometru);
+		return ukupnaZarada;
+	}
+	public double ukupnaZaradaPoVozacu(String datum){
+		double ukupnaZarada;
+		double start = 150;
+		double cenaPoKilometru = 30;
+		double rezultat = 0;
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if (voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)) {
 				rezultat += voznja.getBrojKMpredjenih();
 			}
 		}
