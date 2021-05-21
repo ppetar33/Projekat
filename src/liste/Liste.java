@@ -465,6 +465,15 @@ public class Liste {
 		}
 		return sviVozaci;
 	}
+	public DoublyLinkedList<Vozac> rezultatKombinovanePretrage(String ime,String prezime,String model,double plata){
+		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
+		for(Vozac vozac : vozaci){
+			if(vozac.isObrisan() && vozac.getIme().equalsIgnoreCase(ime) && vozac.getPrezime().equalsIgnoreCase(prezime) && vozac.getAutomobili().getModel().equalsIgnoreCase(model) && vozac.getPlata() == plata){
+				sviVozaci.add(vozac);
+			}
+		}
+		return sviVozaci;
+	}
 	public Vozac nadjiVozacaKojiJeSlobodan(){
 		for(Vozac vozac : vozaci){
 			if(vozac.isObrisan() && vozac.getStatusVozaca().equals(StatusVozacaIautomobila.SLOBODAN) && vozac.getAutomobili().getId() != 0){
@@ -574,6 +583,21 @@ public class Liste {
 		IZVESTAJI
 
 	*/
+	public boolean nadjiDatum(String datum){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				return true;
+			}
+		}
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				return true;
+			}
+		}
+		return false;
+	}
 	public int uporediDatum(String datum){
 		int counter = 0;
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
@@ -678,7 +702,7 @@ public class Liste {
 				rezultat += voznja.getBrojKMpredjenih();
 			}
 		}
-		ukupnaZarada = (start + rezultat) * cenaPoKilometru;
+		ukupnaZarada = (start) + (rezultat * cenaPoKilometru);
 		return ukupnaZarada;
 	}
 	public double prosecnaZaradaZaVoznje(String datum){
@@ -704,7 +728,7 @@ public class Liste {
 			double start = taksiSluzba.getCenaStartaVoznje();
 			double cenaPoKilometru = taksiSluzba.getCenaPoKilometru();
 
-			ukupnaZarada = (start + rezultat) * cenaPoKilometru;
+			ukupnaZarada = (start) + (rezultat * cenaPoKilometru);
 		}
 		average = ukupnaZarada / counter;
 		return average;

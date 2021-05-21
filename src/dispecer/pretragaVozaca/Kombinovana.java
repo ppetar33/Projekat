@@ -1,5 +1,6 @@
 package dispecer.pretragaVozaca;
 
+import liste.doublyLinkedList.DoublyLinkedList;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import liste.Liste;
@@ -63,6 +64,14 @@ public class Kombinovana extends JFrame {
                     String unosPlataString = tplata.getText().trim();
                     double unosPlata = Double.parseDouble(unosPlataString);
 
+                    DoublyLinkedList<Vozac> rezultatKombinovanePretrage = ucitavanje.rezultatKombinovanePretrage(unosIme,unosPrezime,unosModelAutomobila,unosPlata);
+
+                    if(rezultatKombinovanePretrage.isEmpty()) {
+                        JOptionPane.showMessageDialog(null,"Vozac sa unesenim podacima ne postoji!","Greska",JOptionPane.WARNING_MESSAGE);
+                    }else{
+                        ProzorZaPrikazKombinovanePretrage prozorZaPrikazKombinovanePretrage = new ProzorZaPrikazKombinovanePretrage(rezultatKombinovanePretrage);
+                        prozorZaPrikazKombinovanePretrage.setVisible(true);
+                    }
 
                 }
             }

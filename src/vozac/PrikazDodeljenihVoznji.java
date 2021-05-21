@@ -97,10 +97,8 @@ public class PrikazDodeljenihVoznji extends JFrame{
                     NarucivanjeVoznjePrekoTelefona nadjiVoznju = ucitavanje.nadjiVoznjuNarucenuPrekoTelefonaPoId(id);
                     int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da prihvatite voznju?", "Potvrda prihvatanja", JOptionPane.YES_NO_OPTION);
                     if(izbor == JOptionPane.YES_OPTION) {
-                        JOptionPane.showMessageDialog(null, "Uspesno ste prihvatili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
-                        nadjiVoznju.setStatusVoznje(StatusVoznje.PRIHVACENA);
-                        ucitavanje.snimanjeVoznji("voznje.txt");
-                        tableModel.removeRow(red);
+                        ProzorZaPrihvatanjeVoznje prozorZaPrihvatanjeVoznje = new ProzorZaPrihvatanjeVoznje(ucitavanje,nadjiVoznju);
+                        prozorZaPrihvatanjeVoznje.setVisible(true);
                         PrikazDodeljenihVoznji.this.setVisible(false);
                         PrikazDodeljenihVoznji.this.dispose();
                     }
