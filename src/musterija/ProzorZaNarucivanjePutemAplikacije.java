@@ -79,6 +79,9 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                         vozac.getKorisnickoIme();
                         vozac.setStatusVozaca(StatusVozacaIautomobila.ZAUZET);
                         ucitavanje.dodavanjeKorisnika();
+                    }else {
+                        Vozac nePostojiSlobodanVozac = new Vozac();
+                        vozac = nePostojiSlobodanVozac;
                     }
 
                     if (narucivanjeVoznjePrekoAplikacije != null){

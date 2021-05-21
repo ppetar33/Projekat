@@ -446,6 +446,7 @@ public class Liste {
 		}
 		return sviVozaci;
 	}
+
 	public DoublyLinkedList<Vozac> nadjiVozacaPoPrezimenu(String unosPrezime){
 		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
 		for(Vozac vozac : vozaci){
@@ -549,7 +550,7 @@ public class Liste {
 		}
 		return null;
 	}
-
+	
 	public NarucivanjeVoznjePrekoTelefona nadjiVoznjuNarucenuPrekoTelefonaPoId(int id){
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			if(voznja.getId() == id){
@@ -948,4 +949,16 @@ public class Liste {
 		}
 		return neobrisaneVoznje;
 	}
+
+	//PRETRAGA AUTOMOBILA
+	public DoublyLinkedList<Automobil> nadjiAutomobilPoModelu(String unosModela){
+		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
+		for (Automobil automobil : automobili){
+			if (automobil.getModel().equalsIgnoreCase(unosModela) && automobil.isObrisan()){
+				sviAutomobili.add(automobil);
+			}
+		}
+		return sviAutomobili;
+	}
+
 }

@@ -15,6 +15,7 @@ import dispecer.podaciVoznjePrekoAplikacije.BrisanjeVoznjiNarucenihPrekoAplikaci
 import dispecer.podaciVoznjePrekoAplikacije.IzmenaVoznjiNarucenihPrekoAplikacije;
 import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
 import dispecer.podaciVoznjePrekoTelefona.BrisanjeVoznjiNarucenihPrekoTelefona;
+import dispecer.podaciVoznjePrekoTelefona.IzmenaVoznjiNarucenihPrekoTelefona;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;
 import main.TaxiSluzbaMain;
@@ -54,8 +55,6 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem putemAplikacije = new JMenuItem("Putem aplikacije");
 	private JMenuItem izmenaVoznjiPutemAplikacije = new JMenuItem("Izmena voznji putem aplikacije");
 	private JMenuItem izmenaVoznjiPutemTelefona = new JMenuItem("Izmena voznji putem telefona");
-	private JMenuItem brisanjeVoznjiPutemAplikacije = new JMenuItem("Brisanje voznji putem aplikacije");
-	private JMenuItem brisanjeVoznjiPutemTelefona = new JMenuItem("Brisanje voznji putem telefona");
 
 	private JMenu funkcionalnostPretragaVozaca = new JMenu("Pretraga vozaca");
 	private JMenuItem poImenu = new JMenuItem("Po imenu");
@@ -127,9 +126,6 @@ public class MogucnostiDispecera extends JFrame {
 		funkcionalnostPrikazVoznji.add(putemAplikacije);
 		funkcionalnostPrikazVoznji.add(izmenaVoznjiPutemAplikacije);
 		funkcionalnostPrikazVoznji.add(izmenaVoznjiPutemTelefona);
-		funkcionalnostPrikazVoznji.add(brisanjeVoznjiPutemTelefona);
-		funkcionalnostPrikazVoznji.add(brisanjeVoznjiPutemAplikacije);
-
 
 		dispecerMenu.add(funkcionalnostPretragaVozaca);
 		funkcionalnostPretragaVozaca.add(poImenu);
@@ -286,23 +282,11 @@ public class MogucnostiDispecera extends JFrame {
 		izmenaVoznjiPutemTelefona.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				IzmenaVoznjiNarucenihPrekoTelefona izmenaVoznjiNarucenihPrekoTelefona = new IzmenaVoznjiNarucenihPrekoTelefona(ucitavanje, voznja);
+				izmenaVoznjiNarucenihPrekoTelefona.setVisible(true);
 			}
 		});
-		brisanjeVoznjiPutemAplikacije.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				BrisanjeVoznjiNarucenihPrekoAplikacije brisanjeVoznjiNarucenihPrekoAplikacije = new BrisanjeVoznjiNarucenihPrekoAplikacije(ucitavanje);
-				brisanjeVoznjiNarucenihPrekoAplikacije.setVisible(true);
-			}
-		});
-		brisanjeVoznjiPutemTelefona.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				BrisanjeVoznjiNarucenihPrekoTelefona brisanjeVoznjiNarucenihPrekoTelefona = new BrisanjeVoznjiNarucenihPrekoTelefona(ucitavanje);
-				brisanjeVoznjiNarucenihPrekoTelefona.setVisible(true);
-			}
-		});
+
 		poImenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

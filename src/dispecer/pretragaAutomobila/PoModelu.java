@@ -25,14 +25,10 @@ public class PoModelu extends JFrame {
 
     private Liste ucitavanje;
     private Automobil automobil;
-    private DoublyLinkedList<Automobil> automobils;
-    private DefaultTableModel table_model;
-    private JTable automobiliPoModeliTabela;
 
     public PoModelu(Liste ucitavanje, Automobil automobil){
         this.ucitavanje = ucitavanje;
         this.automobil = automobil;
-        this.automobils = new DoublyLinkedList<Automobil>();
         setTitle("Pretraga automobila po modelu");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -73,49 +69,17 @@ public class PoModelu extends JFrame {
                 if (validacija() == true){
                     String unosModela = tpretragaPoModelu.getText().trim();
 
+                    DoublyLinkedList<Automobil> rezultatPretrage = ucitavanje.nadjiAutomobilPoModelu(unosModela);
 
-                    Object [][] sadrzaj = new Object[automobils.size()][zaglavlje.length];
-
-                    if(pretragaPoModelu != null){
-                        for(int i = 0; i < automobils.size(); i++){
-                            Automobil automobil = automobils.get(i);
-                            sadrzaj[i][0] = automobil.getId();
-                            sadrzaj[i][1] = automobil.getModel();
-                            sadrzaj[i][2] = automobil.getProizvodjac();
-                            sadrzaj[i][3] = automobil.getGodinaProizvodnje();
-                            sadrzaj[i][4] = automobil.getRegistarskiBroj();
-                            sadrzaj[i][5] = automobil.getBrojVozila();
-                            sadrzaj[i][6] = automobil.getVrstaVozila().toString().toLowerCase().replace("_"," ");
-                            sadrzaj[i][7] = automobil.getStatusAutomobila().toString().toLowerCase();
-                            if(automobil.isPetFriendly()){
-                                sadrzaj[i][8] = "da";
-                            }else{
-                                sadrzaj[i][8] = "ne";
-                            }
-                        }
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Model automobila ne postoji!","Greska",JOptionPane.INFORMATION_MESSAGE);
+                    if (rezultatPretrage.isEmpty()){
+                        JOptionPane.showMessageDialog(null,"Automobil modela (" + unosModela + ") ne postoji!","GRESKA",JOptionPane.WARNING_MESSAGE);
+                    }else {
+                        ProzorZaPretraguPoModelu prozorZaPretraguPoModelu = new ProzorZaPretraguPoModelu();
+                        prozorZaPretraguPoModelu.setVisible(true);
                     }
-
-                    table_model = new DefaultTableModel(sadrzaj, zaglavlje);
-                    automobiliPoModeliTabela = new JTable(table_model);
-
-                    automobiliPoModeliTabela.setRowSelectionAllowed(true);
-                    automobiliPoModeliTabela.setColumnSelectionAllowed(false);
-                    automobiliPoModeliTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                    automobiliPoModeliTabela.setDefaultEditor(Object.class, null);
-                    automobiliPoModeliTabela.getTableHeader().setReorderingAllowed(false);
-
-                    RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table_model);
-                    automobiliPoModeliTabela.setRowSorter(sorter);
-
-                    JScrollPane jsp = new JScrollPane(automobiliPoModeliTabela);
-                    add(jsp, BorderLayout.CENTER);
-
                 }
             }
         });
-
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -126,9 +90,6 @@ public class PoModelu extends JFrame {
         });
     }
 
-
-
-
     private boolean validacija(){
         boolean ok = true;
         String poruka = "Napravili ste gresku! \n";
@@ -137,7 +98,7 @@ public class PoModelu extends JFrame {
             ok = false;
         }
         if(ok == false){
-            JOptionPane.showMessageDialog(null,poruka,"Greska",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,poruka,"Uneli ste pogresne podatke",JOptionPane.WARNING_MESSAGE);
         }
         return ok;
     }
