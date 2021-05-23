@@ -109,3 +109,14 @@ public class TaxiSluzbaMain {
 
 */
 
+/*
+
+    Odraditi:
+
+    dugme za osvezavanje tabele
+    ubaciti cenu voznje u txt fajlove
+    izvestaj je moguce videti ako su sve voznje zavrsene
+
+
+*/
+

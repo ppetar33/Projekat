@@ -3,7 +3,6 @@ package dispecer.podaciVozaca;
 import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +10,8 @@ import java.awt.event.ActionListener;
 
 public class IzmenaVozaca extends PrikazVozaca {
 
-    private JButton btnEdit = new JButton();
+    private JButton btnEdit = new JButton("Izmeni");
+    private JButton btnOsvezi = new JButton("Osvezi tabelu");
 
     public IzmenaVozaca(Liste ucitavanje,Vozac vozac) {
         super(ucitavanje,vozac);
@@ -24,7 +24,8 @@ public class IzmenaVozaca extends PrikazVozaca {
         ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/slike/edit.gif"));
         btnEdit.setIcon(deleteIcon);
         mainToolBar.add(btnEdit);
-        add(mainToolBar, BorderLayout.NORTH);
+        add(btnEdit, BorderLayout.NORTH);
+        add(btnOsvezi, BorderLayout.SOUTH);
     }
 
     private void initListeners(){
@@ -48,6 +49,15 @@ public class IzmenaVozaca extends PrikazVozaca {
                         JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog vozaca!", "Greska", JOptionPane.ERROR_MESSAGE);
                     }
                 }
+            }
+        });
+        btnOsvezi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IzmenaVozaca.this.setVisible(false);
+                IzmenaVozaca.this.dispose();
+                IzmenaVozaca izmenaVozaca = new IzmenaVozaca(ucitavanje,vozac);
+                izmenaVozaca.setVisible(true);
             }
         });
     }
