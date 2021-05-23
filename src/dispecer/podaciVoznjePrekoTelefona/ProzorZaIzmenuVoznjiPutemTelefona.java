@@ -1,11 +1,10 @@
 package dispecer.podaciVoznjePrekoTelefona;
 
-import dispecer.podaciVoznjePrekoAplikacije.ProzorZaIzmenuVoznjiPutemAplikacije;
 import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoAplikacije;
-import musterija.NarucivanjeVoznjePrekoTelefona;
+import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -119,7 +118,7 @@ public class ProzorZaIzmenuVoznjiPutemTelefona extends JFrame {
                         voznja.setObrisan(obrisan);
                         voznja.setStatusNaruceneVoznje(statusNaruceneVoznje);
                     }
-                    ucitavanje.snimanjeVoznji("voznje.txt");
+                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     JOptionPane.showMessageDialog(null,"Uspesno ste izmenili voznju!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaIzmenuVoznjiPutemTelefona.this.setVisible(false);
                     ProzorZaIzmenuVoznjiPutemTelefona.this.dispose();

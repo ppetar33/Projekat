@@ -36,6 +36,7 @@ public class PoAutomobilu extends JFrame {
         add(tpretragaPoAutomobilu);
         add(new JLabel());
         add(btnOK, "split 2");
+        this.getRootPane().setDefaultButton(btnOK);
         add(cancel);
     }
 

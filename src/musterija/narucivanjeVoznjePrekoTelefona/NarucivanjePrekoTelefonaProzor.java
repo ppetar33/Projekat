@@ -1,9 +1,9 @@
-package musterija;
+package musterija.narucivanjeVoznjePrekoTelefona;
 
 import enumi.StatusNaruceneVoznje;
-import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
+import main.TaxiSluzbaMain;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -88,7 +88,7 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                     }
 
                     JOptionPane.showMessageDialog(null,"Uspesno ste narucili voznju!","Cestitam",JOptionPane.INFORMATION_MESSAGE);
-                    ucitavanje.snimanjeVoznji("voznje.txt");
+                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     NarucivanjePrekoTelefonaProzor.this.dispose();
                     NarucivanjePrekoTelefonaProzor.this.setVisible(false);
                 }

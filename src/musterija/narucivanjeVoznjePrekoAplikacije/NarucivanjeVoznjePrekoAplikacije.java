@@ -1,4 +1,4 @@
-package musterija;
+package musterija.narucivanjeVoznjePrekoAplikacije;
 
 import automobili.Voznja;
 import enumi.StatusNaruceneVoznje;

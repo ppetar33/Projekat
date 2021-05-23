@@ -1,6 +1,7 @@
 package dispecer;
 
 import automobili.Automobil;
+import dispecer.dodeljivanjeVoznje.DodeljivanjeVoznje;
 import dispecer.izvestaj.DnevniIzvestaj;
 import dispecer.izvestaj.NedeljniIzvestaj;
 import dispecer.podaciAutomobila.BrisanjeAutomobila;
@@ -19,8 +20,8 @@ import dispecer.podaciVoznjePrekoTelefona.IzmenaVoznjiNarucenihPrekoTelefona;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaVozaca.*;
 import main.TaxiSluzbaMain;
-import musterija.NarucivanjeVoznjePrekoAplikacije;
-import musterija.NarucivanjeVoznjePrekoTelefona;
+import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import osobe.Dispecar;
 import osobe.Vozac;
 import liste.Liste;
@@ -70,7 +71,7 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem poBrojuRegistarskeOznake = new JMenuItem("Po broju registarske oznake");
 	private JMenuItem poBrojuTaksiVozila = new JMenuItem("Po broju taksi vozila");
 
-	private JMenu funkcionalnostIzvestaj = new JMenu("Izvestaj");
+	private JMenu funkcionalnostIzvestaj = new JMenu("Izvestaj dispecera");
 	private JMenuItem dnevni = new JMenuItem("Dnevni");
 	private JMenuItem nedeljni = new JMenuItem("Nedeljeni");
 	private JMenuItem mesecni = new JMenuItem("Mesecni");
@@ -78,6 +79,7 @@ public class MogucnostiDispecera extends JFrame {
 
 	private JMenu funkcionalnostDodavanjeVoznji = new JMenu("Dodeljivanje voznji");
 	private JMenuItem dodeliVoznju = new JMenuItem("Dodeli voznji");
+	private JMenuItem dodeliVoznjuAukcijom = new JMenuItem("Dodeli voznji aukcijom");
 
 	private JMenu odjava = new JMenu("Odjava");
 	private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
@@ -96,7 +98,7 @@ public class MogucnostiDispecera extends JFrame {
 		this.prijavljeniDispecar = prijavljeniDispecar;
 		setTitle("Dobrodosli " + prijavljeniDispecar.getIme().substring(0, 1).toUpperCase() + prijavljeniDispecar.getIme().substring(1) + " (Dispecer)");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(920, 300);
+		setSize(1000, 300);
 		initGUI();
 		initListeners();
 		setLocationRelativeTo(null);
@@ -149,6 +151,7 @@ public class MogucnostiDispecera extends JFrame {
 
 		dispecerMenu.add(funkcionalnostDodavanjeVoznji);
 		funkcionalnostDodavanjeVoznji.add(dodeliVoznju);
+		funkcionalnostDodavanjeVoznji.add(dodeliVoznjuAukcijom);
 
 		dispecerMenu.add(odjava);
 		odjava.add(potvrdaZaOdjavu);
@@ -345,6 +348,12 @@ public class MogucnostiDispecera extends JFrame {
 					DodeljivanjeVoznje dodeljivanjeVoznji = new DodeljivanjeVoznje(ucitavanje, voznja);
 					dodeljivanjeVoznji.setVisible(true);
 				}
+			}
+		});
+		dodeliVoznjuAukcijom.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
 			}
 		});
 		potvrdaZaOdjavu.addActionListener(new ActionListener() {

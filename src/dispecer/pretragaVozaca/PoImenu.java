@@ -36,6 +36,7 @@ public class PoImenu extends JFrame{
         add(tpretragaPoImenu);
         add(new JLabel());
         add(btnOK, "split 2");
+        this.getRootPane().setDefaultButton(btnOK);
         add(cancel);
     }
 

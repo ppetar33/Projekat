@@ -5,6 +5,7 @@ import enumi.StatusVozacaIautomobila;
 import enumi.VrstaVozila;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
+import main.TaxiSluzbaMain;
 import osobe.Osoba;
 import osobe.Vozac;
 import javax.swing.*;
@@ -237,7 +238,7 @@ public class DodavanjeAutomobila extends JFrame {
                     }
 
                     automobili.add(automobil);
-                    ucitavanje.snimanjeAutomobila("automobil.txt");
+                    ucitavanje.snimanjeAutomobila(TaxiSluzbaMain.AUTOMOBILI_FAJL);
                     JOptionPane.showMessageDialog(null, "Automobil je uspesno dodat!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                     DodavanjeAutomobila.this.dispose();
                     DodavanjeAutomobila.this.setVisible(false);

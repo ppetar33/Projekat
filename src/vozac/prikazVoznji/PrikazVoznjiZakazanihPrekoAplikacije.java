@@ -1,9 +1,10 @@
-package vozac;
+package vozac.prikazVoznji;
 
 import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoAplikacije;
+import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import osobe.Vozac;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -49,7 +50,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
         Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size()][zaglavnje.length];
         int j = 0;
         for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size(); i++){
-            Voznja voznje = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().get(i);
+            NarucivanjeVoznjePrekoAplikacije voznje = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().get(i);
 
             Vozac ulogovaniVozac = null;
             try {
@@ -75,7 +76,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 sadrzaj[j][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();
-//                sadrzaj[j][8] = voznje.getNapomena();
+                sadrzaj[j][8] = voznje.getNapomena();
                 j++;
             }
         }
@@ -115,7 +116,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
                         JOptionPane.showMessageDialog(null, "Uspesno ste prihvatili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         nadjiVoznju.setStatusVoznje(StatusVoznje.PRIHVACENA);
-                        ucitavanje.snimanjeVoznji("voznje.txt");
+                        ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     }else {
                         JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce prihvatiti!", "Greska", JOptionPane.WARNING_MESSAGE);
                         NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznjuZakazanuPrekoAplikacije();
@@ -143,7 +144,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
                         JOptionPane.showMessageDialog(null, "Uspesno ste odbili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         nadjiVoznju.setStatusVoznje(StatusVoznje.ODBIJENA);
-                        ucitavanje.snimanjeVoznji("voznje.txt");
+                        ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                         tableModel.fireTableDataChanged();
                     }else {
                         JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce odbiti!", "Greska", JOptionPane.WARNING_MESSAGE);

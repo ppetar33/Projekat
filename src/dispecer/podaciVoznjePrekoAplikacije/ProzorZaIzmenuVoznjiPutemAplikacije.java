@@ -3,7 +3,8 @@ package dispecer.podaciVoznjePrekoAplikacije;
 import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoAplikacije;
+import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -123,7 +124,7 @@ public class ProzorZaIzmenuVoznjiPutemAplikacije extends JFrame {
                         voznja.setObrisan(obrisan);
                         voznja.setStatusNaruceneVoznje(statusNaruceneVoznje);
                     }
-                    ucitavanje.snimanjeVoznji("voznje.txt");
+                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     JOptionPane.showMessageDialog(null,"Uspesno ste izmenili voznju!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaIzmenuVoznjiPutemAplikacije.this.setVisible(false);
                     ProzorZaIzmenuVoznjiPutemAplikacije.this.dispose();

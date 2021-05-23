@@ -1,20 +1,13 @@
 package dispecer.podaciVoznjePrekoAplikacije;
 
-import automobili.Automobil;
-import automobili.Voznja;
-import dispecer.podaciAutomobila.ProzorZaIzmenuAutomobila;
-import enumi.StatusNaruceneVoznje;
-import enumi.StatusVoznje;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoAplikacije;
-import musterija.NarucivanjeVoznjePrekoTelefona;
+import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.format.DateTimeFormatter;
 
 public class IzmenaVoznjiNarucenihPrekoAplikacije extends PrikazVoznjiPutemAplikacije {
 

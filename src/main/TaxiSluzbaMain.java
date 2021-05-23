@@ -5,10 +5,10 @@ import liste.Liste;
 
 public class TaxiSluzbaMain {
 
-    private static final String KORISNICI_FAJL = "korisnici.txt";
-    private static final String AUTOMOBILI_FAJL = "automobil.txt";
-    private static final String TAKSI_SLUZBA_FAJL = "taksiSluzba.txt";
-    private static final String VOZNJE_FAJL = "voznje.txt";
+    public static final String KORISNICI_FAJL = "korisnici.txt";
+    public static final String AUTOMOBILI_FAJL = "automobil.txt";
+    public static final String TAKSI_SLUZBA_FAJL = "taksiSluzba.txt";
+    public static final String VOZNJE_FAJL = "voznje.txt";
 
     public static void main(String[] args) {
 
@@ -30,6 +30,7 @@ public class TaxiSluzbaMain {
     Odraditi ASIP:
         1. Aukcija
         2. Binarna pretraga
+        3. Pri pokretanju programa potrebno je sortirati sve podatke po ID-u
 
     ZAVRSITI:
         1. Izvestaji
@@ -108,15 +109,3 @@ public class TaxiSluzbaMain {
 
 
 */
-
-/*
-
-    Odraditi:
-
-    dugme za osvezavanje tabele
-    ubaciti cenu voznje u txt fajlove
-    izvestaj je moguce videti ako su sve voznje zavrsene
-
-
-*/
-

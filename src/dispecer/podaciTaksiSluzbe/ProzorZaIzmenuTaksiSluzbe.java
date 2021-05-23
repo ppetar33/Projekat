@@ -1,6 +1,7 @@
 package dispecer.podaciTaksiSluzbe;
 
 import liste.Liste;
+import main.TaxiSluzbaMain;
 import net.miginfocom.swing.MigLayout;
 import taksiSluzba.TaksiSluzba;
 import javax.swing.*;
@@ -84,7 +85,7 @@ public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
                         taksiSluzba.setCenaStartaVoznje(cenaStartaVoznje);
                         taksiSluzba.setCenaPoKilometru(cenaVoznjePoKilometru);
                     }
-                    ucitavanje.snimiTaksiSluzbe("taksiSluzba.txt");
+                    ucitavanje.snimiTaksiSluzbe(TaxiSluzbaMain.AUTOMOBILI_FAJL);
                     JOptionPane.showMessageDialog(null, "Taksi sluzba je uspesno izmenjena!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaIzmenuTaksiSluzbe.this.setVisible(false);
                     ProzorZaIzmenuTaksiSluzbe.this.dispose();

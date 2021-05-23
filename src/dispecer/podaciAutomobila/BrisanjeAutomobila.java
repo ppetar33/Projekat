@@ -3,6 +3,8 @@ package dispecer.podaciAutomobila;
 import automobili.Automobil;
 import enumi.StatusVozacaIautomobila;
 import liste.Liste;
+import main.TaxiSluzbaMain;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -48,7 +50,7 @@ public class BrisanjeAutomobila extends PrikazAutomobila {
                             if (izbor == JOptionPane.YES_OPTION) {
                                 automobil.setObrisan(false);
                                 tableModel.removeRow(red);
-                                ucitavanje.snimanjeAutomobila("automobil.txt");
+                                ucitavanje.snimanjeAutomobila(TaxiSluzbaMain.AUTOMOBILI_FAJL);
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabran automobil!", "Greska", JOptionPane.ERROR_MESSAGE);

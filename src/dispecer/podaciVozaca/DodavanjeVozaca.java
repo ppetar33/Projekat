@@ -3,6 +3,7 @@ package dispecer.podaciVozaca;
 import automobili.Automobil;
 import enumi.StatusVozacaIautomobila;
 import liste.doublyLinkedList.DoublyLinkedList;
+import main.TaxiSluzbaMain;
 import osobe.Osoba;
 import enumi.Pol;
 import osobe.Vozac;
@@ -213,6 +214,9 @@ public class DodavanjeVozaca extends JFrame{
         btnOK.setBackground(Color.BLUE);
         c.add(btnOK);
 
+        this.getRootPane().setDefaultButton(btnOK);
+
+
         initListeners();
 
     }
@@ -241,7 +245,7 @@ public class DodavanjeVozaca extends JFrame{
                         Automobil automobil1 = ucitavanje.nadjiAutomobil(automobilID);
                         if(automobilID == automobil1.getId()){
                             automobil1.setStatusAutomobila(StatusVozacaIautomobila.ZAUZET);
-                            ucitavanje.snimanjeAutomobila("automobil.txt");
+                            ucitavanje.snimanjeAutomobila(TaxiSluzbaMain.AUTOMOBILI_FAJL);
                         }
                     }else{
                         automobil.setId(0);

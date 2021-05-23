@@ -2,6 +2,7 @@ package dispecer.podaciVoznjePrekoTelefona;
 
 import automobili.Voznja;
 import liste.Liste;
+import main.TaxiSluzbaMain;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -44,7 +45,7 @@ public class BrisanjeVoznjiNarucenihPrekoTelefona extends PrikazVoznjiPutemTelef
                         if (izbor == JOptionPane.YES_OPTION) {
                             voznja.setObrisan(false);
                             tableModel.removeRow(red);
-                            ucitavanje.snimanjeVoznji("voznje.txt");
+                            ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranu voznju!", "Greska", JOptionPane.ERROR_MESSAGE);

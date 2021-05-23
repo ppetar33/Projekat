@@ -142,7 +142,6 @@ public class DodavanjeDispecera extends JFrame{
         boolean ok = true;
         String obavestenjeZaGresku = "Napravili ste neke greske pri unosu, molimo vas ispravite! \n\n";
 
-        // TODO provera podataka
         if(tkorisnickoIme.getText().equals("")){
             obavestenjeZaGresku += "Polje za korisnicko ime ne sme biti prazno! \n";
             ok = false;

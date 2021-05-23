@@ -1,15 +1,15 @@
-package musterija;
+package musterija.narucivanjeVoznjePrekoAplikacije;
 
 import automobili.Voznja;
 import enumi.StatusNaruceneVoznje;
 import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
+import main.TaxiSluzbaMain;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
 
-import javax.print.attribute.standard.MediaSize;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -109,7 +109,7 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                         System.out.println("Greska");
                     }
                     JOptionPane.showMessageDialog(null,"Uspesno ste narucili voznju!","Cestitam",JOptionPane.INFORMATION_MESSAGE);
-                    ucitavanje.snimanjeVoznji("voznje.txt");
+                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     ProzorZaNarucivanjePutemAplikacije.this.dispose();
                     ProzorZaNarucivanjePutemAplikacije.this.setVisible(false);
                 }

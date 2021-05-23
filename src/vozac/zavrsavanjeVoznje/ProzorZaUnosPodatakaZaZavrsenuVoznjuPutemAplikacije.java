@@ -1,10 +1,10 @@
-package vozac;
+package vozac.zavrsavanjeVoznje;
 
 import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoAplikacije;
-import musterija.NarucivanjeVoznjePrekoTelefona;
+import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 
@@ -63,7 +63,7 @@ public class ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije extends JFrame 
                     Vozac vozac = ucitavanje.nadjiVozaca(vozacString);
                     vozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
                     ucitavanje.dodavanjeKorisnika();
-                    ucitavanje.snimanjeVoznji("voznje.txt");
+                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     JOptionPane.showMessageDialog(null,"Uspesno ste uneli podatke!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije.this.setVisible(false);
                     ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije.this.dispose();

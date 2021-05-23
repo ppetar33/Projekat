@@ -1,9 +1,10 @@
-package vozac;
+package vozac.zavrsavanjeVoznje;
 
 import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoTelefona;
+import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 
@@ -43,6 +44,7 @@ public class ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju extends JFrame {
         add(ttrajanjeVoznje);
         add(new JLabel());
         add(btnOK, "split 2");
+        this.getRootPane().setDefaultButton(btnOK);
     }
 
     private void initListeners(){
@@ -62,7 +64,7 @@ public class ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju extends JFrame {
                     Vozac vozac = ucitavanje.nadjiVozaca(vozacString);
                     vozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
                     ucitavanje.dodavanjeKorisnika();
-                    ucitavanje.snimanjeVoznji("voznje.txt");
+                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     double start = 150;
                     double cenaPoKilometru = 30;
                     double cenaVoznje = start + (unosBrojaKm * cenaPoKilometru);

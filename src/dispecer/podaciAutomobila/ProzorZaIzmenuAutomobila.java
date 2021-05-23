@@ -3,6 +3,7 @@ package dispecer.podaciAutomobila;
 import automobili.Automobil;
 import enumi.StatusVozacaIautomobila;
 import enumi.VrstaVozila;
+import main.TaxiSluzbaMain;
 import net.miginfocom.swing.MigLayout;
 import liste.Liste;
 import javax.swing.*;
@@ -95,7 +96,7 @@ public class ProzorZaIzmenuAutomobila extends JFrame {
                         automobil.setPetFriendly(petFriendly);
                         automobil.setStatusAutomobila(statusVozacaIautomobila);
                     }
-                    ucitavanje.snimanjeAutomobila("automobil.txt");
+                    ucitavanje.snimanjeAutomobila(TaxiSluzbaMain.AUTOMOBILI_FAJL);
                     JOptionPane.showMessageDialog(null, "Automobil je uspesno izmenjen!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaIzmenuAutomobila.this.setVisible(false);
                     ProzorZaIzmenuAutomobila.this.dispose();

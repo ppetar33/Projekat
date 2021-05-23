@@ -1,28 +1,18 @@
-package vozac;
+package vozac.prikazVoznji;
 
-import dispecer.ProzorZaDodeljivanjeVoznji;
 import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoTelefona;
+import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 
-/*
-
-JOptionPane.showMessageDialog(null, "Uspesno ste prihvatili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
-                        nadjiVoznju.setStatusVoznje(StatusVoznje.PRIHVACENA);
-                        ucitavanje.snimanjeVoznji("voznje.txt");
-                        tableModel.removeRow(red);
-
-
- */
 public class ProzorZaPrihvatanjeVoznje extends JFrame {
 
     private JLabel adresaPolaska = new JLabel("Adresa polaska");
@@ -64,6 +54,7 @@ public class ProzorZaPrihvatanjeVoznje extends JFrame {
         add(statusVoznjeJComboBox);
         add(new JLabel());
         add(potvrdi, "split 2");
+        this.getRootPane().setDefaultButton(potvrdi);
         add(btnCancel);
 
         tadresaPolaska.setEditable(false);
@@ -113,7 +104,7 @@ public class ProzorZaPrihvatanjeVoznje extends JFrame {
                         voznja.setObrisan(obrisan);
                         voznja.setStatusNaruceneVoznje(statusNaruceneVoznje);
                     }
-                    ucitavanje.snimanjeVoznji("voznje.txt");
+                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     JOptionPane.showMessageDialog(null, "Uspesno ste prihvatili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaPrihvatanjeVoznje.this.setVisible(false);
                     ProzorZaPrihvatanjeVoznje.this.dispose();

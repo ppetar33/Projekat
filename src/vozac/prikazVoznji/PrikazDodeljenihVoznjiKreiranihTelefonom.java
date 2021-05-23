@@ -1,10 +1,11 @@
-package vozac;
+package vozac.prikazVoznji;
 
 import automobili.Voznja;
 import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoTelefona;
+import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import osobe.Vozac;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 
-public class PrikazDodeljenihVoznji extends JFrame{
+public class PrikazDodeljenihVoznjiKreiranihTelefonom extends JFrame{
 
     private JToolBar mainJtoolBar = new JToolBar();
     private JButton btnPrihvati = new JButton("Prihvati");
@@ -25,10 +26,10 @@ public class PrikazDodeljenihVoznji extends JFrame{
 
     private Liste ucitavanje;
 
-    public PrikazDodeljenihVoznji(Liste ucitavanje){
+    public PrikazDodeljenihVoznjiKreiranihTelefonom(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
-        mainJtoolBar.add(btnPrihvati);
-        mainJtoolBar.add(btnOdbi);
+        add(btnPrihvati,BorderLayout.NORTH);
+        add(btnOdbi,BorderLayout.SOUTH);
         setTitle("Prikaz dodeljenih voznji narucenih putem telefona");
         setSize(1100, 300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -40,7 +41,6 @@ public class PrikazDodeljenihVoznji extends JFrame{
 
 
     private void initGUI(){
-        add(mainJtoolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
         Object[][] sadrzaj = new Object[ucitavanje.prikazDodeljenihVoznji().size()][zaglavnje.length];
         for(int i = 0; i < ucitavanje.prikazDodeljenihVoznji().size(); i++){
@@ -50,22 +50,10 @@ public class PrikazDodeljenihVoznji extends JFrame{
             sadrzaj[i][2] = voznje.getAdresaPolaska();
             sadrzaj[i][3] = voznje.getAdresaDestinacije();
             sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0, 1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-            if (voznje.getVozac().getKorisnickoIme() != "") {
-                sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
-            } else {
-                sadrzaj[i][5] = "Nema slobodan vozac";
-            }
-            if (voznje.getBrojKMpredjenih() == 0) {
-                sadrzaj[i][6] = "/";
-            } else {
-                sadrzaj[i][6] = voznje.getBrojKMpredjenih();
-            }
-            if (voznje.getTrajanjVoznje() == 0) {
-                sadrzaj[i][7] = "/";
-            } else {
-                sadrzaj[i][7] = voznje.getTrajanjVoznje();
-            }
-            sadrzaj[i][8] = voznje.getStatusVoznje();
+            sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
+            sadrzaj[i][6] = "/";
+            sadrzaj[i][7] = "/";
+            sadrzaj[i][8] = voznje.getStatusVoznje().toString().toLowerCase();
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavnje);
         voznjeTabela = new JTable(tableModel);
@@ -99,8 +87,8 @@ public class PrikazDodeljenihVoznji extends JFrame{
                     if(izbor == JOptionPane.YES_OPTION) {
                         ProzorZaPrihvatanjeVoznje prozorZaPrihvatanjeVoznje = new ProzorZaPrihvatanjeVoznje(ucitavanje,nadjiVoznju);
                         prozorZaPrihvatanjeVoznje.setVisible(true);
-                        PrikazDodeljenihVoznji.this.setVisible(false);
-                        PrikazDodeljenihVoznji.this.dispose();
+                        PrikazDodeljenihVoznjiKreiranihTelefonom.this.setVisible(false);
+                        PrikazDodeljenihVoznjiKreiranihTelefonom.this.dispose();
                     }
                 }
             }
@@ -124,16 +112,14 @@ public class PrikazDodeljenihVoznji extends JFrame{
                         Vozac vozac = ucitavanje.nadjiVozaca(vozacString);
                         vozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
                         ucitavanje.dodavanjeKorisnika();
-                        ucitavanje.snimanjeVoznji("voznje.txt");
+                        ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                         tableModel.removeRow(red);
-                        PrikazDodeljenihVoznji.this.setVisible(false);
-                        PrikazDodeljenihVoznji.this.dispose();
+                        PrikazDodeljenihVoznjiKreiranihTelefonom.this.setVisible(false);
+                        PrikazDodeljenihVoznjiKreiranihTelefonom.this.dispose();
                     }
                 }
 
             }
         });
     }
-
-
 }

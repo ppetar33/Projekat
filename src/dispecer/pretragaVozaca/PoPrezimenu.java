@@ -36,6 +36,7 @@ public class PoPrezimenu extends JFrame{
         add(tpretragaPoPrezimenu);
         add(new JLabel());
         add(btnOK, "split 2");
+        this.getRootPane().setDefaultButton(btnOK);
         add(cancel);
     }
 

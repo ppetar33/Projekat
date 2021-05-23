@@ -1,9 +1,8 @@
-package vozac;
+package vozac.zavrsavanjeVoznje;
 
 import automobili.Voznja;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoAplikacije;
-import musterija.NarucivanjeVoznjePrekoTelefona;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 
-public class ZavrsavanjeVoznjePutemAplikacije extends JFrame {
+public class ZavrsavanjeVoznjePutemTelefona extends JFrame {
 
     private JToolBar mainJtoolBar = new JToolBar();
     private JButton btnZavrsi = new JButton("Zavrsi voznju");
@@ -23,9 +22,9 @@ public class ZavrsavanjeVoznjePutemAplikacije extends JFrame {
 
     private Liste ucitavanje;
 
-    public ZavrsavanjeVoznjePutemAplikacije(Liste ucitavanje){
+    public ZavrsavanjeVoznjePutemTelefona(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
-        mainJtoolBar.add(btnZavrsi);
+        add(btnZavrsi,BorderLayout.NORTH);
         setTitle("Zavrsavanje voznje");
         setSize(1100, 300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -35,35 +34,21 @@ public class ZavrsavanjeVoznjePutemAplikacije extends JFrame {
         initListeners();
     }
 
+
     private void initGUI(){
-        add(mainJtoolBar, BorderLayout.SOUTH);
-        String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena"};
-        Object[][] sadrzaj = new Object[ucitavanje.prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije().size()][zaglavnje.length];
-        for(int i = 0; i < ucitavanje.prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije().size(); i++){
-            Voznja voznje = ucitavanje.prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije().get(i);
+        String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
+        Object[][] sadrzaj = new Object[ucitavanje.prikazVoznjeZaZavrsavanjeVoznje().size()][zaglavnje.length];
+        for(int i = 0; i < ucitavanje.prikazVoznjeZaZavrsavanjeVoznje().size(); i++){
+            Voznja voznje = ucitavanje.prikazVoznjeZaZavrsavanjeVoznje().get(i);
             sadrzaj[i][0] = voznje.getId();
             sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             sadrzaj[i][2] = voznje.getAdresaPolaska();
             sadrzaj[i][3] = voznje.getAdresaDestinacije();
-            sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-            if(voznje.getVozac().getKorisnickoIme() != "") {
-                sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
-            }else{
-                sadrzaj[i][5] = "Nema slobodan vozac";
-            }
-            if(voznje.getBrojKMpredjenih() == 0){
-                sadrzaj[i][6] = "/";
-            }else {
-                sadrzaj[i][6] = voznje.getBrojKMpredjenih();
-            }
-            if(voznje.getTrajanjVoznje() == 0){
-                sadrzaj[i][7] = "/";
-            }else {
-                sadrzaj[i][7] = voznje.getTrajanjVoznje();
-            }
+            sadrzaj[i][4] = voznje.getMusterija().getKorisnickoIme();
+            sadrzaj[i][5] = voznje.getVozac().getKorisnickoIme();
+            sadrzaj[i][6] = "/";
+            sadrzaj[i][7] = "/";
             sadrzaj[i][8] = voznje.getStatusVoznje();
-//            sadrzaj[i][9] = voznje.getNapomena();
-
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavnje);
         voznjeTabela = new JTable(tableModel);
@@ -92,17 +77,16 @@ public class ZavrsavanjeVoznjePutemAplikacije extends JFrame {
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    NarucivanjeVoznjePrekoAplikacije nadjiVoznju = ucitavanje.nadjiVoznjuNarucenuPrekoAplikacijePoId(id);
+                    NarucivanjeVoznjePrekoTelefona nadjiVoznju = ucitavanje.nadjiVoznjuNarucenuPrekoTelefonaPoId(id);
                     int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da zavrsite voznju?", "Potvrda prihvatanja", JOptionPane.YES_NO_OPTION);
                     if (izbor == JOptionPane.YES_OPTION) {
-                        ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije podaci = new ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije(ucitavanje,nadjiVoznju);
+                        ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju podaci = new ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju(ucitavanje,nadjiVoznju);
                         podaci.setVisible(true);
-                        ZavrsavanjeVoznjePutemAplikacije.this.setVisible(false);
-                        ZavrsavanjeVoznjePutemAplikacije.this.dispose();
+                        ZavrsavanjeVoznjePutemTelefona.this.setVisible(false);
+                        ZavrsavanjeVoznjePutemTelefona.this.dispose();
                     }
                 }
             }
         });
     }
-
 }

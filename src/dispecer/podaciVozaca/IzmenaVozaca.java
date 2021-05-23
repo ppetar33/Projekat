@@ -24,6 +24,7 @@ public class IzmenaVozaca extends PrikazVozaca {
         ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/slike/edit.gif"));
         btnEdit.setIcon(deleteIcon);
         mainToolBar.add(btnEdit);
+        mainToolBar.add(btnOsvezi);
         add(btnEdit, BorderLayout.NORTH);
         add(btnOsvezi, BorderLayout.SOUTH);
     }
@@ -46,7 +47,7 @@ public class IzmenaVozaca extends PrikazVozaca {
                             prozorZaIzmenuVozaca.setVisible(true);
                         }
                     }else{
-                        JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog vozaca!", "Greska", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog vozaca, molim ovas osvezite tabelu.", "Greska", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }

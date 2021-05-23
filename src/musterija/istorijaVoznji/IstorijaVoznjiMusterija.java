@@ -1,14 +1,19 @@
-package musterija;
+package musterija.istorijaVoznji;
 
-import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
+import musterija.istorijaVoznji.ProzorZaOcenjivanje;
+import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import osobe.Musterija;
+import osobe.Vozac;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -20,28 +25,31 @@ public class IstorijaVoznjiMusterija extends JFrame {
 
     private DefaultTableModel table_model;
     private JTable istorijaVoznjeTabela;
+    private JButton oceniVozaca = new JButton("Oceni vozaca");
 
     private Liste ucitavanje;
     private Musterija ulogovanaMusterija;
+    private Vozac vozac;
 
     public IstorijaVoznjiMusterija(Liste ucitavanje, Musterija musterija){
         this.ucitavanje = ucitavanje;
         this.ulogovanaMusterija = ulogovanaMusterija;
-        setTitle("Prikaz istorije sopstvene voznje" + "(" + musterija.getIme().substring(0,1).toUpperCase() + musterija.getIme().substring(1) + ")");
+        setTitle("Prikaz istorije sopstvene voznje " + "(" + musterija.getIme().substring(0,1).toUpperCase() + musterija.getIme().substring(1) + ")");
         setSize(1050,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
         initGUI();
+        initListeners();
     }
 
     private void initGUI() {
-        add(mainJToolBar, BorderLayout.SOUTH);
+        add(oceniVozaca, BorderLayout.NORTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Vozac","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena"};
         Object[][] sadrzaj = new Object[ucitavanje.getVoznjaAplikacije().size()][zaglavnje.length];
         int j = 0;
         for (int i = 0; i < ucitavanje.getVoznjaAplikacije().size(); i ++){
-            Voznja voznje = ucitavanje.getVoznjaAplikacije().get(i);
+            NarucivanjeVoznjePrekoAplikacije voznje = ucitavanje.getVoznjaAplikacije().get(i);
 
             Musterija ulogovanaMusterija = null;
             try {
@@ -63,11 +71,11 @@ public class IstorijaVoznjiMusterija extends JFrame {
                 sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
                 sadrzaj[j][2] = voznje.getAdresaPolaska();
                 sadrzaj[j][3] = voznje.getAdresaDestinacije();
-                sadrzaj[j][4] = voznje.getVozac().getIme().substring(0,1).toUpperCase() + voznje.getVozac().getIme().substring(1);
+                sadrzaj[j][4] = voznje.getVozac().getKorisnickoIme();
                 sadrzaj[j][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();
-//                sadrzaj[j][8] = voznje.getNapomena();
+                sadrzaj[j][8] = voznje.getNapomena();
                 j++;
             }
         }
@@ -85,5 +93,23 @@ public class IstorijaVoznjiMusterija extends JFrame {
 
         JScrollPane jsp = new JScrollPane(istorijaVoznjeTabela);
         add(jsp, BorderLayout.CENTER);
+    }
+
+    private void initListeners(){
+        oceniVozaca.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = istorijaVoznjeTabela.getSelectedRow();
+                if( red == -1){
+                    JOptionPane.showMessageDialog(null,"Morate izabrati bar jedan redu tabeli!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    DefaultTableModel tableModel = (DefaultTableModel) istorijaVoznjeTabela.getModel();
+                    String korisnickoIme = tableModel.getValueAt(red, 4).toString();
+                    Vozac vozac = ucitavanje.nadjiVozaca(korisnickoIme);
+                    ProzorZaOcenjivanje prozorZaOcenjivanje = new ProzorZaOcenjivanje(ucitavanje, vozac);
+                    prozorZaOcenjivanje.setVisible(true);
+                }
+            }
+        });
     }
 }

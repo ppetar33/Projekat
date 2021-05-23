@@ -69,6 +69,7 @@ public class ProzorZaIzmenuVozaca extends JFrame {
         add(new JLabel());
         add(btnOk, "split 2");
         add(btnCancel);
+        this.getRootPane().setDefaultButton(btnOk);
 
         if(this.vozac != null){
             popunjavanjeTextField();

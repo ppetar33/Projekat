@@ -1,9 +1,16 @@
 package vozac;
 
 import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import osobe.Musterija;
 import osobe.Vozac;
 import liste.Liste;
+import vozac.aukcija.AukcijeVoznje;
+import vozac.prikazVoznji.PrikazDodeljenihVoznjiKreiranihTelefonom;
+import vozac.prikazVoznji.PrikazVoznjiZakazanihPrekoAplikacije;
+import vozac.zavrsavanjeVoznje.ZavrsavanjeVoznjePutemAplikacije;
+import vozac.zavrsavanjeVoznje.ZavrsavanjeVoznjePutemTelefona;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +24,7 @@ public class MogucnostiVozaca extends JFrame {
     private JMenuItem prikazVoznjeZakazanihPrekoAplikacije = new JMenuItem("Prikaz voznji zakazanih preko aplikacije");
     private JMenuItem prikazDodeljenihVoznji = new JMenuItem("Prikaz dodeljenih voznji kreiranih putem telefona");
     private JMenuItem sumiraneStatistikeVoznji = new JMenuItem("Prikaz sumiraze statistike voznji");
-    private JMenuItem aukcijeVoznje = new JMenuItem("Aukcije voznje");
+    private JMenuItem aukcijeVoznje = new JMenuItem("Ucestvuj u aukciji");
     private JMenuItem zavrsavanjeVoznje = new JMenuItem("Zavrsavanje voznje kreirane putem telefona");
     private JMenuItem zavrsavanjeVoznjePutemAplikacije = new JMenuItem("Zavrsavanje voznje kreirane putem aplikacije");
 
@@ -29,6 +36,7 @@ public class MogucnostiVozaca extends JFrame {
     private Liste ucitavanje;
     private Vozac prijavljeniVozac;
     private Musterija musterija;
+    private NarucivanjeVoznjePrekoTelefona voznja;
 
     public MogucnostiVozaca(Liste ucitavanje, Vozac prijavljeniVozac){
         this.ucitavanje = ucitavanje;
@@ -79,7 +87,7 @@ public class MogucnostiVozaca extends JFrame {
                 if(ucitavanje.prikazDodeljenihVoznji().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Nema dodeljenih voznji!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                 }else {
-                    PrikazDodeljenihVoznji prikazDodeljenihVoznji = new PrikazDodeljenihVoznji(ucitavanje);
+                    PrikazDodeljenihVoznjiKreiranihTelefonom prikazDodeljenihVoznji = new PrikazDodeljenihVoznjiKreiranihTelefonom(ucitavanje);
                     prikazDodeljenihVoznji.setVisible(true);
                 }
             }
@@ -92,6 +100,12 @@ public class MogucnostiVozaca extends JFrame {
         aukcijeVoznje.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    AukcijeVoznje aukcijeVoznje = new AukcijeVoznje(ucitavanje, voznja);
+                    aukcijeVoznje.setVisible(true);
+                }
             }
         });
         zavrsavanjeVoznje.addActionListener(new ActionListener() {

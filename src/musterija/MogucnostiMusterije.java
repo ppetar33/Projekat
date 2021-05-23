@@ -1,8 +1,9 @@
 package musterija;
 
-import loginProzor.LoginProzor;
 import main.TaxiSluzbaMain;
-import musterija.podaciMusterijeZaKT2.PrikazMusterija;
+import musterija.istorijaVoznji.IstorijaVoznjiMusterija;
+import musterija.narucivanjeVoznjePrekoAplikacije.ProzorZaNarucivanjePutemAplikacije;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjePrekoTelefonaProzor;
 import osobe.Dispecar;
 import osobe.Musterija;
 import liste.Liste;
@@ -61,8 +62,8 @@ public class MogucnostiMusterije extends JFrame{
         narucivanjeVoznjePrekoAplikacije.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    ProzorZaNarucivanjePutemAplikacije prozorZaNarucivanjePutemAplikacije = new ProzorZaNarucivanjePutemAplikacije(ucitavanje, prijavljenaMusterija);
-                    prozorZaNarucivanjePutemAplikacije.setVisible(true);
+                ProzorZaNarucivanjePutemAplikacije prozorZaNarucivanjePutemAplikacije = new ProzorZaNarucivanjePutemAplikacije(ucitavanje, prijavljenaMusterija);
+                prozorZaNarucivanjePutemAplikacije.setVisible(true);
             }
         });
         narucivanjeVoznjePrekoTelefona.addActionListener(new ActionListener() {

@@ -2,6 +2,7 @@ package dispecer.podaciVozaca;
 
 import automobili.Automobil;
 import enumi.StatusVozacaIautomobila;
+import main.TaxiSluzbaMain;
 import osobe.Vozac;
 import liste.Liste;
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class BrisanjeVozaca extends PrikazVozaca {
 
-    private JButton btnDelete = new JButton();
+    private JButton btnDelete = new JButton("Obrisi");
 
     public BrisanjeVozaca(Liste ucitavanje,Vozac vozac) {
         super(ucitavanje,vozac);
@@ -25,7 +26,7 @@ public class BrisanjeVozaca extends PrikazVozaca {
         ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/slike/remove.gif"));
         btnDelete.setIcon(deleteIcon);
         mainToolBar.add(btnDelete);
-        add(mainToolBar, BorderLayout.NORTH);
+        add(btnDelete, BorderLayout.NORTH);
     }
 
     private void initListeners(){
@@ -61,7 +62,7 @@ public class BrisanjeVozaca extends PrikazVozaca {
                                     automobil.setStatusAutomobila(StatusVozacaIautomobila.SLOBODAN);
                                 }
                                 ucitavanje.dodavanjeKorisnika();
-                                ucitavanje.snimanjeAutomobila("automobil.txt");
+                                ucitavanje.snimanjeAutomobila(TaxiSluzbaMain.AUTOMOBILI_FAJL);
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog vozaca!", "Greska", JOptionPane.ERROR_MESSAGE);

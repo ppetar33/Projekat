@@ -49,6 +49,7 @@ public class Kombinovana extends JFrame {
         add(tautomobil);
         add(new JLabel());
         add(btnOK, "split 2");
+        this.getRootPane().setDefaultButton(btnOK);
         add(cancel);
     }
 

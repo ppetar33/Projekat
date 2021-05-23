@@ -33,6 +33,7 @@ public class DnevniIzvestaj extends JFrame {
         add(datumUnos);
         add(new JLabel());
         add(btnOk,"split 2");
+        this.getRootPane().setDefaultButton(btnOk);
         add(btnCancel);
     }
 
