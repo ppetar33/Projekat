@@ -421,14 +421,6 @@ public class Liste {
 		}
 		return null;
 	}
-	public Vozac nadjiVozacaKojiNemaAutomobil(){
-		for(Vozac vozac : vozaci){
-			if(vozac.getAutomobili().getId() == 0 && vozac.isObrisan()){
-				return vozac;
-			}
-		}
-		return null;
-	}
 	public DoublyLinkedList<Vozac> nadjiVozacaPoPlati(double plataUnos){
 		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
 		for(Vozac vozac : vozaci){
@@ -483,6 +475,16 @@ public class Liste {
 		}
 		return null;
 	}
+	public DoublyLinkedList<String> listaSlobodnihVozaca(){
+		DoublyLinkedList<String> slobodniVozaci = new DoublyLinkedList<>();
+		for(Vozac vozac : vozaci){
+			if(vozac.isObrisan() && vozac.getStatusVozaca().equals(StatusVozacaIautomobila.SLOBODAN) && vozac.getAutomobili().getId() != 0){
+				String vozaci = vozac.getKorisnickoIme();
+				slobodniVozaci.add(vozaci);
+			}
+		}
+		return slobodniVozaci;
+	}
 
 	public Musterija nadjiMusteriju(String korisnickoIme){
 		for(Musterija musterija : musterije){
@@ -525,17 +527,6 @@ public class Liste {
 		DoublyLinkedList<String> slobodanVozac = new DoublyLinkedList<>();
 		for (Vozac vozac : vozaci){
 			if (vozac.getAutomobili().getId() == 0 & vozac.isObrisan()){
-				String vozacIme = vozac.getKorisnickoIme();
-				slobodanVozac.add(vozacIme);
-			}
-		}
-		return slobodanVozac;
-	}
-
-	public DoublyLinkedList<String> listaVozacaKojiNemajuVoznju(){
-		DoublyLinkedList<String> slobodanVozac = new DoublyLinkedList<>();
-		for (Vozac vozac : vozaci){
-			if (vozac.getStatusVozaca().equals(StatusVozacaIautomobila.SLOBODAN) && vozac.isObrisan()){
 				String vozacIme = vozac.getKorisnickoIme();
 				slobodanVozac.add(vozacIme);
 			}
@@ -715,26 +706,6 @@ public class Liste {
 		ukupnaZarada = (start) + (rezultat * cenaPoKilometru);
 		return ukupnaZarada;
 	}
-	public double ukupnaZaradaPoVozacu(String datum){
-		double ukupnaZarada;
-		double start = 150;
-		double cenaPoKilometru = 30;
-		double rezultat = 0;
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if (voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)) {
-				rezultat += voznja.getBrojKMpredjenih();
-			}
-		}
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				rezultat += voznja.getBrojKMpredjenih();
-			}
-		}
-		ukupnaZarada = (start) + (rezultat * cenaPoKilometru);
-		return ukupnaZarada;
-	}
 	public double prosecnaZaradaZaVoznje(String datum){
 		double ukupnaZarada = 0;
 		double average;
@@ -763,7 +734,6 @@ public class Liste {
 		average = ukupnaZarada / counter;
 		return average;
 	}
-
 
 	/*
 		GENERISI NOVI ID ZA VOZNJE
@@ -980,25 +950,6 @@ public class Liste {
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			if(voznja.isObrisan()){
 				neobrisaneVoznje.add(voznja);
-			}
-		}
-		return neobrisaneVoznje;
-	}
-
-
-	public NarucivanjeVoznjePrekoTelefona nadjiVoznjuKojaNemaVozaca(){
-		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
-			if(voznjePrekoTelefona.getVozac().getKorisnickoIme().equals("")){
-				return voznjePrekoTelefona;
-			}
-		}
-		return null;
-	}
-	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> listaVoznjiKojeNemajuVozaca(){
-		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
-		for(NarucivanjeVoznjePrekoTelefona prekoTelefona : voznjaTelefoni){
-			if(prekoTelefona.getVozac().getKorisnickoIme().equals("")){
-				neobrisaneVoznje.add(prekoTelefona);
 			}
 		}
 		return neobrisaneVoznje;

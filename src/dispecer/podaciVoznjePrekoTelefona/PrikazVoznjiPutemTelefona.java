@@ -41,7 +41,7 @@ public class PrikazVoznjiPutemTelefona extends JFrame {
             if(voznje.getVozac().getKorisnickoIme() != "") {
                 sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
             }else{
-                sadrzaj[i][5] = "Nema slobodan vozac";
+                sadrzaj[i][5] = "/";
             }
             if(voznje.getBrojKMpredjenih() == 0){
                 sadrzaj[i][6] = "/";

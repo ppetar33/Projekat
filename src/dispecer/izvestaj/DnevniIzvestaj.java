@@ -1,13 +1,12 @@
 package dispecer.izvestaj;
 
 import liste.Liste;
-import liste.doublyLinkedList.DoublyLinkedList;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class IzvestajiDispecera extends JFrame {
+public class DnevniIzvestaj extends JFrame {
 
     private JLabel datum = new JLabel("Datum: ");
     private JTextField datumUnos = new JTextField(20);
@@ -15,7 +14,7 @@ public class IzvestajiDispecera extends JFrame {
     private JButton btnCancel = new JButton("Cancel");
     private Liste ucitavanje;
 
-    public IzvestajiDispecera(Liste ucitavanje){
+    public DnevniIzvestaj(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
         setTitle("Dnevni izvestaj");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -41,40 +40,56 @@ public class IzvestajiDispecera extends JFrame {
         btnOk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(validacija() == true) {
+                    String unosDatuma = datumUnos.getText().trim();
 
-                String unosDatuma = datumUnos.getText().trim();
-
-                boolean voznje = ucitavanje.nadjiDatum(unosDatuma);
+                    boolean voznje = ucitavanje.nadjiDatum(unosDatuma);
 
 
-                if(voznje == false){
-                    JOptionPane.showMessageDialog(null,"Za datum: " + unosDatuma + " nema voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
-                }else{
+                    if (voznje == false) {
+                        JOptionPane.showMessageDialog(null, "Za datum: " + unosDatuma + " nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
 
-                    String uneseniDatum = datumUnos.getText().trim();
+                        String uneseniDatum = datumUnos.getText().trim();
 
-                    int uporediDatum = ucitavanje.uporediDatum(uneseniDatum);
-                    int uporediDatumIvoznjeAplikacijom = ucitavanje.uporediDatumIvoznjeAplikacijom(uneseniDatum);
-                    int uporediDatumIvoznjeTelefonom = ucitavanje.uporediDatumIvoznjeTelefonom(uneseniDatum);
-                    int uporediDatumItrajanjeVoznje = (int) ucitavanje.uporediDatumItrajanjeVoznje(uneseniDatum);
-                    int uporediDatumIkilometrazu = (int) ucitavanje.uporediDatumIkilometrazu(uneseniDatum);
-                    int ukupnaZaradaZaSveVoznje = (int) ucitavanje.ukupnaZaradaZaSveVoznje(uneseniDatum);
-                    int prosecnaZaradaPoVoznji = (int) ucitavanje.prosecnaZaradaZaVoznje(uneseniDatum);
+                        int uporediDatum = ucitavanje.uporediDatum(uneseniDatum);
+                        int uporediDatumIvoznjeAplikacijom = ucitavanje.uporediDatumIvoznjeAplikacijom(uneseniDatum);
+                        int uporediDatumIvoznjeTelefonom = ucitavanje.uporediDatumIvoznjeTelefonom(uneseniDatum);
+                        int uporediDatumItrajanjeVoznje = (int) ucitavanje.uporediDatumItrajanjeVoznje(uneseniDatum);
+                        int uporediDatumIkilometrazu = (int) ucitavanje.uporediDatumIkilometrazu(uneseniDatum);
+                        int ukupnaZaradaZaSveVoznje = (int) ucitavanje.ukupnaZaradaZaSveVoznje(uneseniDatum);
+                        int prosecnaZaradaPoVoznji = (int) ucitavanje.prosecnaZaradaZaVoznje(uneseniDatum);
 
-                    ProzorZaPrikazIzvestaja prozorZaPrikazIzvestaja = new ProzorZaPrikazIzvestaja(unosDatuma,uporediDatum,uporediDatumIvoznjeAplikacijom,uporediDatumIvoznjeTelefonom,uporediDatumItrajanjeVoznje,uporediDatumIkilometrazu,ukupnaZaradaZaSveVoznje,prosecnaZaradaPoVoznji);
-                    prozorZaPrikazIzvestaja.setVisible(true);
+                        ProzorZaPrikazDnevnogIzvestaja prozorZaPrikazIzvestaja = new ProzorZaPrikazDnevnogIzvestaja(unosDatuma, uporediDatum, uporediDatumIvoznjeAplikacijom, uporediDatumIvoznjeTelefonom, uporediDatumItrajanjeVoznje, uporediDatumIkilometrazu, ukupnaZaradaZaSveVoznje, prosecnaZaradaPoVoznji);
+                        prozorZaPrikazIzvestaja.setVisible(true);
+                    }
                 }
-
             }
         });
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,"Uspesno ste odustali!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                IzvestajiDispecera.this.setVisible(false);
-                IzvestajiDispecera.this.dispose();
+                DnevniIzvestaj.this.setVisible(false);
+                DnevniIzvestaj.this.dispose();
             }
         });
+    }
+    public boolean validacija() {
+
+        boolean ok = true;
+        String obavestenjeZaGresku = "Napravili ste neke greske pri unosu, molimo vas ispravite! \n";
+
+        if(datumUnos.getText().equals("")){
+            obavestenjeZaGresku += "\nMorate uneti datum! \n";
+            ok = false;
+        }
+
+        if (ok == false) {
+            JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Neispravni podaci!", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return ok;
     }
 }
 

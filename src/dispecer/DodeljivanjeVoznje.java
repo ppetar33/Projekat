@@ -53,21 +53,9 @@ public class DodeljivanjeVoznje extends JFrame {
             sadrzaj[i][2] = voznje.getAdresaPolaska();
             sadrzaj[i][3] = voznje.getAdresaDestinacije();
             sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-            if(voznje.getVozac().getKorisnickoIme() == "") {
-                sadrzaj[i][5] = "Nema slobodan vozac";
-            }else{
-                sadrzaj[i][5] = voznje.getVozac().getKorisnickoIme();
-            }
-            if(voznje.getBrojKMpredjenih() == 0){
-                sadrzaj[i][6] = "/";
-            }else {
-                sadrzaj[i][6] = voznje.getBrojKMpredjenih();
-            }
-            if(voznje.getTrajanjVoznje() == 0){
-                sadrzaj[i][7] = "/";
-            }else {
-                sadrzaj[i][7] = voznje.getTrajanjVoznje();
-            }
+            sadrzaj[i][5] = "/";
+            sadrzaj[i][6] = "/";
+            sadrzaj[i][7] = "/";
             sadrzaj[i][8] = voznje.getStatusVoznje();
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavnje);
@@ -98,21 +86,16 @@ public class DodeljivanjeVoznje extends JFrame {
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
                     NarucivanjeVoznjePrekoTelefona voznja = ucitavanje.nadjiVoznjuNarucenuPrekoTelefonaPoId(id);
-                    String vozac = tableModel.getValueAt(red,5).toString();
-                    if(vozac == "Nema slobodan vozac"){
-                        JOptionPane.showMessageDialog(null,"Trenutno nema slobodnog vozaca, molimo vas pokusajte kasnije.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
-                    }else {
-                        if (voznja != null) {
-                            int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da dodelite ovu voznju?", "Potvrda", JOptionPane.YES_NO_OPTION);
-                            if (izbor == JOptionPane.YES_OPTION) {
-                                ProzorZaDodeljivanjeVoznji prozorZaDodeljivanjeVoznji = new ProzorZaDodeljivanjeVoznji(ucitavanje, voznja);
-                                prozorZaDodeljivanjeVoznji.setVisible(true);
-                                DodeljivanjeVoznje.this.setVisible(false);
-                                DodeljivanjeVoznje.this.dispose();
-                            }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranu voznju!", "Greska", JOptionPane.ERROR_MESSAGE);
+                    if (voznja != null) {
+                        int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da dodelite ovu voznju?", "Potvrda", JOptionPane.YES_NO_OPTION);
+                        if (izbor == JOptionPane.YES_OPTION) {
+                            ProzorZaDodeljivanjeVoznji prozorZaDodeljivanjeVoznji = new ProzorZaDodeljivanjeVoznji(ucitavanje, voznja);
+                            prozorZaDodeljivanjeVoznji.setVisible(true);
+                            DodeljivanjeVoznje.this.setVisible(false);
+                            DodeljivanjeVoznje.this.dispose();
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranu voznju!", "Greska", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }

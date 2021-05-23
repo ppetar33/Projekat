@@ -62,15 +62,8 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                     LocalDateTime trenutnoVreme = LocalDateTime.now();
                     String adresaPolaska = tadresaPolaska.getText().trim();
                     String adresaDolaska = tadresaDolaska.getText().trim();
-                    Vozac vozac = ucitavanje.nadjiVozacaKojiJeSlobodan();
-                    if(vozac != null){
-                        vozac.getKorisnickoIme();
-                        vozac.setStatusVozaca(StatusVozacaIautomobila.ZAUZET);
-                        ucitavanje.dodavanjeKorisnika();
-                    }else{
-                        Vozac nePostojiSlobodanVozac = new Vozac();
-                        vozac = nePostojiSlobodanVozac;
-                    }
+                    Vozac vozac = new Vozac();
+                    vozac.setKorisnickoIme("");
                     if(narucivanjeVoznjePrekoTelefona != null){
                         narucivanjeVoznjePrekoTelefona.setId(id);
                         narucivanjeVoznjePrekoTelefona.setDatumIvremePorudzbine(trenutnoVreme);

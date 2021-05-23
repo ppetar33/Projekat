@@ -1,7 +1,8 @@
 package dispecer;
 
 import automobili.Automobil;
-import dispecer.izvestaj.IzvestajiDispecera;
+import dispecer.izvestaj.DnevniIzvestaj;
+import dispecer.izvestaj.NedeljniIzvestaj;
 import dispecer.podaciAutomobila.BrisanjeAutomobila;
 import dispecer.podaciAutomobila.DodavanjeAutomobila;
 import dispecer.podaciAutomobila.IzmenaAutomobila;
@@ -324,8 +325,15 @@ public class MogucnostiDispecera extends JFrame {
 		dnevni.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				IzvestajiDispecera izvestajiDispecera = new IzvestajiDispecera(ucitavanje);
+				DnevniIzvestaj izvestajiDispecera = new DnevniIzvestaj(ucitavanje);
 				izvestajiDispecera.setVisible(true);
+			}
+		});
+		nedeljni.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				NedeljniIzvestaj nedeljniIzvestaj = new NedeljniIzvestaj(ucitavanje);
+				nedeljniIzvestaj.setVisible(true);
 			}
 		});
 		dodeliVoznju.addActionListener(new ActionListener() {

@@ -1,8 +1,6 @@
 package vozac;
 
 import automobili.Voznja;
-import enumi.StatusNaruceneVoznje;
-import enumi.StatusVoznje;
 import liste.Liste;
 import musterija.NarucivanjeVoznjePrekoTelefona;
 
@@ -15,16 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 
-    /*
-
-        Ako je voznja prihvacena treba i da se zavrsi.
-        Prikazati sve prihvacene voznje u tabeli.
-        Koju izabere status voznje se menja sa prihvacene na zavrsenu.
-        Nakon toga se prikazuje prozor gde vozac unosi koliko je km presao i koliko je trajala voznja.
-
-    */
-
-public class ZavrsavanjeVoznje extends JFrame {
+public class ZavrsavanjeVoznjePutemTelefona extends JFrame {
 
     private JToolBar mainJtoolBar = new JToolBar();
     private JButton btnZavrsi = new JButton("Zavrsi voznju");
@@ -33,7 +22,7 @@ public class ZavrsavanjeVoznje extends JFrame {
 
     private Liste ucitavanje;
 
-    public ZavrsavanjeVoznje(Liste ucitavanje){
+    public ZavrsavanjeVoznjePutemTelefona(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
         mainJtoolBar.add(btnZavrsi);
         setTitle("Zavrsavanje voznje");
@@ -56,8 +45,8 @@ public class ZavrsavanjeVoznje extends JFrame {
             sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             sadrzaj[i][2] = voznje.getAdresaPolaska();
             sadrzaj[i][3] = voznje.getAdresaDestinacije();
-            sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-            sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
+            sadrzaj[i][4] = voznje.getMusterija().getKorisnickoIme();
+            sadrzaj[i][5] = voznje.getVozac().getKorisnickoIme();
             sadrzaj[i][6] = "/";
             sadrzaj[i][7] = "/";
             sadrzaj[i][8] = voznje.getStatusVoznje();
@@ -94,8 +83,8 @@ public class ZavrsavanjeVoznje extends JFrame {
                     if (izbor == JOptionPane.YES_OPTION) {
                         ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju podaci = new ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju(ucitavanje,nadjiVoznju);
                         podaci.setVisible(true);
-                        ZavrsavanjeVoznje.this.setVisible(false);
-                        ZavrsavanjeVoznje.this.dispose();
+                        ZavrsavanjeVoznjePutemTelefona.this.setVisible(false);
+                        ZavrsavanjeVoznjePutemTelefona.this.dispose();
                     }
                 }
             }

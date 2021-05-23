@@ -1,10 +1,7 @@
 package main;
 
-import enumi.StatusVozacaIautomobila;
 import loginProzor.LoginProzor;
 import liste.Liste;
-import musterija.NarucivanjeVoznjePrekoTelefona;
-import osobe.Vozac;
 
 public class TaxiSluzbaMain {
 
@@ -25,21 +22,7 @@ public class TaxiSluzbaMain {
         LoginProzor lp = new LoginProzor(ucitavanje);
         lp.setVisible(true);
 
-        if(ucitavanje.listaVoznjiKojeNemajuVozaca().isEmpty()){
-            System.out.println("Sve voznje imaju vozaca");
-        }else {
-            Vozac slobodanVozac = ucitavanje.nadjiVozacaKojiJeSlobodan();
-            NarucivanjeVoznjePrekoTelefona voznjaKojaNemaVozaca = ucitavanje.nadjiVoznjuKojaNemaVozaca();
-            if (slobodanVozac != null) {
-                voznjaKojaNemaVozaca.getVozac().setKorisnickoIme(slobodanVozac.getKorisnickoIme());
-                slobodanVozac.setStatusVozaca(StatusVozacaIautomobila.ZAUZET);
-                ucitavanje.dodavanjeKorisnika();
-                ucitavanje.snimanjeVoznji(VOZNJE_FAJL);
-            }
-        }
-
     }
-
 }
 
 /*
@@ -78,7 +61,6 @@ public class TaxiSluzbaMain {
             A za interval mozemo da izaberemo dan i hocu nedelju dana unazad ili mesec dana unazad uglavnom
             je bitno da moze tako da se bira da mi dobili sve bodove
 
-        PRETRAGA (visekriterijumska) — treba && a ne ||
 
         AUKCIJA
 
@@ -126,3 +108,4 @@ public class TaxiSluzbaMain {
 
 
 */
+

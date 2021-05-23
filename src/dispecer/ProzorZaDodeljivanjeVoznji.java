@@ -1,8 +1,10 @@
 package dispecer;
 
 import enumi.StatusNaruceneVoznje;
+import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
@@ -21,7 +23,7 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
     private JLabel musterija = new JLabel("Musterija");
     private JTextField tmusterija = new JTextField(20);
     private JLabel vozac = new JLabel("Vozac");
-    private JTextField tvozac = new JTextField(20);
+    private JComboBox slobodniVozaci;
     private JLabel statusVoznje = new JLabel("Status voznje");
     private JComboBox<StatusVoznje> statusVoznjeJComboBox = new JComboBox<StatusVoznje>(StatusVoznje.values());
     private JButton dodeli = new JButton("Dodeli");
@@ -53,7 +55,13 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
         add(musterija);
         add(tmusterija);
         add(vozac);
-        add(tvozac);
+        DoublyLinkedList<String> slobodniVozaci1 = ucitavanje.listaSlobodnihVozaca();
+        String[] array = new String[slobodniVozaci1.size()];
+        for(int i = 0; i < array.length; i++) {
+            array[i] = String.valueOf(slobodniVozaci1.get(i));
+        }
+        slobodniVozaci = new JComboBox(array);
+        add(slobodniVozaci);
         add(statusVoznje);
         add(statusVoznjeJComboBox);
         add(new JLabel());
@@ -63,7 +71,6 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
         tadresaPolaska.setEditable(false);
         tadresaDolaska.setEditable(false);
         tmusterija.setEditable(false);
-        tvozac.setEditable(false);
 
         if(this.voznja != null){
             popunjavanjePolja();
@@ -75,44 +82,51 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                StatusVoznje statusVoznje = (StatusVoznje) statusVoznjeJComboBox.getSelectedItem();
-                if(statusVoznje != StatusVoznje.DODELJENA){
-                    JOptionPane.showMessageDialog(null,"Status voznje mora biti promenjen u dodeljena!","Greska",JOptionPane.WARNING_MESSAGE);
-                }else{
-                    int id = voznja.getId();
-                    LocalDateTime dateTime = voznja.getDatumIvremePorudzbine();
-                    String adresaPolaska = tadresaPolaska.getText().trim();
-                    String adresaDolaska = tadresaDolaska.getText().trim();
-                    String musterija = voznja.getMusterija().getKorisnickoIme();
-                    Musterija musterija1 = new Musterija();
-                    musterija1.setKorisnickoIme(musterija);
-                    String vozac = voznja.getVozac().getKorisnickoIme();
-                    Vozac vozac1 = new Vozac();
-                    vozac1.setKorisnickoIme(vozac);
-                    double brojKmPredjenih = voznja.getBrojKMpredjenih();
-                    double trajanjeVoznje = voznja.getTrajanjVoznje();
-                    StatusVoznje statusVoznje1 = StatusVoznje.DODELJENA;
-                    boolean obrisan = voznja.isObrisan();
-                    StatusNaruceneVoznje statusNaruceneVoznje = voznja.getStatusNaruceneVoznje();
-                    if(voznja == null){
-                        voznja = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDolaska,musterija1,vozac1,brojKmPredjenih,trajanjeVoznje,statusVoznje1,obrisan,statusNaruceneVoznje);
-                    }else{
-                        voznja.setId(id);
-                        voznja.setDatumIvremePorudzbine(dateTime);
-                        voznja.setAdresaPolaska(adresaPolaska);
-                        voznja.setAdresaDestinacije(adresaDolaska);
-                        voznja.setMusterija(musterija1);
-                        voznja.setVozac(vozac1);
-                        voznja.setBrojKMpredjenih(brojKmPredjenih);
-                        voznja.setTrajanjVoznje(trajanjeVoznje);
-                        voznja.setStatusVoznje(statusVoznje1);
-                        voznja.setObrisan(obrisan);
-                        voznja.setStatusNaruceneVoznje(statusNaruceneVoznje);
+                String vozac = (String) slobodniVozaci.getSelectedItem();
+                Vozac vozac1 = new Vozac();
+                vozac1.setKorisnickoIme(vozac);
+                Vozac vozac2 = ucitavanje.nadjiVozaca(vozac1.getKorisnickoIme());
+                if(vozac2 == null){
+                    JOptionPane.showMessageDialog(null,"Trenutno nema slobodnih vozaca, molim vas pokusajte kasnije.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    StatusVoznje statusVoznje = (StatusVoznje) statusVoznjeJComboBox.getSelectedItem();
+                    if (statusVoznje != StatusVoznje.DODELJENA) {
+                        JOptionPane.showMessageDialog(null, "Status voznje mora biti promenjen u dodeljena!", "Greska", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        int id = voznja.getId();
+                        LocalDateTime dateTime = voznja.getDatumIvremePorudzbine();
+                        String adresaPolaska = tadresaPolaska.getText().trim();
+                        String adresaDolaska = tadresaDolaska.getText().trim();
+                        String musterija = voznja.getMusterija().getKorisnickoIme();
+                        Musterija musterija1 = new Musterija();
+                        musterija1.setKorisnickoIme(musterija);
+                        vozac2.setStatusVozaca(StatusVozacaIautomobila.ZAUZET);
+                        ucitavanje.dodavanjeKorisnika();
+                        double brojKmPredjenih = voznja.getBrojKMpredjenih();
+                        double trajanjeVoznje = voznja.getTrajanjVoznje();
+                        StatusVoznje statusVoznje1 = StatusVoznje.DODELJENA;
+                        boolean obrisan = voznja.isObrisan();
+                        StatusNaruceneVoznje statusNaruceneVoznje = voznja.getStatusNaruceneVoznje();
+                        if (voznja == null) {
+                            voznja = new NarucivanjeVoznjePrekoTelefona(id, dateTime, adresaPolaska, adresaDolaska, musterija1, vozac1, brojKmPredjenih, trajanjeVoznje, statusVoznje1, obrisan, statusNaruceneVoznje);
+                        } else {
+                            voznja.setId(id);
+                            voznja.setDatumIvremePorudzbine(dateTime);
+                            voznja.setAdresaPolaska(adresaPolaska);
+                            voznja.setAdresaDestinacije(adresaDolaska);
+                            voznja.setMusterija(musterija1);
+                            voznja.setVozac(vozac1);
+                            voznja.setBrojKMpredjenih(brojKmPredjenih);
+                            voznja.setTrajanjVoznje(trajanjeVoznje);
+                            voznja.setStatusVoznje(statusVoznje1);
+                            voznja.setObrisan(obrisan);
+                            voznja.setStatusNaruceneVoznje(statusNaruceneVoznje);
+                        }
+                        ucitavanje.snimanjeVoznji("voznje.txt");
+                        JOptionPane.showMessageDialog(null, "Uspesno ste dodelili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                        ProzorZaDodeljivanjeVoznji.this.setVisible(false);
+                        ProzorZaDodeljivanjeVoznji.this.dispose();
                     }
-                    ucitavanje.snimanjeVoznji("voznje.txt");
-                    JOptionPane.showMessageDialog(null,"Uspesno ste dodelili voznju!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                    ProzorZaDodeljivanjeVoznji.this.setVisible(false);
-                    ProzorZaDodeljivanjeVoznji.this.dispose();
                 }
             }
         });
@@ -130,6 +144,5 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
         tadresaPolaska.setText(voznja.getAdresaPolaska());
         tadresaDolaska.setText(voznja.getAdresaDestinacije());
         tmusterija.setText(voznja.getMusterija().getKorisnickoIme());
-        tvozac.setText(voznja.getVozac().getKorisnickoIme());
     }
 }

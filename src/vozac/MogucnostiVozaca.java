@@ -100,7 +100,7 @@ public class MogucnostiVozaca extends JFrame {
                 if(ucitavanje.prikazVoznjeZaZavrsavanjeVoznje().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Nema prihvacenih voznji!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
                 }else {
-                    ZavrsavanjeVoznje zavrsavanjeVoznje = new ZavrsavanjeVoznje(ucitavanje);
+                    ZavrsavanjeVoznjePutemTelefona zavrsavanjeVoznje = new ZavrsavanjeVoznjePutemTelefona(ucitavanje);
                     zavrsavanjeVoznje.setVisible(true);
                 }
             }
