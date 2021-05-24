@@ -2,9 +2,8 @@ package automobili;
 
 import enumi.StatusVozacaIautomobila;
 import enumi.VrstaVozila;
-import osobe.Vozac;
 
-public class Automobil {
+public class Automobil{
 
     private int id;
     private String model;
@@ -141,5 +140,11 @@ public class Automobil {
                 ", statusAutomobila=" + statusVozacaIautomobila +
                 ", petFriendly=" + petFriendly +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Automobil compareAutomobil) {
+        int compereID = ((Automobil) compareAutomobil).getId();
+        return this.id - compereID;
     }
 }

@@ -1,6 +1,6 @@
 package liste.doublyLinkedList;
 
-public class ListNode <T> {
+public class ListNode<T> {
 
     public T element;
     public ListNode<T> previous;
@@ -49,4 +49,6 @@ public class ListNode <T> {
     public void setNext(ListNode<T> next) {
         this.next = next;
     }
+
+
 }

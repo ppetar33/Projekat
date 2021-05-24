@@ -379,13 +379,13 @@ public class Liste {
 
 
 	// zameniti arrayList sa DoublyLinkedList
-	public ArrayList<Integer> listaIDautomobila(){ // [1,2,3,4,5,6,7,8,9]
-		ArrayList<Integer> listaAutomobila = new ArrayList<>();
+	public DoublyLinkedList<Integer> listaIDautomobila(){ // [1,2,3,4,5,6,7,8,9]
+		DoublyLinkedList<Integer> listaAutomobila = new DoublyLinkedList<>();
 		for(Automobil automobil : automobili){
 			if(automobil.isObrisan()) {
 				int autoID = automobil.getId();
 				listaAutomobila.add(autoID);
-				Collections.sort(listaAutomobila);
+				listaAutomobila.sortListOfIntegers();
 			}
 		}
 		return listaAutomobila;
@@ -560,6 +560,16 @@ public class Liste {
 		}
 		return null;
 	}
+	public DoublyLinkedList<Double> nadjiVoznjuNarucenuPrekoTelefonaPoDatumu(String datum){
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DoublyLinkedList<Double> ukupanBrojLista = new DoublyLinkedList<>();
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				ukupanBrojLista.add(voznja.getTrajanjVoznje());
+			}
+		}
+		return ukupanBrojLista;
+	}
 
 	public NarucivanjeVoznjePrekoAplikacije nadjiVoznjuNarucenuPrekoAplikacijePoId(int id){
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
@@ -589,6 +599,24 @@ public class Liste {
 			}
 		}
 		return false;
+	}
+	public DoublyLinkedList<String> ukupanBrojVoznjiPrekoTelefona(){
+		DoublyLinkedList<String> telefon = new DoublyLinkedList<>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		for(NarucivanjeVoznjePrekoTelefona telefoni : voznjaTelefoni){
+			String datum = telefoni.getDatumIvremePorudzbine().format(formatter);
+			telefon.add(datum);
+		}
+		return telefon;
+	}
+	public DoublyLinkedList<String> ukupanBrojVoznjiPrekoAplikacije(){
+		DoublyLinkedList<String> aplikacija = new DoublyLinkedList<>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		for(NarucivanjeVoznjePrekoAplikacije telefoni : voznjaAplikacije){
+			String datum = telefoni.getDatumIvremePorudzbine().format(formatter);
+			aplikacija.add(datum);
+		}
+		return aplikacija;
 	}
 	public int uporediDatum(String datum){
 		int counter = 0;
@@ -625,24 +653,6 @@ public class Liste {
 			}
 		}
 		return counter;
-	}
-	public DoublyLinkedList<String> aktivniVozaci(String datum){
-		DoublyLinkedList<String> vozacc = new DoublyLinkedList<String>();
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getVozac().getKorisnickoIme() != "" && voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				String vozac = voznja.getVozac().getKorisnickoIme();
-				vozacc.add(vozac);
-			}
-		}
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getVozac().getKorisnickoIme() != "" && voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				String vozac = voznja.getVozac().getKorisnickoIme();
-				vozacc.add(vozac);
-			}
-		}
-		return vozacc;
 	}
 	public double uporediDatumItrajanjeVoznje(String datum){
 		double rezultat = 0;

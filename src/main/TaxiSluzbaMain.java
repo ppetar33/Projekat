@@ -62,6 +62,11 @@ public class TaxiSluzbaMain {
             A za interval mozemo da izaberemo dan i hocu nedelju dana unazad ili mesec dana unazad uglavnom
             je bitno da moze tako da se bira da mi dobili sve bodove
 
+            Za aktivne vozace, ucitati sve voznje sa unesenim datumom
+            Ubaciti korisnickoIme u listu
+            proci kroz tu listu i u novu listu upisati korisnicka imena koja se ne ponavljaju
+            proci kroz tu novu listu i uvecati brojac za svako korisnicko ime
+
 
         AUKCIJA
 

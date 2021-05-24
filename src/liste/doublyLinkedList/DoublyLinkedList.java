@@ -76,7 +76,30 @@ public class DoublyLinkedList<T> implements Iterable<T>{
             tail = temp;
         }
         listSize++;
+
     }
+//    public void sortList() {
+//        ListNode<T> current = null, index = null;
+//        int temp;
+//        //Check whether list is empty
+//        if(head == null) {
+//            return;
+//        }
+//        else {
+//            //Current will point to head
+//            for(current = head; current.next != null; current = current.next) {
+//                //Index will point to node next to current
+//                for(index = current.next; index != null; index = index.next) {
+//                    //If current's data is greater than index's data, swap the data of current and index
+//                    if(current.element > index.element) {
+//                        temp = current.element;
+//                        current.element = index.element;
+//                        index.element = temp;
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     public void deleteFromEnd() {
         if(head == null) {
@@ -161,6 +184,24 @@ public class DoublyLinkedList<T> implements Iterable<T>{
         return false;
     }
 
+    public void sortListOfIntegers() {
+        ListNode<Integer> current = null, index = null;
+        int temp;
+        if(head == null) {
+            return;
+        }
+        else {
+            for(current = (ListNode<Integer>) head; current.next != null; current = current.next) {
+                for(index = current.next; index != null; index = index.next) {
+                    if(current.element > index.element) {
+                        temp = current.element;
+                        current.element = index.element;
+                        index.element = temp;
+                    }
+                }
+            }
+        }
+    }
 
 
     @Override

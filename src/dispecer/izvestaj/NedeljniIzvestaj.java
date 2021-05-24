@@ -2,20 +2,14 @@ package dispecer.izvestaj;
 
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
 
 public class NedeljniIzvestaj extends JFrame {
 
@@ -57,25 +51,66 @@ public class NedeljniIzvestaj extends JFrame {
 
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     LocalDate parsiranjeUnesenogDatuma = LocalDate.parse(unosDatuma, formatter);
-                    LocalDate sedamDana = parsiranjeUnesenogDatuma.minusDays(7);
 
 
                     String[] days = new String[7];
                     for (int i = 0; i < days.length; i++) {
                         days[i] = parsiranjeUnesenogDatuma.minusDays(days.length - i - 1).toString();
                     }
-                    DoublyLinkedList<String> dani = new DoublyLinkedList<>();
+                    DoublyLinkedList<String> listaSedamDana = new DoublyLinkedList<>();
                     for (String x : days) {
-                        dani.add(x);
-                        System.out.println(x); // 7 dana unazad od unesenog datuma
-                        // potrebno je proveriti uneseni datum i 7 dana unazad sa datumima iz fajla
-                        // metoda ce da primi ovaj uneseni datum i sedam dana unazad
-                        // posto ne znam koji su to datumi bice String datum, datum.minusDays(7)
-                        // ako ne postoji datum ni jedan potrebno je da ispise da u intervalu od tog do tog datume ne postoje voznje
-                        // ako postoje uzeti voznje koje postoje i pozvati novi prozor za racunanje
+                        listaSedamDana.add(x);
                     }
+                    DoublyLinkedList<String> ukupanBrojVoznjiPrekoTelefona = ucitavanje.ukupanBrojVoznjiPrekoTelefona();
+                    int voznjaTelefoni = 0;
+                    for(String y : listaSedamDana){
+                        for(String x : ukupanBrojVoznjiPrekoTelefona){
+                            if(y.equals(x)){
+                                voznjaTelefoni++;
+                            }
+                        }
+                    }
+                    System.out.println("Ukupan broj voznji narucenih preko telefona je: " + voznjaTelefoni);
+                    DoublyLinkedList<String> ukupanBrojVoznjiPrekoAplikacije = ucitavanje.ukupanBrojVoznjiPrekoAplikacije();
+                    int voznjaAplikacija = 0;
+                    for(String y : listaSedamDana){
+                        for(String x : ukupanBrojVoznjiPrekoAplikacije){
+                            if(y.equals(x)){
+                                voznjaAplikacija++;
+                            }
+                        }
+                    }
+                    System.out.println("Ukupan broj voznji narucenih preko telefona je: " + voznjaAplikacija);
+                    int ukupanBrojSvihVoznji = voznjaTelefoni + voznjaAplikacija;
+                    System.out.println("Ukupan broj svih voznji je: " + ukupanBrojSvihVoznji);
 
 
+                    // prosecno trajanje voznje
+                    double rezultat = 0;
+                    double counter = 0;
+                    double average;
+
+                    String datumi = null;
+                    for(String y : listaSedamDana){
+                        for(String x : ukupanBrojVoznjiPrekoTelefona){
+                            if(y.equals(x)){
+                                datumi = x;
+                                System.out.println(datumi);
+                                DoublyLinkedList<Double> voznjePrekoTelefona = ucitavanje.nadjiVoznjuNarucenuPrekoTelefonaPoDatumu(datumi);
+                                for(Double q : voznjePrekoTelefona){
+                                    System.out.println(q + "min");
+                                }
+                            }
+                        }
+                    }
+                    System.out.println(rezultat);
+
+
+                    average = rezultat/counter;
+
+                    // prosecna kilometraza
+                    // ukupna zarada za sve voznje
+                    // prosecna zarada po voznji
                 }
 
             }
@@ -106,3 +141,4 @@ public class NedeljniIzvestaj extends JFrame {
         return ok;
     }
 }
+
