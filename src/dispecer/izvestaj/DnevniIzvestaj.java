@@ -1,10 +1,13 @@
 package dispecer.izvestaj;
 
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DnevniIzvestaj extends JFrame {
 
@@ -46,22 +49,29 @@ public class DnevniIzvestaj extends JFrame {
 
                     boolean voznje = ucitavanje.nadjiDatum(unosDatuma);
 
-
                     if (voznje == false) {
                         JOptionPane.showMessageDialog(null, "Za datum: " + unosDatuma + " nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     } else {
 
                         String uneseniDatum = datumUnos.getText().trim();
 
-                        int uporediDatumIvoznjeAplikacijom = ucitavanje.uporediDatumIvoznjeAplikacijom(uneseniDatum);
-                        int uporediDatumIvoznjeTelefonom = ucitavanje.uporediDatumIvoznjeTelefonom(uneseniDatum);
-                        int uporediDatum = uporediDatumIvoznjeAplikacijom + uporediDatumIvoznjeTelefonom;
-                        int uporediDatumItrajanjeVoznje = (int) ucitavanje.uporediDatumItrajanjeVoznje(uneseniDatum);
-                        int uporediDatumIkilometrazu = (int) ucitavanje.uporediDatumIkilometrazu(uneseniDatum);
+                        int ukupanBrojVoznjiAplikacija = ucitavanje.uporediDatumIvoznjeAplikacijom(uneseniDatum);
+                        int ukupanBrojVoznjiTelefon = ucitavanje.uporediDatumIvoznjeTelefonom(uneseniDatum);
+                        int ukupanBrojSvihVoznji = ukupanBrojVoznjiAplikacija + ukupanBrojVoznjiTelefon;
+                        int prosecnoTrajanjeVoznji = (int) ucitavanje.uporediDatumItrajanjeVoznje(uneseniDatum);
+                        int prosecnaKilometraza = (int) ucitavanje.uporediDatumIkilometrazu(uneseniDatum);
                         int ukupnaZaradaZaSveVoznje = (int) ucitavanje.ukupnaZaradaZaSveVoznje(uneseniDatum);
-                        int prosecnaZaradaPoVoznji = (int) ucitavanje.prosecnaZaradaZaVoznje(uneseniDatum);
+                        int prosecnaZaradaPoVoznji = ukupnaZaradaZaSveVoznje / ukupanBrojSvihVoznji;
+                        DoublyLinkedList<String> spisakVozacaKojiSuVozili = ucitavanje.spisakVozacaKojiSuVozili(uneseniDatum);
+                        Set<String> listaBezDupliranihVozaca = findDuplicates(spisakVozacaKojiSuVozili);
+                        int count = 0;
+                        for(String q : listaBezDupliranihVozaca){
+                            count++;
+                        }
+                        int brojVozacaKojiSuVozili = count;
+                        System.out.println(brojVozacaKojiSuVozili);
 
-                        ProzorZaPrikazDnevnogIzvestaja prozorZaPrikazIzvestaja = new ProzorZaPrikazDnevnogIzvestaja(unosDatuma, uporediDatum, uporediDatumIvoznjeAplikacijom, uporediDatumIvoznjeTelefonom, uporediDatumItrajanjeVoznje, uporediDatumIkilometrazu, ukupnaZaradaZaSveVoznje, prosecnaZaradaPoVoznji);
+                        ProzorZaPrikazDnevnogIzvestaja prozorZaPrikazIzvestaja = new ProzorZaPrikazDnevnogIzvestaja(unosDatuma, ukupanBrojSvihVoznji, ukupanBrojVoznjiAplikacija, ukupanBrojVoznjiTelefon, prosecnoTrajanjeVoznji, prosecnaKilometraza, ukupnaZaradaZaSveVoznje, prosecnaZaradaPoVoznji, brojVozacaKojiSuVozili);
                         prozorZaPrikazIzvestaja.setVisible(true);
                     }
                 }
@@ -92,23 +102,16 @@ public class DnevniIzvestaj extends JFrame {
 
         return ok;
     }
+    public Set<String> findDuplicates(DoublyLinkedList<String> list){
+        Set<String> items = new HashSet<String>();
+        Set<String> duplicates = new HashSet<String>();
+        for (String item : list) {
+            if (items.contains(item)) {
+                duplicates.remove(item);
+            } else {
+                items.add(item);
+            }
+        }
+        return items;
+    }
 }
-
-    /*
-          Specifikacija:
-            Prikaz sumiranog izveštaja na dnevnom, nedeljnom, mesečnom i godišnjem nivou. Izveštaj treba
-            da sadrži podatke o ukupnom broju vožnji, broju vožnji poručenim putem aplikacije, broju vožnji
-            poručenim putem telefonskog poziva, broju aktivnih vozača, prosečnom trajanju vožnje, prosečnom
-            broju pređenih kilometara, ukupnoj zaradi za sve vožnje, i prosečnoj zaradi po vožnji. Zaradu
-            vozača po vožnji računati po sledećoj formuli:
-                start + brojPredjenihKilometara * cenaPoKilometru.
-
-          Odgovor asistenta:
-            Broj aktivnih vozaca se misli na one vozace koji su vozili taj dan/nedelju/mesec itd a ne na
-            one koji su neobrisani
-            A ono za zaradu kada je po vozacu onda je ukupna zarada za tog vozaca a kada je za sve onda
-            je ukupna zarada za sve
-            Treba da se odvoje voznje koje su putem telefona i koje su putem aplikacije
-            A za interval mozemo da izaberemo dan i hocu nedelju dana unazad ili mesec dana unazad uglavnom
-            je bitno da moze tako da se bira da mi dobili sve bodove
-    */

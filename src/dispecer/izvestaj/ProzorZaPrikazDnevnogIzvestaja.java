@@ -21,18 +21,19 @@ public class ProzorZaPrikazDnevnogIzvestaja extends JFrame {
     private JTextField tukupnaZaradaZaSveVoznje = new JTextField(12);
     private JLabel prosecnaZaradaPoVoznji = new JLabel("Prosecna zarada po voznji ");
     private JTextField tprosecnaZaradaPoVoznji = new JTextField(12);
+    private JLabel ukupanBrojVozacaKojiSuVozili = new JLabel("Ukupan broj aktivnih vozaca ");
+    private JTextField tukupanBrojVozacaKojiSuVozili = new JTextField(12);
 
     public Liste ucitavanje;
 
-
-    public ProzorZaPrikazDnevnogIzvestaja(String unosDatuma, int uporediDatum, int uporediDatumIvoznjeAplikacijom, int uporediDatumIvoznjeTelefonom, int uporediDatumItrajanjeVoznje, int uporediDatumIkilometrazu, int ukupnaZaradaZaSveVoznje, int prosecnaZaradaPoVoznji) {
+    public ProzorZaPrikazDnevnogIzvestaja(String unosDatuma, int ukupanBrojSvihVoznji, int ukupanBrojVoznjiAplikacija, int ukupanBrojVoznjiTelefon, int prosecnoTrajanjeVoznji, int prosecnaKilometraza, int ukupnaZaradaZaSveVoznje, int prosecnaZaradaPoVoznji, int brojVozacaKojiSuVozili) {
         setTitle("Izvestaj za datum: " + unosDatuma);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initGUI();
         setResizable(false);
         pack();
         setLocationRelativeTo(null);
-        popunjavanjePolja(uporediDatum,uporediDatumIvoznjeAplikacijom,uporediDatumIvoznjeTelefonom,uporediDatumItrajanjeVoznje,uporediDatumIkilometrazu,ukupnaZaradaZaSveVoznje,prosecnaZaradaPoVoznji);
+        popunjavanjePolja(ukupanBrojSvihVoznji,ukupanBrojVoznjiAplikacija,ukupanBrojVoznjiTelefon,prosecnoTrajanjeVoznji,prosecnaKilometraza,ukupnaZaradaZaSveVoznje,prosecnaZaradaPoVoznji,brojVozacaKojiSuVozili);
     }
 
 
@@ -54,6 +55,8 @@ public class ProzorZaPrikazDnevnogIzvestaja extends JFrame {
         add(tukupnaZaradaZaSveVoznje);
         add(prosecnaZaradaPoVoznji);
         add(tprosecnaZaradaPoVoznji);
+        add(ukupanBrojVozacaKojiSuVozili);
+        add(tukupanBrojVozacaKojiSuVozili);
 
         tukupanBrojVoznji.setEditable(false);
         tukupanBrojVoznjiAplikacija.setEditable(false);
@@ -62,18 +65,20 @@ public class ProzorZaPrikazDnevnogIzvestaja extends JFrame {
         tprosecnoTrajanjeVoznje.setEditable(false);
         tukupnaZaradaZaSveVoznje.setEditable(false);
         tprosecnaZaradaPoVoznji.setEditable(false);
+        tukupanBrojVozacaKojiSuVozili.setEditable(false);
 
     }
 
-    private void popunjavanjePolja(int uporediDatum, int uporediDatumIvoznjeAplikacijom, int uporediDatumIvoznjeTelefonom, int uporediDatumItrajanjeVoznje, int uporediDatumIkilometrazu, int ukupnaZaradaZaSveVoznje, int prosecnaZaradaPoVoznji) {
+    private void popunjavanjePolja(int ukupanBrojSvihVoznji, int ukupanBrojVoznjiAplikacija, int ukupanBrojVoznjiTelefon, int prosecnoTrajanjeVoznji, int prosecnaKilometraza, int ukupnaZaradaZaSveVoznje, int prosecnaZaradaPoVoznji, int brojVozacaKojiSuVozili) {
 
-        tukupanBrojVoznji.setText(String.valueOf(uporediDatum));
-        tukupanBrojVoznjiAplikacija.setText(String.valueOf(uporediDatumIvoznjeAplikacijom));
-        tukupanBrojVoznjiTelefon.setText(String.valueOf(uporediDatumIvoznjeTelefonom));
-        tprosecnoTrajanjeVoznje.setText(uporediDatumItrajanjeVoznje + " min");
-        tprosecanBrojPredjenihKm.setText(uporediDatumIkilometrazu + " km");
+        tukupanBrojVoznji.setText(String.valueOf(ukupanBrojSvihVoznji));
+        tukupanBrojVoznjiAplikacija.setText(String.valueOf(ukupanBrojVoznjiAplikacija));
+        tukupanBrojVoznjiTelefon.setText(String.valueOf(ukupanBrojVoznjiTelefon));
+        tprosecnoTrajanjeVoznje.setText(prosecnoTrajanjeVoznji + " min");
+        tprosecanBrojPredjenihKm.setText(prosecnaKilometraza + " km");
         tukupnaZaradaZaSveVoznje.setText(ukupnaZaradaZaSveVoznje + " din");
         tprosecnaZaradaPoVoznji.setText(prosecnaZaradaPoVoznji + " din");
+        tukupanBrojVozacaKojiSuVozili.setText(String.valueOf(brojVozacaKojiSuVozili));
 
     }
 

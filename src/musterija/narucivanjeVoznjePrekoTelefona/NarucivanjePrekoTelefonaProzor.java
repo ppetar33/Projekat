@@ -48,6 +48,7 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
         add(tadresaDolaska);
         add(new JLabel());
         add(naruci,"split 2");
+        this.getRootPane().setDefaultButton(naruci);
         add(odustani);
 
     }

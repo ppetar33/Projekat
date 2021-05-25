@@ -113,8 +113,4 @@ public class TaxiSluzbaMain {
         comparable a onda u comparable cemo da poredimo neki atribut koji nam treba po cemu vec sortiramo
 
 
-        izvestaj je moguce prikazati za zavrsene i odbijene voznje
-        ukupan broj voznji je kad se saberu voznje telefoni i voznje aplikacij izmeniti u dnevnom izvestaju
-        ukupna zarada za sve voznje, izmeniti tako da u txt fajlu voznje stoji cena voznje i samo preuzeti cenu i sabrati sve
-
 */

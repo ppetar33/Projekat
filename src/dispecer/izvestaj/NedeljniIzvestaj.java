@@ -98,7 +98,7 @@ public class NedeljniIzvestaj extends JFrame {
                         JOptionPane.showMessageDialog(null, "Od: " + sedamDana + " do: " + unosDatuma + " nazalost, nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
 
-                    // PROSECNO TRAJANJE VOZNJI
+                    // PRAVLJENJE NOVE LISTE BEZ DUPLIRANIH ID-EVA
                     String datumiZaTelefon;
                     String datumiZaAplikaciju;
                     DoublyLinkedList<Integer> novaListaTelefoni = new DoublyLinkedList<>();
@@ -123,6 +123,7 @@ public class NedeljniIzvestaj extends JFrame {
                             }
                         }
                     }
+                    // PROSECNO TRAJANJE VOZNJI
                     double rezultatTelefoni;
                     double sumaTrajanjaVoznjeTelefoni = 0;
                     Set<Integer> listaBezDupliranihIDevaTelefon = findDuplicates(novaListaTelefoni);
@@ -130,7 +131,6 @@ public class NedeljniIzvestaj extends JFrame {
                         rezultatTelefoni = ucitavanje.ukupnoTrajanjeVoznjiTelefoni(idKojiTrebaPronaci);
                         sumaTrajanjaVoznjeTelefoni += rezultatTelefoni;
                     }
-                    System.out.println("Suma telefoni = " + sumaTrajanjaVoznjeTelefoni);
                     double rezultatAplikacija;
                     double sumaTrajanjaVoznjeAplikacija = 0;
                     Set<Integer> listaBezDupliranihIDevaAplikacija = findDuplicates(novaListaAplikacija);
@@ -138,8 +138,6 @@ public class NedeljniIzvestaj extends JFrame {
                         rezultatAplikacija = ucitavanje.ukupnoTrajanjeVoznjiAplikacija(idKojiTrebaPronaci);
                         sumaTrajanjaVoznjeAplikacija += rezultatAplikacija;
                     }
-                    System.out.println("Suma aplikacija = " + sumaTrajanjaVoznjeAplikacija);
-
                     double ukupnoTrajanjeVoznjiTelefonIaplikacija = sumaTrajanjaVoznjeTelefoni + sumaTrajanjaVoznjeAplikacija;
                     double averageDoubleTrajanje = ukupnoTrajanjeVoznjiTelefonIaplikacija / ukupanBrojSvihVoznji;
                     int prosecnoTrajanjeVoznje = (int) averageDoubleTrajanje;
@@ -153,41 +151,41 @@ public class NedeljniIzvestaj extends JFrame {
                         rezultatTelefoni1 = ucitavanje.ukupnaKilometrazaTelefoni(idKojiTrebaPronaci);
                         sumaPredjenihKilometaraTelefoni += rezultatTelefoni1;
                     }
-                    System.out.println("Suma kilometara telefoni = " + sumaPredjenihKilometaraTelefoni);
-
                     double rezultatAplikacija1;
                     double sumaPredjenihKilometaraAplikacija = 0;
                     for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaAplikacija){
                         rezultatAplikacija1 = ucitavanje.ukupnaKilometrazaAplikacija(idKojiTrebaPronaci);
                         sumaPredjenihKilometaraAplikacija += rezultatAplikacija1;
                     }
-                    System.out.println("Suma kilometara aplikacija = " + sumaPredjenihKilometaraAplikacija);
-
                     double ukupnaKilometrazaTelefoniIaplikacija = sumaPredjenihKilometaraTelefoni + sumaPredjenihKilometaraAplikacija;
                     double averageDoubleKM = ukupnaKilometrazaTelefoniIaplikacija / ukupanBrojSvihVoznji;
                     int prosecnaKilometraza = (int) averageDoubleKM;
-                    System.out.println("Prosecno trajanje voznje je: " + prosecnaKilometraza);
+                    System.out.println("Prosecno kilometraza voznje je: " + prosecnaKilometraza);
 
 
                     // UKUPNA ZARADA ZA SVE VOZNJE
-//                    double rezultatTelefoni2;
-//                    double sumaZaradeTelefoni = 0;
-//                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaTelefon){
-//                        rezultatTelefoni2 = ucitavanje.ukupnaZaradaTelefoni(idKojiTrebaPronaci);
-//                        sumaZaradeTelefoni += rezultatTelefoni2;
-//                    }
-//                    System.out.println("Suma zarade telefoni = " + sumaZaradeTelefoni);
-//
-//                    double rezultatAplikacija2;
-//                    double sumaZaradeAplikacija = 0;
-//                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaAplikacija){
-//                        rezultatAplikacija2 = ucitavanje.ukupnaZaradaAplikacija(idKojiTrebaPronaci);
-//                        sumaZaradeAplikacija += rezultatAplikacija2;
-//                    }
-//                    System.out.println("Suma zarade aplikacija = " + sumaZaradeAplikacija);
+                    double rezultatTelefoni2;
+                    double sumaZaradeTelefoni = 0;
+                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaTelefon){
+                        rezultatTelefoni2 = ucitavanje.ukupnaZaradaTelefoni(idKojiTrebaPronaci);
+                        sumaZaradeTelefoni += rezultatTelefoni2;
+                    }
+                    double rezultatAplikacija2;
+                    double sumaZaradeAplikacija = 0;
+                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaAplikacija){
+                        rezultatAplikacija2 = ucitavanje.ukupnaZaradaAplikacija(idKojiTrebaPronaci);
+                        sumaZaradeAplikacija += rezultatAplikacija2;
+                    }
+                    double ukupnaZaradaZaSveVoznjeDouble = sumaZaradeTelefoni + sumaZaradeAplikacija;
+                    int ukupnaZaradaZaSveVoznje = (int) ukupnaZaradaZaSveVoznjeDouble;
+                    System.out.println("Ukupna zarada za sve voznje je: " + ukupnaZaradaZaSveVoznje);
 
+                    // PROSECNA ZARADA PO VOZNJI
 
-                    // prosecna zarada po voznji
+                    double prosecnaZaradaPoVoznji = ukupnaZaradaZaSveVoznjeDouble / ukupanBrojSvihVoznji;
+
+                    System.out.println("Prosecna zarada po voznji je: " + prosecnaZaradaPoVoznji);
+
                 }
 
             }

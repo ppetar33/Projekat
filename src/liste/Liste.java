@@ -4,7 +4,6 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 import automobili.Automobil;
 import enumi.*;
@@ -685,22 +684,6 @@ public class Liste {
 		}
 		return aplikacija;
 	}
-	public int uporediDatum(String datum){
-		int counter = 0;
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				counter++;
-			}
-		}
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				counter++;
-			}
-		}
-		return counter;
-	}
 	public int uporediDatumIvoznjeAplikacijom(String datum){
 		int counter = 0;
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
@@ -764,52 +747,55 @@ public class Liste {
 		return average;
 	}
 	public double ukupnaZaradaZaSveVoznje(String datum){
-		double ukupnaZarada;
-		double start = 150;
-		double cenaPoKilometru = 30;
 		double rezultat = 0;
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				rezultat += voznja.getBrojKMpredjenih();
+				rezultat += voznja.getCenaVoznje();
 			}
 		}
 		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				rezultat += voznja.getBrojKMpredjenih();
+				rezultat += voznja.getCenaVoznje();
 			}
 		}
-		ukupnaZarada = (start) + (rezultat * cenaPoKilometru);
-		return ukupnaZarada;
+		return rezultat;
 	}
-	public double prosecnaZaradaZaVoznje(String datum){
-		double ukupnaZarada = 0;
-		double average;
+	public double ukupnaZaradaTelefoni(double id){
 		double rezultat = 0;
-		double counter = 0;
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				rezultat += voznja.getBrojKMpredjenih();
-				counter++;
-			}
-		}
 		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum)){
-				rezultat += voznja.getBrojKMpredjenih();
-				counter++;
+			if(voznja.getId() == id){
+				rezultat += voznja.getCenaVoznje();
 			}
 		}
-		for(TaksiSluzba taksiSluzba : taksiSluzbe) {
-			double start = taksiSluzba.getCenaStartaVoznje();
-			double cenaPoKilometru = taksiSluzba.getCenaPoKilometru();
-
-			ukupnaZarada = (start) + (rezultat * cenaPoKilometru);
+		return rezultat;
+	}
+	public double ukupnaZaradaAplikacija(double id){
+		double rezultat = 0;
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			if(voznja.getId() == id){
+				rezultat += voznja.getCenaVoznje();
+			}
 		}
-		average = ukupnaZarada / counter;
-		return average;
+		return rezultat;
+	}
+	public DoublyLinkedList<String> spisakVozacaKojiSuVozili(String datum){
+		DoublyLinkedList<String> spisakSvihVozaca = new DoublyLinkedList<>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
+			if(voznjePrekoTelefona.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				String korisnickoImeVozaca = voznjePrekoTelefona.getVozac().getKorisnickoIme();
+				spisakSvihVozaca.add(korisnickoImeVozaca);
+			}
+		}
+		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
+			if(voznjePrekoAplikacije.getDatumIvremePorudzbine().format(formatter).equals(datum)){
+				String korisnickoImeVozaca = voznjePrekoAplikacije.getVozac().getKorisnickoIme();
+				spisakSvihVozaca.add(korisnickoImeVozaca);
+			}
+		}
+		return spisakSvihVozaca;
 	}
 
 	/*
