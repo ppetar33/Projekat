@@ -10,10 +10,6 @@ import java.awt.event.ActionListener;
 
 public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
 
-    private JLabel id = new JLabel("ID");
-    private JTextField tid = new JTextField(20);
-    private JLabel pib = new JLabel("PIB");
-    private JTextField tpib = new JTextField(20);
     private JLabel naziv = new JLabel("Naziv");
     private JTextField tnaziv = new JTextField(20);
     private JLabel adresa = new JLabel("Adresa");
@@ -43,10 +39,6 @@ public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
     private void initGUI() {
         MigLayout layout = new MigLayout("wrap 2");
         setLayout(layout);
-        add(id);
-        add(tid);
-        add(pib);
-        add(tpib);
         add(naziv);
         add(tnaziv);
         add(adresa);
@@ -70,7 +62,7 @@ public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (proveraUnetihPodataka() == true){
                     int id = taksiSluzba.getId();
-                    String pib = tpib.getText().trim();
+                    String pib = taksiSluzba.getPib();
                     String naziv = tnaziv.getText().trim();
                     String adresa = tadresa.getText().trim();
                     double cenaStartaVoznje = Double.parseDouble(tcenaStartaVoznje.getText().trim());
@@ -103,8 +95,6 @@ public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
     }
 
     private void popunjavanjeTextField() {
-        tid.setText(String.valueOf(taksiSluzba.getId()));
-        tpib.setText(taksiSluzba.getPib());
         tnaziv.setText(taksiSluzba.getNaziv());
         tadresa.setText(taksiSluzba.getAdresa());
         tcenaStartaVoznje.setText(String.valueOf(taksiSluzba.getCenaStartaVoznje()));
@@ -114,18 +104,7 @@ public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
     private boolean proveraUnetihPodataka(){
         boolean ok = true;
         String obavestenjeZaGresku = "Napravili ste neke greske pri unosu, molimo vas ispravite! \n";
-
-        try {
-            Integer.parseInt(tid.getText().trim());
-        } catch (NumberFormatException e) {
-            obavestenjeZaGresku += "Morate uneti ID kao broj!\n";
-            ok = false;
-        }
-
-        if (tpib.getText().trim().equals("")){
-            obavestenjeZaGresku += "Morate uneti PIB taksi sluzbe! \n";
-            ok = false;
-        }
+        
         if (tnaziv.getText().trim().equals("")){
             obavestenjeZaGresku += "Morate uneti naziv taksi sluzbe! \n";
             ok = false;

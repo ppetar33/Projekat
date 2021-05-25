@@ -28,12 +28,9 @@ public class TaxiSluzbaMain {
 /*
 
     Odraditi ASIP:
-        1. Aukcija
-        2. Binarna pretraga
+        1. Aukcija (20 bodova)
+        2. Binarna pretraga (5 bodova)
         3. Pri pokretanju programa potrebno je sortirati sve podatke po ID-u
-
-    ZAVRSITI:
-        1. Izvestaji
 
     GOTOVO:
         1. Pretraga (7.5 bodova)
@@ -41,32 +38,7 @@ public class TaxiSluzbaMain {
         3. Doubly linked list
         4. Hash map
         5. Kreiranje, izmena i pregled svih potrebnih entiteta (20 bodova)
-
-
-
-        IZVESTAJ
-          Specifikacija:
-            Prikaz sumiranog izveštaja na dnevnom, nedeljnom, mesečnom i godišnjem nivou. Izveštaj treba
-            da sadrži podatke o ukupnom broju vožnji, broju vožnji poručenim putem aplikacije, broju vožnji
-            poručenim putem telefonskog poziva, broju aktivnih vozača, prosečnom trajanju vožnje, prosečnom
-            broju pređenih kilometara, ukupnoj zaradi za sve vožnje, i prosečnoj zaradi po vožnji. Zaradu
-            vozača po vožnji računati po sledećoj formuli:
-                start + brojPredjenihKilometara * cenaPoKilometru.
-
-          Odgovor asistenta:
-            Broj aktivnih vozaca se misli na one vozace koji su vozili taj dan/nedelju/mesec itd a ne na
-            one koji su neobrisani
-            A ono za zaradu kada je po vozacu onda je ukupna zarada za tog vozaca a kada je za sve onda
-            je ukupna zarada za sve
-            Treba da se odvoje voznje koje su putem telefona i koje su putem aplikacije
-            A za interval mozemo da izaberemo dan i hocu nedelju dana unazad ili mesec dana unazad uglavnom
-            je bitno da moze tako da se bira da mi dobili sve bodove
-
-            Za aktivne vozace, ucitati sve voznje sa unesenim datumom
-            Ubaciti korisnickoIme u listu
-            proci kroz tu listu i u novu listu upisati korisnicka imena koja se ne ponavljaju
-            proci kroz tu novu listu i uvecati brojac za svako korisnicko ime
-
+        6. Izvestaj (10 bodova)
 
         AUKCIJA
 
