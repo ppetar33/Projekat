@@ -63,15 +63,15 @@ public class ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju extends JFrame {
                     String vozacString = nadjiVoznju.getVozac().getKorisnickoIme();
                     Vozac vozac = ucitavanje.nadjiVozaca(vozacString);
                     vozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
-                    ucitavanje.dodavanjeKorisnika();
-                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     double start = 150;
                     double cenaPoKilometru = 30;
                     double cenaVoznje = start + (unosBrojaKm * cenaPoKilometru);
+                    nadjiVoznju.setCenaVoznje(cenaVoznje);
                     JOptionPane.showMessageDialog(null,"Cena voznje je: " + cenaVoznje + "din","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                    ucitavanje.dodavanjeKorisnika();
+                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju.this.setVisible(false);
                     ProzorZaUnosPodatakaVozacaZaZavrsenuVoznju.this.dispose();
-
                 }
             }
         });

@@ -78,7 +78,7 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-                            NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,0,0, StatusVoznje.KREIRANA,true, StatusNaruceneVoznje.TELEFON);
+                            NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,0,0, StatusVoznje.KREIRANA,true, StatusNaruceneVoznje.TELEFON,0);
                             ucitavanje.getVoznjaTelefoni().add(narucivanjeVoznjePrekoTelefona);
                         }
                         citanjeUlogovanogKorisnika.close();

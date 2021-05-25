@@ -142,9 +142,4 @@ public class Automobil{
                 '}';
     }
 
-    @Override
-    public int compareTo(Automobil compareAutomobil) {
-        int compereID = ((Automobil) compareAutomobil).getId();
-        return this.id - compereID;
-    }
 }

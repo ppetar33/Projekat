@@ -70,10 +70,10 @@ public class ProzorZaPrikazDnevnogIzvestaja extends JFrame {
         tukupanBrojVoznji.setText(String.valueOf(uporediDatum));
         tukupanBrojVoznjiAplikacija.setText(String.valueOf(uporediDatumIvoznjeAplikacijom));
         tukupanBrojVoznjiTelefon.setText(String.valueOf(uporediDatumIvoznjeTelefonom));
-        tprosecnoTrajanjeVoznje.setText(String.valueOf(uporediDatumItrajanjeVoznje) + " min");
-        tprosecanBrojPredjenihKm.setText(String.valueOf(uporediDatumIkilometrazu) + " km");
-        tukupnaZaradaZaSveVoznje.setText(String.valueOf(ukupnaZaradaZaSveVoznje) + " din");
-        tprosecnaZaradaPoVoznji.setText(String.valueOf(prosecnaZaradaPoVoznji) + " din");
+        tprosecnoTrajanjeVoznje.setText(uporediDatumItrajanjeVoznje + " min");
+        tprosecanBrojPredjenihKm.setText(uporediDatumIkilometrazu + " km");
+        tukupnaZaradaZaSveVoznje.setText(ukupnaZaradaZaSveVoznje + " din");
+        tprosecnaZaradaPoVoznji.setText(prosecnaZaradaPoVoznji + " din");
 
     }
 

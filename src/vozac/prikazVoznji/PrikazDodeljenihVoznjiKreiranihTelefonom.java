@@ -109,6 +109,7 @@ public class PrikazDodeljenihVoznjiKreiranihTelefonom extends JFrame{
                     if(izbor == JOptionPane.YES_OPTION) {
                         JOptionPane.showMessageDialog(null, "Uspesno ste odbili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         nadjiVoznju.setStatusVoznje(StatusVoznje.ODBIJENA);
+                        nadjiVoznju.setCenaVoznje(0);
                         Vozac vozac = ucitavanje.nadjiVozaca(vozacString);
                         vozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
                         ucitavanje.dodavanjeKorisnika();

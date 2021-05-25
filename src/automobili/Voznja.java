@@ -19,6 +19,7 @@ public abstract class Voznja {
     protected StatusVoznje statusVoznje;
     protected boolean obrisan;
     protected StatusNaruceneVoznje statusNaruceneVoznje;
+    protected double cenaVoznje;
 
     public Voznja(){
         this.id = 0;
@@ -32,9 +33,10 @@ public abstract class Voznja {
         this.statusVoznje = null;
         this.obrisan = true;
         this.statusNaruceneVoznje = null;
+        this.cenaVoznje = 0;
     }
 
-    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje) {
+    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje, double cenaVoznje) {
         this.id = id;
         this.datumIvremePorudzbine = datumIvremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -46,6 +48,7 @@ public abstract class Voznja {
         this.statusVoznje = statusVoznje;
         this.obrisan = obrisan;
         this.statusNaruceneVoznje = statusNaruceneVoznje;
+        this.cenaVoznje = cenaVoznje;
     }
 
     public int getId() {
@@ -136,6 +139,14 @@ public abstract class Voznja {
         this.statusNaruceneVoznje = statusNaruceneVoznje;
     }
 
+    public double getCenaVoznje() {
+        return cenaVoznje;
+    }
+
+    public void setCenaVoznje(double cenaVoznje) {
+        this.cenaVoznje = cenaVoznje;
+    }
+
     @Override
     public String toString() {
         return "Voznja{" +
@@ -150,6 +161,7 @@ public abstract class Voznja {
                 ", statusVoznje=" + statusVoznje +
                 ", obrisan=" + obrisan +
                 ", statusNaruceneVoznje=" + statusNaruceneVoznje +
+                ", cenaVoznje=" + cenaVoznje +
                 '}';
     }
 }

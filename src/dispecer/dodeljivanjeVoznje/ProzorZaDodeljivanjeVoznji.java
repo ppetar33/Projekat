@@ -110,7 +110,7 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
                         boolean obrisan = voznja.isObrisan();
                         StatusNaruceneVoznje statusNaruceneVoznje = voznja.getStatusNaruceneVoznje();
                         if (voznja == null) {
-                            voznja = new NarucivanjeVoznjePrekoTelefona(id, dateTime, adresaPolaska, adresaDolaska, musterija1, dodeljeniVozac, brojKmPredjenih, trajanjeVoznje, statusVoznje1, obrisan, statusNaruceneVoznje);
+                            voznja = new NarucivanjeVoznjePrekoTelefona(id, dateTime, adresaPolaska, adresaDolaska, musterija1, dodeljeniVozac, brojKmPredjenih, trajanjeVoznje, statusVoznje1, obrisan, statusNaruceneVoznje, 0);
                         } else {
                             voznja.setId(id);
                             voznja.setDatumIvremePorudzbine(dateTime);

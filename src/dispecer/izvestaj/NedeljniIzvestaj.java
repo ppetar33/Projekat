@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 public class NedeljniIzvestaj extends JFrame {
 
@@ -47,10 +49,12 @@ public class NedeljniIzvestaj extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 if(validacija() == true) {
+
                     String unosDatuma = datumUnos.getText().trim();
 
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     LocalDate parsiranjeUnesenogDatuma = LocalDate.parse(unosDatuma, formatter);
+                    LocalDate sedamDana = parsiranjeUnesenogDatuma.minusDays(7);
 
 
                     String[] days = new String[7];
@@ -61,55 +65,128 @@ public class NedeljniIzvestaj extends JFrame {
                     for (String x : days) {
                         listaSedamDana.add(x);
                     }
-                    DoublyLinkedList<String> ukupanBrojVoznjiPrekoTelefona = ucitavanje.ukupanBrojVoznjiPrekoTelefona();
-                    int voznjaTelefoni = 0;
+
+                    // UKUPAN BROJ VOZNJI KREIRANIH PUTEM TELEFONA
+                    DoublyLinkedList<String> listaVoznjiTelefon = ucitavanje.ukupanBrojVoznjiPrekoTelefona();
+                    int ukupanBrojVoznjiPrekoTelefona = 0;
                     for(String y : listaSedamDana){
-                        for(String x : ukupanBrojVoznjiPrekoTelefona){
+                        for(String x : listaVoznjiTelefon){
                             if(y.equals(x)){
-                                voznjaTelefoni++;
+                                ukupanBrojVoznjiPrekoTelefona++;
                             }
                         }
                     }
-                    System.out.println("Ukupan broj voznji narucenih preko telefona je: " + voznjaTelefoni);
-                    DoublyLinkedList<String> ukupanBrojVoznjiPrekoAplikacije = ucitavanje.ukupanBrojVoznjiPrekoAplikacije();
-                    int voznjaAplikacija = 0;
+                    System.out.println("Ukupan broj voznji narucenih preko telefona je: " + ukupanBrojVoznjiPrekoTelefona);
+
+                    // UKUPAN BROJ VOZNJI KREIRANIH PUTEM APLIKACIJE
+                    DoublyLinkedList<String> listaVoznjiAplikacija = ucitavanje.ukupanBrojVoznjiPrekoAplikacije();
+                    int ukupanBrojVoznjiPrekoAplikacije = 0;
                     for(String y : listaSedamDana){
-                        for(String x : ukupanBrojVoznjiPrekoAplikacije){
+                        for(String x : listaVoznjiAplikacija){
                             if(y.equals(x)){
-                                voznjaAplikacija++;
+                                ukupanBrojVoznjiPrekoAplikacije++;
                             }
                         }
                     }
-                    System.out.println("Ukupan broj voznji narucenih preko telefona je: " + voznjaAplikacija);
-                    int ukupanBrojSvihVoznji = voznjaTelefoni + voznjaAplikacija;
+                    System.out.println("Ukupan broj voznji narucenih preko telefona je: " + ukupanBrojVoznjiPrekoAplikacije);
+
+                    // UKUPAN BROJ SVIH VOZNJI
+                    int ukupanBrojSvihVoznji = ukupanBrojVoznjiPrekoTelefona + ukupanBrojVoznjiPrekoAplikacije;
                     System.out.println("Ukupan broj svih voznji je: " + ukupanBrojSvihVoznji);
 
+                    if(ukupanBrojSvihVoznji == 0){
+                        JOptionPane.showMessageDialog(null, "Od: " + sedamDana + " do: " + unosDatuma + " nazalost, nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                    }
 
-                    // prosecno trajanje voznje
-                    double rezultat = 0;
-                    double counter = 0;
-                    double average;
-
-                    String datumi = null;
+                    // PROSECNO TRAJANJE VOZNJI
+                    String datumiZaTelefon;
+                    String datumiZaAplikaciju;
+                    DoublyLinkedList<Integer> novaListaTelefoni = new DoublyLinkedList<>();
+                    DoublyLinkedList<Integer> novaListaAplikacija = new DoublyLinkedList<>();
                     for(String y : listaSedamDana){
-                        for(String x : ukupanBrojVoznjiPrekoTelefona){
+                        for(String x : listaVoznjiTelefon){
                             if(y.equals(x)){
-                                datumi = x;
-                                System.out.println(datumi);
-                                DoublyLinkedList<Double> voznjePrekoTelefona = ucitavanje.nadjiVoznjuNarucenuPrekoTelefonaPoDatumu(datumi);
-                                for(Double q : voznjePrekoTelefona){
-                                    System.out.println(q + "min");
+                                datumiZaTelefon = x;
+                                DoublyLinkedList<Integer> listaIdevaTelefon = ucitavanje.nadjiVoznjuNarucenuPrekoTelefonaPoDatumu(datumiZaTelefon);
+                                for(Integer q : listaIdevaTelefon) {
+                                    novaListaTelefoni.add(q);
+                                }
+                            }
+                        }
+                        for(String q : listaVoznjiAplikacija){
+                            if(y.equals(q)){
+                                datumiZaAplikaciju = q;
+                                DoublyLinkedList<Integer> listaIdevaAplikacija = ucitavanje.nadjiVoznjuNarucenuPrekoAplikacijePoDatumu(datumiZaAplikaciju);
+                                for(Integer g : listaIdevaAplikacija){
+                                    novaListaAplikacija.add(g);
                                 }
                             }
                         }
                     }
-                    System.out.println(rezultat);
+                    double rezultatTelefoni;
+                    double sumaTrajanjaVoznjeTelefoni = 0;
+                    Set<Integer> listaBezDupliranihIDevaTelefon = findDuplicates(novaListaTelefoni);
+                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaTelefon){
+                        rezultatTelefoni = ucitavanje.ukupnoTrajanjeVoznjiTelefoni(idKojiTrebaPronaci);
+                        sumaTrajanjaVoznjeTelefoni += rezultatTelefoni;
+                    }
+                    System.out.println("Suma telefoni = " + sumaTrajanjaVoznjeTelefoni);
+                    double rezultatAplikacija;
+                    double sumaTrajanjaVoznjeAplikacija = 0;
+                    Set<Integer> listaBezDupliranihIDevaAplikacija = findDuplicates(novaListaAplikacija);
+                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaAplikacija){
+                        rezultatAplikacija = ucitavanje.ukupnoTrajanjeVoznjiAplikacija(idKojiTrebaPronaci);
+                        sumaTrajanjaVoznjeAplikacija += rezultatAplikacija;
+                    }
+                    System.out.println("Suma aplikacija = " + sumaTrajanjaVoznjeAplikacija);
+
+                    double ukupnoTrajanjeVoznjiTelefonIaplikacija = sumaTrajanjaVoznjeTelefoni + sumaTrajanjaVoznjeAplikacija;
+                    double averageDoubleTrajanje = ukupnoTrajanjeVoznjiTelefonIaplikacija / ukupanBrojSvihVoznji;
+                    int prosecnoTrajanjeVoznje = (int) averageDoubleTrajanje;
+                    System.out.println("Prosecno trajanje voznje je: " + prosecnoTrajanjeVoznje);
 
 
-                    average = rezultat/counter;
+                    // PROSECNA KILOMETRAZA
+                    double rezultatTelefoni1;
+                    double sumaPredjenihKilometaraTelefoni = 0;
+                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaTelefon){
+                        rezultatTelefoni1 = ucitavanje.ukupnaKilometrazaTelefoni(idKojiTrebaPronaci);
+                        sumaPredjenihKilometaraTelefoni += rezultatTelefoni1;
+                    }
+                    System.out.println("Suma kilometara telefoni = " + sumaPredjenihKilometaraTelefoni);
 
-                    // prosecna kilometraza
-                    // ukupna zarada za sve voznje
+                    double rezultatAplikacija1;
+                    double sumaPredjenihKilometaraAplikacija = 0;
+                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaAplikacija){
+                        rezultatAplikacija1 = ucitavanje.ukupnaKilometrazaAplikacija(idKojiTrebaPronaci);
+                        sumaPredjenihKilometaraAplikacija += rezultatAplikacija1;
+                    }
+                    System.out.println("Suma kilometara aplikacija = " + sumaPredjenihKilometaraAplikacija);
+
+                    double ukupnaKilometrazaTelefoniIaplikacija = sumaPredjenihKilometaraTelefoni + sumaPredjenihKilometaraAplikacija;
+                    double averageDoubleKM = ukupnaKilometrazaTelefoniIaplikacija / ukupanBrojSvihVoznji;
+                    int prosecnaKilometraza = (int) averageDoubleKM;
+                    System.out.println("Prosecno trajanje voznje je: " + prosecnaKilometraza);
+
+
+                    // UKUPNA ZARADA ZA SVE VOZNJE
+//                    double rezultatTelefoni2;
+//                    double sumaZaradeTelefoni = 0;
+//                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaTelefon){
+//                        rezultatTelefoni2 = ucitavanje.ukupnaZaradaTelefoni(idKojiTrebaPronaci);
+//                        sumaZaradeTelefoni += rezultatTelefoni2;
+//                    }
+//                    System.out.println("Suma zarade telefoni = " + sumaZaradeTelefoni);
+//
+//                    double rezultatAplikacija2;
+//                    double sumaZaradeAplikacija = 0;
+//                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaAplikacija){
+//                        rezultatAplikacija2 = ucitavanje.ukupnaZaradaAplikacija(idKojiTrebaPronaci);
+//                        sumaZaradeAplikacija += rezultatAplikacija2;
+//                    }
+//                    System.out.println("Suma zarade aplikacija = " + sumaZaradeAplikacija);
+
+
                     // prosecna zarada po voznji
                 }
 
@@ -139,6 +216,18 @@ public class NedeljniIzvestaj extends JFrame {
         }
 
         return ok;
+    }
+    public Set<Integer> findDuplicates(DoublyLinkedList<Integer> list){
+        Set<Integer> items = new HashSet<Integer>();
+        Set<Integer> duplicates = new HashSet<Integer>();
+        for (Integer item : list) {
+            if (items.contains(item)) {
+                duplicates.remove(item);
+            } else {
+                items.add(item);
+            }
+        }
+        return items;
     }
 }
 

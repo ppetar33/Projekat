@@ -107,9 +107,10 @@ public class ProzorZaIzmenuVoznjiPutemAplikacije extends JFrame {
                     String napomena = tnapomena.getText().trim();
                     boolean obrisan = voznja.isObrisan();
                     StatusNaruceneVoznje statusNaruceneVoznje = voznja.getStatusNaruceneVoznje();
+                    double cenaVoznje = voznja.getCenaVoznje();
 
                     if (voznja == null){
-                        voznja = new NarucivanjeVoznjePrekoAplikacije(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija1,vozac,brojPredjenihKilometara,trajanjeVoznje,statusVoznje,napomena,obrisan,statusNaruceneVoznje);
+                        voznja = new NarucivanjeVoznjePrekoAplikacije(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija1,vozac,brojPredjenihKilometara,trajanjeVoznje,statusVoznje,napomena,obrisan,statusNaruceneVoznje,cenaVoznje);
                     } else {
                         voznja.setId(id);
                         voznja.setDatumIvremePorudzbine(datumIVremePorudzbine);

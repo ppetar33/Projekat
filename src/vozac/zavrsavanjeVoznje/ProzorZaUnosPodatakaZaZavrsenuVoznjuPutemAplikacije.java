@@ -62,6 +62,10 @@ public class ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije extends JFrame 
                     String vozacString = nadjiVoznju.getVozac().getKorisnickoIme();
                     Vozac vozac = ucitavanje.nadjiVozaca(vozacString);
                     vozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
+                    double start = 150;
+                    double cenaPoKilometru = 30;
+                    double cenaVoznje = start + (unosBrojaKm * cenaPoKilometru);
+                    nadjiVoznju.setCenaVoznje(cenaVoznje);
                     ucitavanje.dodavanjeKorisnika();
                     ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     JOptionPane.showMessageDialog(null,"Uspesno ste uneli podatke!","Uspesno",JOptionPane.INFORMATION_MESSAGE);

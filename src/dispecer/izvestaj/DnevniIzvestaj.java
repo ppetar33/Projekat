@@ -53,9 +53,9 @@ public class DnevniIzvestaj extends JFrame {
 
                         String uneseniDatum = datumUnos.getText().trim();
 
-                        int uporediDatum = ucitavanje.uporediDatum(uneseniDatum);
                         int uporediDatumIvoznjeAplikacijom = ucitavanje.uporediDatumIvoznjeAplikacijom(uneseniDatum);
                         int uporediDatumIvoznjeTelefonom = ucitavanje.uporediDatumIvoznjeTelefonom(uneseniDatum);
+                        int uporediDatum = uporediDatumIvoznjeAplikacijom + uporediDatumIvoznjeTelefonom;
                         int uporediDatumItrajanjeVoznje = (int) ucitavanje.uporediDatumItrajanjeVoznje(uneseniDatum);
                         int uporediDatumIkilometrazu = (int) ucitavanje.uporediDatumIkilometrazu(uneseniDatum);
                         int ukupnaZaradaZaSveVoznje = (int) ucitavanje.ukupnaZaradaZaSveVoznje(uneseniDatum);
