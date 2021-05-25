@@ -12,7 +12,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class DodavanjeAutomobila extends JFrame {
 
@@ -166,7 +165,7 @@ public class DodavanjeAutomobila extends JFrame {
         vozac.setLocation(430, 250);
         c.add(vozac);
 
-        DoublyLinkedList<String> vozac = ucitavanje.listaSlovodnihVozaca();
+        DoublyLinkedList<String> vozac = ucitavanje.listaVozacaBezAutomobila();
         String[] array = new String[vozac.size()];
         for(int i = 0; i < array.length; i++) {
             array[i] = String.valueOf(vozac.get(i));

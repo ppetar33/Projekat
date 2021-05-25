@@ -2,7 +2,6 @@ package dispecer.izvestaj;
 
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
-import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -13,21 +12,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NedeljniIzvestaj extends JFrame {
+public class Izvestaj extends JFrame {
 
-    private JLabel datum = new JLabel("Datum: ");
+    private JLabel datum = new JLabel("Unesi datum: ");
     private JTextField datumUnos = new JTextField(20);
     private JButton btnOk = new JButton("Ok");
     private JButton btnCancel = new JButton("Cancel");
 
     private Liste ucitavanje;
 
-    public NedeljniIzvestaj(Liste ucitavanje) {
+    public Izvestaj(Liste ucitavanje, String[] days) {
         this.ucitavanje = ucitavanje;
-        setTitle("Nedeljeni izvestaj");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initGUI();
-        initActions();
+        initActions(days);
         setResizable(false);
         pack();
         setLocationRelativeTo(null);
@@ -43,7 +41,7 @@ public class NedeljniIzvestaj extends JFrame {
         this.getRootPane().setDefaultButton(btnOk);
         add(btnCancel);
     }
-    private void initActions(){
+    private void initActions(String[] days){
         btnOk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,10 +52,7 @@ public class NedeljniIzvestaj extends JFrame {
 
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     LocalDate parsiranjeUnesenogDatuma = LocalDate.parse(unosDatuma, formatter);
-                    LocalDate sedamDana = parsiranjeUnesenogDatuma.minusDays(7);
 
-
-                    String[] days = new String[7];
                     for (int i = 0; i < days.length; i++) {
                         days[i] = parsiranjeUnesenogDatuma.minusDays(days.length - i - 1).toString();
                     }
@@ -76,7 +71,6 @@ public class NedeljniIzvestaj extends JFrame {
                             }
                         }
                     }
-                    System.out.println("Ukupan broj voznji narucenih preko telefona je: " + ukupanBrojVoznjiPrekoTelefona);
 
                     // UKUPAN BROJ VOZNJI KREIRANIH PUTEM APLIKACIJE
                     DoublyLinkedList<String> listaVoznjiAplikacija = ucitavanje.ukupanBrojVoznjiPrekoAplikacije();
@@ -88,15 +82,10 @@ public class NedeljniIzvestaj extends JFrame {
                             }
                         }
                     }
-                    System.out.println("Ukupan broj voznji narucenih preko telefona je: " + ukupanBrojVoznjiPrekoAplikacije);
 
                     // UKUPAN BROJ SVIH VOZNJI
                     int ukupanBrojSvihVoznji = ukupanBrojVoznjiPrekoTelefona + ukupanBrojVoznjiPrekoAplikacije;
-                    System.out.println("Ukupan broj svih voznji je: " + ukupanBrojSvihVoznji);
 
-                    if(ukupanBrojSvihVoznji == 0){
-                        JOptionPane.showMessageDialog(null, "Od: " + sedamDana + " do: " + unosDatuma + " nazalost, nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
-                    }
 
                     // PRAVLJENJE NOVE LISTE BEZ DUPLIRANIH ID-EVA
                     String datumiZaTelefon;
@@ -141,7 +130,6 @@ public class NedeljniIzvestaj extends JFrame {
                     double ukupnoTrajanjeVoznjiTelefonIaplikacija = sumaTrajanjaVoznjeTelefoni + sumaTrajanjaVoznjeAplikacija;
                     double averageDoubleTrajanje = ukupnoTrajanjeVoznjiTelefonIaplikacija / ukupanBrojSvihVoznji;
                     int prosecnoTrajanjeVoznje = (int) averageDoubleTrajanje;
-                    System.out.println("Prosecno trajanje voznje je: " + prosecnoTrajanjeVoznje);
 
 
                     // PROSECNA KILOMETRAZA
@@ -160,7 +148,6 @@ public class NedeljniIzvestaj extends JFrame {
                     double ukupnaKilometrazaTelefoniIaplikacija = sumaPredjenihKilometaraTelefoni + sumaPredjenihKilometaraAplikacija;
                     double averageDoubleKM = ukupnaKilometrazaTelefoniIaplikacija / ukupanBrojSvihVoznji;
                     int prosecnaKilometraza = (int) averageDoubleKM;
-                    System.out.println("Prosecno kilometraza voznje je: " + prosecnaKilometraza);
 
 
                     // UKUPNA ZARADA ZA SVE VOZNJE
@@ -178,13 +165,33 @@ public class NedeljniIzvestaj extends JFrame {
                     }
                     double ukupnaZaradaZaSveVoznjeDouble = sumaZaradeTelefoni + sumaZaradeAplikacija;
                     int ukupnaZaradaZaSveVoznje = (int) ukupnaZaradaZaSveVoznjeDouble;
-                    System.out.println("Ukupna zarada za sve voznje je: " + ukupnaZaradaZaSveVoznje);
 
                     // PROSECNA ZARADA PO VOZNJI
 
-                    double prosecnaZaradaPoVoznji = ukupnaZaradaZaSveVoznjeDouble / ukupanBrojSvihVoznji;
+                    int prosecnaZaradaPoVoznji = (int) (ukupnaZaradaZaSveVoznjeDouble / ukupanBrojSvihVoznji);
 
-                    System.out.println("Prosecna zarada po voznji je: " + prosecnaZaradaPoVoznji);
+
+                    // UKUPAN BROJ AKTIVNIH VOZACA
+                    DoublyLinkedList<String> novaListaVozaca = new DoublyLinkedList<>();
+                    for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaTelefon){
+                        DoublyLinkedList<String> listaSvihKorisnickihImenaVozaca = ucitavanje.listaKorisnickihImenaVozaca(idKojiTrebaPronaci);
+                        for(String f : listaSvihKorisnickihImenaVozaca){
+                            novaListaVozaca.add(f);
+                        }
+                    }
+                    Set<String> listaBezDupliranihVozaca = findDuplicatesDrivers(novaListaVozaca);
+                    int count = 0;
+                    for(String s : listaBezDupliranihVozaca){
+                        count++;
+                    }
+                    int ukupanBrojAktivnihVozaca = count;
+
+                    if(ukupanBrojSvihVoznji == 0){
+                        JOptionPane.showMessageDialog(null, "Nazalost, za uneti datum, nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                    }else {
+                        ProzorZaPrikazIzvestaja prozorZaPrikazDnevnogIzvestaja = new ProzorZaPrikazIzvestaja(ukupanBrojSvihVoznji, ukupanBrojVoznjiPrekoAplikacije, ukupanBrojVoznjiPrekoTelefona, prosecnoTrajanjeVoznje, prosecnaKilometraza, ukupnaZaradaZaSveVoznje, prosecnaZaradaPoVoznji, ukupanBrojAktivnihVozaca);
+                        prozorZaPrikazDnevnogIzvestaja.setVisible(true);
+                    }
 
                 }
 
@@ -194,8 +201,8 @@ public class NedeljniIzvestaj extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,"Uspesno ste odustali!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                NedeljniIzvestaj.this.setVisible(false);
-                NedeljniIzvestaj.this.dispose();
+                Izvestaj.this.setVisible(false);
+                Izvestaj.this.dispose();
             }
         });
     }
@@ -219,6 +226,18 @@ public class NedeljniIzvestaj extends JFrame {
         Set<Integer> items = new HashSet<Integer>();
         Set<Integer> duplicates = new HashSet<Integer>();
         for (Integer item : list) {
+            if (items.contains(item)) {
+                duplicates.remove(item);
+            } else {
+                items.add(item);
+            }
+        }
+        return items;
+    }
+    public Set<String> findDuplicatesDrivers(DoublyLinkedList<String> list){
+        Set<String> items = new HashSet<String>();
+        Set<String> duplicates = new HashSet<String>();
+        for (String item : list) {
             if (items.contains(item)) {
                 duplicates.remove(item);
             } else {

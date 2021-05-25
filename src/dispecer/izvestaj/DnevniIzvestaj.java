@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class DnevniIzvestaj extends JFrame {
 
-    private JLabel datum = new JLabel("Datum: ");
+    private JLabel datum = new JLabel("Unesi datum: ");
     private JTextField datumUnos = new JTextField(20);
     private JButton btnOk = new JButton("Ok");
     private JButton btnCancel = new JButton("Cancel");
@@ -50,7 +50,7 @@ public class DnevniIzvestaj extends JFrame {
                     boolean voznje = ucitavanje.nadjiDatum(unosDatuma);
 
                     if (voznje == false) {
-                        JOptionPane.showMessageDialog(null, "Za datum: " + unosDatuma + " nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Nazalost, za uneti datum, nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     } else {
 
                         String uneseniDatum = datumUnos.getText().trim();
@@ -71,7 +71,7 @@ public class DnevniIzvestaj extends JFrame {
                         int brojVozacaKojiSuVozili = count;
                         System.out.println(brojVozacaKojiSuVozili);
 
-                        ProzorZaPrikazDnevnogIzvestaja prozorZaPrikazIzvestaja = new ProzorZaPrikazDnevnogIzvestaja(unosDatuma, ukupanBrojSvihVoznji, ukupanBrojVoznjiAplikacija, ukupanBrojVoznjiTelefon, prosecnoTrajanjeVoznji, prosecnaKilometraza, ukupnaZaradaZaSveVoznje, prosecnaZaradaPoVoznji, brojVozacaKojiSuVozili);
+                        ProzorZaPrikazIzvestaja prozorZaPrikazIzvestaja = new ProzorZaPrikazIzvestaja(ukupanBrojSvihVoznji, ukupanBrojVoznjiAplikacija, ukupanBrojVoznjiTelefon, prosecnoTrajanjeVoznji, prosecnaKilometraza, ukupnaZaradaZaSveVoznje, prosecnaZaradaPoVoznji, brojVozacaKojiSuVozili);
                         prozorZaPrikazIzvestaja.setVisible(true);
                     }
                 }

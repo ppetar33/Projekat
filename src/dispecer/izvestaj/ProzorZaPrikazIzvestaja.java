@@ -5,7 +5,7 @@ import liste.doublyLinkedList.DoublyLinkedList;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 
-public class ProzorZaPrikazDnevnogIzvestaja extends JFrame {
+public class ProzorZaPrikazIzvestaja extends JFrame {
 
     private JLabel ukupanBrojVoznji = new JLabel("Ukupan broj voznji ");
     private JTextField tukupanBrojVoznji = new JTextField(12);
@@ -26,8 +26,8 @@ public class ProzorZaPrikazDnevnogIzvestaja extends JFrame {
 
     public Liste ucitavanje;
 
-    public ProzorZaPrikazDnevnogIzvestaja(String unosDatuma, int ukupanBrojSvihVoznji, int ukupanBrojVoznjiAplikacija, int ukupanBrojVoznjiTelefon, int prosecnoTrajanjeVoznji, int prosecnaKilometraza, int ukupnaZaradaZaSveVoznje, int prosecnaZaradaPoVoznji, int brojVozacaKojiSuVozili) {
-        setTitle("Izvestaj za datum: " + unosDatuma);
+    public ProzorZaPrikazIzvestaja(int ukupanBrojSvihVoznji, int ukupanBrojVoznjiAplikacija, int ukupanBrojVoznjiTelefon, int prosecnoTrajanjeVoznji, int prosecnaKilometraza, int ukupnaZaradaZaSveVoznje, int prosecnaZaradaPoVoznji, int brojVozacaKojiSuVozili) {
+        setTitle("Prikaz izvestaja");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initGUI();
         setResizable(false);
