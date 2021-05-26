@@ -3,8 +3,8 @@ package liste;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+
 import automobili.Automobil;
 import enumi.*;
 import liste.doublyLinkedList.DoublyLinkedList;
@@ -175,12 +175,12 @@ public class Liste {
 				automobili.add(aut);
 			}
 			br.close();
+
 		}catch (Exception e){
 			e.printStackTrace();
 			System.out.println("Greska prilikom citanja fajla");
 		}
 	}
-
 	public void ucitavanjeVoznji(String imeFajla){
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));

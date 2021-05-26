@@ -3,6 +3,8 @@ package automobili;
 import enumi.StatusVozacaIautomobila;
 import enumi.VrstaVozila;
 
+import java.util.Comparator;
+
 public class Automobil{
 
     private int id;
@@ -141,5 +143,4 @@ public class Automobil{
                 ", petFriendly=" + petFriendly +
                 '}';
     }
-
 }

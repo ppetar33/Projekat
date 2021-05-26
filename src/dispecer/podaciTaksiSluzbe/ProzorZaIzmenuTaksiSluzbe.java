@@ -104,7 +104,7 @@ public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
     private boolean proveraUnetihPodataka(){
         boolean ok = true;
         String obavestenjeZaGresku = "Napravili ste neke greske pri unosu, molimo vas ispravite! \n";
-        
+
         if (tnaziv.getText().trim().equals("")){
             obavestenjeZaGresku += "Morate uneti naziv taksi sluzbe! \n";
             ok = false;

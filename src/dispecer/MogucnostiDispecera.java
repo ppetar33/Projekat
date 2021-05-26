@@ -54,8 +54,8 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenu funkcionalnostPrikazVoznji = new JMenu("Prikaz voznji");
 	private JMenuItem putemTelefona = new JMenuItem("Putem telefona");
 	private JMenuItem putemAplikacije = new JMenuItem("Putem aplikacije");
-	private JMenuItem izmenaVoznjiPutemAplikacije = new JMenuItem("Izmena voznji putem aplikacije");
-	private JMenuItem izmenaVoznjiPutemTelefona = new JMenuItem("Izmena voznji putem telefona");
+//	private JMenuItem izmenaVoznjiPutemAplikacije = new JMenuItem("Izmena voznji putem aplikacije");
+//	private JMenuItem izmenaVoznjiPutemTelefona = new JMenuItem("Izmena voznji putem telefona");
 
 	private JMenu funkcionalnostPretragaVozaca = new JMenu("Pretraga vozaca");
 	private JMenuItem poImenu = new JMenuItem("Po imenu");
@@ -126,8 +126,8 @@ public class MogucnostiDispecera extends JFrame {
 		dispecerMenu.add(funkcionalnostPrikazVoznji);
 		funkcionalnostPrikazVoznji.add(putemTelefona);
 		funkcionalnostPrikazVoznji.add(putemAplikacije);
-		funkcionalnostPrikazVoznji.add(izmenaVoznjiPutemAplikacije);
-		funkcionalnostPrikazVoznji.add(izmenaVoznjiPutemTelefona);
+//		funkcionalnostPrikazVoznji.add(izmenaVoznjiPutemAplikacije);
+//		funkcionalnostPrikazVoznji.add(izmenaVoznjiPutemTelefona);
 
 		dispecerMenu.add(funkcionalnostPretragaVozaca);
 		funkcionalnostPretragaVozaca.add(poImenu);
@@ -275,20 +275,20 @@ public class MogucnostiDispecera extends JFrame {
 				}
 			}
 		});
-		izmenaVoznjiPutemAplikacije.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				IzmenaVoznjiNarucenihPrekoAplikacije izmenaVoznjiNarucenihPrekoAplikacije = new IzmenaVoznjiNarucenihPrekoAplikacije(ucitavanje, voznjePrekoAplikacije);
-				izmenaVoznjiNarucenihPrekoAplikacije.setVisible(true);
-			}
-		});
-		izmenaVoznjiPutemTelefona.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				IzmenaVoznjiNarucenihPrekoTelefona izmenaVoznjiNarucenihPrekoTelefona = new IzmenaVoznjiNarucenihPrekoTelefona(ucitavanje, voznja);
-				izmenaVoznjiNarucenihPrekoTelefona.setVisible(true);
-			}
-		});
+//		izmenaVoznjiPutemAplikacije.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				IzmenaVoznjiNarucenihPrekoAplikacije izmenaVoznjiNarucenihPrekoAplikacije = new IzmenaVoznjiNarucenihPrekoAplikacije(ucitavanje, voznjePrekoAplikacije);
+//				izmenaVoznjiNarucenihPrekoAplikacije.setVisible(true);
+//			}
+//		});
+//		izmenaVoznjiPutemTelefona.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				IzmenaVoznjiNarucenihPrekoTelefona izmenaVoznjiNarucenihPrekoTelefona = new IzmenaVoznjiNarucenihPrekoTelefona(ucitavanje, voznja);
+//				izmenaVoznjiNarucenihPrekoTelefona.setVisible(true);
+//			}
+//		});
 
 		poImenu.addActionListener(new ActionListener() {
 			@Override

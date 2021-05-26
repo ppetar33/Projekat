@@ -1,5 +1,6 @@
 package liste.doublyLinkedList;
 
+
 import java.util.Iterator;
 
 public class DoublyLinkedList<T> implements Iterable<T>{
@@ -45,28 +46,10 @@ public class DoublyLinkedList<T> implements Iterable<T>{
             listSize++;
         }
     }
-    public void addAtIndex(int index, T element){
-        if(index == 0 && listSize == 0){
-            addFirst(element);
-        }
-        if(index < 0 || index >= listSize){
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + listSize);
-        }
-        if(index == listSize - 1){
-            addLast(element);
-            return;
-        }
-        ListNode currentNode = head;
-        for(int i = 1; i < index; i++){
-            currentNode = currentNode.getNext();
-        }
-        ListNode newNode = new ListNode(element,currentNode.getNext());
-        currentNode.setNext(newNode);
-        listSize++;
-    }
     public void add(T element) {
 
         ListNode<T> temp = new ListNode<T>(element);
+
         if (head == null) {
             head = temp;
             tail = head;
@@ -75,32 +58,10 @@ public class DoublyLinkedList<T> implements Iterable<T>{
             temp.previous = tail;
             tail = temp;
         }
+
         listSize++;
 
     }
-//    public void sortList() {
-//        ListNode<T> current = null, index = null;
-//        int temp;
-//        //Check whether list is empty
-//        if(head == null) {
-//            return;
-//        }
-//        else {
-//            //Current will point to head
-//            for(current = head; current.next != null; current = current.next) {
-//                //Index will point to node next to current
-//                for(index = current.next; index != null; index = index.next) {
-//                    //If current's data is greater than index's data, swap the data of current and index
-//                    if(current.element > index.element) {
-//                        temp = current.element;
-//                        current.element = index.element;
-//                        index.element = temp;
-//                    }
-//                }
-//            }
-//        }
-//    }
-
     public void deleteFromEnd() {
         if(head == null) {
             return;
