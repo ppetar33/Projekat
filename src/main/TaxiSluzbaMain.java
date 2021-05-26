@@ -15,9 +15,11 @@ public class TaxiSluzbaMain {
         Liste ucitavanje = new Liste();
 
         ucitavanje.ucitajAutomobila(AUTOMOBILI_FAJL);
+        ucitavanje.sortiranjeAutomobila();
         ucitavanje.ucitajTaksiSluzbe(TAKSI_SLUZBA_FAJL);
         ucitavanje.ucitajKorisnike(KORISNICI_FAJL);
         ucitavanje.ucitavanjeVoznji(VOZNJE_FAJL);
+        ucitavanje.sortiranjeVoznji();
 
         LoginProzor lp = new LoginProzor(ucitavanje);
         lp.setVisible(true);
@@ -30,7 +32,6 @@ public class TaxiSluzbaMain {
     Odraditi ASIP:
         1. Aukcija (20 bodova)
         2. Binarna pretraga (5 bodova)
-        3. Pri pokretanju programa potrebno je sortirati sve podatke po ID-u
 
     GOTOVO:
         1. Pretraga (7.5 bodova)
@@ -39,6 +40,8 @@ public class TaxiSluzbaMain {
         4. Hash map
         5. Kreiranje, izmena i pregled svih potrebnih entiteta (20 bodova)
         6. Izvestaj (10 bodova)
+        7. Pri pokretanju programa potrebno je sortirati sve podatke po ID-u
+
 
         AUKCIJA
 
@@ -75,14 +78,5 @@ public class TaxiSluzbaMain {
             Kaze mozemo da vracamo objekat samo getujemo po indeksu iz strukture ono sto smo pronasli. A i
             ne moramo  vratiti objekat nego mozemo da vratimo gde se nalazi u txt fajlu to sto trazimo pa
             tu liniju obrisemo ili izmenimo sta smo vec hteli
-
-        Pitao sam da li treba da pravimo algoritam za soritanje ili moze collections.sort. Kaze mozemo da
-        korstimo collections samo sto cemo morati da nase kolekcije ce morati da implementiraju na nekom
-        permeable interface posto se collection sort oslanja na to pa da bi nasu kolekciju mogli da ubacimo
-        u collection sort samo treba da implementiramo comparable collection sort i to je jedina stvar
-        koju treba da uradimo u suprotnom mozemo da iskoristimo neke od onih algoritama za sortiranje ali
-        tamo je radjeno samo sa int pa mozemo iskoristiti collection sort samo implementiramo taj
-        comparable a onda u comparable cemo da poredimo neki atribut koji nam treba po cemu vec sortiramo
-
 
 */

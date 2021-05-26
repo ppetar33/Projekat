@@ -4,10 +4,10 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 import automobili.Automobil;
 import enumi.*;
 import liste.doublyLinkedList.DoublyLinkedList;
+import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import osobe.Dispecar;
@@ -331,6 +331,115 @@ public class Liste {
 
 
 	/*
+		SORTIRANJE LISTI
+	*/
+	public void sortiranjeAutomobila(){
+		DoublyLinkedList<Integer> listaAutomobila = new DoublyLinkedList<>();
+		for(Automobil automobil : automobili){
+			if(automobil.isObrisan()) {
+				int autoID = automobil.getId();
+				listaAutomobila.add(autoID);
+			}
+		}
+		listaAutomobila.sortListOfIntegers();
+		DoublyLinkedList<Automobil> sortiranaListaAutomobila = new DoublyLinkedList<>();
+		for(Integer i : listaAutomobila) {
+			for(Automobil automobil : automobili){
+				if(automobil.getId() == i){
+					sortiranaListaAutomobila.add(automobil);
+				}
+			}
+		}
+		try{
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/automobil.txt")));
+			for (Automobil automobil : sortiranaListaAutomobila){
+				br.write(automobil.pripremiZaSnimanjeAutomobil());
+			}
+			br.close();
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Greska prilikom snimanja fajla");
+		}
+	}
+	public void sortiranjeVoznjiTelefon(){
+		DoublyLinkedList<Integer> listaVoznjiTelefon = new DoublyLinkedList<>();
+		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
+			if(voznjePrekoTelefona.isObrisan()) {
+				int voznjaID = voznjePrekoTelefona.getId();
+				listaVoznjiTelefon.add(voznjaID);
+			}
+		}
+		listaVoznjiTelefon.sortListOfIntegers();
+		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sortiranaListaVoznji = new DoublyLinkedList<>();
+		for(Integer i : listaVoznjiTelefon) {
+			for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
+				if(voznjePrekoTelefona.getId() == i){
+					sortiranaListaVoznji.add(voznjePrekoTelefona);
+				}
+			}
+		}
+		try{
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/voznje.txt")));
+			for (NarucivanjeVoznjePrekoTelefona voznjaTelefoni : sortiranaListaVoznji){
+				br.write(voznjaTelefoni.pripremiZaSnimanje());
+			}
+			br.close();
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Greska prilikom snimanja fajla");
+		}
+	}
+	public void sortiranjeVoznji(){
+		DoublyLinkedList<Integer> listaVoznjiAplikacija = new DoublyLinkedList<>();
+		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
+			if(voznjePrekoAplikacije.isObrisan()) {
+				int voznjaID = voznjePrekoAplikacije.getId();
+				listaVoznjiAplikacija.add(voznjaID);
+			}
+		}
+		listaVoznjiAplikacija.sortListOfIntegers();
+		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sortiranaListaVoznjiAplikacija = new DoublyLinkedList<>();
+		for(Integer i : listaVoznjiAplikacija) {
+			for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
+				if(voznjePrekoAplikacije.getId() == i){
+					sortiranaListaVoznjiAplikacija.add(voznjePrekoAplikacije);
+				}
+			}
+		}
+		DoublyLinkedList<Integer> listaVoznjiTelefon = new DoublyLinkedList<>();
+		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
+			if(voznjePrekoTelefona.isObrisan()) {
+				int voznjaID = voznjePrekoTelefona.getId();
+				listaVoznjiTelefon.add(voznjaID);
+			}
+		}
+		listaVoznjiTelefon.sortListOfIntegers();
+		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sortiranaListaVoznjiTelefon = new DoublyLinkedList<>();
+		for(Integer i : listaVoznjiTelefon) {
+			for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
+				if(voznjePrekoTelefona.getId() == i){
+					sortiranaListaVoznjiTelefon.add(voznjePrekoTelefona);
+				}
+			}
+		}
+		try {
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/voznje.txt")));
+			for(NarucivanjeVoznjePrekoTelefona voznjaTelefoni : sortiranaListaVoznjiTelefon){
+				br.write(voznjaTelefoni.pripremiZaSnimanje());
+			}
+			for(NarucivanjeVoznjePrekoAplikacije voznjaAplikacija : sortiranaListaVoznjiAplikacija){
+				br.write(voznjaAplikacija.pripremiZaSnimanjePrekoAplikacije());
+			}
+			br.close();
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Greska prilikom snimanja fajla");
+		}
+	}
+
+
+
+		/*
 			PRETRAGA
 
 
@@ -349,7 +458,7 @@ public class Liste {
 	// vracamo idex da li postoji a mi treba citav objekat
 	// vracamo -1 ako ne postoji
 
-//	public ArrayList<Integer> listaSlobodnihAutomobila(){
+	//	public ArrayList<Integer> listaSlobodnihAutomobila(){
 //		ArrayList<Integer> slobodniAutomobil = new ArrayList<>();
 //		for(Automobil automobil : automobili){
 //			if(automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN && automobil.isObrisan()){
@@ -360,19 +469,6 @@ public class Liste {
 //		return slobodniAutomobil;
 //	}
 
-
-	// zameniti arrayList sa DoublyLinkedList
-	public DoublyLinkedList<Integer> listaIDautomobila(){ // [1,2,3,4,5,6,7,8,9]
-		DoublyLinkedList<Integer> listaAutomobila = new DoublyLinkedList<>();
-		for(Automobil automobil : automobili){
-			if(automobil.isObrisan()) {
-				int autoID = automobil.getId();
-				listaAutomobila.add(autoID);
-				listaAutomobila.sortListOfIntegers();
-			}
-		}
-		return listaAutomobila;
-	}
 	public int nadjiAutomobilPoId(ArrayList<Integer> array, int target){
 		return binarySearch(array,target,0,array.size());
 	}
