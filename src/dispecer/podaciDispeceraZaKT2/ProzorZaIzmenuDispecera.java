@@ -100,6 +100,7 @@ public class ProzorZaIzmenuDispecera extends JFrame {
                     double plata = Double.parseDouble(tplata.getText().trim());
                     String brojTelefonskeLinije = tbrojTelefonskeLinije.getText().trim();
                     Odeljenje odeljenje = (Odeljenje) odeljenjeJComboBox.getSelectedItem();
+
                     if (dispecar == null) {
                         dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojTelefonskeLinije, odeljenje);
                     } else {

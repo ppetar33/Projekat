@@ -333,6 +333,7 @@ public class Liste {
 	/*
 		SORTIRANJE LISTI
 	*/
+	DoublyLinkedList<Automobil> sortiranaListaAutomobila = new DoublyLinkedList<>();
 	public void sortiranjeAutomobila(){
 		DoublyLinkedList<Integer> listaAutomobila = new DoublyLinkedList<>();
 		for(Automobil automobil : automobili){
@@ -342,7 +343,6 @@ public class Liste {
 			}
 		}
 		listaAutomobila.sortListOfIntegers();
-		DoublyLinkedList<Automobil> sortiranaListaAutomobila = new DoublyLinkedList<>();
 		for(Integer i : listaAutomobila) {
 			for(Automobil automobil : automobili){
 				if(automobil.getId() == i){
@@ -361,34 +361,8 @@ public class Liste {
 			System.out.println("Greska prilikom snimanja fajla");
 		}
 	}
-	public void sortiranjeVoznjiTelefon(){
-		DoublyLinkedList<Integer> listaVoznjiTelefon = new DoublyLinkedList<>();
-		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
-			if(voznjePrekoTelefona.isObrisan()) {
-				int voznjaID = voznjePrekoTelefona.getId();
-				listaVoznjiTelefon.add(voznjaID);
-			}
-		}
-		listaVoznjiTelefon.sortListOfIntegers();
-		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sortiranaListaVoznji = new DoublyLinkedList<>();
-		for(Integer i : listaVoznjiTelefon) {
-			for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
-				if(voznjePrekoTelefona.getId() == i){
-					sortiranaListaVoznji.add(voznjePrekoTelefona);
-				}
-			}
-		}
-		try{
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/voznje.txt")));
-			for (NarucivanjeVoznjePrekoTelefona voznjaTelefoni : sortiranaListaVoznji){
-				br.write(voznjaTelefoni.pripremiZaSnimanje());
-			}
-			br.close();
-		}catch (Exception e){
-			e.printStackTrace();
-			System.out.println("Greska prilikom snimanja fajla");
-		}
-	}
+	DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sortiranaListaVoznjiAplikacija = new DoublyLinkedList<>();
+	DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sortiranaListaVoznjiTelefon = new DoublyLinkedList<>();
 	public void sortiranjeVoznji(){
 		DoublyLinkedList<Integer> listaVoznjiAplikacija = new DoublyLinkedList<>();
 		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
@@ -398,7 +372,6 @@ public class Liste {
 			}
 		}
 		listaVoznjiAplikacija.sortListOfIntegers();
-		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sortiranaListaVoznjiAplikacija = new DoublyLinkedList<>();
 		for(Integer i : listaVoznjiAplikacija) {
 			for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
 				if(voznjePrekoAplikacije.getId() == i){
@@ -414,7 +387,6 @@ public class Liste {
 			}
 		}
 		listaVoznjiTelefon.sortListOfIntegers();
-		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sortiranaListaVoznjiTelefon = new DoublyLinkedList<>();
 		for(Integer i : listaVoznjiTelefon) {
 			for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
 				if(voznjePrekoTelefona.getId() == i){
@@ -439,41 +411,34 @@ public class Liste {
 
 
 
-		/*
+	/*
 			PRETRAGA
 
+	*/
 
-		BINARNA PRETRAGA
+	public DoublyLinkedList<Integer> sortiranaListaIDAutomobila(){
+		DoublyLinkedList<Integer> listaIDeva = new DoublyLinkedList<>();
+		for(Automobil automobil : sortiranaListaAutomobila){
+			int autoID = automobil.getId();
+			listaIDeva.add(autoID);
+		}
+		return listaIDeva;
+	}
+	public DoublyLinkedList<Automobil> sviAuti(){
+		DoublyLinkedList<Automobil> sviAuti = new DoublyLinkedList<>();
+		for(Automobil automobil : sortiranaListaAutomobila){
+			if(automobil.isObrisan()){
+				sviAuti.add(automobil);
+			}
+		}
+		return sviAuti;
+	}
 
-			Prvo je potrebno da imamo sortiranu kolekciju, jer kada uzmemo element u sredini znamo da su levo
-			elementi koji su manji ili jednaki, a desno elementi koji su veci ili jednaki, ako je element koji trazim
-			jednak sredisnjem ja sam zavrsio pretragu, ako nije onda gledam da li je veci ili manji (manji levo, veci desno).
-			Znam na kojoj je strani i drugu stranu odbacujem. Opet dodjem na sredinu leve ili desne strane u zavisnosti
-			koja mi treba, u sustini ponavljam postupak sve dok ne dobijem da mi je low=mid=high.
-
-		hash mapa
-
-	 */
-
-	// vracamo idex da li postoji a mi treba citav objekat
-	// vracamo -1 ako ne postoji
-
-	//	public ArrayList<Integer> listaSlobodnihAutomobila(){
-//		ArrayList<Integer> slobodniAutomobil = new ArrayList<>();
-//		for(Automobil automobil : automobili){
-//			if(automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN && automobil.isObrisan()){
-//				int autoID = automobil.getId();
-//				slobodniAutomobil.add(autoID);
-//			}
-//		}
-//		return slobodniAutomobil;
-//	}
-
-	public int nadjiAutomobilPoId(ArrayList<Integer> array, int target){
+	public int nadjiAutomobilPoId(DoublyLinkedList<Integer> array, int target){
 		return binarySearch(array,target,0,array.size());
 	}
 
-	public int binarySearch(ArrayList<Integer> array, int target, int low, int high){
+	public int binarySearch(DoublyLinkedList<Integer> array, int target, int low, int high){
 
 		if(low > high){ // situacija kad ne pronalazimo
 			return 0; // vraticemo -1 ako ne postoji
@@ -609,8 +574,8 @@ public class Liste {
 		return null;
 	}
 
-	public Automobil nadjiAutomobil(int id){
-		for(Automobil automobil : automobili){
+	public Automobil nadjiAutomobil(int id){ // izmeniti da bude binarna pretraga
+		for(Automobil automobil : sortiranaListaAutomobila){
 			if(automobil.getId() == id && automobil.isObrisan()){
 				return automobil;
 			}
@@ -619,7 +584,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<Integer> listaSlobodnihAutomobila(){
 		DoublyLinkedList<Integer> slobodniAutomobil = new DoublyLinkedList<>();
-		for(Automobil automobil : automobili){
+		for(Automobil automobil : sortiranaListaAutomobila){
 			if(automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN && automobil.isObrisan()){
 				int autoID = automobil.getId();
 				slobodniAutomobil.add(autoID);
@@ -639,7 +604,7 @@ public class Liste {
 		return slobodanVozac;
 	}
 
-	public TaksiSluzba nadjiTaksiSluzbu(int id){
+	public TaksiSluzba nadjiTaksiSluzbu(int id){ // izmeniti da bude binarna pretraga
 		for(TaksiSluzba taksiSluzba : taksiSluzbe){
 			if(taksiSluzba.getId() == id){
 				return taksiSluzba;
@@ -649,7 +614,7 @@ public class Liste {
 	}
 
 	public NarucivanjeVoznjePrekoAplikacije nadjiVoznjuZakazanuPrekoAplikacije(){
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			if(voznja.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA) && voznja.isObrisan()){
 				return voznja;
 			}
@@ -658,7 +623,7 @@ public class Liste {
 	}
 	
 	public NarucivanjeVoznjePrekoTelefona nadjiVoznjuNarucenuPrekoTelefonaPoId(int id){
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			if(voznja.getId() == id){
 				return voznja;
 			}
@@ -666,7 +631,7 @@ public class Liste {
 		return null;
 	}
 	public NarucivanjeVoznjePrekoAplikacije nadjiVoznjuNarucenuPrekoAplikacijePoId(int id){
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			if(voznja.getId() == id){
 				return voznja;
 			}
@@ -681,13 +646,13 @@ public class Liste {
 	*/
 
 	public boolean nadjiDatum(String datum){
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				return true;
 			}
 		}
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				return true;
@@ -697,7 +662,7 @@ public class Liste {
 	}
 	public int uporediDatumIvoznjeAplikacijom(String datum){
 		int counter = 0;
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusNaruceneVoznje() == StatusNaruceneVoznje.APLIKACIJA && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				counter++;
@@ -707,7 +672,7 @@ public class Liste {
 	}
 	public int uporediDatumIvoznjeTelefonom(String datum){
 		int counter = 0;
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusNaruceneVoznje() == StatusNaruceneVoznje.TELEFON && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))) {
 				counter++;
@@ -719,14 +684,14 @@ public class Liste {
 		double rezultat = 0;
 		double counter = 0;
 		double average;
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				rezultat += voznja.getTrajanjVoznje();
 				counter++;
 			}
 		}
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				rezultat += voznja.getTrajanjVoznje();
@@ -740,14 +705,14 @@ public class Liste {
 		double rezultat = 0;
 		double counter = 0;
 		double average;
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				rezultat += voznja.getBrojKMpredjenih();
 				counter++;
 			}
 		}
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				rezultat += voznja.getBrojKMpredjenih();
@@ -759,13 +724,13 @@ public class Liste {
 	}
 	public double ukupnaZaradaZaSveVoznje(String datum){
 		double rezultat = 0;
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				rezultat += voznja.getCenaVoznje();
 			}
 		}
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				rezultat += voznja.getCenaVoznje();
@@ -776,13 +741,13 @@ public class Liste {
 	public DoublyLinkedList<String> spisakVozacaKojiSuVozili(String datum){
 		DoublyLinkedList<String> spisakSvihVozaca = new DoublyLinkedList<>();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : sortiranaListaVoznjiTelefon){
 			if(voznjePrekoTelefona.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				String korisnickoImeVozaca = voznjePrekoTelefona.getVozac().getKorisnickoIme();
 				spisakSvihVozaca.add(korisnickoImeVozaca);
 			}
 		}
-		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : sortiranaListaVoznjiAplikacija){
 			if(voznjePrekoAplikacije.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznjePrekoAplikacije.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznjePrekoAplikacije.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				String korisnickoImeVozaca = voznjePrekoAplikacije.getVozac().getKorisnickoIme();
 				spisakSvihVozaca.add(korisnickoImeVozaca);
@@ -799,7 +764,7 @@ public class Liste {
 	public DoublyLinkedList<String> ukupanBrojVoznjiPrekoTelefona(){
 		DoublyLinkedList<String> telefon = new DoublyLinkedList<>();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		for(NarucivanjeVoznjePrekoTelefona telefoni : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona telefoni : sortiranaListaVoznjiTelefon){
 			if(telefoni.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || telefoni.getStatusVoznje().equals(StatusVoznje.ODBIJENA)) {
 				String datum = telefoni.getDatumIvremePorudzbine().format(formatter);
 				telefon.add(datum);
@@ -810,7 +775,7 @@ public class Liste {
 	public DoublyLinkedList<String> ukupanBrojVoznjiPrekoAplikacije(){
 		DoublyLinkedList<String> aplikacija = new DoublyLinkedList<>();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		for(NarucivanjeVoznjePrekoAplikacije telefoni : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije telefoni : sortiranaListaVoznjiAplikacija){
 			if(telefoni.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || telefoni.getStatusVoznje().equals(StatusVoznje.ODBIJENA)) {
 				String datum = telefoni.getDatumIvremePorudzbine().format(formatter);
 				aplikacija.add(datum);
@@ -821,7 +786,7 @@ public class Liste {
 	public DoublyLinkedList<Integer> nadjiVoznjuNarucenuPrekoTelefonaPoDatumu(String datum){
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		DoublyLinkedList<Integer> ukupanBrojLista = new DoublyLinkedList<>();
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				ukupanBrojLista.add(voznja.getId());
 			}
@@ -831,7 +796,7 @@ public class Liste {
 	public DoublyLinkedList<Integer> nadjiVoznjuNarucenuPrekoAplikacijePoDatumu(String datum){
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		DoublyLinkedList<Integer> ukupanBrojLista = new DoublyLinkedList<>();
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				ukupanBrojLista.add(voznja.getId());
 			}
@@ -840,7 +805,7 @@ public class Liste {
 	}
 	public double ukupnoTrajanjeVoznjiTelefoni(int id){
 		double trajanjeVoznje = 0;
-		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : sortiranaListaVoznjiTelefon){
 			if(voznjePrekoTelefona.getId() == id && (voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				trajanjeVoznje = voznjePrekoTelefona.getTrajanjVoznje();
 			}
@@ -849,7 +814,7 @@ public class Liste {
 	}
 	public double ukupnoTrajanjeVoznjiAplikacija(int id){
 		double trajanjeVoznje = 0;
-		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : sortiranaListaVoznjiAplikacija){
 			if(voznjePrekoAplikacije.getId() == id && (voznjePrekoAplikacije.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznjePrekoAplikacije.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				trajanjeVoznje = voznjePrekoAplikacije.getTrajanjVoznje();
 			}
@@ -858,7 +823,7 @@ public class Liste {
 	}
 	public double ukupnaKilometrazaTelefoni(int id){
 		double kilometraza = 0;
-		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : sortiranaListaVoznjiTelefon){
 			if(voznjePrekoTelefona.getId() == id && (voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				kilometraza = voznjePrekoTelefona.getBrojKMpredjenih();
 			}
@@ -867,7 +832,7 @@ public class Liste {
 	}
 	public double ukupnaKilometrazaAplikacija(int id){
 		double kilometraza = 0;
-		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : sortiranaListaVoznjiAplikacija){
 			if(voznjePrekoAplikacije.getId() == id && (voznjePrekoAplikacije.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznjePrekoAplikacije.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				kilometraza = voznjePrekoAplikacije.getBrojKMpredjenih();
 			}
@@ -876,7 +841,7 @@ public class Liste {
 	}
 	public double ukupnaZaradaTelefoni(int id){
 		double rezultat = 0;
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			if(voznja.getId() == id && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				rezultat += voznja.getCenaVoznje();
 			}
@@ -885,22 +850,22 @@ public class Liste {
 	}
 	public double ukupnaZaradaAplikacija(int id){
 		double rezultat = 0;
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			if(voznja.getId() == id && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
 				rezultat += voznja.getCenaVoznje();
 			}
 		}
 		return rezultat;
 	}
-	public DoublyLinkedList<String> listaKorisnickihImenaVozaca(int id){
+	public DoublyLinkedList<String> listaKorisnickihImenaVozaca(int id){ // IZMENITI DA BUDE BINARNA PRETRAGA
 		DoublyLinkedList<String> vozaci = new DoublyLinkedList<>();
-		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : sortiranaListaVoznjiTelefon){
 			if(voznjePrekoTelefona.getId() == id && (voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ODBIJENA))) {
 				String vozacKorisnickoIme = voznjePrekoTelefona.getVozac().getKorisnickoIme();
 				vozaci.add(vozacKorisnickoIme);
 			}
 		}
-		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : sortiranaListaVoznjiAplikacija){
 			if(voznjePrekoAplikacije.getId() == id && (voznjePrekoAplikacije.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznjePrekoAplikacije.getStatusVoznje().equals(StatusVoznje.ODBIJENA))) {
 				String vozacKorisnickoIme = voznjePrekoAplikacije.getVozac().getKorisnickoIme();
 				vozaci.add(vozacKorisnickoIme);
@@ -915,7 +880,7 @@ public class Liste {
 
 	public int generisiNoviIdZaVoznjePutemTelefona(){
 		int maks = -1;
-		for (NarucivanjeVoznjePrekoTelefona prekoTelefona : voznjaTelefoni) {
+		for (NarucivanjeVoznjePrekoTelefona prekoTelefona : sortiranaListaVoznjiTelefon) {
 			if (prekoTelefona.getId() > maks) {
 				maks = prekoTelefona.getId();
 			}
@@ -924,7 +889,7 @@ public class Liste {
 	}
 	public int generisiNoviIdZaVoznjePutemAplikacije() {
 		int maks = -1;
-		for (NarucivanjeVoznjePrekoAplikacije prekoAplikacije : voznjaAplikacije){
+		for (NarucivanjeVoznjePrekoAplikacije prekoAplikacije : sortiranaListaVoznjiAplikacija){
 			if (prekoAplikacije.getId() > maks){
 				maks = prekoAplikacije.getId();
 			}
@@ -1000,7 +965,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<Automobil> neobrisaniAutomobili(){
 		DoublyLinkedList<Automobil> neobAutomobili = new DoublyLinkedList<Automobil>();
-		for(Automobil automobil : automobili){
+		for(Automobil automobil : sortiranaListaAutomobila){
 			if(automobil.isObrisan()){
 				neobAutomobili.add(automobil);
 			}
@@ -1009,7 +974,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			if(voznja.isObrisan()){
 				neobrisaneVoznje.add(voznja);
 			}
@@ -1018,39 +983,16 @@ public class Liste {
 	}
 	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneIkreiraneVoznjeNarucenePutemTelefona(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA)){
 				neobrisaneVoznje.add(voznja);
 			}
 		}
 		return neobrisaneVoznje;
 	}
-	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> poredjenjeUlogovanogKorisnikaSaVozacem(){
-		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
-			Vozac ulogovanVozac = null;
-			try {
-				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
-				Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
-				while (citanjeUlogovanogKorisnika.hasNextLine()) {
-					String data = citanjeUlogovanogKorisnika.nextLine();
-					ulogovanVozac = new Vozac();
-					ulogovanVozac.setKorisnickoIme(data);
-					if(voznja.isObrisan() && voznja.getVozac().getKorisnickoIme().equalsIgnoreCase(ulogovanVozac.getKorisnickoIme())){
-						voznje.add(voznja);
-					}
-				}
-				citanjeUlogovanogKorisnika.close();
-			}  catch (IOException ioException) {
-				ioException.printStackTrace();
-				System.out.println("Greska");
-			}
-		}
-		return voznje;
-	}
 	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> prikazVoznjeZaZavrsavanjeVoznje(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			Vozac ulogovanVozac = null;
 			try {
 				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
@@ -1074,7 +1016,7 @@ public class Liste {
 
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			Vozac ulogovanVozac = null;
 			try {
 				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
@@ -1098,7 +1040,7 @@ public class Liste {
 
 	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> prikazDodeljenihVoznji(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			Vozac ulogovanVozac = null;
 			try {
 				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
@@ -1121,7 +1063,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznjeKreiranePutemAplikacije(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			if(voznja.isObrisan()){
 				neobrisaneVoznje.add(voznja);
 			}
@@ -1132,7 +1074,7 @@ public class Liste {
 	//PRETRAGA AUTOMOBILA
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoModelu(String unosModela){
 		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
-		for (Automobil automobil : automobili){
+		for (Automobil automobil : sortiranaListaAutomobila){
 			if (automobil.getModel().equalsIgnoreCase(unosModela) && automobil.isObrisan()){
 				sviAutomobili.add(automobil);
 			}

@@ -2,6 +2,7 @@ package dispecer.podaciVozaca;
 
 import automobili.Automobil;
 import enumi.StatusVozacaIautomobila;
+import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
 import osobe.Vozac;
 import liste.Liste;
@@ -50,7 +51,12 @@ public class BrisanjeVozaca extends PrikazVozaca {
                         }
                     }else {
                         int idAutomobila = Integer.parseInt(idAutomobilaString);
-                        Automobil automobil = ucitavanje.nadjiAutomobil(idAutomobila);
+
+                        DoublyLinkedList<Integer> listaIdAutomobila = ucitavanje.sortiranaListaIDAutomobila();
+                        int indexGdeSeNalazi = ucitavanje.nadjiAutomobilPoId(listaIdAutomobila,idAutomobila);
+                        DoublyLinkedList<Automobil> sviAuti = ucitavanje.sviAuti();
+                        Automobil automobil = sviAuti.get(indexGdeSeNalazi);
+
                         if (vozac != null) {
                             int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete vozaca: " + vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                             if (izbor == JOptionPane.YES_OPTION) {

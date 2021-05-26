@@ -31,7 +31,6 @@ public class TaxiSluzbaMain {
 
     Odraditi ASIP:
         1. Aukcija (20 bodova)
-        2. Binarna pretraga (5 bodova)
 
     GOTOVO:
         1. Pretraga (7.5 bodova)
@@ -41,6 +40,8 @@ public class TaxiSluzbaMain {
         5. Kreiranje, izmena i pregled svih potrebnih entiteta (20 bodova)
         6. Izvestaj (10 bodova)
         7. Pri pokretanju programa potrebno je sortirati sve podatke po ID-u
+        8. Binarna pretraga (5 bodova)
+
 
 
         AUKCIJA
