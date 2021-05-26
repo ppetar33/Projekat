@@ -4,6 +4,7 @@ import automobili.Voznja;
 import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import osobe.Vozac;
@@ -82,7 +83,10 @@ public class PrikazDodeljenihVoznjiKreiranihTelefonom extends JFrame{
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    NarucivanjeVoznjePrekoTelefona nadjiVoznju = ucitavanje.nadjiVoznjuNarucenuPrekoTelefonaPoId(id);
+                    DoublyLinkedList<Integer> listaIdVoznjiPrekoTelefona = ucitavanje.sortiranaListaIDvoznjiPrekoTelefona();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdVoznjiPrekoTelefona,id);
+                    DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznjePrekoTelefona = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona();
+                    NarucivanjeVoznjePrekoTelefona nadjiVoznju = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
                     int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da prihvatite voznju?", "Potvrda prihvatanja", JOptionPane.YES_NO_OPTION);
                     if(izbor == JOptionPane.YES_OPTION) {
                         ProzorZaPrihvatanjeVoznje prozorZaPrihvatanjeVoznje = new ProzorZaPrihvatanjeVoznje(ucitavanje,nadjiVoznju);
@@ -103,7 +107,10 @@ public class PrikazDodeljenihVoznjiKreiranihTelefonom extends JFrame{
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    NarucivanjeVoznjePrekoTelefona nadjiVoznju = ucitavanje.nadjiVoznjuNarucenuPrekoTelefonaPoId(id);
+                    DoublyLinkedList<Integer> listaIdVoznjiPrekoTelefona = ucitavanje.sortiranaListaIDvoznjiPrekoTelefona();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdVoznjiPrekoTelefona,id);
+                    DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznjePrekoTelefona = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona();
+                    NarucivanjeVoznjePrekoTelefona nadjiVoznju = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
                     String vozacString = nadjiVoznju.getVozac().getKorisnickoIme();
                     int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da odbijete voznju?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
                     if(izbor == JOptionPane.YES_OPTION) {

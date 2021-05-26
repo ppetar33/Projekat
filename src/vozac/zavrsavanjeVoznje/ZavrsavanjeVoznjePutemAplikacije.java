@@ -2,6 +2,7 @@ package vozac.zavrsavanjeVoznje;
 
 import automobili.Voznja;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 
 import javax.swing.*;
@@ -91,7 +92,10 @@ public class ZavrsavanjeVoznjePutemAplikacije extends JFrame {
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    NarucivanjeVoznjePrekoAplikacije nadjiVoznju = ucitavanje.nadjiVoznjuNarucenuPrekoAplikacijePoId(id);
+                    DoublyLinkedList<Integer> listaIDvoznjiPrekoAplikacije = ucitavanje.sortiranaListaIDvoznjiPrekoAplikacije();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIDvoznjiPrekoAplikacije,id);
+                    DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
+                    NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
                     int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da zavrsite voznju?", "Potvrda prihvatanja", JOptionPane.YES_NO_OPTION);
                     if (izbor == JOptionPane.YES_OPTION) {
                         ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije podaci = new ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije(ucitavanje,nadjiVoznju);

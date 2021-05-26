@@ -1,6 +1,8 @@
 package dispecer.podaciTaksiSluzbe;
 
+import automobili.Automobil;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import taksiSluzba.TaksiSluzba;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -35,9 +37,15 @@ public class IzmenaPodatakaTaksiSluzbe extends PrikazPodatakaTaksiSluzbe{
                     JOptionPane.showMessageDialog(null, "Morate odabrati barem jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else{
                     DefaultTableModel tableModel = (DefaultTableModel) taksiSluzbaTabela.getModel();
+
                     String idString = tableModel.getValueAt(red,0).toString();
                     int id = Integer.parseInt(idString);
-                    TaksiSluzba taksiSluzba = ucitavanje.nadjiTaksiSluzbu(id);
+
+                    DoublyLinkedList<Integer> listaIdTaksiSluzbe = ucitavanje.sortiranaListaTaksiSluzba();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdTaksiSluzbe,id);
+                    DoublyLinkedList<TaksiSluzba> taksiSluzbe = ucitavanje.taksiSluzba();
+                    TaksiSluzba taksiSluzba = taksiSluzbe.get(indexGdeSeNalazi);
+
                     if (taksiSluzba != null){
                         int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da izmenite taksi sluzbu: " + taksiSluzba.getNaziv().substring(0,1).toUpperCase() + taksiSluzba.getNaziv().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION );
                         if (izbor == JOptionPane.YES_OPTION){

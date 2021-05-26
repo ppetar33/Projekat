@@ -337,10 +337,8 @@ public class Liste {
 	public void sortiranjeAutomobila(){
 		DoublyLinkedList<Integer> listaAutomobila = new DoublyLinkedList<>();
 		for(Automobil automobil : automobili){
-			if(automobil.isObrisan()) {
-				int autoID = automobil.getId();
-				listaAutomobila.add(autoID);
-			}
+			int autoID = automobil.getId();
+			listaAutomobila.add(autoID);
 		}
 		listaAutomobila.sortListOfIntegers();
 		for(Integer i : listaAutomobila) {
@@ -366,10 +364,8 @@ public class Liste {
 	public void sortiranjeVoznji(){
 		DoublyLinkedList<Integer> listaVoznjiAplikacija = new DoublyLinkedList<>();
 		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
-			if(voznjePrekoAplikacije.isObrisan()) {
-				int voznjaID = voznjePrekoAplikacije.getId();
-				listaVoznjiAplikacija.add(voznjaID);
-			}
+			int voznjaID = voznjePrekoAplikacije.getId();
+			listaVoznjiAplikacija.add(voznjaID);
 		}
 		listaVoznjiAplikacija.sortListOfIntegers();
 		for(Integer i : listaVoznjiAplikacija) {
@@ -416,6 +412,27 @@ public class Liste {
 
 	*/
 
+	public int pronadjiBinarySearch(DoublyLinkedList<Integer> array, int target){
+		return binarySearch(array,target,0,array.size());
+	}
+
+	public int binarySearch(DoublyLinkedList<Integer> array, int target, int low, int high){
+
+		if(low > high){
+			return 0;
+		}
+		int mid = (low+high)/2;
+		if(array.get(mid) == target){
+			return mid;
+		}
+		else if(array.get(mid) > target){
+			return binarySearch(array,target,low,mid-1);
+		}else{
+			return binarySearch(array,target,mid+1,high);
+		}
+
+	}
+
 	public DoublyLinkedList<Integer> sortiranaListaIDAutomobila(){
 		DoublyLinkedList<Integer> listaIDeva = new DoublyLinkedList<>();
 		for(Automobil automobil : sortiranaListaAutomobila){
@@ -433,32 +450,37 @@ public class Liste {
 		}
 		return sviAuti;
 	}
-
-	public int nadjiAutomobilPoId(DoublyLinkedList<Integer> array, int target){
-		return binarySearch(array,target,0,array.size());
+	public DoublyLinkedList<Integer> sortiranaListaTaksiSluzba(){
+		DoublyLinkedList<Integer> listaIDeva = new DoublyLinkedList<>();
+		for(TaksiSluzba taksiSluzba : taksiSluzbe){
+			int taksiSluzbaId = taksiSluzba.getId();
+			listaIDeva.add(taksiSluzbaId);
+		}
+		return listaIDeva;
 	}
-
-	public int binarySearch(DoublyLinkedList<Integer> array, int target, int low, int high){
-
-		if(low > high){ // situacija kad ne pronalazimo
-			return 0; // vraticemo -1 ako ne postoji
+	public DoublyLinkedList<Integer> sortiranaListaIDvoznjiPrekoTelefona(){
+		DoublyLinkedList<Integer> listaIDeva = new DoublyLinkedList<>();
+		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : sortiranaListaVoznjiTelefon){
+			int voznjePrekoTelefonaID = voznjePrekoTelefona.getId();
+			listaIDeva.add(voznjePrekoTelefonaID);
 		}
-		int mid = (low+high)/2;
-		if(array.get(mid) == target){
-			return mid;
-		}
-		else if(array.get(mid) > target){ // nalazi se na levoj strani
-			return binarySearch(array,target,low,mid-1); // ponavljam rekurziju
-		}else{ // nalazi se na desnoj strani
-			return binarySearch(array,target,mid+1,high); // ponavljam rekurziju
-		}
-
+		return listaIDeva;
 	}
-
-
-
-
-
+	public DoublyLinkedList<Integer> sortiranaListaIDvoznjiPrekoAplikacije(){
+		DoublyLinkedList<Integer> listaIDeva = new DoublyLinkedList<>();
+		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : sortiranaListaVoznjiAplikacija){
+			int voznjePrekoAplikacijeID = voznjePrekoAplikacije.getId();
+			listaIDeva.add(voznjePrekoAplikacijeID);
+		}
+		return listaIDeva;
+	}
+	public DoublyLinkedList<TaksiSluzba> taksiSluzba(){
+		DoublyLinkedList<TaksiSluzba> taksiSluzbaLista = new DoublyLinkedList<>();
+		for(TaksiSluzba taksiSluzba : taksiSluzbe){
+			taksiSluzbaLista.add(taksiSluzba);
+		}
+		return taksiSluzbaLista;
+	}
 	public Vozac nadjiVozaca(String korisnickoIme){
 		for(Vozac vozac : vozaci){
 			if(vozac.getKorisnickoIme().equals(korisnickoIme) && vozac.isObrisan()){
@@ -574,14 +596,6 @@ public class Liste {
 		return null;
 	}
 
-	public Automobil nadjiAutomobil(int id){ // izmeniti da bude binarna pretraga
-		for(Automobil automobil : sortiranaListaAutomobila){
-			if(automobil.getId() == id && automobil.isObrisan()){
-				return automobil;
-			}
-		}
-		return null;
-	}
 	public DoublyLinkedList<Integer> listaSlobodnihAutomobila(){
 		DoublyLinkedList<Integer> slobodniAutomobil = new DoublyLinkedList<>();
 		for(Automobil automobil : sortiranaListaAutomobila){
@@ -604,35 +618,9 @@ public class Liste {
 		return slobodanVozac;
 	}
 
-	public TaksiSluzba nadjiTaksiSluzbu(int id){ // izmeniti da bude binarna pretraga
-		for(TaksiSluzba taksiSluzba : taksiSluzbe){
-			if(taksiSluzba.getId() == id){
-				return taksiSluzba;
-			}
-		}
-		return null;
-	}
-
 	public NarucivanjeVoznjePrekoAplikacije nadjiVoznjuZakazanuPrekoAplikacije(){
 		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			if(voznja.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA) && voznja.isObrisan()){
-				return voznja;
-			}
-		}
-		return null;
-	}
-	
-	public NarucivanjeVoznjePrekoTelefona nadjiVoznjuNarucenuPrekoTelefonaPoId(int id){
-		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
-			if(voznja.getId() == id){
-				return voznja;
-			}
-		}
-		return null;
-	}
-	public NarucivanjeVoznjePrekoAplikacije nadjiVoznjuNarucenuPrekoAplikacijePoId(int id){
-		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
-			if(voznja.getId() == id){
 				return voznja;
 			}
 		}
@@ -857,7 +845,7 @@ public class Liste {
 		}
 		return rezultat;
 	}
-	public DoublyLinkedList<String> listaKorisnickihImenaVozaca(int id){ // IZMENITI DA BUDE BINARNA PRETRAGA
+	public DoublyLinkedList<String> listaKorisnickihImenaVozaca(int id){
 		DoublyLinkedList<String> vozaci = new DoublyLinkedList<>();
 		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : sortiranaListaVoznjiTelefon){
 			if(voznjePrekoTelefona.getId() == id && (voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ODBIJENA))) {

@@ -2,6 +2,8 @@ package dispecer.podaciAutomobila;
 
 import automobili.Automobil;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -37,7 +39,12 @@ public class IzmenaAutomobila extends PrikazAutomobila {
                     DefaultTableModel tableModel = (DefaultTableModel)automobiliTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    Automobil automobil = ucitavanje.nadjiAutomobil(id);
+
+                    DoublyLinkedList<Integer> listaIdAutomobila = ucitavanje.sortiranaListaIDAutomobila();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdAutomobila,id);
+                    DoublyLinkedList<Automobil> sviAuti = ucitavanje.sviAuti();
+                    Automobil automobil = sviAuti.get(indexGdeSeNalazi);
+
                     if (automobil != null){
                         int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da izmenite automobil: " + automobil.getProizvodjac().substring(0,1).toUpperCase() + automobil.getProizvodjac().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION );
                         if (izbor == JOptionPane.YES_OPTION){

@@ -1,8 +1,10 @@
 package dispecer.dodeljivanjeVoznje;
 
+import automobili.Automobil;
 import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -87,7 +89,13 @@ public class DodeljivanjeVoznje extends JFrame {
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    NarucivanjeVoznjePrekoTelefona voznja = ucitavanje.nadjiVoznjuNarucenuPrekoTelefonaPoId(id);
+
+                    DoublyLinkedList<Integer> listaIdVoznjiPrekoTelefona = ucitavanje.sortiranaListaIDvoznjiPrekoTelefona();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdVoznjiPrekoTelefona,id);
+                    DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznjePrekoTelefona = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona();
+                    NarucivanjeVoznjePrekoTelefona voznja = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
+
+
                     if (voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA)) {
                         int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da dodelite ovu voznju?", "Potvrda", JOptionPane.YES_NO_OPTION);
                         if (izbor == JOptionPane.YES_OPTION) {

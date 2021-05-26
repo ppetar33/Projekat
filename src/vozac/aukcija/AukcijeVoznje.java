@@ -4,6 +4,7 @@ import dispecer.dodeljivanjeVoznje.DodeljivanjeVoznje;
 import dispecer.dodeljivanjeVoznje.ProzorZaDodeljivanjeVoznji;
 import enumi.StatusVoznje;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 
 import javax.swing.*;
@@ -45,7 +46,10 @@ public class AukcijeVoznje extends DodeljivanjeVoznje {
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    NarucivanjeVoznjePrekoTelefona trazenaVoznja = ucitavanje.nadjiVoznjuNarucenuPrekoTelefonaPoId(id);
+                    DoublyLinkedList<Integer> listaIdVoznjiPrekoTelefona = ucitavanje.sortiranaListaIDvoznjiPrekoTelefona();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdVoznjiPrekoTelefona,id);
+                    DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznjePrekoTelefona = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona();
+                    NarucivanjeVoznjePrekoTelefona trazenaVoznja = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
                     ProzorZaUnosPodataka prozorZaUnosPodataka = new ProzorZaUnosPodataka(ucitavanje, trazenaVoznja);
                     prozorZaUnosPodataka.setVisible(true);
                 }

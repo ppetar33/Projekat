@@ -3,6 +3,7 @@ package dispecer.podaciAutomobila;
 import automobili.Automobil;
 import enumi.StatusVozacaIautomobila;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
 
 import javax.swing.*;
@@ -42,7 +43,11 @@ public class BrisanjeAutomobila extends PrikazAutomobila {
 
                     String id = tableModel.getValueAt(red, 0).toString();
                     int nadjiId = Integer.parseInt(id);
-                    Automobil automobil = ucitavanje.nadjiAutomobil(nadjiId);
+
+                    DoublyLinkedList<Integer> listaIdAutomobila = ucitavanje.sortiranaListaIDAutomobila();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdAutomobila,nadjiId);
+                    DoublyLinkedList<Automobil> sviAuti = ucitavanje.sviAuti();
+                    Automobil automobil = sviAuti.get(indexGdeSeNalazi);
 
                     if (automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN) {
                         if (automobil != null) {

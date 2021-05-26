@@ -246,7 +246,12 @@ public class DodavanjeVozaca extends JFrame{
                         if (slobodniAutomobil.getSelectedItem() != null) {
                             int automobilID = Integer.parseInt(slobodniAutomobil.getSelectedItem().toString());
                             automobil.setId(automobilID);
-                            Automobil automobil1 = ucitavanje.nadjiAutomobil(automobilID);
+
+                            DoublyLinkedList<Integer> listaIdAutomobila = ucitavanje.sortiranaListaIDAutomobila();
+                            int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdAutomobila,automobilID);
+                            DoublyLinkedList<Automobil> sviAuti = ucitavanje.sviAuti();
+                            Automobil automobil1 = sviAuti.get(indexGdeSeNalazi);
+
                             if (automobilID == automobil1.getId()) {
                                 automobil1.setStatusAutomobila(StatusVozacaIautomobila.ZAUZET);
                                 ucitavanje.snimanjeAutomobila(TaxiSluzbaMain.AUTOMOBILI_FAJL);

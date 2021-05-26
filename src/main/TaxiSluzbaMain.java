@@ -75,9 +75,5 @@ public class TaxiSluzbaMain {
             koliko vremena je stavio da mu treba do date adrese, true ako je dobio voznju i false ako
             nije dobio voznju.
 
-        BINARNA PRETRAGA
-            Kaze mozemo da vracamo objekat samo getujemo po indeksu iz strukture ono sto smo pronasli. A i
-            ne moramo  vratiti objekat nego mozemo da vratimo gde se nalazi u txt fajlu to sto trazimo pa
-            tu liniju obrisemo ili izmenimo sta smo vec hteli
 
 */

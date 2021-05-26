@@ -53,7 +53,7 @@ public class BrisanjeVozaca extends PrikazVozaca {
                         int idAutomobila = Integer.parseInt(idAutomobilaString);
 
                         DoublyLinkedList<Integer> listaIdAutomobila = ucitavanje.sortiranaListaIDAutomobila();
-                        int indexGdeSeNalazi = ucitavanje.nadjiAutomobilPoId(listaIdAutomobila,idAutomobila);
+                        int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdAutomobila,idAutomobila);
                         DoublyLinkedList<Automobil> sviAuti = ucitavanje.sviAuti();
                         Automobil automobil = sviAuti.get(indexGdeSeNalazi);
 

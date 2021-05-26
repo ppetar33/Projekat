@@ -77,7 +77,7 @@ public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
                         taksiSluzba.setCenaStartaVoznje(cenaStartaVoznje);
                         taksiSluzba.setCenaPoKilometru(cenaVoznjePoKilometru);
                     }
-                    ucitavanje.snimiTaksiSluzbe(TaxiSluzbaMain.AUTOMOBILI_FAJL);
+                    ucitavanje.snimiTaksiSluzbe(TaxiSluzbaMain.TAKSI_SLUZBA_FAJL);
                     JOptionPane.showMessageDialog(null, "Taksi sluzba je uspesno izmenjena!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaIzmenuTaksiSluzbe.this.setVisible(false);
                     ProzorZaIzmenuTaksiSluzbe.this.dispose();

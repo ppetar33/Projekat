@@ -3,6 +3,7 @@ package vozac.prikazVoznji;
 import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import osobe.Vozac;
@@ -112,7 +113,10 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     DefaultTableModel tableModel = (DefaultTableModel) istorijaVoznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    NarucivanjeVoznjePrekoAplikacije nadjiVoznju = ucitavanje.nadjiVoznjuNarucenuPrekoAplikacijePoId(id);
+                    DoublyLinkedList<Integer> listaIDvoznjiPrekoAplikacije = ucitavanje.sortiranaListaIDvoznjiPrekoAplikacije();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIDvoznjiPrekoAplikacije,id);
+                    DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
+                    NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
                     if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
                         JOptionPane.showMessageDialog(null, "Uspesno ste prihvatili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         nadjiVoznju.setStatusVoznje(StatusVoznje.PRIHVACENA);
@@ -140,7 +144,10 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     DefaultTableModel tableModel = (DefaultTableModel) istorijaVoznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    NarucivanjeVoznjePrekoAplikacije nadjiVoznju = ucitavanje.nadjiVoznjuNarucenuPrekoAplikacijePoId(id);
+                    DoublyLinkedList<Integer> listaIDvoznjiPrekoAplikacije = ucitavanje.sortiranaListaIDvoznjiPrekoAplikacije();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIDvoznjiPrekoAplikacije,id);
+                    DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
+                    NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
                     if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
                         JOptionPane.showMessageDialog(null, "Uspesno ste odbili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         nadjiVoznju.setStatusVoznje(StatusVoznje.ODBIJENA);
