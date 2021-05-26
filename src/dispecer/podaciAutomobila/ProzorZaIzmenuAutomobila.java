@@ -14,13 +14,13 @@ public class ProzorZaIzmenuAutomobila extends JFrame {
 
     private JLabel model = new JLabel("Model");
     private JTextField tmodel = new JTextField(20);
-    private JLabel proizvodjac = new JLabel("Model");
+    private JLabel proizvodjac = new JLabel("Proizvodjac");
     private JTextField tproizvodjac = new JTextField(20);
-    private JLabel godinaProizvodnje = new JLabel("Model");
+    private JLabel godinaProizvodnje = new JLabel("Godina proizvodnje");
     private JTextField tgodinaProizvodnje = new JTextField(20);
-    private JLabel brojRegistarskeOznake = new JLabel("Model");
+    private JLabel brojRegistarskeOznake = new JLabel("Broj registarske oznake");
     private JTextField tbrojRegistarskeOznake = new JTextField(20);
-    private JLabel brojTaksiVozila = new JLabel("Model");
+    private JLabel brojTaksiVozila = new JLabel("Broj taksi vozila");
     private JTextField tbrojTaksiVozila = new JTextField(20);
     private JLabel vrstaVozila = new JLabel("Vrsta vozila");
     private JComboBox<VrstaVozila> vrstaVozilaJComboBox = new JComboBox<VrstaVozila>(VrstaVozila.values());
