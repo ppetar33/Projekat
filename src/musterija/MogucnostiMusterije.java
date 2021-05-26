@@ -1,7 +1,8 @@
 package musterija;
 
 import main.TaxiSluzbaMain;
-import musterija.istorijaVoznji.IstorijaVoznjiMusterija;
+import musterija.istorijaVoznji.IstorijaVoznjiMusterijaAplikacija;
+import musterija.istorijaVoznji.IstorijaVoznjiMusterijaTelefon;
 import musterija.narucivanjeVoznjePrekoAplikacije.ProzorZaNarucivanjePutemAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjePrekoTelefonaProzor;
 import osobe.Dispecar;
@@ -17,7 +18,8 @@ public class MogucnostiMusterije extends JFrame{
     private JMenuBar musterijaMenu = new JMenuBar();
 
     private JMenu funkcionalnostMusterije = new JMenu("Voznje");
-    private JMenuItem istorijaVoznji = new JMenuItem("Istorija voznje");
+    private JMenuItem istorijaVoznjiAplikacija = new JMenuItem("Istorija voznje kreiranih putem aplikacije");
+    private JMenuItem istorijaVoznjiTelefon = new JMenuItem("Istorija voznje kreiranih putem telefona");
     private JMenuItem narucivanjeVoznjePrekoAplikacije = new JMenuItem("Narucivanje voznje preko aplikacije");
     private JMenuItem narucivanjeVoznjePrekoTelefona = new JMenuItem("Narucivanje voznje preko telefona");
 
@@ -43,7 +45,8 @@ public class MogucnostiMusterije extends JFrame{
     private void initGUI(){
         setJMenuBar(musterijaMenu);
         musterijaMenu.add(funkcionalnostMusterije);
-        funkcionalnostMusterije.add(istorijaVoznji);
+        funkcionalnostMusterije.add(istorijaVoznjiAplikacija);
+        funkcionalnostMusterije.add(istorijaVoznjiTelefon);
         funkcionalnostMusterije.add(narucivanjeVoznjePrekoAplikacije);
         funkcionalnostMusterije.add(narucivanjeVoznjePrekoTelefona);
         musterijaMenu.add(odjava);
@@ -52,10 +55,17 @@ public class MogucnostiMusterije extends JFrame{
     }
 
     private void initListeners(){
-        istorijaVoznji.addActionListener(new ActionListener() {
+        istorijaVoznjiAplikacija.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IstorijaVoznjiMusterija istorijaVoznjiMusterija = new IstorijaVoznjiMusterija(ucitavanje, prijavljenaMusterija);
+                IstorijaVoznjiMusterijaAplikacija istorijaVoznjiMusterija = new IstorijaVoznjiMusterijaAplikacija(ucitavanje, prijavljenaMusterija);
+                istorijaVoznjiMusterija.setVisible(true);
+            }
+        });
+        istorijaVoznjiTelefon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IstorijaVoznjiMusterijaTelefon istorijaVoznjiMusterija = new IstorijaVoznjiMusterijaTelefon(ucitavanje, prijavljenaMusterija);
                 istorijaVoznjiMusterija.setVisible(true);
             }
         });

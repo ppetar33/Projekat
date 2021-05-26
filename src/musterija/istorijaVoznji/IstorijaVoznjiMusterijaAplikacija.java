@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class IstorijaVoznjiMusterija extends JFrame {
+public class IstorijaVoznjiMusterijaAplikacija extends JFrame {
 
     private JToolBar mainJToolBar = new JToolBar();
 
@@ -31,7 +31,7 @@ public class IstorijaVoznjiMusterija extends JFrame {
     private Musterija ulogovanaMusterija;
     private Vozac vozac;
 
-    public IstorijaVoznjiMusterija(Liste ucitavanje, Musterija musterija){
+    public IstorijaVoznjiMusterijaAplikacija(Liste ucitavanje, Musterija musterija){
         this.ucitavanje = ucitavanje;
         this.ulogovanaMusterija = ulogovanaMusterija;
         setTitle("Prikaz istorije sopstvene voznje " + "(" + musterija.getIme().substring(0,1).toUpperCase() + musterija.getIme().substring(1) + ")");

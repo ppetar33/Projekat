@@ -20,7 +20,8 @@ public class MogucnostiVozaca extends JFrame {
     private JMenuBar vozacMenu = new JMenuBar();
 
     private JMenu funkcionalnostiVozaca = new JMenu("Voznje");
-    private JMenuItem prikazIstorijeSopstvenihVoznjiVoznje = new JMenuItem("Prikaz istorije sopstvenih voznji");
+    private JMenuItem prikazIstorijeSopstvenihVoznjiVoznjeTelefon = new JMenuItem("Prikaz istorije sopstvenih voznji kreirane putem telefona");
+    private JMenuItem prikazIstorijeSopstvenihVoznjiVoznjeAplikacija = new JMenuItem("Prikaz istorije sopstvenih voznji kreirane putem aplikacije");
     private JMenuItem prikazVoznjeZakazanihPrekoAplikacije = new JMenuItem("Prikaz voznji zakazanih preko aplikacije");
     private JMenuItem prikazDodeljenihVoznji = new JMenuItem("Prikaz dodeljenih voznji kreiranih putem telefona");
     private JMenuItem sumiraneStatistikeVoznji = new JMenuItem("Prikaz sumiraze statistike voznji");
@@ -53,7 +54,8 @@ public class MogucnostiVozaca extends JFrame {
         setJMenuBar(vozacMenu);
 
         vozacMenu.add(funkcionalnostiVozaca);
-        funkcionalnostiVozaca.add(prikazIstorijeSopstvenihVoznjiVoznje);
+        funkcionalnostiVozaca.add(prikazIstorijeSopstvenihVoznjiVoznjeTelefon);
+        funkcionalnostiVozaca.add(prikazIstorijeSopstvenihVoznjiVoznjeAplikacija);
         funkcionalnostiVozaca.add(prikazVoznjeZakazanihPrekoAplikacije);
         funkcionalnostiVozaca.add(prikazDodeljenihVoznji);
         funkcionalnostiVozaca.add(sumiraneStatistikeVoznji);
@@ -67,10 +69,17 @@ public class MogucnostiVozaca extends JFrame {
     }
 
     private void initListeners(){
-        prikazIstorijeSopstvenihVoznjiVoznje.addActionListener(new ActionListener() {
+        prikazIstorijeSopstvenihVoznjiVoznjeTelefon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IstorijaVoznjeVozac prozorZaPrikazIstorijeVoznji = new IstorijaVoznjeVozac(ucitavanje, prijavljeniVozac);
+                IstorijaVoznjeVozacTelefon prozorZaPrikazIstorijeVoznji = new IstorijaVoznjeVozacTelefon(ucitavanje, prijavljeniVozac);
+                prozorZaPrikazIstorijeVoznji.setVisible(true);
+            }
+        });
+        prikazIstorijeSopstvenihVoznjiVoznjeAplikacija.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IstorijaVoznjeVozacAplikacija prozorZaPrikazIstorijeVoznji = new IstorijaVoznjeVozacAplikacija(ucitavanje, prijavljeniVozac);
                 prozorZaPrikazIstorijeVoznji.setVisible(true);
             }
         });

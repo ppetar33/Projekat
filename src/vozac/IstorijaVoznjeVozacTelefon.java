@@ -3,6 +3,7 @@ package vozac;
 import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import osobe.Musterija;
 import osobe.Vozac;
 import javax.swing.*;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class IstorijaVoznjeVozac extends JFrame {
+public class IstorijaVoznjeVozacTelefon extends JFrame {
 
     private JToolBar mainJToolBar = new JToolBar();
 
@@ -25,7 +26,7 @@ public class IstorijaVoznjeVozac extends JFrame {
     private Liste ucitavanje;
     private Vozac ulogovaniVozac;
 
-    public IstorijaVoznjeVozac(Liste ucitavanje, Vozac ulogovaniVozac){
+    public IstorijaVoznjeVozacTelefon(Liste ucitavanje, Vozac ulogovaniVozac){
         this.ucitavanje = ucitavanje;
         this.ulogovaniVozac = ulogovaniVozac;
         setTitle("Prikaz istorije sopstvene voznje");
@@ -42,7 +43,7 @@ public class IstorijaVoznjeVozac extends JFrame {
         Object[][] sadrzaj = new Object[ucitavanje.getVoznjaTelefoni().size()][zaglavnje.length];
         int j = 0;
         for(int i = 0; i < ucitavanje.getVoznjaTelefoni().size(); i++){
-            Voznja voznje = ucitavanje.getVoznjaTelefoni().get(i);
+            NarucivanjeVoznjePrekoTelefona voznje = ucitavanje.getVoznjaTelefoni().get(i);
 
             Vozac ulogovaniVozac = null;
             try {
