@@ -104,27 +104,33 @@ public class DodavanjeDispecera extends JFrame{
                     String brojTelefonskeLinije = tbrojTelefonskeLinije.getText().trim();
                     Odeljenje odeljenje = (Odeljenje) odeljenjeJComboBox.getSelectedItem();
 
-                    if(osoba != null) {
-                        Dispecar dispecar = (Dispecar) osoba;
-                        dispecar.setKorisnickoIme(korisnickoIme);
-                        dispecar.setLozinka(lozinka);
-                        dispecar.setIme(ime);
-                        dispecar.setPrezime(prezime);
-                        dispecar.setJmbg(jmbg);
-                        dispecar.setAdresa(adresa);
-                        dispecar.setPol(pol);
-                        dispecar.setBrojTelefona(brojTelefona);
-                        dispecar.setPlata(plata);
-                        dispecar.setBrojTelefonskeLinije(brojTelefonskeLinije);
-                        dispecar.setOdeljenje(odeljenje);
-                    }
+                    boolean istoKorisnickoImeDispecera = ucitavanje.istoKorisnickoImeDispecera(korisnickoIme);
 
-                    Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojTelefonskeLinije, odeljenje);
-                    ucitavanje.getDispecari().add(dispecar);
-                    ucitavanje.dodavanjeKorisnika();
-                    JOptionPane.showMessageDialog(null,"Dispecer je uspesno dodat!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                    DodavanjeDispecera.this.dispose();
-                    DodavanjeDispecera.this.setVisible(false);
+                    if(istoKorisnickoImeDispecera == false) {
+                        if (osoba != null) {
+                            Dispecar dispecar = (Dispecar) osoba;
+                            dispecar.setKorisnickoIme(korisnickoIme);
+                            dispecar.setLozinka(lozinka);
+                            dispecar.setIme(ime);
+                            dispecar.setPrezime(prezime);
+                            dispecar.setJmbg(jmbg);
+                            dispecar.setAdresa(adresa);
+                            dispecar.setPol(pol);
+                            dispecar.setBrojTelefona(brojTelefona);
+                            dispecar.setPlata(plata);
+                            dispecar.setBrojTelefonskeLinije(brojTelefonskeLinije);
+                            dispecar.setOdeljenje(odeljenje);
+                        }
+
+                        Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojTelefonskeLinije, odeljenje);
+                        ucitavanje.getDispecari().add(dispecar);
+                        ucitavanje.dodavanjeKorisnika();
+                        JOptionPane.showMessageDialog(null, "Dispecer je uspesno dodat!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                        DodavanjeDispecera.this.dispose();
+                        DodavanjeDispecera.this.setVisible(false);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Dispecer sa unesenim korisnickim imenom vec posotji, pokusajte ponovo.","Obavestenje",JOptionPane.WARNING_MESSAGE);
+                    }
                 }
             }
         });
@@ -162,17 +168,26 @@ public class DodavanjeDispecera extends JFrame{
             obavestenjeZaGresku += "Polje za adresu ne sme biti prazno! \n";
             ok = false;
         }
+        if(tbrojTelefona.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za broj telefona ne sme biti prazno!\n";
+        }
         try{
             Integer.parseInt(tbrojTelefona.getText());
         }catch (NumberFormatException e){
             obavestenjeZaGresku += "Broj telefona mora biti broj! \n";
             ok = false;
         }
+        if(tplata.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za platu ne sme biti prazno!\n";
+        }
         try{
             Double.parseDouble(tplata.getText());
         }catch (NumberFormatException e){
             obavestenjeZaGresku += "Plata mora biti broj! \n";
             ok = false;
+        }
+        if(tbrojTelefonskeLinije.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za broj telefonske linije ne sme biti prazno!\n";
         }
         try{
             Integer.parseInt(tbrojTelefonskeLinije.getText());

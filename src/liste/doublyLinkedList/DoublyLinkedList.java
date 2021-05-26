@@ -1,9 +1,8 @@
 package liste.doublyLinkedList;
 
-
 import java.util.Iterator;
 
-public class DoublyLinkedList<T> implements Iterable<T>{
+public class DoublyLinkedList<T> implements Iterable<T> {
 
     ListNode<T> head, tail = null;
     private int listSize;

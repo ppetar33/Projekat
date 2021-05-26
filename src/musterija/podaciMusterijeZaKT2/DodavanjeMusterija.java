@@ -86,24 +86,30 @@ public class DodavanjeMusterija extends JFrame {
                     String brojTelefona = tbrojTelefona.getText().trim();
                     Pol pol = Pol.valueOf(polJComboBox.getSelectedItem().toString());
 
-                    if(osoba != null) {
-                        Musterija musterija = (Musterija) osoba;
-                        musterija.setIme(unosIme);
-                        musterija.setPrezime(unosPrezime);
-                        musterija.setKorisnickoIme(unosKorisnickoIme);
-                        musterija.setLozinka(unosLozinka);
-                        musterija.setAdresa(unosAdresa);
-                        musterija.setJmbg(unosJmbg);
-                        musterija.setBrojTelefona(brojTelefona);
-                        musterija.setPol(pol);
-                    }
+                    boolean istoKorisnickoImeMusterije = ucitavanje.istoKorisnickoImeMusterije(unosKorisnickoIme);
 
-                    Musterija musterija = new Musterija(unosKorisnickoIme,unosLozinka,unosIme,unosPrezime,unosJmbg,unosAdresa,pol,brojTelefona,true);
-                    ucitavanje.getMusterije().add(musterija);
-                    ucitavanje.dodavanjeKorisnika();
-                    JOptionPane.showMessageDialog(null,"Musterija je uspesno dodata!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                    DodavanjeMusterija.this.dispose();
-                    DodavanjeMusterija.this.setVisible(false);
+                    if(istoKorisnickoImeMusterije == false) {
+                        if (osoba != null) {
+                            Musterija musterija = (Musterija) osoba;
+                            musterija.setIme(unosIme);
+                            musterija.setPrezime(unosPrezime);
+                            musterija.setKorisnickoIme(unosKorisnickoIme);
+                            musterija.setLozinka(unosLozinka);
+                            musterija.setAdresa(unosAdresa);
+                            musterija.setJmbg(unosJmbg);
+                            musterija.setBrojTelefona(brojTelefona);
+                            musterija.setPol(pol);
+                        }
+
+                        Musterija musterija = new Musterija(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJmbg, unosAdresa, pol, brojTelefona, true);
+                        ucitavanje.getMusterije().add(musterija);
+                        ucitavanje.dodavanjeKorisnika();
+                        JOptionPane.showMessageDialog(null, "Musterija je uspesno dodata!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                        DodavanjeMusterija.this.dispose();
+                        DodavanjeMusterija.this.setVisible(false);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Musterija sa korisnickim imenom vec postoji, pokusajte ponovo.","Obavestenje",JOptionPane.WARNING_MESSAGE);
+                    }
                 }
             }
         });
@@ -141,11 +147,17 @@ public class DodavanjeMusterija extends JFrame {
             obavestenjeZaGresku += "Polje za adresu ne sme biti prazno! \n";
             ok = false;
         }
+        if(tbrojTelefona.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za broj telefona ne sme biti prazno!\n";
+        }
         try{
             Integer.parseInt(tbrojTelefona.getText());
         }catch (NumberFormatException e){
             obavestenjeZaGresku += "Broj telefona mora biti broj! \n";
             ok = false;
+        }
+        if(tjmbg.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za jmbg ne sme biti prazno!\n";
         }
         try{
             Integer.parseInt(tjmbg.getText());

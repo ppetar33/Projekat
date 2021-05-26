@@ -140,6 +140,9 @@ public class ProzorZaIzmenuMusterije extends JFrame {
             obavestenjeZaGresku += "Polje za adresu ne sme biti prazno! \n";
             ok = false;
         }
+        if(tbrojTelefona.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za broj telefona ne sme biti prazno!\n";
+        }
         try{
             Integer.parseInt(tbrojTelefona.getText());
         }catch (NumberFormatException e){

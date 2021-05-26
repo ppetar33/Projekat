@@ -238,47 +238,54 @@ public class DodavanjeVozaca extends JFrame{
                     double ocena = 0;
                     StatusVozacaIautomobila statusVozaca = StatusVozacaIautomobila.SLOBODAN;
 
-                    Automobil automobil = new Automobil();
-                    if(slobodniAutomobil.getSelectedItem() != null) {
-                        int automobilID = Integer.parseInt(slobodniAutomobil.getSelectedItem().toString());
-                        automobil.setId(automobilID);
-                        Automobil automobil1 = ucitavanje.nadjiAutomobil(automobilID);
-                        if(automobilID == automobil1.getId()){
-                            automobil1.setStatusAutomobila(StatusVozacaIautomobila.ZAUZET);
-                            ucitavanje.snimanjeAutomobila(TaxiSluzbaMain.AUTOMOBILI_FAJL);
+                    boolean istoKorisnickoImeVozaca = ucitavanje.istoKorisnickoImeVozaca(unosKorisnickoIme);
+
+                    if(istoKorisnickoImeVozaca == false) {
+
+                        Automobil automobil = new Automobil();
+                        if (slobodniAutomobil.getSelectedItem() != null) {
+                            int automobilID = Integer.parseInt(slobodniAutomobil.getSelectedItem().toString());
+                            automobil.setId(automobilID);
+                            Automobil automobil1 = ucitavanje.nadjiAutomobil(automobilID);
+                            if (automobilID == automobil1.getId()) {
+                                automobil1.setStatusAutomobila(StatusVozacaIautomobila.ZAUZET);
+                                ucitavanje.snimanjeAutomobila(TaxiSluzbaMain.AUTOMOBILI_FAJL);
+                            }
+                        } else {
+                            automobil.setId(0);
                         }
+
+                        if (osoba != null) {
+                            Vozac vozac = (Vozac) osoba;
+                            vozac.setIme(unosIme);
+                            vozac.setPrezime(unosPrezime);
+                            vozac.setKorisnickoIme(unosKorisnickoIme);
+                            vozac.setLozinka(unosLozinka);
+                            vozac.setAdresa(unosAdresa);
+                            vozac.setJmbg(unosJMBG);
+                            vozac.setBrojTelefona(unosBrojTelefona);
+                            vozac.setPlata(unosPlata);
+                            vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
+                            vozac.setStatusVozaca(statusVozaca);
+                        }
+
+
+                        if (muski.isSelected()) {
+                            Pol pol = Pol.MUSKI;
+                            Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca);
+                            ucitavanje.getVozaci().add(vozac);
+                        } else if (zenski.isSelected()) {
+                            Pol pol = Pol.ZENSKI;
+                            Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca);
+                            ucitavanje.getVozaci().add(vozac);
+                        }
+                        ucitavanje.dodavanjeKorisnika();
+                        JOptionPane.showMessageDialog(null, "Vozac je uspesno dodat!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                        DodavanjeVozaca.this.dispose();
+                        DodavanjeVozaca.this.setVisible(false);
                     }else{
-                        automobil.setId(0);
+                        JOptionPane.showMessageDialog(null, "Vozac sa unesenim korisnicim imenom vec postoji, pokusajte ponovo.","Obaestenje",JOptionPane.WARNING_MESSAGE);
                     }
-
-                    if(osoba != null) {
-                        Vozac vozac = (Vozac) osoba;
-                        vozac.setIme(unosIme);
-                        vozac.setPrezime(unosPrezime);
-                        vozac.setKorisnickoIme(unosKorisnickoIme);
-                        vozac.setLozinka(unosLozinka);
-                        vozac.setAdresa(unosAdresa);
-                        vozac.setJmbg(unosJMBG);
-                        vozac.setBrojTelefona(unosBrojTelefona);
-                        vozac.setPlata(unosPlata);
-                        vozac.setBrojClanskeKarte(unosBrojClanskeKarte);
-                        vozac.setStatusVozaca(statusVozaca);
-                    }
-
-
-                    if (muski.isSelected()) {
-                        Pol pol = Pol.MUSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true , unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca);
-                        ucitavanje.getVozaci().add(vozac);
-                    } else if (zenski.isSelected()) {
-                        Pol pol = Pol.ZENSKI;
-                        Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca);
-                        ucitavanje.getVozaci().add(vozac);
-                    }
-                    ucitavanje.dodavanjeKorisnika();
-                    JOptionPane.showMessageDialog(null,"Vozac je uspesno dodat!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                    DodavanjeVozaca.this.dispose();
-                    DodavanjeVozaca.this.setVisible(false);
                 }
             }
         });
@@ -308,11 +315,17 @@ public class DodavanjeVozaca extends JFrame{
             obavestenjeZaGresku += "Morate uneti adresu! \n";
             ok = false;
         }
+        if(tjmbg.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za jmbg ne sme biti prazno! \n";
+        }
         try {
             Integer.parseInt(tjmbg.getText().trim());
         }catch (NumberFormatException e){
             obavestenjeZaGresku += "Jmbg mora biti broj! \n";
             ok = false;
+        }
+        if(tbrojTelefona.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za broj telefona ne sme biti prazno! \n";
         }
         try{
             Integer.parseInt(tbrojTelefona.getText().trim());
@@ -320,11 +333,17 @@ public class DodavanjeVozaca extends JFrame{
             obavestenjeZaGresku += "Broj telefona mora biti broj! \n";
             ok = false;
         }
+        if(tplata.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za platu ne sme biti prazno! \n";
+        }
         try {
             Double.parseDouble(tplata.getText().trim());
         }catch (NumberFormatException e){
             obavestenjeZaGresku += "Plata mora biti broj! \n";
             ok = false;
+        }
+        if(tbrojClanskeKarte.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za broj clanske karte ne sme biti prazno! \n";
         }
         try{
             Integer.parseInt(tbrojClanskeKarte.getText().trim());

@@ -175,7 +175,6 @@ public class Liste {
 				automobili.add(aut);
 			}
 			br.close();
-
 		}catch (Exception e){
 			e.printStackTrace();
 			System.out.println("Greska prilikom citanja fajla");
@@ -406,6 +405,30 @@ public class Liste {
 			}
 		}
 		return null;
+	}
+	public boolean istoKorisnickoImeVozaca(String korisnickoIme){
+		for(Vozac vozac : vozaci){
+			if(vozac.getKorisnickoIme().equals(korisnickoIme)){
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean istoKorisnickoImeDispecera(String korisnickoIme){
+		for(Dispecar dispecar : dispecari){
+			if(dispecar.getKorisnickoIme().equals(korisnickoIme)){
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean istoKorisnickoImeMusterije(String korisnickoIme){
+		for(Musterija musterija : musterije){
+			if(musterija.getKorisnickoIme().equals(korisnickoIme)){
+				return true;
+			}
+		}
+		return false;
 	}
 	public DoublyLinkedList<Vozac> nadjiVozacaPoPlati(double plataUnos){
 		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();

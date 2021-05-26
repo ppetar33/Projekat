@@ -162,17 +162,26 @@ public class ProzorZaIzmenuDispecera extends JFrame {
             obavestenjeZaGresku += "Polje za adresu ne sme biti prazno! \n";
             ok = false;
         }
+        if(tbrojTelefona.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za broj telefona ne sme biti prazno!\n";
+        }
         try{
             Integer.parseInt(tbrojTelefona.getText());
         }catch (NumberFormatException e){
             obavestenjeZaGresku += "Broj telefona mora biti broj! \n";
             ok = false;
         }
+        if(tplata.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za platu ne sme biti prazno!\n";
+        }
         try{
             Double.parseDouble(tplata.getText());
         }catch (NumberFormatException e){
             obavestenjeZaGresku += "Plata mora biti broj! \n";
             ok = false;
+        }
+        if(tbrojTelefonskeLinije.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za broj telefonske linije ne sme biti prazno!\n";
         }
         try{
             Integer.parseInt(tbrojTelefonskeLinije.getText());

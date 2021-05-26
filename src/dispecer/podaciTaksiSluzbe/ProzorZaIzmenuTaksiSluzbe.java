@@ -113,11 +113,17 @@ public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
             obavestenjeZaGresku += "Morate uneti adresu taksi sluzbe! \n";
             ok = false;
         }
+        if(tcenaStartaVoznje.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za cenu starta voznje ne sme biti prazno!\n";
+        }
         try {
             Double.parseDouble(tcenaStartaVoznje.getText().trim());
         } catch (NumberFormatException e) {
             obavestenjeZaGresku += "Cena starta voznje mora biti broj!\n";
             ok = false;
+        }
+        if(tcenaVoznjePoKilometru.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za cenu voznje po kilometru ne sme biti prazno!\n";
         }
         try {
             Double.parseDouble(tcenaVoznjePoKilometru.getText().trim());

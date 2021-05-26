@@ -83,6 +83,9 @@ public class ProzorZaUnosPodataka extends JFrame {
     private boolean validacija(){
         boolean ok = true;
         String porukaObavestenja = "Molimo Vas ispravite sta je potrebno! \n";
+        if(tunosVremena.getText().trim().equals("")){
+            porukaObavestenja += "Polje za unos vremena ne sme biti prazno!\n";
+        }
         try{
             Double.parseDouble(tunosVremena.getText().trim());
         }catch (NumberFormatException e){

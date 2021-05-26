@@ -80,11 +80,17 @@ public class ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije extends JFrame 
     private boolean validacija(){
         boolean ok = true;
         String porukaObavestenja = "Molimo Vas ispravite sta je potrebno! \n";
+        if(tunosBrojaKm.getText().trim().equals("")){
+            porukaObavestenja += "Polje za unos broja kilometara ne sme biti prazno!\n";
+        }
         try{
             Double.parseDouble(tunosBrojaKm.getText().trim());
         }catch (NumberFormatException e){
             porukaObavestenja += "Unos kilometara mora biti broj! \n";
             ok = false;
+        }
+        if(ttrajanjeVoznje.getText().trim().equals("")){
+            porukaObavestenja += "Polje za unos trajanja voznje ne sme biti prazno!\n";
         }
         try{
             Double.parseDouble(ttrajanjeVoznje.getText().trim());

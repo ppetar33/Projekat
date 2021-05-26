@@ -90,6 +90,9 @@ public class Kombinovana extends JFrame {
     private boolean validacija(){
         boolean ok = true;
         String poruka = "Napravili ste gresku! \n";
+        if(tplata.getText().trim().equals("")){
+            poruka += "Polje za platu ne sme biti prazno!\n";
+        }
         try{
             Double.parseDouble(tplata.getText().trim());
         }catch (NumberFormatException e){

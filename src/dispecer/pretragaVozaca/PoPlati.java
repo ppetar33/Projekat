@@ -72,6 +72,9 @@ public class PoPlati extends JFrame {
     private boolean validacija(){
         boolean ok = true;
         String poruka = "Napravili ste gresku!\n";
+        if(tpretragaPoPlati.getText().trim().equals("")){
+            poruka += "Polje za godinu proizvodnje ne sme biti prazno!\n";
+        }
         try{
             Double.parseDouble(tpretragaPoPlati.getText().trim());
         }catch (NumberFormatException e){

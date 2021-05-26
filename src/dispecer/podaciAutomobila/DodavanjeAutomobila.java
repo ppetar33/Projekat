@@ -268,6 +268,9 @@ public class DodavanjeAutomobila extends JFrame {
             obavestenjeZaGresku += "Morate uneti proizvodjaca za automobil!\n";
             ok = false;
         }
+        if(tgodinaProizvodnje.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za godinu proizvodnje ne sme biti prazno!\n";
+        }
         try {
             Integer.parseInt(tgodinaProizvodnje.getText().trim());
         } catch (NumberFormatException e) {
@@ -277,6 +280,9 @@ public class DodavanjeAutomobila extends JFrame {
         if (tbrojRegistarskeOznake.getText().trim().equals("")){
             obavestenjeZaGresku += "Morate uneti broj registarske oznake! \n";
             ok = false;
+        }
+        if(tbrojTaksiVozila.getText().trim().equals("")){
+            obavestenjeZaGresku += "Polje za broj taksi vozila ne sme biti prazno!\n";
         }
         try {
             Integer.parseInt(tbrojTaksiVozila.getText().trim());
