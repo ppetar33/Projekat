@@ -41,9 +41,8 @@ public class IzmenaPodatakaTaksiSluzbe extends PrikazPodatakaTaksiSluzbe{
                     String idString = tableModel.getValueAt(red,0).toString();
                     int id = Integer.parseInt(idString);
 
-                    DoublyLinkedList<Integer> listaIdTaksiSluzbe = ucitavanje.sortiranaListaTaksiSluzba();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdTaksiSluzbe,id);
                     DoublyLinkedList<TaksiSluzba> taksiSluzbe = ucitavanje.taksiSluzba();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiTaksiSluzbuBinarySearch(taksiSluzbe,id);
                     TaksiSluzba taksiSluzba = taksiSluzbe.get(indexGdeSeNalazi);
 
                     if (taksiSluzba != null){

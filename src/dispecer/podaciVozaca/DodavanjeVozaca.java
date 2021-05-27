@@ -247,9 +247,8 @@ public class DodavanjeVozaca extends JFrame{
                             int automobilID = Integer.parseInt(slobodniAutomobil.getSelectedItem().toString());
                             automobil.setId(automobilID);
 
-                            DoublyLinkedList<Integer> listaIdAutomobila = ucitavanje.sortiranaListaIDAutomobila();
-                            int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdAutomobila,automobilID);
-                            DoublyLinkedList<Automobil> sviAuti = ucitavanje.sviAuti();
+                            DoublyLinkedList<Automobil> sviAuti = ucitavanje.neobrisaniAutomobili();
+                            int indexGdeSeNalazi = ucitavanje.pronadjiAutomobilBinarySearch(sviAuti,automobilID);
                             Automobil automobil1 = sviAuti.get(indexGdeSeNalazi);
 
                             if (automobilID == automobil1.getId()) {

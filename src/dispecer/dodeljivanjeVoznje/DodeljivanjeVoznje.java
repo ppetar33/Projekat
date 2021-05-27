@@ -90,9 +90,8 @@ public class DodeljivanjeVoznje extends JFrame {
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
 
-                    DoublyLinkedList<Integer> listaIdVoznjiPrekoTelefona = ucitavanje.sortiranaListaIDvoznjiPrekoTelefona();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdVoznjiPrekoTelefona,id);
                     DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznjePrekoTelefona = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeTelefonBinarySearch(sveVoznjePrekoTelefona,id);
                     NarucivanjeVoznjePrekoTelefona voznja = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
 
 

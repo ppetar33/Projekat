@@ -44,9 +44,8 @@ public class BrisanjeAutomobila extends PrikazAutomobila {
                     String id = tableModel.getValueAt(red, 0).toString();
                     int nadjiId = Integer.parseInt(id);
 
-                    DoublyLinkedList<Integer> listaIdAutomobila = ucitavanje.sortiranaListaIDAutomobila();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdAutomobila,nadjiId);
-                    DoublyLinkedList<Automobil> sviAuti = ucitavanje.sviAuti();
+                    DoublyLinkedList<Automobil> sviAuti = ucitavanje.neobrisaniAutomobili();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiAutomobilBinarySearch(sviAuti,nadjiId);
                     Automobil automobil = sviAuti.get(indexGdeSeNalazi);
 
                     if (automobil.getStatusAutomobila() == StatusVozacaIautomobila.SLOBODAN) {

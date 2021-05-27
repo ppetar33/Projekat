@@ -43,14 +43,15 @@ public class IzmenaVoznjiNarucenihPrekoAplikacije extends PrikazVoznjiPutemAplik
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String id = tableModel.getValueAt(red,0).toString();
                     int nadjiId = Integer.parseInt(id);
-                    DoublyLinkedList<Integer> listaIDvoznjiPrekoAplikacije = ucitavanje.sortiranaListaIDvoznjiPrekoAplikacije();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIDvoznjiPrekoAplikacije,nadjiId);
+
                     DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,nadjiId);
                     NarucivanjeVoznjePrekoAplikacije voznja = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
+
                     if (voznja != null){
                         int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da izmenite voznju? ", "Potvrda brisanja", JOptionPane.YES_NO_OPTION );
                         if (izbor == JOptionPane.YES_OPTION){
-                            ProzorZaIzmenuVoznjiPutemAplikacije prozorZaIzmenuVoznjiPutemAplikacije = new ProzorZaIzmenuVoznjiPutemAplikacije(ucitavanje, (NarucivanjeVoznjePrekoAplikacije) voznja);
+                            ProzorZaIzmenuVoznjiPutemAplikacije prozorZaIzmenuVoznjiPutemAplikacije = new ProzorZaIzmenuVoznjiPutemAplikacije(ucitavanje,voznja);
                             prozorZaIzmenuVoznjiPutemAplikacije.setVisible(true);
                         }
                     }else {

@@ -1,13 +1,9 @@
 package vozac.aukcija;
 
-import enumi.StatusNaruceneVoznje;
-import enumi.StatusVoznje;
 import liste.Liste;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
-import osobe.Musterija;
 import osobe.Vozac;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

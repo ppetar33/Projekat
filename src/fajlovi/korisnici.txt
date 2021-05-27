@@ -1,8 +1,8 @@
-nemanja123,nemanja321,nemanja,novakovic,1254624312353,Maksima Gorkog,MUSKI,0659242214,32000.0,12,1,VOZAC,true,3.5,ZAUZET
-mirko123,mirko321,mirko,mirkovic,0022009943124,Laze Lazarevic,MUSKI,0621204285,45000.0,43,2,VOZAC,true,4.0,ZAUZET
-jovana123,jovana321,jovana,jovanovic,8832859310421,Ive Andrica,ZENSKI,0643214532,39000.0,11,3,VOZAC,true,3.4,ZAUZET
-marina123,marina321,marina,markovic,1919282837542,Narodnog fronta,ZENSKI,0662143759,53000.0,15,4,VOZAC,true,4.5,ZAUZET
-stefan123,stefan321,stefan,stefanovic,4928357482931,Heroja Pinkija,MUSKI,0643785015,60000.0,20,5,VOZAC,true,4.0,ZAUZET
+nemanja123,nemanja321,nemanja,novakovic,1254624312353,Maksima Gorkog,MUSKI,0659242214,32000.0,12,1,VOZAC,true,3.5,SLOBODAN
+mirko123,mirko321,mirko,mirkovic,0022009943124,Laze Lazarevic,MUSKI,0621204285,45000.0,43,2,VOZAC,true,4.0,SLOBODAN
+jovana123,jovana321,jovana,jovanovic,8832859310421,Ive Andrica,ZENSKI,0643214532,39000.0,11,3,VOZAC,true,3.4,SLOBODAN
+marina123,marina321,marina,markovic,1919282837542,Narodnog fronta,ZENSKI,0662143759,53000.0,15,4,VOZAC,true,4.5,SLOBODAN
+stefan123,stefan321,stefan,stefanovic,4928357482931,Heroja Pinkija,MUSKI,0643785015,60000.0,20,5,VOZAC,true,4.0,SLOBODAN
 petar123,petar321,petar,petrovic,0102031213122,Mihaila Pupina,MUSKI,0653443213,,,,MUSTERIJA,true
 milos123,milos321,milos,milosevic,1234324561237,Strazilovska,MUSKI,0653443213,,,,MUSTERIJA,true
 jovan123,jovan321,jovan,jovanovic,9128374654182,Jevrejska 14,MUSKI,0653443213,,,,MUSTERIJA,true

@@ -40,9 +40,8 @@ public class IzmenaAutomobila extends PrikazAutomobila {
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
 
-                    DoublyLinkedList<Integer> listaIdAutomobila = ucitavanje.sortiranaListaIDAutomobila();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdAutomobila,id);
-                    DoublyLinkedList<Automobil> sviAuti = ucitavanje.sviAuti();
+                    DoublyLinkedList<Automobil> sviAuti = ucitavanje.neobrisaniAutomobili();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiAutomobilBinarySearch(sviAuti,id);
                     Automobil automobil = sviAuti.get(indexGdeSeNalazi);
 
                     if (automobil != null){

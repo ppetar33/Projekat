@@ -41,6 +41,7 @@ public class TaxiSluzbaMain {
         6. Izvestaj (10 bodova)
         7. Pri pokretanju programa potrebno je sortirati sve podatke po ID-u
         8. Binarna pretraga (5 bodova)
+        9. Ocenjivanje vozaca
 
 
 
@@ -75,5 +76,16 @@ public class TaxiSluzbaMain {
             koliko vremena je stavio da mu treba do date adrese, true ako je dobio voznju i false ako
             nije dobio voznju.
 
-
+    1.  Prosiriti klasu NarucivanjeVoznjePrekoTelefona tako da ima padajucu listu za:
+		PetFriendly + svejedno
+		Godista svih vozila + svejedno
+		Napraviti checkBox za:
+			najbrzi vozac
+			najbolje ocenjen vozac
+			najjeftiniji vozac
+    Sada je potrebno da se svaki vozac uloguje i imace formu sa jednim inputom gde unosi koliko mu treba
+    do adrese
+    Uloguje se jedan vozac, ukuca, odjavi se, pa sledeci isto tako itd
+    Sledece stvar je da se ulogujem kao dispecer i kliknem da dodeli vozaca aukcijom i vozac se dodeli
+    U zavisnosti sta je odabrano tako cu izabrati kojeg vozaca cu dodeliti
 */

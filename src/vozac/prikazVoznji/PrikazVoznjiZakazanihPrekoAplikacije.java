@@ -113,10 +113,11 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     DefaultTableModel tableModel = (DefaultTableModel) istorijaVoznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    DoublyLinkedList<Integer> listaIDvoznjiPrekoAplikacije = ucitavanje.sortiranaListaIDvoznjiPrekoAplikacije();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIDvoznjiPrekoAplikacije,id);
+
                     DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
+
                     if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
                         JOptionPane.showMessageDialog(null, "Uspesno ste prihvatili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         nadjiVoznju.setStatusVoznje(StatusVoznje.PRIHVACENA);
@@ -144,10 +145,11 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     DefaultTableModel tableModel = (DefaultTableModel) istorijaVoznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    DoublyLinkedList<Integer> listaIDvoznjiPrekoAplikacije = ucitavanje.sortiranaListaIDvoznjiPrekoAplikacije();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIDvoznjiPrekoAplikacije,id);
+
                     DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
+
                     if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
                         JOptionPane.showMessageDialog(null, "Uspesno ste odbili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         nadjiVoznju.setStatusVoznje(StatusVoznje.ODBIJENA);

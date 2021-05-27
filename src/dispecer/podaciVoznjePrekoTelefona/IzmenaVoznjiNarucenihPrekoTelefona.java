@@ -43,10 +43,11 @@ public class IzmenaVoznjiNarucenihPrekoTelefona extends PrikazVoznjiPutemTelefon
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String id = tableModel.getValueAt(red,0).toString();
                     int nadjiId = Integer.parseInt(id);
-                    DoublyLinkedList<Integer> listaIdVoznjiPrekoTelefona = ucitavanje.sortiranaListaIDvoznjiPrekoTelefona();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdVoznjiPrekoTelefona,nadjiId);
+
                     DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznjePrekoTelefona = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeTelefonBinarySearch(sveVoznjePrekoTelefona,nadjiId);
                     NarucivanjeVoznjePrekoTelefona voznja = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
+
                     if (voznja != null){
                         int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da izmenite voznju? ", "Potvrda brisanja", JOptionPane.YES_NO_OPTION );
                         if (izbor == JOptionPane.YES_OPTION){

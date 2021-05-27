@@ -43,9 +43,8 @@ public class BrisanjeVoznjiNarucenihPrekoAplikacije extends PrikazVoznjiPutemApl
                     String id = tableModel.getValueAt(red,0).toString();
                     int nadjiId = Integer.parseInt(id);
 
-                    DoublyLinkedList<Integer> listaIDvoznjiPrekoAplikacije = ucitavanje.sortiranaListaIDvoznjiPrekoAplikacije();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIDvoznjiPrekoAplikacije,nadjiId);
                     DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,nadjiId);
                     NarucivanjeVoznjePrekoAplikacije voznja = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
 
 

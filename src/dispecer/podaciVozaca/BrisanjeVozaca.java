@@ -50,12 +50,15 @@ public class BrisanjeVozaca extends PrikazVozaca {
                             ucitavanje.dodavanjeKorisnika();
                         }
                     }else {
+
+
                         int idAutomobila = Integer.parseInt(idAutomobilaString);
 
-                        DoublyLinkedList<Integer> listaIdAutomobila = ucitavanje.sortiranaListaIDAutomobila();
-                        int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdAutomobila,idAutomobila);
-                        DoublyLinkedList<Automobil> sviAuti = ucitavanje.sviAuti();
+                        DoublyLinkedList<Automobil> sviAuti = ucitavanje.neobrisaniAutomobili();
+                        int indexGdeSeNalazi = ucitavanje.pronadjiAutomobilBinarySearch(sviAuti,idAutomobila);
                         Automobil automobil = sviAuti.get(indexGdeSeNalazi);
+
+
 
                         if (vozac != null) {
                             int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete vozaca: " + vozac.getIme().substring(0, 1).toUpperCase() + vozac.getIme().substring(1) + "?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);

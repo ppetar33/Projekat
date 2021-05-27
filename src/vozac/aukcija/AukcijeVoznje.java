@@ -46,10 +46,11 @@ public class AukcijeVoznje extends DodeljivanjeVoznje {
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
-                    DoublyLinkedList<Integer> listaIdVoznjiPrekoTelefona = ucitavanje.sortiranaListaIDvoznjiPrekoTelefona();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiBinarySearch(listaIdVoznjiPrekoTelefona,id);
+
                     DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznjePrekoTelefona = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeTelefonBinarySearch(sveVoznjePrekoTelefona,id);
                     NarucivanjeVoznjePrekoTelefona trazenaVoznja = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
+
                     ProzorZaUnosPodataka prozorZaUnosPodataka = new ProzorZaUnosPodataka(ucitavanje, trazenaVoznja);
                     prozorZaUnosPodataka.setVisible(true);
                 }

@@ -412,75 +412,76 @@ public class Liste {
 
 	*/
 
-	public int pronadjiBinarySearch(DoublyLinkedList<Integer> array, int target){
-		return binarySearch(array,target,0,array.size());
+	public int pronadjiAutomobilBinarySearch(DoublyLinkedList<Automobil> array, int target){
+		return binarySearchAutomobil(array,target,0,array.size());
 	}
 
-	public int binarySearch(DoublyLinkedList<Integer> array, int target, int low, int high){
-
+	public int binarySearchAutomobil(DoublyLinkedList<Automobil> array, int target, int low, int high){
 		if(low > high){
 			return 0;
 		}
 		int mid = (low+high)/2;
-		if(array.get(mid) == target){
+		if(array.get(mid).getId() == target){
 			return mid;
 		}
-		else if(array.get(mid) > target){
-			return binarySearch(array,target,low,mid-1);
+		else if(array.get(mid).getId() > target){
+			return binarySearchAutomobil(array,target,low,mid-1);
 		}else{
-			return binarySearch(array,target,mid+1,high);
+			return binarySearchAutomobil(array,target,mid+1,high);
 		}
-
+	}
+	public int pronadjiVoznjeTelefonBinarySearch(DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> array, int target){
+		return binarySearchVoznjeTelefon(array,target,0,array.size());
+	}
+	public int binarySearchVoznjeTelefon(DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> array, int target, int low, int high){
+		if(low > high){
+			return 0;
+		}
+		int mid = (low+high)/2;
+		if(array.get(mid).getId() == target){
+			return mid;
+		}
+		else if(array.get(mid).getId() > target){
+			return binarySearchVoznjeTelefon(array,target,low,mid-1);
+		}else{
+			return binarySearchVoznjeTelefon(array,target,mid+1,high);
+		}
+	}
+	public int pronadjiTaksiSluzbuBinarySearch(DoublyLinkedList<TaksiSluzba> array, int target){
+		return binarySearchTaksiSluzba(array,target,0,array.size());
+	}
+	public int binarySearchTaksiSluzba(DoublyLinkedList<TaksiSluzba> array, int target, int low, int high){
+		if(low > high){
+			return 0;
+		}
+		int mid = (low+high)/2;
+		if(array.get(mid).getId() == target){
+			return mid;
+		}
+		else if(array.get(mid).getId() > target){
+			return binarySearchTaksiSluzba(array,target,low,mid-1);
+		}else{
+			return binarySearchTaksiSluzba(array,target,mid+1,high);
+		}
+	}
+	public int pronadjiVoznjeAplikacijaBinarySearch(DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> array, int target){
+		return binarySearchVoznjeAplikacija(array,target,0,array.size());
+	}
+	public int binarySearchVoznjeAplikacija(DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> array, int target, int low, int high){
+		if(low > high){
+			return 0;
+		}
+		int mid = (low+high)/2;
+		if(array.get(mid).getId() == target){
+			return mid;
+		}
+		else if(array.get(mid).getId() > target){
+			return binarySearchVoznjeAplikacija(array,target,low,mid-1);
+		}else{
+			return binarySearchVoznjeAplikacija(array,target,mid+1,high);
+		}
 	}
 
-	public DoublyLinkedList<Integer> sortiranaListaIDAutomobila(){
-		DoublyLinkedList<Integer> listaIDeva = new DoublyLinkedList<>();
-		for(Automobil automobil : sortiranaListaAutomobila){
-			int autoID = automobil.getId();
-			listaIDeva.add(autoID);
-		}
-		return listaIDeva;
-	}
-	public DoublyLinkedList<Automobil> sviAuti(){
-		DoublyLinkedList<Automobil> sviAuti = new DoublyLinkedList<>();
-		for(Automobil automobil : sortiranaListaAutomobila){
-			if(automobil.isObrisan()){
-				sviAuti.add(automobil);
-			}
-		}
-		return sviAuti;
-	}
-	public DoublyLinkedList<Integer> sortiranaListaTaksiSluzba(){
-		DoublyLinkedList<Integer> listaIDeva = new DoublyLinkedList<>();
-		for(TaksiSluzba taksiSluzba : taksiSluzbe){
-			int taksiSluzbaId = taksiSluzba.getId();
-			listaIDeva.add(taksiSluzbaId);
-		}
-		return listaIDeva;
-	}
-	public DoublyLinkedList<Integer> sortiranaListaIDvoznjiPrekoTelefona(){
-		DoublyLinkedList<Integer> listaIDeva = new DoublyLinkedList<>();
-		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : sortiranaListaVoznjiTelefon){
-			int voznjePrekoTelefonaID = voznjePrekoTelefona.getId();
-			listaIDeva.add(voznjePrekoTelefonaID);
-		}
-		return listaIDeva;
-	}
-	public DoublyLinkedList<Integer> sortiranaListaIDvoznjiPrekoAplikacije(){
-		DoublyLinkedList<Integer> listaIDeva = new DoublyLinkedList<>();
-		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : sortiranaListaVoznjiAplikacija){
-			int voznjePrekoAplikacijeID = voznjePrekoAplikacije.getId();
-			listaIDeva.add(voznjePrekoAplikacijeID);
-		}
-		return listaIDeva;
-	}
-	public DoublyLinkedList<TaksiSluzba> taksiSluzba(){
-		DoublyLinkedList<TaksiSluzba> taksiSluzbaLista = new DoublyLinkedList<>();
-		for(TaksiSluzba taksiSluzba : taksiSluzbe){
-			taksiSluzbaLista.add(taksiSluzba);
-		}
-		return taksiSluzbaLista;
-	}
 	public Vozac nadjiVozaca(String korisnickoIme){
 		for(Vozac vozac : vozaci){
 			if(vozac.getKorisnickoIme().equals(korisnickoIme) && vozac.isObrisan()){
@@ -959,6 +960,13 @@ public class Liste {
 			}
 		}
 		return neobAutomobili;
+	}
+	public DoublyLinkedList<TaksiSluzba> taksiSluzba(){
+		DoublyLinkedList<TaksiSluzba> taksiSluzbaLista = new DoublyLinkedList<>();
+		for(TaksiSluzba taksiSluzba : taksiSluzbe){
+			taksiSluzbaLista.add(taksiSluzba);
+		}
+		return taksiSluzbaLista;
 	}
 	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznjeKreiranePutemTelefona(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
