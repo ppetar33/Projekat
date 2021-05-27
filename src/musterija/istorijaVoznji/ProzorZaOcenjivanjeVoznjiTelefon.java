@@ -1,26 +1,27 @@
 package musterija.istorijaVoznji;
 
 import liste.Liste;
-import liste.doublyLinkedList.DoublyLinkedList;
+import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ProzorZaOcenjivanje extends JFrame {
-
+public class ProzorZaOcenjivanjeVoznjiTelefon extends JFrame{
     private JLabel oceniVozaca = new JLabel("Oceni vozaca ");
     private JComboBox<Double> ocene;
     private JButton btnOK = new JButton("Potvrdi");
     private Liste ucitavanje;
     private Vozac vozac;
+    private NarucivanjeVoznjePrekoTelefona voznja;
 
-    public ProzorZaOcenjivanje(Liste ucitavanje, Vozac vozac){
+    public ProzorZaOcenjivanjeVoznjiTelefon(Liste ucitavanje, Vozac vozac, NarucivanjeVoznjePrekoTelefona voznja){
         this.ucitavanje = ucitavanje;
         this.vozac = vozac;
+        this.voznja = voznja;
         setTitle("Oceni vozaca");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initGUI();
@@ -41,6 +42,8 @@ public class ProzorZaOcenjivanje extends JFrame {
         add(ocene);
         add(new JLabel());
         add(btnOK,"split 2");
+        this.getRootPane().setDefaultButton(btnOK);
+
 
     }
 
@@ -51,9 +54,14 @@ public class ProzorZaOcenjivanje extends JFrame {
                 double selektovanaOcena = (double) ocene.getSelectedItem();
                 double ocenaVozaca = vozac.getOcena();
                 double novaOcena = (selektovanaOcena + ocenaVozaca) / 2.0;
-                vozac.setOcena(novaOcena);
+                double novaOcenaZaokruzena = Math.round(novaOcena);
+                vozac.setOcena(novaOcenaZaokruzena);
                 ucitavanje.dodavanjeKorisnika();
+                voznja.setOcenjenVozac(true);
+                ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                 JOptionPane.showMessageDialog(null,"Uspesno ste ocenili vozaca!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                ProzorZaOcenjivanjeVoznjiTelefon.this.setVisible(false);
+                ProzorZaOcenjivanjeVoznjiTelefon.this.dispose();
             }
         });
     }

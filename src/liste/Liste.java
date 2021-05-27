@@ -199,6 +199,8 @@ public class Liste {
 				boolean obrisan = Boolean.parseBoolean(obrisanString);
 				StatusNaruceneVoznje cimeJeNarucenaVoznja = StatusNaruceneVoznje.valueOf(podaci[11]);
 				double cenaVoznje = Double.parseDouble(podaci[12]);
+				String daLiJeVozacOcenjenString = podaci[13];
+				boolean ocenjenVozac = Boolean.parseBoolean(daLiJeVozacOcenjenString);
 				Musterija musterija = new Musterija();
 				Vozac vozac = new Vozac();
 				for(Musterija musterija1 : musterije){
@@ -212,12 +214,12 @@ public class Liste {
 					}
 				}
 				if(cimeJeNarucenaVoznja.equals(StatusNaruceneVoznje.TELEFON)){
-					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,cimeJeNarucenaVoznja,cenaVoznje);
+					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,cimeJeNarucenaVoznja,cenaVoznje,ocenjenVozac);
 					voznjaTelefoni.add(narucivanjeVoznjePrekoTelefona);
 
 				}else if(cimeJeNarucenaVoznja.equals(StatusNaruceneVoznje.APLIKACIJA)){
 					String napomena = podaci[9];
-					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja,cenaVoznje);
+					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja,cenaVoznje,ocenjenVozac);
 					voznjaAplikacije.add(narucivanjeVoznjePrekoAplikacije);
 				}
 			}

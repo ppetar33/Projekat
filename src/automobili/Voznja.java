@@ -20,6 +20,7 @@ public abstract class Voznja {
     protected boolean obrisan;
     protected StatusNaruceneVoznje statusNaruceneVoznje;
     protected double cenaVoznje;
+    protected boolean ocenjenVozac;
 
     public Voznja(){
         this.id = 0;
@@ -34,9 +35,10 @@ public abstract class Voznja {
         this.obrisan = true;
         this.statusNaruceneVoznje = null;
         this.cenaVoznje = 0;
+        this.ocenjenVozac = false;
     }
 
-    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje, double cenaVoznje) {
+    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje, double cenaVoznje, boolean ocenjenVozac) {
         this.id = id;
         this.datumIvremePorudzbine = datumIvremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -49,6 +51,7 @@ public abstract class Voznja {
         this.obrisan = obrisan;
         this.statusNaruceneVoznje = statusNaruceneVoznje;
         this.cenaVoznje = cenaVoznje;
+        this.ocenjenVozac = ocenjenVozac;
     }
 
     public int getId() {
@@ -147,6 +150,14 @@ public abstract class Voznja {
         this.cenaVoznje = cenaVoznje;
     }
 
+    public boolean isOcenjenVozac() {
+        return ocenjenVozac;
+    }
+
+    public void setOcenjenVozac(boolean ocenjenVozac) {
+        this.ocenjenVozac = ocenjenVozac;
+    }
+
     @Override
     public String toString() {
         return "Voznja{" +
@@ -162,6 +173,7 @@ public abstract class Voznja {
                 ", obrisan=" + obrisan +
                 ", statusNaruceneVoznje=" + statusNaruceneVoznje +
                 ", cenaVoznje=" + cenaVoznje +
+                ", ocenjenVozac=" + ocenjenVozac +
                 '}';
     }
 }

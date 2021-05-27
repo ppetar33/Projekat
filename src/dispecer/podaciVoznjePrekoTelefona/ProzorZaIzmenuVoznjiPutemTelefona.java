@@ -103,8 +103,9 @@ public class ProzorZaIzmenuVoznjiPutemTelefona extends JFrame {
                     boolean obrisan = voznja.isObrisan();
                     StatusNaruceneVoznje statusNaruceneVoznje = voznja.getStatusNaruceneVoznje();
                     double cenaVoznje = voznja.getCenaVoznje();
+                    boolean ocenjenVozac = voznja.isOcenjenVozac();
                     if (voznja == null){
-                        voznja = new NarucivanjeVoznjePrekoTelefona(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija1,vozac,brojPredjenihKilometara,trajanjeVoznje,statusVoznje,obrisan,statusNaruceneVoznje,cenaVoznje);
+                        voznja = new NarucivanjeVoznjePrekoTelefona(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija1,vozac,brojPredjenihKilometara,trajanjeVoznje,statusVoznje,obrisan,statusNaruceneVoznje,cenaVoznje,ocenjenVozac);
                     } else {
                         voznja.setId(id);
                         voznja.setDatumIvremePorudzbine(datumIVremePorudzbine);

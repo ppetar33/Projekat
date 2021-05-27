@@ -11,8 +11,8 @@ import java.time.format.DateTimeFormatter;
 public class NarucivanjeVoznjePrekoTelefona extends Voznja{
 
 
-    public NarucivanjeVoznjePrekoTelefona (int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje, double cenaVoznje) {
-        super(id, datumIvremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojKMpredjenih, trajanjVoznje, statusVoznje, obrisan, statusNaruceneVoznje, cenaVoznje);
+    public NarucivanjeVoznjePrekoTelefona (int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje, double cenaVoznje, boolean ocenjenVozac) {
+        super(id, datumIvremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojKMpredjenih, trajanjVoznje, statusVoznje, obrisan, statusNaruceneVoznje, cenaVoznje, ocenjenVozac);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class NarucivanjeVoznjePrekoTelefona extends Voznja{
 
 
     public String pripremiZaSnimanje() {
-        return id + "," + datumIvremePorudzbine.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija.getKorisnickoIme() + "," + vozac.getKorisnickoIme() + "," + brojKMpredjenih + "," + trajanjVoznje + "," + statusVoznje + ",,"  + obrisan + "," + statusNaruceneVoznje + "," + cenaVoznje + "\n";
+        return id + "," + datumIvremePorudzbine.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija.getKorisnickoIme() + "," + vozac.getKorisnickoIme() + "," + brojKMpredjenih + "," + trajanjVoznje + "," + statusVoznje + ",,"  + obrisan + "," + statusNaruceneVoznje + "," + cenaVoznje + "," + ocenjenVozac + "\n";
     }
 
 }

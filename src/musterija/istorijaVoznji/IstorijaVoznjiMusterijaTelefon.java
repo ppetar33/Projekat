@@ -2,7 +2,7 @@ package musterija.istorijaVoznji;
 
 import enumi.StatusVoznje;
 import liste.Liste;
-import musterija.istorijaVoznji.ProzorZaOcenjivanje;
+import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import osobe.Musterija;
@@ -106,8 +106,20 @@ public class IstorijaVoznjiMusterijaTelefon extends JFrame {
                     DefaultTableModel tableModel = (DefaultTableModel) istorijaVoznjeTabela.getModel();
                     String korisnickoIme = tableModel.getValueAt(red, 4).toString();
                     Vozac vozac = ucitavanje.nadjiVozaca(korisnickoIme);
-                    ProzorZaOcenjivanje prozorZaOcenjivanje = new ProzorZaOcenjivanje(ucitavanje, vozac);
-                    prozorZaOcenjivanje.setVisible(true);
+
+                    String idVoznjeString = tableModel.getValueAt(red,0).toString();
+                    int idVoznje = Integer.parseInt(idVoznjeString);
+
+                    DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznjePrekoTelefona = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeTelefonBinarySearch(sveVoznjePrekoTelefona,idVoznje);
+                    NarucivanjeVoznjePrekoTelefona voznja = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
+
+                    if(voznja.isOcenjenVozac() == false) {
+                        ProzorZaOcenjivanjeVoznjiTelefon prozorZaOcenjivanjeVoznjiTelefon = new ProzorZaOcenjivanjeVoznjiTelefon(ucitavanje, vozac, voznja);
+                        prozorZaOcenjivanjeVoznjiTelefon.setVisible(true);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Vec ste ocenili ovu voznju!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
             }
         });
