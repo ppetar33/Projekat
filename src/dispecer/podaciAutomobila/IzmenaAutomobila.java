@@ -1,6 +1,7 @@
 package dispecer.podaciAutomobila;
 
 import automobili.Automobil;
+import dispecer.podaciVozaca.IzmenaVozaca;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 
@@ -12,7 +13,8 @@ import java.awt.event.ActionListener;
 
 public class IzmenaAutomobila extends PrikazAutomobila {
 
-    private JButton btnEdit = new JButton();
+    private JButton btnEdit = new JButton("Izmeni");
+    private JButton btnOsvezi = new JButton("Osvezi tabelu");
 
     public IzmenaAutomobila(Liste ucitavanje) {
         super(ucitavanje);
@@ -25,7 +27,9 @@ public class IzmenaAutomobila extends PrikazAutomobila {
         ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/slike/edit.gif"));
         btnEdit.setIcon(deleteIcon);
         mainToolBar.add(btnEdit);
-        add(mainToolBar, BorderLayout.NORTH);
+        mainToolBar.add(btnOsvezi);
+        add(btnEdit, BorderLayout.NORTH);
+        add(btnOsvezi, BorderLayout.SOUTH);
     }
 
     private void initListeners() {
@@ -56,6 +60,15 @@ public class IzmenaAutomobila extends PrikazAutomobila {
                     }
                 }
 
+            }
+        });
+        btnOsvezi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IzmenaAutomobila.this.setVisible(false);
+                IzmenaAutomobila.this.dispose();
+                IzmenaAutomobila izmenaAutomobila = new IzmenaAutomobila(ucitavanje);
+                izmenaAutomobila.setVisible(true);
             }
         });
     }

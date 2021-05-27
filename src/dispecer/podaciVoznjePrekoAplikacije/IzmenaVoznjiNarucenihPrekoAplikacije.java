@@ -14,7 +14,6 @@ public class IzmenaVoznjiNarucenihPrekoAplikacije extends PrikazVoznjiPutemAplik
 
     private JButton btnEdit = new JButton("Izmeni");
 
-    private Liste ucitavanje;
     private NarucivanjeVoznjePrekoAplikacije voznja;
 
     public IzmenaVoznjiNarucenihPrekoAplikacije(Liste ucitavanje, NarucivanjeVoznjePrekoAplikacije voznja){

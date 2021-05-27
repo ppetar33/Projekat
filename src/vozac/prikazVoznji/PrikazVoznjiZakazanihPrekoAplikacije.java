@@ -1,6 +1,8 @@
 package vozac.prikazVoznji;
 
 import automobili.Voznja;
+import dispecer.podaciVozaca.IzmenaVozaca;
+import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
@@ -24,6 +26,8 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
     private JToolBar mainJToolBar = new JToolBar();
     private JButton btnPrihvati = new JButton("Prihvati");
     private JButton btnOdbi = new JButton("Odbij");
+    private JButton btnOsvezi = new JButton("Osvezi");
+
 
     private DefaultTableModel table_model;
     private JTable istorijaVoznjeTabela;
@@ -36,6 +40,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
         this.ulogovaniVozac = ulogovaniVozac;
         mainJToolBar.add(btnPrihvati);
         mainJToolBar.add(btnOdbi);
+        mainJToolBar.add(btnOsvezi);
         setTitle("Prikaz svih voznji zakazanih preko aplikacije");
         setSize(1050,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -109,7 +114,6 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 if (red == -1){
                     JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else{
-                    // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE PRIHVATITI
                     DefaultTableModel tableModel = (DefaultTableModel) istorijaVoznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
@@ -141,7 +145,6 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 if (red == -1){
                     JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else{
-                    // todo AKO JE STATUS VOZNJE KREIRANA-NA-CEKANJU ONDA JE MOGUCE ODBITI
                     DefaultTableModel tableModel = (DefaultTableModel) istorijaVoznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
@@ -149,9 +152,21 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
                     int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
-
                     if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
                         JOptionPane.showMessageDialog(null, "Uspesno ste odbili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                        ulogovaniVozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
+                        ucitavanje.dodavanjeKorisnika();
+                        NarucivanjeVoznjePrekoAplikacije voznjaKojaNemaVozaca = ucitavanje.voznjaKojaNemaVozaca();
+                        if(voznjaKojaNemaVozaca != null){
+                            Vozac vozac = new Vozac();
+                            vozac.setKorisnickoIme(ulogovaniVozac.getKorisnickoIme());
+                            voznjaKojaNemaVozaca.setVozac(vozac);
+                            ulogovaniVozac.setStatusVozaca(StatusVozacaIautomobila.ZAUZET);
+                            ucitavanje.dodavanjeKorisnika();
+                            ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Sve voznje kreirane putem aplikacije imaju vozaca!", "Greska", JOptionPane.WARNING_MESSAGE);
+                        }
                         nadjiVoznju.setStatusVoznje(StatusVoznje.ODBIJENA);
                         ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                         tableModel.fireTableDataChanged();
@@ -167,11 +182,16 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 }
             }
         });
+        btnOsvezi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PrikazVoznjiZakazanihPrekoAplikacije.this.setVisible(false);
+                PrikazVoznjiZakazanihPrekoAplikacije.this.dispose();
+                PrikazVoznjiZakazanihPrekoAplikacije prikazVoznjiZakazanihPrekoAplikacije = new PrikazVoznjiZakazanihPrekoAplikacije(ucitavanje, ulogovaniVozac);
+                prikazVoznjiZakazanihPrekoAplikacije.setVisible(true);
+            }
+        });
     }
 
 }
 
-                    /*
-                        ako status voznje nije kreirana na cekanju
-                        JOptionPane.showMessageDialog(null, "Morate prihvatiti samo kreirane voznje", "Greska", JOptionPane.WARNING_MESSAGE);
-                    */

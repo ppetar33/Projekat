@@ -1,6 +1,7 @@
 package dispecer.podaciTaksiSluzbe;
 
 import automobili.Automobil;
+import dispecer.podaciVozaca.IzmenaVozaca;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import taksiSluzba.TaksiSluzba;
@@ -13,6 +14,7 @@ import java.awt.event.ActionListener;
 public class IzmenaPodatakaTaksiSluzbe extends PrikazPodatakaTaksiSluzbe{
 
     private JButton btnEdit = new JButton();
+    private JButton btnOsvezi = new JButton("Osvezi tabelu");
 
     public IzmenaPodatakaTaksiSluzbe(Liste ucitavanje, TaksiSluzba taksiSluzba) {
         super(ucitavanje,taksiSluzba);
@@ -25,7 +27,9 @@ public class IzmenaPodatakaTaksiSluzbe extends PrikazPodatakaTaksiSluzbe{
         ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/slike/edit.gif"));
         btnEdit.setIcon(deleteIcon);
         mainToolBar.add(btnEdit);
+        mainToolBar.add(btnOsvezi);
         add(mainToolBar, BorderLayout.NORTH);
+        add(btnOsvezi, BorderLayout.SOUTH);
     }
 
         private void initListeners() {
@@ -58,6 +62,15 @@ public class IzmenaPodatakaTaksiSluzbe extends PrikazPodatakaTaksiSluzbe{
                 }
             }
         });
+            btnOsvezi.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    IzmenaPodatakaTaksiSluzbe.this.setVisible(false);
+                    IzmenaPodatakaTaksiSluzbe.this.dispose();
+                    IzmenaPodatakaTaksiSluzbe izmenaPodatakaTaksiSluzbe = new IzmenaPodatakaTaksiSluzbe(ucitavanje, taksiSluzba);
+                    izmenaPodatakaTaksiSluzbe.setVisible(true);
+                }
+            });
     }
 
 }

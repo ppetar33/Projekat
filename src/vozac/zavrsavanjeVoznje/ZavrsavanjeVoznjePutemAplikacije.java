@@ -4,6 +4,7 @@ import automobili.Voznja;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
+import vozac.prikazVoznji.PrikazVoznjiZakazanihPrekoAplikacije;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -40,7 +41,7 @@ public class ZavrsavanjeVoznjePutemAplikacije extends JFrame {
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena"};
         Object[][] sadrzaj = new Object[ucitavanje.prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije().size()][zaglavnje.length];
         for(int i = 0; i < ucitavanje.prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije().size(); i++){
-            Voznja voznje = ucitavanje.prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije().get(i);
+            NarucivanjeVoznjePrekoAplikacije voznje = ucitavanje.prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije().get(i);
             sadrzaj[i][0] = voznje.getId();
             sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             sadrzaj[i][2] = voznje.getAdresaPolaska();
@@ -62,7 +63,7 @@ public class ZavrsavanjeVoznjePutemAplikacije extends JFrame {
                 sadrzaj[i][7] = voznje.getTrajanjVoznje();
             }
             sadrzaj[i][8] = voznje.getStatusVoznje();
-//            sadrzaj[i][9] = voznje.getNapomena();
+            sadrzaj[i][9] = voznje.getNapomena();
 
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavnje);

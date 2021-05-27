@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import automobili.Automobil;
+import automobili.Voznja;
 import enumi.*;
 import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
@@ -610,6 +611,14 @@ public class Liste {
 		return slobodniAutomobil;
 	}
 
+	public NarucivanjeVoznjePrekoAplikacije voznjaKojaNemaVozaca(){
+		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : sortiranaListaVoznjiAplikacija){
+			if(voznjePrekoAplikacije.getVozac().getKorisnickoIme().equals("")){
+				return voznjePrekoAplikacije;
+			}
+		}
+		return null;
+	}
 	public DoublyLinkedList<String> listaVozacaBezAutomobila(){
 		DoublyLinkedList<String> slobodanVozac = new DoublyLinkedList<>();
 		for (Vozac vozac : vozaci){

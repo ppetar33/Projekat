@@ -14,7 +14,6 @@ public class IzmenaVoznjiNarucenihPrekoTelefona extends PrikazVoznjiPutemTelefon
 
     private JButton btnEdit = new JButton("Izmeni");
 
-    private Liste ucitavanje;
     private NarucivanjeVoznjePrekoTelefona voznja;
 
     public IzmenaVoznjiNarucenihPrekoTelefona(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja){
