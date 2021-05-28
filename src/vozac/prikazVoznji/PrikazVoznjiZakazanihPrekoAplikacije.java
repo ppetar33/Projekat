@@ -123,11 +123,8 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
 
                     if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
-//                        JOptionPane.showMessageDialog(null, "Uspesno ste prihvatili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         ProzorZaPrihvatanjeVoznjeAplikacije prozorZaPrihvatanjeVoznjeAplikacije = new ProzorZaPrihvatanjeVoznjeAplikacije(ucitavanje,nadjiVoznju);
                         prozorZaPrihvatanjeVoznjeAplikacije.setVisible(true);
-//                        nadjiVoznju.setStatusVoznje(StatusVoznje.PRIHVACENA);
-//                        ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     }else {
                         JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce prihvatiti!", "Greska", JOptionPane.WARNING_MESSAGE);
                         NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznjuZakazanuPrekoAplikacije();
