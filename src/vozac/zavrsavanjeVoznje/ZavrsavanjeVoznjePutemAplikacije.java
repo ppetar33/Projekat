@@ -46,22 +46,10 @@ public class ZavrsavanjeVoznjePutemAplikacije extends JFrame {
             sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             sadrzaj[i][2] = voznje.getAdresaPolaska();
             sadrzaj[i][3] = voznje.getAdresaDestinacije();
-            sadrzaj[i][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-            if(voznje.getVozac().getKorisnickoIme() != "") {
-                sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
-            }else{
-                sadrzaj[i][5] = "Nema slobodan vozac";
-            }
-            if(voznje.getBrojKMpredjenih() == 0){
-                sadrzaj[i][6] = "/";
-            }else {
-                sadrzaj[i][6] = voznje.getBrojKMpredjenih();
-            }
-            if(voznje.getTrajanjVoznje() == 0){
-                sadrzaj[i][7] = "/";
-            }else {
-                sadrzaj[i][7] = voznje.getTrajanjVoznje();
-            }
+            sadrzaj[i][4] = voznje.getMusterija().getIme();
+            sadrzaj[i][5] = voznje.getVozac().getIme();
+            sadrzaj[i][6] = "/";
+            sadrzaj[i][7] = "/";
             sadrzaj[i][8] = voznje.getStatusVoznje();
             sadrzaj[i][9] = voznje.getNapomena();
 

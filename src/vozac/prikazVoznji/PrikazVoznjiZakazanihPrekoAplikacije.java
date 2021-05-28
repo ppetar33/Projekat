@@ -167,7 +167,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                             ucitavanje.dodavanjeKorisnika();
                             ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                         }else{
-                            JOptionPane.showMessageDialog(null, "Sve voznje kreirane putem aplikacije imaju vozaca!", "Greska", JOptionPane.WARNING_MESSAGE);
+                            System.out.println("Sve voznje kreirane putem aplikacije imaju vozaca!");
                         }
                         nadjiVoznju.setStatusVoznje(StatusVoznje.ODBIJENA);
                         ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
