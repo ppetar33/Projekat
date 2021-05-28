@@ -72,22 +72,34 @@ public class MogucnostiVozaca extends JFrame {
         prikazIstorijeSopstvenihVoznjiVoznjeTelefon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IstorijaVoznjeVozacTelefon prozorZaPrikazIstorijeVoznji = new IstorijaVoznjeVozacTelefon(ucitavanje, prijavljeniVozac);
-                prozorZaPrikazIstorijeVoznji.setVisible(true);
+                if(ucitavanje.prikazVoznjeZaIstorijuVoznjePrekoTelefona().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Trenutno nema voznji!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    IstorijaVoznjeVozacTelefon prozorZaPrikazIstorijeVoznji = new IstorijaVoznjeVozacTelefon(ucitavanje, prijavljeniVozac);
+                    prozorZaPrikazIstorijeVoznji.setVisible(true);
+                }
             }
         });
         prikazIstorijeSopstvenihVoznjiVoznjeAplikacija.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IstorijaVoznjeVozacAplikacija prozorZaPrikazIstorijeVoznji = new IstorijaVoznjeVozacAplikacija(ucitavanje, prijavljeniVozac);
-                prozorZaPrikazIstorijeVoznji.setVisible(true);
+                if(ucitavanje.prikazVoznjeZaIstorijuVoznjePrekoAplikacije().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Trenutno nema voznji!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    IstorijaVoznjeVozacAplikacija prozorZaPrikazIstorijeVoznji = new IstorijaVoznjeVozacAplikacija(ucitavanje, prijavljeniVozac);
+                    prozorZaPrikazIstorijeVoznji.setVisible(true);
+                }
             }
         });
         prikazVoznjeZakazanihPrekoAplikacije.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PrikazVoznjiZakazanihPrekoAplikacije prikazVoznjiZakazanihPrekoAplikacije = new PrikazVoznjiZakazanihPrekoAplikacije(ucitavanje, prijavljeniVozac);
-                prikazVoznjiZakazanihPrekoAplikacije.setVisible(true);
+                if(ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Trenutno nema voznji!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    PrikazVoznjiZakazanihPrekoAplikacije prikazVoznjiZakazanihPrekoAplikacije = new PrikazVoznjiZakazanihPrekoAplikacije(ucitavanje, prijavljeniVozac);
+                    prikazVoznjiZakazanihPrekoAplikacije.setVisible(true);
+                }
             }
         });
         prikazDodeljenihVoznji.addActionListener(new ActionListener() {

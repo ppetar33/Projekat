@@ -40,38 +40,20 @@ public class IstorijaVoznjeVozacAplikacija extends JFrame {
     private void initGUI(){
         add(mainJToolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena"};
-        Object[][] sadrzaj = new Object[ucitavanje.getVoznjaAplikacije().size()][zaglavnje.length];
+        Object[][] sadrzaj = new Object[ucitavanje.prikazVoznjeZaIstorijuVoznjePrekoAplikacije().size()][zaglavnje.length];
         int j = 0;
-        for(int i = 0; i < ucitavanje.getVoznjaAplikacije().size(); i++){
-            NarucivanjeVoznjePrekoAplikacije voznje = ucitavanje.getVoznjaAplikacije().get(i);
-
-            Vozac ulogovaniVozac = null;
-            try {
-                File ulogovanVozac = new File("src/fajlovi/ulogovanKorisnik.txt");
-                Scanner citanjeUlogovanogVozaca = new Scanner(ulogovanVozac);
-                while (citanjeUlogovanogVozaca.hasNextLine()) {
-                    String data = citanjeUlogovanogVozaca.nextLine();
-                    ulogovaniVozac = new Vozac();
-                    ulogovaniVozac.setKorisnickoIme(data);
-                }
-                citanjeUlogovanogVozaca.close();
-            }  catch (IOException ioException) {
-                ioException.printStackTrace();
-                System.out.println("Greska");
-            }
-
-            if(voznje.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) && voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
-                sadrzaj[j][0] = voznje.getId();
-                sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
-                sadrzaj[j][2] = voznje.getAdresaPolaska();
-                sadrzaj[j][3] = voznje.getAdresaDestinacije();
-                sadrzaj[j][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
-                sadrzaj[j][5] = voznje.getBrojKMpredjenih();
-                sadrzaj[j][6] = voznje.getTrajanjVoznje();
-                sadrzaj[j][7] = voznje.getStatusVoznje();
-                sadrzaj[j][8] = voznje.getNapomena();
-                j++;
-            }
+        for(int i = 0; i < ucitavanje.prikazVoznjeZaIstorijuVoznjePrekoAplikacije().size(); i++){
+            NarucivanjeVoznjePrekoAplikacije voznje = ucitavanje.prikazVoznjeZaIstorijuVoznjePrekoAplikacije().get(i);
+            sadrzaj[j][0] = voznje.getId();
+            sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
+            sadrzaj[j][2] = voznje.getAdresaPolaska();
+            sadrzaj[j][3] = voznje.getAdresaDestinacije();
+            sadrzaj[j][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
+            sadrzaj[j][5] = voznje.getBrojKMpredjenih();
+            sadrzaj[j][6] = voznje.getTrajanjVoznje();
+            sadrzaj[j][7] = voznje.getStatusVoznje();
+            sadrzaj[j][8] = voznje.getNapomena();
+            j++;
         }
         table_model = new DefaultTableModel(sadrzaj, zaglavnje);
         istorijaVoznjeTabela = new JTable(table_model);

@@ -965,7 +965,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<Automobil> neobrisaniAutomobili(){
 		DoublyLinkedList<Automobil> neobAutomobili = new DoublyLinkedList<Automobil>();
-		for(Automobil automobil : sortiranaListaAutomobila){
+		for(Automobil automobil : automobili){
 			if(automobil.isObrisan()){
 				neobAutomobili.add(automobil);
 			}
@@ -1070,12 +1070,58 @@ public class Liste {
 	}
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznjeKreiranePutemAplikacije(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
-		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			if(voznja.isObrisan()){
 				neobrisaneVoznje.add(voznja);
 			}
 		}
 		return neobrisaneVoznje;
+	}
+	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> prikazVoznjeZaIstorijuVoznjePrekoTelefona(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
+		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+			Vozac ulogovanVozac = null;
+			try {
+				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
+				Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
+				while (citanjeUlogovanogKorisnika.hasNextLine()) {
+					String data = citanjeUlogovanogKorisnika.nextLine();
+					ulogovanVozac = new Vozac();
+					ulogovanVozac.setKorisnickoIme(data);
+					if(voznja.isObrisan() && voznja.getVozac().getKorisnickoIme().equalsIgnoreCase(ulogovanVozac.getKorisnickoIme()) && voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA)){
+						voznje.add(voznja);
+					}
+				}
+				citanjeUlogovanogKorisnika.close();
+			}  catch (IOException ioException) {
+				ioException.printStackTrace();
+				System.out.println("Greska");
+			}
+		}
+		return voznje;
+	}
+	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> prikazVoznjeZaIstorijuVoznjePrekoAplikacije(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+			Vozac ulogovanVozac = null;
+			try {
+				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
+				Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
+				while (citanjeUlogovanogKorisnika.hasNextLine()) {
+					String data = citanjeUlogovanogKorisnika.nextLine();
+					ulogovanVozac = new Vozac();
+					ulogovanVozac.setKorisnickoIme(data);
+					if(voznja.isObrisan() && voznja.getVozac().getKorisnickoIme().equalsIgnoreCase(ulogovanVozac.getKorisnickoIme()) && voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA)){
+						voznje.add(voznja);
+					}
+				}
+				citanjeUlogovanogKorisnika.close();
+			}  catch (IOException ioException) {
+				ioException.printStackTrace();
+				System.out.println("Greska");
+			}
+		}
+		return voznje;
 	}
 
 	//PRETRAGA AUTOMOBILA
@@ -1138,7 +1184,5 @@ public class Liste {
 		}
 		return sviAutomobili;
 	}
-
-
 
 }
