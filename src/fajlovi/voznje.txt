@@ -4,4 +4,3 @@
 1,2019-03-12 04:40,Futoska pijaca 13,Dimitrija Davidovica 11,jovan123,stefan123,4.0,10.0,ZAVRSENA,,true,APLIKACIJA,270.0,false
 2,2018-08-15 10:10,Devet Jugovica 44,Josifa Marinkovica 26,milos123,stefan123,20.0,40.0,ZAVRSENA,,true,APLIKACIJA,750.0,false
 3,2021-05-20 14:03,Nemanjina 14,Usce Soping centar,petar123,stefan123,25.0,45.0,ZAVRSENA,Imam crveni kisobran,true,APLIKACIJA,900.0,false
-4,2021-05-28 16:20,1,1,petar123,nemanja123,12.0,12.0,ZAVRSENA,1,true,APLIKACIJA,510.0,false
