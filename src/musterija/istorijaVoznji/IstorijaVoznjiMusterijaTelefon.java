@@ -47,10 +47,10 @@ public class IstorijaVoznjiMusterijaTelefon extends JFrame {
     private void initGUI() {
         add(oceniVozaca, BorderLayout.NORTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Vozac","Broj predjenih km","Trajanje voznje","Status voznje"};
-        Object[][] sadrzaj = new Object[ucitavanje.getVoznjaTelefoni().size()][zaglavnje.length];
+        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().size()][zaglavnje.length];
         int j = 0;
-        for (int i = 0; i < ucitavanje.getVoznjaTelefoni().size(); i ++){
-            NarucivanjeVoznjePrekoTelefona voznje = ucitavanje.getVoznjaTelefoni().get(i);
+        for (int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().size(); i ++){
+            NarucivanjeVoznjePrekoTelefona voznje = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona().get(i);
 
             Musterija ulogovanaMusterija = null;
             try {

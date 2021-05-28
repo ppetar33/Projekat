@@ -49,20 +49,7 @@ public class PoModelu extends JFrame {
     }
 
 
-    public DoublyLinkedList<Automobil> pretragaPoModelu(DoublyLinkedList<Automobil> automobili, String model ){
-        DoublyLinkedList<Automobil> pretrazeni = new DoublyLinkedList<Automobil>();
-        for (Automobil a: automobili) {
-            if (a.getModel().equals(model)){
-                pretrazeni.add(a);
-            }
-        }
-        return pretrazeni;
-    }
-
     private void initListeners() {
-        String[] zaglavlje = new String[]{"ID", "Model", "Proizvodjac", "Godina proizvodnje", "Broj registarske oznake", "Broj taksi vozila", "Vrsta vozila", "Status automobila", "Pet Friendly"};
-
-
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,7 +61,7 @@ public class PoModelu extends JFrame {
                     if (rezultatPretrage.isEmpty()){
                         JOptionPane.showMessageDialog(null,"Automobil modela (" + unosModela + ") ne postoji!","GRESKA",JOptionPane.WARNING_MESSAGE);
                     }else {
-                        ProzorZaPretraguPoModelu prozorZaPretraguPoModelu = new ProzorZaPretraguPoModelu();
+                        ProzorZaPretraguPoModelu prozorZaPretraguPoModelu = new ProzorZaPretraguPoModelu(rezultatPretrage);
                         prozorZaPretraguPoModelu.setVisible(true);
                     }
                 }

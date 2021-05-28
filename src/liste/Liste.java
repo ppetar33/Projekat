@@ -880,7 +880,7 @@ public class Liste {
 
 	public int generisiNoviIdZaVoznjePutemTelefona(){
 		int maks = -1;
-		for (NarucivanjeVoznjePrekoTelefona prekoTelefona : sortiranaListaVoznjiTelefon) {
+		for (NarucivanjeVoznjePrekoTelefona prekoTelefona : voznjaTelefoni) {
 			if (prekoTelefona.getId() > maks) {
 				maks = prekoTelefona.getId();
 			}
@@ -889,7 +889,7 @@ public class Liste {
 	}
 	public int generisiNoviIdZaVoznjePutemAplikacije() {
 		int maks = -1;
-		for (NarucivanjeVoznjePrekoAplikacije prekoAplikacije : sortiranaListaVoznjiAplikacija){
+		for (NarucivanjeVoznjePrekoAplikacije prekoAplikacije : voznjaAplikacije){
 			if (prekoAplikacije.getId() > maks){
 				maks = prekoAplikacije.getId();
 			}
@@ -1081,12 +1081,64 @@ public class Liste {
 	//PRETRAGA AUTOMOBILA
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoModelu(String unosModela){
 		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
-		for (Automobil automobil : sortiranaListaAutomobila){
+		for (Automobil automobil : automobili){
 			if (automobil.getModel().equalsIgnoreCase(unosModela) && automobil.isObrisan()){
 				sviAutomobili.add(automobil);
 			}
 		}
 		return sviAutomobili;
 	}
+
+	public DoublyLinkedList<Automobil> nadjiAutomobilPoBrojuRegistarskeOznake(String unosRegistarskeOznake){
+		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
+		for (Automobil automobil : automobili){
+			if (automobil.getRegistarskiBroj().equalsIgnoreCase(unosRegistarskeOznake) && automobil.isObrisan()){
+				sviAutomobili.add(automobil);
+			}
+		}
+		return sviAutomobili;
+	}
+
+	public DoublyLinkedList<Automobil> nadjiAutomobilPoBrojuTaksiVozila(int unosBrojaTaksiVozila){
+		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<>();
+		for (Automobil automobil : automobili){
+			if (automobil.getBrojVozila() == unosBrojaTaksiVozila && automobil.isObrisan()){
+				sviAutomobili.add(automobil);
+			}
+		}
+		return sviAutomobili;
+	}
+
+	public DoublyLinkedList<Automobil> nadjiAutomobilPoGodiniProizvodnje(int unosGodineProizvodnje){
+		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<>();
+		for (Automobil automobil : automobili){
+			if (automobil.getGodinaProizvodnje() == unosGodineProizvodnje && automobil.isObrisan()){
+				sviAutomobili.add(automobil);
+			}
+		}
+		return sviAutomobili;
+	}
+
+	public DoublyLinkedList<Automobil> nadjiAutomobilPoProizvodjacu(String unosProizvodjaca){
+		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<>();
+		for (Automobil automobil : automobili){
+			if (automobil.getProizvodjac().equalsIgnoreCase(unosProizvodjaca) && automobil.isObrisan()){
+				sviAutomobili.add(automobil);
+			}
+		}
+		return sviAutomobili;
+	}
+
+	public DoublyLinkedList<Automobil> rezultatKombinovanePretrageAutomobili(String model, String proizvodnjac, int godinaProizvodnje, int brojTaksiVozila, String brojRegistarskeOznake){
+		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<>();
+		for (Automobil automobil : automobili){
+			if (automobil.isObrisan() && automobil.getModel().equals(model) && automobil.getProizvodjac().equals(proizvodnjac) && automobil.getGodinaProizvodnje() == godinaProizvodnje && automobil.getBrojVozila() == brojTaksiVozila && automobil.getRegistarskiBroj().equals(brojRegistarskeOznake)){
+				sviAutomobili.add(automobil);
+			}
+		}
+		return sviAutomobili;
+	}
+
+
 
 }

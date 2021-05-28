@@ -24,8 +24,8 @@ public class ProzorZaPrikazRezultataPretragePoAutomobilu extends JFrame{
     }
 
     private void initGui(DoublyLinkedList<Vozac> vozaci){
-        String[] zaglavnje = new String[] {"Korisnicko ime", "Ime", "Prezime", "Adresa", "Pol", "Broj telefona", "Plata", "Broj clanske karte", "ID automobila"};
-        Object[][] sadrzaj = new Object[vozaci.size()][zaglavnje.length];
+        String[] zaglavlje = new String[] {"Korisnicko ime", "Ime", "Prezime", "Adresa", "Pol", "Broj telefona", "Plata", "Broj clanske karte", "ID automobila"};
+        Object[][] sadrzaj = new Object[vozaci.size()][zaglavlje.length];
         for (int i = 0; i < vozaci.size(); i++) {
             Vozac vozac = vozaci.get(i);
             if(vozac.isObrisan()) {
@@ -43,7 +43,7 @@ public class ProzorZaPrikazRezultataPretragePoAutomobilu extends JFrame{
                 }
             }
         }
-        table_model = new DefaultTableModel(sadrzaj, zaglavnje);
+        table_model = new DefaultTableModel(sadrzaj, zaglavlje);
 
         vozaciTabela = new JTable(table_model);
 

@@ -52,7 +52,7 @@ public class PoPrezimenu extends JFrame{
                     if(rezultatPretrage.isEmpty()) {
                         JOptionPane.showMessageDialog(null,"Vozac sa prezimenom (" + unosPrezimena + ") ne postoji!","Greska",JOptionPane.WARNING_MESSAGE);
                     }else{
-                        ProzorZaPrikazRezultataPretragePoPrezimenu prozor = new ProzorZaPrikazRezultataPretragePoPrezimenu(rezultatPretrage);
+                        ProzorZaPrikazRezultataPretragePoImenu prozor = new ProzorZaPrikazRezultataPretragePoImenu(rezultatPretrage);
                         prozor.setVisible(true);
                     }
                 }

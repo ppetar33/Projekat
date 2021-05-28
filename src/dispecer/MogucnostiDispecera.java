@@ -19,6 +19,7 @@ import dispecer.podaciVoznjePrekoAplikacije.IzmenaVoznjiNarucenihPrekoAplikacije
 import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
 import dispecer.podaciVoznjePrekoTelefona.IzmenaVoznjiNarucenihPrekoTelefona;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
+import dispecer.pretragaAutomobila.*;
 import dispecer.pretragaVozaca.*;
 import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
@@ -73,6 +74,7 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem poGodiniProizvodnje = new JMenuItem("Po godini poizvodnje");
 	private JMenuItem poBrojuRegistarskeOznake = new JMenuItem("Po broju registarske oznake");
 	private JMenuItem poBrojuTaksiVozila = new JMenuItem("Po broju taksi vozila");
+	private JMenuItem kombinovanaAutomobili = new JMenuItem("Kombinovana");
 
 	private JMenu funkcionalnostIzvestaj = new JMenu("Izvestaj dispecera");
 	private JMenuItem dnevni = new JMenuItem("Dnevni");
@@ -140,12 +142,14 @@ public class MogucnostiDispecera extends JFrame {
 		funkcionalnostPretragaVozaca.add(poAutomobilu);
 		funkcionalnostPretragaVozaca.add(kombinovana);
 
+
 		dispecerMenu.add(funkcionalnostPretragaAutomobila);
 		funkcionalnostPretragaAutomobila.add(poModelu);
 		funkcionalnostPretragaAutomobila.add(poProizvodjacu);
 		funkcionalnostPretragaAutomobila.add(poGodiniProizvodnje);
 		funkcionalnostPretragaAutomobila.add(poBrojuRegistarskeOznake);
 		funkcionalnostPretragaAutomobila.add(poBrojuTaksiVozila);
+		funkcionalnostPretragaAutomobila.add(kombinovanaAutomobili);
 
 		dispecerMenu.add(funkcionalnostIzvestaj);
 		funkcionalnostIzvestaj.add(dnevni);
@@ -294,6 +298,7 @@ public class MogucnostiDispecera extends JFrame {
 //			}
 //		});
 
+		//PRETRAGA VOZACA
 		poImenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -329,6 +334,53 @@ public class MogucnostiDispecera extends JFrame {
 				kombinovana.setVisible(true);
 			}
 		});
+
+		//PRETRAGA AUTOMOBILA
+
+		poModelu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PoModelu poModelu = new PoModelu(ucitavanje, automobil);
+				poModelu.setVisible(true);
+			}
+		});
+		poBrojuRegistarskeOznake.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PoBrojuRegistarskeOznake poBrojuRegistarskeOznake = new PoBrojuRegistarskeOznake(ucitavanje, automobil);
+				poBrojuRegistarskeOznake.setVisible(true);
+			}
+		});
+		poBrojuTaksiVozila.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PoBrojuTaksiVozila poBrojuTaksiVozila = new PoBrojuTaksiVozila(ucitavanje,automobil);
+				poBrojuTaksiVozila.setVisible(true);
+			}
+		});
+		poGodiniProizvodnje.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PoGodiniProizvodnje poGodiniProizvodnje = new PoGodiniProizvodnje(ucitavanje,automobil);
+				poGodiniProizvodnje.setVisible(true);
+			}
+		});
+		poProizvodjacu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PoProizvodjacu poProizvodjacu = new PoProizvodjacu(ucitavanje,automobil);
+				poProizvodjacu.setVisible(true);
+			}
+		});
+		kombinovanaAutomobili.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				KombinovanaAutomobili kombinovanaAutomobili = new KombinovanaAutomobili(ucitavanje,automobil);
+				kombinovanaAutomobili.setVisible(true);
+			}
+		});
+
+		//IZVESTAJI DISPECERA
 		dnevni.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

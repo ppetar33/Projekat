@@ -62,13 +62,17 @@ public class ProzorZaUnosPodataka extends JFrame {
                         ioException.printStackTrace();
                         System.out.println("Greska");
                     }
-                    String vozacKojiUcestvujeUaukciji = ulogovanVozac.getKorisnickoIme();
-                    double ocenaVozaca = ulogovanVozac.getOcena();
-                    int godisteAutomobilaVozaca = ulogovanVozac.getAutomobili().getGodinaProizvodnje();
-                    boolean petFriendly = ulogovanVozac.getAutomobili().isPetFriendly();
+                    Vozac vozac = ucitavanje.nadjiVozaca(ulogovanVozac.getKorisnickoIme());
+                    String vozacKojiUcestvujeUaukciji = vozac.getKorisnickoIme();
+                    double ocenaVozaca = vozac.getOcena();
+                    int godisteAutomobilaVozaca = vozac.getAutomobili().getGodinaProizvodnje();
+                    boolean petFriendly = vozac.getAutomobili().isPetFriendly();
+                    System.out.println(vozacKojiUcestvujeUaukciji);
+                    System.out.println(ocenaVozaca);
+                    System.out.println(godisteAutomobilaVozaca);
+                    System.out.println(petFriendly);
 
-
-                    JOptionPane.showMessageDialog(null,"Uspesno ste uneli podatke!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Ucestvujete u aukciji, hvala.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaUnosPodataka.this.dispose();
                     ProzorZaUnosPodataka.this.setVisible(false);
                 }

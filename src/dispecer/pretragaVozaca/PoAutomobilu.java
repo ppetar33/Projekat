@@ -41,8 +41,6 @@ public class PoAutomobilu extends JFrame {
     }
 
     private void initListeners(){
-
-
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

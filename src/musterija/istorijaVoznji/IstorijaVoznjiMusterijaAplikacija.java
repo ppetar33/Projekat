@@ -46,10 +46,10 @@ public class IstorijaVoznjiMusterijaAplikacija extends JFrame {
     private void initGUI() {
         add(oceniVozaca, BorderLayout.NORTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Vozac","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena"};
-        Object[][] sadrzaj = new Object[ucitavanje.getVoznjaAplikacije().size()][zaglavnje.length];
+        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size()][zaglavnje.length];
         int j = 0;
-        for (int i = 0; i < ucitavanje.getVoznjaAplikacije().size(); i ++){
-            NarucivanjeVoznjePrekoAplikacije voznje = ucitavanje.getVoznjaAplikacije().get(i);
+        for (int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size(); i ++){
+            NarucivanjeVoznjePrekoAplikacije voznje = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().get(i);
 
             Musterija ulogovanaMusterija = null;
             try {

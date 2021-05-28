@@ -10,17 +10,17 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.util.jar.JarEntry;
 
-public class ProzorZaPretraguPoModelu extends JFrame {
+public class ProzorZaKombinovanuPretraguAutomobili extends JFrame {
 
     private DefaultTableModel table_model;
     private JTable automobiliTabela;
 
-    public ProzorZaPretraguPoModelu(DoublyLinkedList<Automobil> automobils) {
+    public ProzorZaKombinovanuPretraguAutomobili(DoublyLinkedList<Automobil> rezultatKombinovanePretrageAutomobila) {
         setTitle("Prikaz pretrage");
         setSize(1050, 200);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        initGui(automobils);
+        initGui(rezultatKombinovanePretrageAutomobila);
     }
 
     private void initGui(DoublyLinkedList<Automobil> automobils) {
