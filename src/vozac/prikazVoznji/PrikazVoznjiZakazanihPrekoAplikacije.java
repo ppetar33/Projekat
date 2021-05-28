@@ -78,7 +78,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
                 sadrzaj[j][2] = voznje.getAdresaPolaska();
                 sadrzaj[j][3] = voznje.getAdresaDestinacije();
-                sadrzaj[j][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
+                sadrzaj[j][4] = voznje.getMusterija().getIme();
                 sadrzaj[j][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();
@@ -123,9 +123,11 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
 
                     if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
-                        JOptionPane.showMessageDialog(null, "Uspesno ste prihvatili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
-                        nadjiVoznju.setStatusVoznje(StatusVoznje.PRIHVACENA);
-                        ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
+//                        JOptionPane.showMessageDialog(null, "Uspesno ste prihvatili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
+                        ProzorZaPrihvatanjeVoznjeAplikacije prozorZaPrihvatanjeVoznjeAplikacije = new ProzorZaPrihvatanjeVoznjeAplikacije(ucitavanje,nadjiVoznju);
+                        prozorZaPrihvatanjeVoznjeAplikacije.setVisible(true);
+//                        nadjiVoznju.setStatusVoznje(StatusVoznje.PRIHVACENA);
+//                        ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     }else {
                         JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce prihvatiti!", "Greska", JOptionPane.WARNING_MESSAGE);
                         NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznjuZakazanuPrekoAplikacije();

@@ -82,8 +82,8 @@ public class PrikazDodeljenihVoznjiKreiranihTelefonom extends JFrame{
                 }else{
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
-
                     int id = Integer.parseInt(idString);
+
                     DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznjePrekoTelefona = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona();
                     int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeTelefonBinarySearch(sveVoznjePrekoTelefona,id);
                     NarucivanjeVoznjePrekoTelefona nadjiVoznju = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
