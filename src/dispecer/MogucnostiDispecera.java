@@ -80,6 +80,12 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem mesecni = new JMenuItem("Mesecni");
 	private JMenuItem godisnji = new JMenuItem("Godisnji");
 
+	private JMenu funkcionalnostIzvestajVozaca = new JMenu("Izvestaj o vozacima");
+	private JMenuItem dnevniVozaci = new JMenuItem("Dnevni");
+	private JMenuItem nedeljniVozaci = new JMenuItem("Nedeljeni");
+	private JMenuItem mesecniVozaci = new JMenuItem("Mesecni");
+	private JMenuItem godisnjiVozaci = new JMenuItem("Godisnji");
+
 	private JMenu funkcionalnostDodavanjeVoznji = new JMenu("Dodeljivanje voznji");
 	private JMenuItem dodeliVoznju = new JMenuItem("Dodeli voznji");
 	private JMenuItem dodeliVoznjuAukcijom = new JMenuItem("Dodeli voznji aukcijom");
@@ -102,7 +108,7 @@ public class MogucnostiDispecera extends JFrame {
 		this.prijavljeniDispecar = prijavljeniDispecar;
 		setTitle("Dobrodosli " + prijavljeniDispecar.getIme().substring(0, 1).toUpperCase() + prijavljeniDispecar.getIme().substring(1) + " (Dispecer)");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(1000, 300);
+		setSize(1100, 300);
 		initGUI();
 		initListeners();
 		setLocationRelativeTo(null);
@@ -152,6 +158,12 @@ public class MogucnostiDispecera extends JFrame {
 		funkcionalnostIzvestaj.add(nedeljni);
 		funkcionalnostIzvestaj.add(mesecni);
 		funkcionalnostIzvestaj.add(godisnji);
+
+		dispecerMenu.add(funkcionalnostIzvestajVozaca);
+		funkcionalnostIzvestajVozaca.add(dnevniVozaci);
+		funkcionalnostIzvestajVozaca.add(nedeljniVozaci);
+		funkcionalnostIzvestajVozaca.add(mesecniVozaci);
+		funkcionalnostIzvestajVozaca.add(godisnjiVozaci);
 
 		dispecerMenu.add(funkcionalnostDodavanjeVoznji);
 		funkcionalnostDodavanjeVoznji.add(dodeliVoznju);
@@ -318,7 +330,6 @@ public class MogucnostiDispecera extends JFrame {
 		});
 
 		//PRETRAGA AUTOMOBILA
-
 		poModelu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -426,5 +437,8 @@ public class MogucnostiDispecera extends JFrame {
 				JOptionPane.showMessageDialog(null, "Uspesno ste odustali od odjave!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
+
+		//STATISTIKA VOZNJI VOZACA
+
 	}
 }

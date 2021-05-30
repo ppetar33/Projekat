@@ -57,6 +57,7 @@ public class PoBrojuTaksiVozila extends JFrame {
                     }else {
                         ProzorZaPretraguPoBrojuRegistarskeOznake prozorZaPretraguPoBrojuRegistarskeOznake = new ProzorZaPretraguPoBrojuRegistarskeOznake(rezultatPretrage);
                         prozorZaPretraguPoBrojuRegistarskeOznake.setVisible(true);
+                        PoBrojuTaksiVozila.this.setVisible(false);
                     }
                 }
             }

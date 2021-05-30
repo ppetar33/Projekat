@@ -63,6 +63,7 @@ public class PoModelu extends JFrame {
                     }else {
                         ProzorZaPretraguPoModelu prozorZaPretraguPoModelu = new ProzorZaPretraguPoModelu(rezultatPretrage);
                         prozorZaPretraguPoModelu.setVisible(true);
+                        PoModelu.this.setVisible(false);
                     }
                 }
             }

@@ -55,6 +55,7 @@ public class PoBrojuRegistarskeOznake extends JFrame {
                     }else {
                         ProzorZaPretraguPoBrojuRegistarskeOznake prozorZaPretraguPoBrojuRegistarskeOznake = new ProzorZaPretraguPoBrojuRegistarskeOznake(rezultatPretrage);
                         prozorZaPretraguPoBrojuRegistarskeOznake.setVisible(true);
+                        PoBrojuRegistarskeOznake.this.setVisible(false);
                     }
                 }
             }

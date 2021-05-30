@@ -68,7 +68,7 @@ public class ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije extends JFrame 
                     nadjiVoznju.setCenaVoznje(cenaVoznje);
                     ucitavanje.dodavanjeKorisnika();
                     ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
-                    JOptionPane.showMessageDialog(null,"Uspesno ste uneli podatke!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Cena voznje je: " + cenaVoznje + "din","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije.this.setVisible(false);
                     ProzorZaUnosPodatakaZaZavrsenuVoznjuPutemAplikacije.this.dispose();
 

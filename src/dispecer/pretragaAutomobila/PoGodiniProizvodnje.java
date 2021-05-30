@@ -55,6 +55,7 @@ public class PoGodiniProizvodnje extends JFrame {
                     }else {
                         ProzorZaPretraguPoGodiniProizvodnje prozorZaPretraguPoGodiniProizvodnje = new ProzorZaPretraguPoGodiniProizvodnje(rezultatPretrage);
                         prozorZaPretraguPoGodiniProizvodnje.setVisible(true);
+                        PoGodiniProizvodnje.this.setVisible(false);
                     }
                 }
             }

@@ -23,11 +23,11 @@ public class ProzorZaKombinovanuPretraguAutomobili extends JFrame {
         initGui(rezultatKombinovanePretrageAutomobila);
     }
 
-    private void initGui(DoublyLinkedList<Automobil> automobils) {
+    private void initGui(DoublyLinkedList<Automobil> rezultatKombinovanePretrageAutomobila) {
         String[] zaglavlje = new String[]{"ID", "Model", "Proizvodjac", "Godina proizvodnje", "Broj registarske oznake", "Broj taksi vozila", "Vrsta automobila", "Status Automobila", "Pet Friendly"};
-        Object[][] sadrzaj = new Object[automobils.size()][zaglavlje.length];
-        for (int i = 0; i < automobils.size(); i++){
-            Automobil automobil = automobils.get(i);
+        Object[][] sadrzaj = new Object[rezultatKombinovanePretrageAutomobila.size()][zaglavlje.length];
+        for (int i = 0; i < rezultatKombinovanePretrageAutomobila.size(); i++){
+            Automobil automobil = rezultatKombinovanePretrageAutomobila.get(i);
             if (automobil.isObrisan()){
                 sadrzaj[i][0] = automobil.getId();
                 sadrzaj[i][1] = automobil.getModel();

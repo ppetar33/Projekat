@@ -103,6 +103,13 @@ public class ProzorZaIzmenuAutomobila extends JFrame {
                 }
             }
         });
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ProzorZaIzmenuAutomobila.this.setVisible(false);
+                ProzorZaIzmenuAutomobila.this.dispose();
+            }
+        });
     }
 
     private void popunjavanjeTextField() {

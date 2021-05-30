@@ -55,6 +55,7 @@ public class PoProizvodjacu extends JFrame {
                     }else {
                         ProzorZaPretraguPoProizvodjacu prozorZaPretraguPoProizvodjacu = new ProzorZaPretraguPoProizvodjacu(rezultatPretrage);
                         prozorZaPretraguPoProizvodjacu.setVisible(true);
+                        PoProizvodjacu.this.setVisible(false);
                     }
                 }
             }

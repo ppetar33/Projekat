@@ -27,7 +27,7 @@ public class ZavrsavanjeVoznjePutemAplikacije extends JFrame {
     public ZavrsavanjeVoznjePutemAplikacije(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
         mainJtoolBar.add(btnZavrsi);
-        setTitle("Zavrsavanje voznje");
+        setTitle("Zavrsavanje voznje putem aplikacije");
         setSize(1100, 300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);

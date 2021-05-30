@@ -29,6 +29,12 @@ public class MogucnostiVozaca extends JFrame {
     private JMenuItem zavrsavanjeVoznje = new JMenuItem("Zavrsavanje voznje kreirane putem telefona");
     private JMenuItem zavrsavanjeVoznjePutemAplikacije = new JMenuItem("Zavrsavanje voznje kreirane putem aplikacije");
 
+    private JMenu funkcionalnostStatistika = new JMenu("Statistika voznji");
+    private JMenuItem dnevna = new JMenuItem("Dnevna");
+    private JMenuItem nedeljna = new JMenuItem("Nedeljena");
+    private JMenuItem mesecna = new JMenuItem("Mesecna");
+    private JMenuItem godisnja = new JMenuItem("Godisnja");
+
 
     private JMenu odjava = new JMenu("Odjava");
     private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
@@ -62,6 +68,12 @@ public class MogucnostiVozaca extends JFrame {
         funkcionalnostiVozaca.add(aukcijeVoznje);
         funkcionalnostiVozaca.add(zavrsavanjeVoznje);
         funkcionalnostiVozaca.add(zavrsavanjeVoznjePutemAplikacije);
+
+        vozacMenu.add(funkcionalnostStatistika);
+        funkcionalnostStatistika.add(dnevna);
+        funkcionalnostStatistika.add(nedeljna);
+        funkcionalnostStatistika.add(mesecna);
+        funkcionalnostStatistika.add(godisnja);
 
         vozacMenu.add(odjava);
         odjava.add(potvrdaZaOdjavu);
@@ -151,6 +163,9 @@ public class MogucnostiVozaca extends JFrame {
                 }
             }
         });
+
+        //STATISTIKA VOZNJI
+
         potvrdaZaOdjavu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

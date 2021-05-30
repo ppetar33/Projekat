@@ -82,6 +82,7 @@ public class KombinovanaAutomobili extends JFrame {
                     }else{
                         ProzorZaKombinovanuPretraguAutomobili prozorZaKombinovanuPretraguAutomobili = new ProzorZaKombinovanuPretraguAutomobili(rezultatKombinovanePretrageAutomobila);
                         prozorZaKombinovanuPretraguAutomobili.setVisible(true);
+                        KombinovanaAutomobili.this.setVisible(false);
                     }
                 }
             }
@@ -108,11 +109,17 @@ public class KombinovanaAutomobili extends JFrame {
         if (tbrojRegistarskeOznake.getText().trim().equals("")){
             poruka += "Polje za broj registarske oznake ne sme biti prazno!\n";
         }
+        if (tgodinaProizvodnje.getText().trim().equals("")){
+            poruka += "Polje za godinu proizvodnje ne sme biti prazno!\n";
+        }
         try{
             Double.parseDouble(tgodinaProizvodnje.getText().trim());
         }catch (NumberFormatException e){
             poruka += "Godina proizvodnje mora biti broj! \n";
             ok = false;
+        }
+        if (tbrojTaksiVozila.getText().trim().equals("")){
+            poruka += "Polje za broj taksi vozila ne sme biti prazno!\n";
         }
         try{
             Double.parseDouble(tbrojTaksiVozila.getText().trim());

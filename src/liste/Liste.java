@@ -874,6 +874,73 @@ public class Liste {
 		return vozaci;
 	}
 
+	//DNEVNI IZVESTAJ ZA VOZACE
+
+
+
+
+
+	//STATISTIKA VOZNJI ZA VOZACA NA DNEVNOM NIVOU
+	public String ulogovanKorisnik(){
+		Vozac ulogovanVozac = null;
+		try {
+			File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
+			Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
+			while (citanjeUlogovanogKorisnika.hasNext()){
+				String data = citanjeUlogovanogKorisnika.nextLine();
+				ulogovanVozac = new Vozac();
+				ulogovanVozac.setKorisnickoIme(data);
+			}
+			citanjeUlogovanogKorisnika.close();
+		}catch (IOException ioException){
+			ioException.printStackTrace();
+			System.out.println("Greska");
+		}
+		return ulogovanVozac.getKorisnickoIme();
+	}
+
+
+	public boolean nadjiDatumZaStatistikuNaDnevnomNivou(String datum){
+		String ulogovan = ulogovanKorisnik();
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getVozac().equals(ulogovan) && voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
+				return true;
+			}
+		}
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getVozac().equals(ulogovan) && voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
+				return true;
+			}
+		}
+		return false;
+	}
+	public int uporediDatumIVoznjeAplikacijomZaStatistikuDnevnu(String datum){
+		int counter = 0;
+		String ulogovan = ulogovanKorisnik();
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getVozac().equals(ulogovan) && voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusNaruceneVoznje() == StatusNaruceneVoznje.APLIKACIJA && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
+				counter++;
+			}
+		}
+		return counter;
+	}
+	public int uporediDatumIVoznjeTelefonomZaStatistikuDnevnu(String datum){
+		int counter = 0;
+		String ulogovan = ulogovanKorisnik();
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			if(voznja.getVozac().equals(ulogovan) && voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusNaruceneVoznje() == StatusNaruceneVoznje.TELEFON && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+
+
+
 	/*
 		GENERISI NOVI ID ZA VOZNJE
 	*/
@@ -1023,7 +1090,7 @@ public class Liste {
 
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
-		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
 			Vozac ulogovanVozac = null;
 			try {
 				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
@@ -1146,7 +1213,7 @@ public class Liste {
 	}
 
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoBrojuTaksiVozila(int unosBrojaTaksiVozila){
-		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<>();
+		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
 		for (Automobil automobil : automobili){
 			if (automobil.getBrojVozila() == unosBrojaTaksiVozila && automobil.isObrisan()){
 				sviAutomobili.add(automobil);
@@ -1156,7 +1223,7 @@ public class Liste {
 	}
 
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoGodiniProizvodnje(int unosGodineProizvodnje){
-		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<>();
+		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
 		for (Automobil automobil : automobili){
 			if (automobil.getGodinaProizvodnje() == unosGodineProizvodnje && automobil.isObrisan()){
 				sviAutomobili.add(automobil);
@@ -1166,7 +1233,7 @@ public class Liste {
 	}
 
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoProizvodjacu(String unosProizvodjaca){
-		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<>();
+		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
 		for (Automobil automobil : automobili){
 			if (automobil.getProizvodjac().equalsIgnoreCase(unosProizvodjaca) && automobil.isObrisan()){
 				sviAutomobili.add(automobil);
@@ -1176,13 +1243,14 @@ public class Liste {
 	}
 
 	public DoublyLinkedList<Automobil> rezultatKombinovanePretrageAutomobili(String model, String proizvodnjac, int godinaProizvodnje, int brojTaksiVozila, String brojRegistarskeOznake){
-		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<>();
+		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
 		for (Automobil automobil : automobili){
-			if (automobil.isObrisan() && automobil.getModel().equals(model) && automobil.getProizvodjac().equals(proizvodnjac) && automobil.getGodinaProizvodnje() == godinaProizvodnje && automobil.getBrojVozila() == brojTaksiVozila && automobil.getRegistarskiBroj().equals(brojRegistarskeOznake)){
+			if (automobil.isObrisan() && automobil.getModel().equalsIgnoreCase(model) && automobil.getProizvodjac().equalsIgnoreCase(proizvodnjac) && automobil.getGodinaProizvodnje() == godinaProizvodnje && automobil.getBrojVozila() == brojTaksiVozila && automobil.getRegistarskiBroj().equalsIgnoreCase(brojRegistarskeOznake)){
 				sviAutomobili.add(automobil);
 			}
 		}
 		return sviAutomobili;
 	}
+
 
 }
