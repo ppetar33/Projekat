@@ -1,7 +1,5 @@
 package vozac.prikazVoznji;
 
-import automobili.Voznja;
-import dispecer.podaciVozaca.IzmenaVozaca;
 import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
@@ -78,7 +76,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                 sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
                 sadrzaj[j][2] = voznje.getAdresaPolaska();
                 sadrzaj[j][3] = voznje.getAdresaDestinacije();
-                sadrzaj[j][4] = voznje.getMusterija().getIme();
+                sadrzaj[j][4] = voznje.getMusterija().getKorisnickoIme();
                 sadrzaj[j][5] = voznje.getBrojKMpredjenih();
                 sadrzaj[j][6] = voznje.getTrajanjVoznje();
                 sadrzaj[j][7] = voznje.getStatusVoznje();

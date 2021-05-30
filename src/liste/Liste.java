@@ -1090,7 +1090,7 @@ public class Liste {
 
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			Vozac ulogovanVozac = null;
 			try {
 				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");

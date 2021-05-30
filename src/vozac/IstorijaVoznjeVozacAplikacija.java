@@ -48,7 +48,7 @@ public class IstorijaVoznjeVozacAplikacija extends JFrame {
             sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
             sadrzaj[j][2] = voznje.getAdresaPolaska();
             sadrzaj[j][3] = voznje.getAdresaDestinacije();
-            sadrzaj[j][4] = voznje.getMusterija().getIme().substring(0,1).toUpperCase() + voznje.getMusterija().getIme().substring(1);
+            sadrzaj[j][4] = voznje.getMusterija().getKorisnickoIme();
             sadrzaj[j][5] = voznje.getBrojKMpredjenih();
             sadrzaj[j][6] = voznje.getTrajanjVoznje();
             sadrzaj[j][7] = voznje.getStatusVoznje();
