@@ -152,13 +152,14 @@ public class Liste {
 					String idAutomobilaString = split[10];
 					int idAutomobila = Integer.parseInt(idAutomobilaString);
 					StatusVozacaIautomobila statusVozaca = StatusVozacaIautomobila.valueOf(split[14]);
+					int brojOdradjenihVoznji = Integer.parseInt(split[15]);
 					Automobil automobil = new Automobil();
 					for(Automobil automobil1 : automobili){
 						if(idAutomobila == automobil1.getId()){
 							automobil = automobil1;
 						}
 					}
-					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojKartice, automobil, ocena, statusVozaca);
+					Vozac vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojKartice, automobil, ocena, statusVozaca, brojOdradjenihVoznji);
 					vozaci.add(vozac);
 				}
 			}
@@ -283,7 +284,8 @@ public class Liste {
 				int godisteAutomobila = Integer.parseInt(podaci[7]);
 				boolean dobioVoznju = Boolean.parseBoolean(podaci[8]);
 				StatusNaruceneVoznje statusNaruceneVoznje = StatusNaruceneVoznje.valueOf(podaci[9]);
-				Aukcija aukcija = new Aukcija(id,izborMusterije,IDvoznje,vozacKojiUcestvujeUaukciji,vremeKojeJeUneoVozac,ocenaVozaca,petFriendly,godisteAutomobila,dobioVoznju,statusNaruceneVoznje);
+				int brojVoznjiKojeJeObavioVozac = Integer.parseInt(podaci[10]);
+				Aukcija aukcija = new Aukcija(id,izborMusterije,IDvoznje,vozacKojiUcestvujeUaukciji,vremeKojeJeUneoVozac,ocenaVozaca,petFriendly,godisteAutomobila,dobioVoznju,statusNaruceneVoznje,brojVoznjiKojeJeObavioVozac);
 				istorijaAukcija.add(aukcija);
 			}
 			br.close();
@@ -317,7 +319,8 @@ public class Liste {
 						vozac.getAutomobili().getId() + "," + "VOZAC" + "," +
 						vozac.isObrisan() + "," +
 						vozac.getOcena() +  "," +
-						vozac.getStatusVozaca() + "\n";
+						vozac.getStatusVozaca() + "," +
+						vozac.getBrojOdradjenihVoznji() + "\n";
 			}
 			for (Musterija musterija : musterije) {
 				content += musterija.getKorisnickoIme() + "," +

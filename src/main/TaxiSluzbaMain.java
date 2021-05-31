@@ -48,26 +48,9 @@ public class TaxiSluzbaMain {
 
     ODRADITI:
         1. obrisati visak klasa i rasporediti klase koje su za aukciju gde treba
-        2. dodati kod narucivanja voznje telefonom/aplikacijom najiskusnijeg vozaca(vozac koji je imao najvise voznji)
-        3. napraviti algoritam ako je musteriji svejedno kakav ce vozac biti, onda da izbaci
+        2. napraviti algoritam ako je musteriji svejedno kakav ce vozac biti, onda da izbaci
         najbolju mogucu situaciju vozaca npr najbrzi, da je pet friendly i da je najbolje ocenjen
         4. refaktorisati kod za pretragu i za izvestaje
-
-   ODRADITI:
-
-   2. dodati kod narucivanja voznje telefonom/aplikacijom najiskusnijeg vozaca(vozac koji je imao najvise voznji)
-       ovo se moze odraditi tako sto kod vozaca staviti novi atribut koliko voznji je imao
-       taj atribut je potrebn ubaciti u ucitavanje korisnika i u snimanje vozaca
-       kod dodavanja vozaca ubaciti da taj broj bude 0 jer nije imao voznju cim je dodat sad
-       kada vozac prihvati voznju uzeti taj broj voznji dodati mu +1 i sacuvati u fajlu
-       kod narucivanja voznje ubaciti da moze da se izabere i najiskusniji vozac
-       najiskusnijeg vozaca cu proveriti tako sto cu preuzeti te brojeve i naci najveci kao kad trazi najnoviji automobil
-       to sve treba izmeniti kod voznji narucenih putem telefona i kod voznji narucenih preko aplikacije
-       kada dodam ovaj atribut potrebno je proveriti sve tacke sto se ticu objektnog
-       +
-       izvestaji i pretraga
-
-
 
     PITATI ASISTENTA:
         automobili i voznje imaju ID i pri ucitavanju treba da ih sortiramo po kljucu (id)

@@ -138,6 +138,7 @@ public class ProzorZaDodeljivanjeVoznjiTelefonomAukcijom extends JFrame{
                             }
                         }
                         ucitavanje.snimiIstorijuAukcija("istorijaAukcija.txt");
+
                     }
                 }
             }

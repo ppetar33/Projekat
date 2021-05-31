@@ -11,6 +11,7 @@ public class Vozac extends Osoba {
 	private Automobil automobili;
 	private double ocena;
 	private StatusVozacaIautomobila statusVozaca;
+	private int brojOdradjenihVoznji;
 
 	public Vozac() {
 		this.plata = 0;
@@ -18,16 +19,18 @@ public class Vozac extends Osoba {
 		this.automobili = null;
 		this.ocena = 0;
 		this.statusVozaca = null;
+		this.brojOdradjenihVoznji = 0;
 	}
 
 	public Vozac(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-				 Pol pol, String brojTelefona, boolean obrisan,double plata, int brojClanskeKarte, Automobil automobili, double ocena, StatusVozacaIautomobila statusVozaca) {
+				 Pol pol, String brojTelefona, boolean obrisan,double plata, int brojClanskeKarte, Automobil automobili, double ocena, StatusVozacaIautomobila statusVozaca, int brojOdradjenihVoznji) {
 		super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
 		this.plata = plata;
 		this.brojClanskeKarte = brojClanskeKarte;
 		this.automobili = automobili;
 		this.ocena = ocena;
 		this.statusVozaca = statusVozaca;
+		this.brojOdradjenihVoznji = brojOdradjenihVoznji;
 	}
 
 	public double getPlata() {
@@ -70,6 +73,14 @@ public class Vozac extends Osoba {
 		this.statusVozaca = statusVozaca;
 	}
 
+	public int getBrojOdradjenihVoznji() {
+		return brojOdradjenihVoznji;
+	}
+
+	public void setBrojOdradjenihVoznji(int brojOdradjenihVoznji) {
+		this.brojOdradjenihVoznji = brojOdradjenihVoznji;
+	}
+
 	@Override
 	public String toString() {
 		return "Vozac{" +
@@ -78,6 +89,7 @@ public class Vozac extends Osoba {
 				", automobili=" + automobili +
 				", ocena=" + ocena +
 				", statusVozaca=" + statusVozaca +
+				", brojOdradjenihVoznji=" + brojOdradjenihVoznji +
 				"} " + super.toString();
 	}
 }

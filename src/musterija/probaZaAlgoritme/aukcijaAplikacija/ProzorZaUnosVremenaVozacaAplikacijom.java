@@ -74,8 +74,9 @@ public class ProzorZaUnosVremenaVozacaAplikacijom extends JFrame {
                     int godisteAutomobilaVozaca = vozac.getAutomobili().getGodinaProizvodnje();
                     boolean petFriendly = vozac.getAutomobili().isPetFriendly();
                     StatusNaruceneVoznje statusNaruceneVoznje = StatusNaruceneVoznje.APLIKACIJA;
+                    int brojVoznjiKojeJeObavio = vozac.getBrojOdradjenihVoznji();
 
-                    Aukcija aukcija = new Aukcija(idAukcije,slektovanaMogucnost,idVoznje,vozacKojiUcestvujeUaukciji,unosVremena,ocenaVozaca,petFriendly,godisteAutomobilaVozaca,false,statusNaruceneVoznje);
+                    Aukcija aukcija = new Aukcija(idAukcije,slektovanaMogucnost,idVoznje,vozacKojiUcestvujeUaukciji,unosVremena,ocenaVozaca,petFriendly,godisteAutomobilaVozaca,false,statusNaruceneVoznje,brojVoznjiKojeJeObavio);
                     ucitavanje.getIstorijaAukcija().add(aukcija);
                     ucitavanje.snimiIstorijuAukcija("istorijaAukcija.txt");
 

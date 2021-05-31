@@ -94,8 +94,9 @@ public class ProzorZaIzmenuVozaca extends JFrame {
                     boolean obrisan = vozac.isObrisan();
                     double ocena = vozac.getOcena();
                     StatusVozacaIautomobila statusVozaca = vozac.getStatusVozaca();
+                    int brojOdradjenihVoznji = vozac.getBrojOdradjenihVoznji();
                     if (vozac == null) {
-                        vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojClanskeKarte, new Automobil(), ocena, statusVozaca);
+                        vozac = new Vozac(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojClanskeKarte, new Automobil(), ocena, statusVozaca,brojOdradjenihVoznji);
                     } else {
                         vozac.setKorisnickoIme(korisnickoIme);
                         vozac.setLozinka(lozinka);

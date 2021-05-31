@@ -15,6 +15,7 @@ public class Aukcija {
     private int godisteAutomobila;
     private boolean dobioVoznju;
     private StatusNaruceneVoznje statusNaruceneVoznje;
+    private int brojVoznjiKojeJeObavioVozac;
 
     public Aukcija(){
         this.id = 0;
@@ -27,9 +28,10 @@ public class Aukcija {
         this.godisteAutomobila = 0;
         this.dobioVoznju = false;
         this.statusNaruceneVoznje = null;
+        this.brojVoznjiKojeJeObavioVozac = 0;
     }
 
-    public Aukcija(int id, String izborMusterije, int IDvoznje, String vozacKojiUcestvujeUaukciji, int vremeKojeJeUneoVozac, double ocenaVozaca, boolean petFriendly, int godisteAutomobila, boolean dobioVoznju, StatusNaruceneVoznje statusNaruceneVoznje) {
+    public Aukcija(int id, String izborMusterije, int IDvoznje, String vozacKojiUcestvujeUaukciji, int vremeKojeJeUneoVozac, double ocenaVozaca, boolean petFriendly, int godisteAutomobila, boolean dobioVoznju, StatusNaruceneVoznje statusNaruceneVoznje, int brojVoznjiKojeJeObavioVozac) {
         this.id = id;
         this.izborMusterije = izborMusterije;
         this.IDvoznje = IDvoznje;
@@ -40,6 +42,7 @@ public class Aukcija {
         this.godisteAutomobila = godisteAutomobila;
         this.dobioVoznju = dobioVoznju;
         this.statusNaruceneVoznje = statusNaruceneVoznje;
+        this.brojVoznjiKojeJeObavioVozac = brojVoznjiKojeJeObavioVozac;
     }
 
     public int getId() {
@@ -122,6 +125,14 @@ public class Aukcija {
         this.statusNaruceneVoznje = statusNaruceneVoznje;
     }
 
+    public int getBrojVoznjiKojeJeObavioVozac() {
+        return brojVoznjiKojeJeObavioVozac;
+    }
+
+    public void setBrojVoznjiKojeJeObavioVozac(int brojVoznjiKojeJeObavioVozac) {
+        this.brojVoznjiKojeJeObavioVozac = brojVoznjiKojeJeObavioVozac;
+    }
+
     @Override
     public String toString() {
         return "Aukcija{" +
@@ -135,10 +146,11 @@ public class Aukcija {
                 ", godisteAutomobila=" + godisteAutomobila +
                 ", dobioVoznju=" + dobioVoznju +
                 ", statusNaruceneVoznje=" + statusNaruceneVoznje +
+                ", brojVoznjiKojeJeObavioVozac=" + brojVoznjiKojeJeObavioVozac +
                 '}';
     }
 
     public String pripremiZaSnimanjeIstorijuAukcija(){
-        return id + "," + izborMusterije + "," + IDvoznje + "," + vozacKojiUcestvujeUaukciji + "," + vremeKojeJeUneoVozac + "," + ocenaVozaca + "," + petFriendly + "," + godisteAutomobila + "," + dobioVoznju + "," + statusNaruceneVoznje + "\n";
+        return id + "," + izborMusterije + "," + IDvoznje + "," + vozacKojiUcestvujeUaukciji + "," + vremeKojeJeUneoVozac + "," + ocenaVozaca + "," + petFriendly + "," + godisteAutomobila + "," + dobioVoznju + "," + statusNaruceneVoznje + "," + brojVoznjiKojeJeObavioVozac + "\n";
     }
 }

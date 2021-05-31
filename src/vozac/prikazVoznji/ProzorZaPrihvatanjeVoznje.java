@@ -84,6 +84,11 @@ public class ProzorZaPrihvatanjeVoznje extends JFrame {
                     String vozac = voznja.getVozac().getKorisnickoIme();
                     Vozac vozac1 = new Vozac();
                     vozac1.setKorisnickoIme(vozac);
+                    Vozac vozacZaPovecanjeBrojaVoznji = ucitavanje.nadjiVozaca(vozac1.getKorisnickoIme());
+                    int brojOdradjenihVoznji = vozacZaPovecanjeBrojaVoznji.getBrojOdradjenihVoznji();
+                    int noviBrojOdradjenihVoznji = brojOdradjenihVoznji + 1;
+                    vozacZaPovecanjeBrojaVoznji.setBrojOdradjenihVoznji(noviBrojOdradjenihVoznji);
+                    ucitavanje.dodavanjeKorisnika();
                     double brojKmPredjenih = voznja.getBrojKMpredjenih();
                     double trajanjeVoznje = voznja.getTrajanjVoznje();
                     StatusVoznje statusVoznje1 = StatusVoznje.PRIHVACENA;

@@ -50,7 +50,7 @@ public class NaruciVoznjuTelefonomAukcija extends JFrame{
         add(tadresaPolaska);
         add(adresaDolaska);
         add(tadresaDolaska);
-        String[] mogucnostiZaBiranje = new String[]{"Svejedno","Najbrzi vozac","Najbolje ocenjen vozac","Pet friendly automobil","Najnoviji automobil"};
+        String[] mogucnostiZaBiranje = new String[]{"Svejedno","Najbrzi vozac","Najbolje ocenjen vozac","Pet friendly automobil","Najnoviji automobil","Najiskusniji vozac"};
         mogucnosti = new JComboBox(mogucnostiZaBiranje);
         add(izaberi);
         add(mogucnosti);

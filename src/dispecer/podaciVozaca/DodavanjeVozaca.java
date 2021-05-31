@@ -276,11 +276,11 @@ public class DodavanjeVozaca extends JFrame{
 
                         if (muski.isSelected()) {
                             Pol pol = Pol.MUSKI;
-                            Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca);
+                            Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca,0);
                             ucitavanje.getVozaci().add(vozac);
                         } else if (zenski.isSelected()) {
                             Pol pol = Pol.ZENSKI;
-                            Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca);
+                            Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca,0);
                             ucitavanje.getVozaci().add(vozac);
                         }
                         ucitavanje.dodavanjeKorisnika();
