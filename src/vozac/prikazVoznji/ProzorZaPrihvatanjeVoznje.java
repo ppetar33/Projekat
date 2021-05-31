@@ -90,8 +90,9 @@ public class ProzorZaPrihvatanjeVoznje extends JFrame {
                     boolean obrisan = voznja.isObrisan();
                     StatusNaruceneVoznje statusNaruceneVoznje = voznja.getStatusNaruceneVoznje();
                     boolean ocenjenVozac = voznja.isOcenjenVozac();
+                    String izborMusterijePriNarucivanju = voznja.getIzborMusterijePriNarucivanju();
                     if (voznja == null) {
-                        voznja = new NarucivanjeVoznjePrekoTelefona(id, dateTime, adresaPolaska, adresaDolaska, musterija1, vozac1, brojKmPredjenih, trajanjeVoznje, statusVoznje1, obrisan, statusNaruceneVoznje,0,ocenjenVozac);
+                        voznja = new NarucivanjeVoznjePrekoTelefona(id, dateTime, adresaPolaska, adresaDolaska, musterija1, vozac1, brojKmPredjenih, trajanjeVoznje, statusVoznje1, obrisan, statusNaruceneVoznje,0,ocenjenVozac,izborMusterijePriNarucivanju);
                     } else {
                         voznja.setId(id);
                         voznja.setDatumIvremePorudzbine(dateTime);

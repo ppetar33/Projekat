@@ -1,6 +1,5 @@
 package dispecer.dodeljivanjeVoznje;
 
-import automobili.Automobil;
 import automobili.Voznja;
 import enumi.StatusVoznje;
 import liste.Liste;
@@ -21,7 +20,7 @@ public class DodeljivanjeVoznje extends JFrame {
     private JToolBar mainToolBar = new JToolBar();
     public JTable voznjeTabela;
     private JButton btnEdit = new JButton("Dodeli");
-    private JButton btnOsvezi = new JButton("Osvezi tabelu");
+    public JButton btnOsvezi = new JButton("Osvezi tabelu");
     public Liste ucitavanje;
     public NarucivanjeVoznjePrekoTelefona voznja;
 

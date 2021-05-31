@@ -25,6 +25,7 @@ import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import musterija.podaciMusterijeZaKT2.DodavanjeMusterija;
+import musterija.probaZaAlgoritme.DodeliVoznjuAukcijom;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -419,7 +420,8 @@ public class MogucnostiDispecera extends JFrame {
 		dodeliVoznjuAukcijom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				DodeliVoznjuAukcijom dodeliVoznjuAukcijom = new DodeliVoznjuAukcijom(ucitavanje,voznja);
+				dodeliVoznjuAukcijom.setVisible(true);
 			}
 		});
 		potvrdaZaOdjavu.addActionListener(new ActionListener() {

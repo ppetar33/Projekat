@@ -5,7 +5,7 @@ import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import osobe.Musterija;
 import osobe.Vozac;
 import liste.Liste;
-import vozac.aukcija.AukcijeVoznje;
+import musterija.probaZaAlgoritme.UcestvujUaukciji;
 import vozac.prikazVoznji.PrikazDodeljenihVoznjiKreiranihTelefonom;
 import vozac.prikazVoznji.PrikazVoznjiZakazanihPrekoAplikacije;
 import vozac.zavrsavanjeVoznje.ZavrsavanjeVoznjePutemAplikacije;
@@ -136,7 +136,7 @@ public class MogucnostiVozaca extends JFrame {
                 if(ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
                 }else {
-                    AukcijeVoznje aukcijeVoznje = new AukcijeVoznje(ucitavanje, voznja);
+                    UcestvujUaukciji aukcijeVoznje = new UcestvujUaukciji(ucitavanje, voznja);
                     aukcijeVoznje.setVisible(true);
                 }
             }

@@ -5,6 +5,7 @@ import enumi.StatusNaruceneVoznje;
 import enumi.StatusVozacaIautomobila;
 import enumi.StatusVoznje;
 import liste.Liste;
+import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
@@ -100,8 +101,10 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-                            NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,trenutnoVreme,adresaPolaska,adresaDestinacije,ulogovanaMusterija,vozac,0,0, StatusVoznje.KREIRANA_NA_CEKANJU,napomena,true, StatusNaruceneVoznje.APLIKACIJA,0,false);
-                            ucitavanje.getVoznjaAplikacije().add(narucivanjeVoznjePrekoAplikacije);
+                            NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,trenutnoVreme,adresaPolaska,adresaDestinacije,ulogovanaMusterija,vozac,0,0, StatusVoznje.KREIRANA_NA_CEKANJU,true,StatusNaruceneVoznje.APLIKACIJA, 0,false,"Svejedno",napomena);
+                            DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznje = ucitavanje.getSortiranaListaVoznjiAplikacija();
+                            sveVoznje.add(narucivanjeVoznjePrekoAplikacije);
+                            ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                         }
                         citanjeUlogovanogKorisnika.close();
                     }  catch (IOException ioException) {
@@ -109,7 +112,6 @@ public class ProzorZaNarucivanjePutemAplikacije extends JFrame {
                         System.out.println("Greska");
                     }
                     JOptionPane.showMessageDialog(null,"Uspesno ste narucili voznju!","Cestitam",JOptionPane.INFORMATION_MESSAGE);
-                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                     ProzorZaNarucivanjePutemAplikacije.this.dispose();
                     ProzorZaNarucivanjePutemAplikacije.this.setVisible(false);
                 }

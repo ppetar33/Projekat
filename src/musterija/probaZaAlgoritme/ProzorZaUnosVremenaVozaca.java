@@ -1,7 +1,8 @@
-package vozac.aukcija;
+package musterija.probaZaAlgoritme;
 
 import liste.Liste;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
+import musterija.probaZaAlgoritme.Aukcija;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import javax.swing.*;
@@ -11,14 +12,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ProzorZaUnosPodataka extends JFrame {
+public class ProzorZaUnosVremenaVozaca extends JFrame {
 
     private JLabel unosVremena = new JLabel("Koliko minuta ti je potrebno do date adrese?");
     private JTextField tunosVremena = new JTextField(20);
     private JButton btnOK = new JButton("Potvrdi");
     private Liste ucitavanje;
     private NarucivanjeVoznjePrekoTelefona trazenaVoznja;
-    public ProzorZaUnosPodataka(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona trazenaVoznja){
+    public ProzorZaUnosVremenaVozaca(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona trazenaVoznja){
         this.ucitavanje = ucitavanje;
         this.trazenaVoznja = trazenaVoznja;
         setTitle("Aukcija");
@@ -38,6 +39,7 @@ public class ProzorZaUnosPodataka extends JFrame {
         add(tunosVremena);
         add(new JLabel());
         add(btnOK,"split 1");
+        this.getRootPane().setDefaultButton(btnOK);
 
     }
 
@@ -48,7 +50,6 @@ public class ProzorZaUnosPodataka extends JFrame {
                 if(validacija() == true){
 
                     String unosVremenaString = tunosVremena.getText().trim();
-                    int unosVremena = Integer.parseInt(unosVremenaString);
                     Vozac ulogovanVozac = new Vozac();
                     try {
                         File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
@@ -63,18 +64,24 @@ public class ProzorZaUnosPodataka extends JFrame {
                         System.out.println("Greska");
                     }
                     Vozac vozac = ucitavanje.nadjiVozaca(ulogovanVozac.getKorisnickoIme());
+
+                    String slektovanaMogucnost = trazenaVoznja.getIzborMusterijePriNarucivanju();
+                    int idVoznje = trazenaVoznja.getId();
+                    int unosVremena = Integer.parseInt(unosVremenaString);
                     String vozacKojiUcestvujeUaukciji = vozac.getKorisnickoIme();
                     double ocenaVozaca = vozac.getOcena();
                     int godisteAutomobilaVozaca = vozac.getAutomobili().getGodinaProizvodnje();
                     boolean petFriendly = vozac.getAutomobili().isPetFriendly();
-                    System.out.println(vozacKojiUcestvujeUaukciji);
-                    System.out.println(ocenaVozaca);
-                    System.out.println(godisteAutomobilaVozaca);
-                    System.out.println(petFriendly);
+
+                    Aukcija aukcija = new Aukcija(slektovanaMogucnost,idVoznje,vozacKojiUcestvujeUaukciji,unosVremena,ocenaVozaca,petFriendly,godisteAutomobilaVozaca,false);
+                    ucitavanje.getIstorijaAukcija().add(aukcija);
+                    ucitavanje.snimiIstorijuAukcija("istorijaAukcija.txt");
+
 
                     JOptionPane.showMessageDialog(null,"Ucestvujete u aukciji, hvala.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
-                    ProzorZaUnosPodataka.this.dispose();
-                    ProzorZaUnosPodataka.this.setVisible(false);
+
+                    ProzorZaUnosVremenaVozaca.this.dispose();
+                    ProzorZaUnosVremenaVozaca.this.setVisible(false);
                 }
             }
         });

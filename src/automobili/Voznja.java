@@ -21,6 +21,7 @@ public abstract class Voznja {
     protected StatusNaruceneVoznje statusNaruceneVoznje;
     protected double cenaVoznje;
     protected boolean ocenjenVozac;
+    protected String izborMusterijePriNarucivanju;
 
     public Voznja(){
         this.id = 0;
@@ -36,9 +37,10 @@ public abstract class Voznja {
         this.statusNaruceneVoznje = null;
         this.cenaVoznje = 0;
         this.ocenjenVozac = false;
+        this.izborMusterijePriNarucivanju = "";
     }
 
-    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje, double cenaVoznje, boolean ocenjenVozac) {
+    public Voznja(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje, double cenaVoznje, boolean ocenjenVozac, String izborMusterijePriNarucivanju) {
         this.id = id;
         this.datumIvremePorudzbine = datumIvremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -52,6 +54,7 @@ public abstract class Voznja {
         this.statusNaruceneVoznje = statusNaruceneVoznje;
         this.cenaVoznje = cenaVoznje;
         this.ocenjenVozac = ocenjenVozac;
+        this.izborMusterijePriNarucivanju = izborMusterijePriNarucivanju;
     }
 
     public int getId() {
@@ -158,6 +161,14 @@ public abstract class Voznja {
         this.ocenjenVozac = ocenjenVozac;
     }
 
+    public String getIzborMusterijePriNarucivanju() {
+        return izborMusterijePriNarucivanju;
+    }
+
+    public void setIzborMusterijePriNarucivanju(String izborMusterijePriNarucivanju) {
+        this.izborMusterijePriNarucivanju = izborMusterijePriNarucivanju;
+    }
+
     @Override
     public String toString() {
         return "Voznja{" +
@@ -174,6 +185,7 @@ public abstract class Voznja {
                 ", statusNaruceneVoznje=" + statusNaruceneVoznje +
                 ", cenaVoznje=" + cenaVoznje +
                 ", ocenjenVozac=" + ocenjenVozac +
+                ", izborMusterijePriNarucivanju='" + izborMusterijePriNarucivanju + '\'' +
                 '}';
     }
 }

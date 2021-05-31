@@ -3,7 +3,6 @@ package dispecer.izvestaj;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import net.miginfocom.swing.MigLayout;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,15 +55,15 @@ public class Izvestaj extends JFrame {
                     for (int i = 0; i < days.length; i++) {
                         days[i] = parsiranjeUnesenogDatuma.minusDays(days.length - i - 1).toString();
                     }
-                    DoublyLinkedList<String> listaSedamDana = new DoublyLinkedList<>();
+                    DoublyLinkedList<String> listaDana = new DoublyLinkedList<>();
                     for (String x : days) {
-                        listaSedamDana.add(x);
+                        listaDana.add(x);
                     }
 
                     // UKUPAN BROJ VOZNJI KREIRANIH PUTEM TELEFONA
                     DoublyLinkedList<String> listaVoznjiTelefon = ucitavanje.ukupanBrojVoznjiPrekoTelefona();
                     int ukupanBrojVoznjiPrekoTelefona = 0;
-                    for(String y : listaSedamDana){
+                    for(String y : listaDana){
                         for(String x : listaVoznjiTelefon){
                             if(y.equals(x)){
                                 ukupanBrojVoznjiPrekoTelefona++;
@@ -75,7 +74,7 @@ public class Izvestaj extends JFrame {
                     // UKUPAN BROJ VOZNJI KREIRANIH PUTEM APLIKACIJE
                     DoublyLinkedList<String> listaVoznjiAplikacija = ucitavanje.ukupanBrojVoznjiPrekoAplikacije();
                     int ukupanBrojVoznjiPrekoAplikacije = 0;
-                    for(String y : listaSedamDana){
+                    for(String y : listaDana){
                         for(String x : listaVoznjiAplikacija){
                             if(y.equals(x)){
                                 ukupanBrojVoznjiPrekoAplikacije++;
@@ -92,7 +91,7 @@ public class Izvestaj extends JFrame {
                     String datumiZaAplikaciju;
                     DoublyLinkedList<Integer> novaListaTelefoni = new DoublyLinkedList<>();
                     DoublyLinkedList<Integer> novaListaAplikacija = new DoublyLinkedList<>();
-                    for(String y : listaSedamDana){
+                    for(String y : listaDana){
                         for(String x : listaVoznjiTelefon){
                             if(y.equals(x)){
                                 datumiZaTelefon = x;
@@ -115,14 +114,14 @@ public class Izvestaj extends JFrame {
                     // PROSECNO TRAJANJE VOZNJI
                     double rezultatTelefoni;
                     double sumaTrajanjaVoznjeTelefoni = 0;
-                    Set<Integer> listaBezDupliranihIDevaTelefon = findDuplicates(novaListaTelefoni);
+                    Set<Integer> listaBezDupliranihIDevaTelefon = findDuplicatesIntegers(novaListaTelefoni);
                     for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaTelefon){
                         rezultatTelefoni = ucitavanje.ukupnoTrajanjeVoznjiTelefoni(idKojiTrebaPronaci);
                         sumaTrajanjaVoznjeTelefoni += rezultatTelefoni;
                     }
                     double rezultatAplikacija;
                     double sumaTrajanjaVoznjeAplikacija = 0;
-                    Set<Integer> listaBezDupliranihIDevaAplikacija = findDuplicates(novaListaAplikacija);
+                    Set<Integer> listaBezDupliranihIDevaAplikacija = findDuplicatesIntegers(novaListaAplikacija);
                     for(Integer idKojiTrebaPronaci : listaBezDupliranihIDevaAplikacija){
                         rezultatAplikacija = ucitavanje.ukupnoTrajanjeVoznjiAplikacija(idKojiTrebaPronaci);
                         sumaTrajanjaVoznjeAplikacija += rezultatAplikacija;
@@ -179,7 +178,7 @@ public class Izvestaj extends JFrame {
                             novaListaVozaca.add(f);
                         }
                     }
-                    Set<String> listaBezDupliranihVozaca = findDuplicatesDrivers(novaListaVozaca);
+                    Set<String> listaBezDupliranihVozaca = findDuplicatesStrings(novaListaVozaca);
                     int count = 0;
                     for(String s : listaBezDupliranihVozaca){
                         count++;
@@ -222,7 +221,7 @@ public class Izvestaj extends JFrame {
 
         return ok;
     }
-    public Set<Integer> findDuplicates(DoublyLinkedList<Integer> list){
+    private Set<Integer> findDuplicatesIntegers(DoublyLinkedList<Integer> list){
         Set<Integer> items = new HashSet<Integer>();
         Set<Integer> duplicates = new HashSet<Integer>();
         for (Integer item : list) {
@@ -234,7 +233,7 @@ public class Izvestaj extends JFrame {
         }
         return items;
     }
-    public Set<String> findDuplicatesDrivers(DoublyLinkedList<String> list){
+    private Set<String> findDuplicatesStrings(DoublyLinkedList<String> list){
         Set<String> items = new HashSet<String>();
         Set<String> duplicates = new HashSet<String>();
         for (String item : list) {

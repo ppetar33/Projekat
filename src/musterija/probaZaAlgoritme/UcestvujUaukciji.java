@@ -1,11 +1,11 @@
-package vozac.aukcija;
+package musterija.probaZaAlgoritme;
 
 import dispecer.dodeljivanjeVoznje.DodeljivanjeVoznje;
-import dispecer.dodeljivanjeVoznje.ProzorZaDodeljivanjeVoznji;
 import enumi.StatusVoznje;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
+import osobe.Vozac;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -13,17 +13,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// potrebno je prikazati sve voznje koje su kreirane
-// vozac bira neku od kreirane voznje
-// izabere voznju
-// iskoci prozor da unese koliko mu treba vremena do neke adrese
-
-public class AukcijeVoznje extends DodeljivanjeVoznje {
+public class UcestvujUaukciji extends DodeljivanjeVoznje {
 
     private JButton btnUcestvujUaukciji = new JButton("Ucestvuj u aukciji");
-    private JButton btnOsvezi = new JButton("Osvezi tabelu");
 
-    public AukcijeVoznje(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja) {
+    public UcestvujUaukciji(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja) {
         super(ucitavanje, voznja);
         setTitle("Aukcija");
         initGUI();
@@ -32,7 +26,7 @@ public class AukcijeVoznje extends DodeljivanjeVoznje {
 
     private void initGUI(){
         add(btnUcestvujUaukciji, BorderLayout.NORTH);
-        add(btnOsvezi, BorderLayout.SOUTH);
+        remove(btnOsvezi);
     }
 
     private void initListeners(){
@@ -51,18 +45,27 @@ public class AukcijeVoznje extends DodeljivanjeVoznje {
                     int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeTelefonBinarySearch(sveVoznjePrekoTelefona,id);
                     NarucivanjeVoznjePrekoTelefona trazenaVoznja = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
 
-                    ProzorZaUnosPodataka prozorZaUnosPodataka = new ProzorZaUnosPodataka(ucitavanje, trazenaVoznja);
-                    prozorZaUnosPodataka.setVisible(true);
+                    DoublyLinkedList<Aukcija> aukcijaDoublyLinkedList = ucitavanje.getIstorijaAukcija();
+                    DoublyLinkedList<String> listaVozacaKojiUcestvujuUaukciji = new DoublyLinkedList<>();
+                    String ulogovanVozac = ucitavanje.ulogovanKorisnik();
+                    for(Aukcija aukcija : aukcijaDoublyLinkedList){
+                        if(trazenaVoznja.getId() == aukcija.getIDvoznje()){
+                            listaVozacaKojiUcestvujuUaukciji.add(aukcija.getVozacKojiUcestvujeUaukciji());
+                        }
+                    }
+                    DoublyLinkedList<String> poredjenjeVozaca = new DoublyLinkedList<>();
+                    for(String s : listaVozacaKojiUcestvujuUaukciji){
+                        if (ulogovanVozac.equals(s)){
+                            poredjenjeVozaca.add(s);
+                        }
+                    }
+                    if(poredjenjeVozaca.isEmpty()) {
+                        ProzorZaUnosVremenaVozaca prozorZaUnosVremenaVozaca = new ProzorZaUnosVremenaVozaca(ucitavanje, trazenaVoznja);
+                        prozorZaUnosVremenaVozaca.setVisible(true);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Za datu voznju, vec ucestvujete u aukciji, pokusajte sa drugom voznjom.","Obavestenje",JOptionPane.WARNING_MESSAGE);
+                    }
                 }
-            }
-        });
-        btnOsvezi.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AukcijeVoznje.this.setVisible(false);
-                AukcijeVoznje.this.dispose();
-                AukcijeVoznje aukcijeVoznje = new AukcijeVoznje(ucitavanje,voznja);
-                aukcijeVoznje.setVisible(true);
             }
         });
     }

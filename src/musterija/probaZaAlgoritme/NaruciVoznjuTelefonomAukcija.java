@@ -1,10 +1,10 @@
-package musterija.narucivanjeVoznjePrekoTelefona;
+package musterija.probaZaAlgoritme;
 
 import enumi.StatusNaruceneVoznje;
 import enumi.StatusVoznje;
 import liste.Liste;
-import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -16,19 +16,21 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
-public class NarucivanjePrekoTelefonaProzor extends JFrame {
+public class NaruciVoznjuTelefonomAukcija extends JFrame{
 
     private JLabel adresaPolaska = new JLabel("Adresa polaska");
-    private JTextField tadresaPolaska = new JTextField(20);
+    private JTextField tadresaPolaska = new JTextField(29);
     private JLabel adresaDolaska = new JLabel("Adresa dolaska");
-    private JTextField tadresaDolaska = new JTextField(20);
+    private JTextField tadresaDolaska = new JTextField(29);
+    private JLabel izaberi = new JLabel("Izaberi");
+    private JComboBox<String> mogucnosti;
     private JButton naruci = new JButton("Naruci");
     private JButton odustani = new JButton("Odustani");
     private Liste ucitavanje;
     private NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona;
     private Musterija musterija;
 
-    public NarucivanjePrekoTelefonaProzor(Liste ucitavanje,Musterija musterija){
+    public NaruciVoznjuTelefonomAukcija(Liste ucitavanje, Musterija musterija){
         this.ucitavanje = ucitavanje;
         this.musterija = musterija;
         setTitle(musterija.getIme().substring(0,1).toUpperCase() + musterija.getIme().substring(1) + ", Naruci voznju telefonom");
@@ -47,6 +49,10 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
         add(tadresaPolaska);
         add(adresaDolaska);
         add(tadresaDolaska);
+        String[] mogucnostiZaBiranje = new String[]{"Svejedno","Najbrzi vozac","Najbolje ocenjen vozac","Pet friendly automobil","Najnoviji automobil"};
+        mogucnosti = new JComboBox(mogucnostiZaBiranje);
+        add(izaberi);
+        add(mogucnosti);
         add(new JLabel());
         add(naruci,"split 2");
         this.getRootPane().setDefaultButton(naruci);
@@ -64,6 +70,9 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                     LocalDateTime trenutnoVreme = LocalDateTime.now();
                     String adresaPolaska = tadresaPolaska.getText().trim();
                     String adresaDolaska = tadresaDolaska.getText().trim();
+
+                    String selektovanaMogucnost = (String) mogucnosti.getSelectedItem();
+
                     Vozac vozac = new Vozac();
                     vozac.setKorisnickoIme("");
                     if(narucivanjeVoznjePrekoTelefona != null){
@@ -80,10 +89,8 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                             String data = citanjeUlogovanogKorisnika.nextLine();
                             Musterija ulogovanaMusterija = new Musterija();
                             ulogovanaMusterija.setKorisnickoIme(data);
-                            NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,0,0, StatusVoznje.KREIRANA,true, StatusNaruceneVoznje.TELEFON,0,false,"Svejedno");
-                            DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznje = ucitavanje.getSortiranaListaVoznjiTelefon();
-                            sveVoznje.add(narucivanjeVoznjePrekoTelefona);
-                            ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
+                            NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,trenutnoVreme,adresaPolaska,adresaDolaska,ulogovanaMusterija,vozac,0,0, StatusVoznje.KREIRANA,true, StatusNaruceneVoznje.TELEFON,0,false,selektovanaMogucnost);
+                            ucitavanje.getVoznjaTelefoni().add(narucivanjeVoznjePrekoTelefona);
                         }
                         citanjeUlogovanogKorisnika.close();
                     }  catch (IOException ioException) {
@@ -92,8 +99,9 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
                     }
 
                     JOptionPane.showMessageDialog(null,"Uspesno ste narucili voznju!","Cestitam",JOptionPane.INFORMATION_MESSAGE);
-                    NarucivanjePrekoTelefonaProzor.this.dispose();
-                    NarucivanjePrekoTelefonaProzor.this.setVisible(false);
+                    ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
+                    NaruciVoznjuTelefonomAukcija.this.dispose();
+                    NaruciVoznjuTelefonomAukcija.this.setVisible(false);
                 }
             }
         });
@@ -101,8 +109,8 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,"Uspesno ste odustali od narucivanja voznje!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                NarucivanjePrekoTelefonaProzor.this.setVisible(false);
-                NarucivanjePrekoTelefonaProzor.this.dispose();
+                NaruciVoznjuTelefonomAukcija.this.setVisible(false);
+                NaruciVoznjuTelefonomAukcija.this.dispose();
             }
         });
     }
@@ -124,4 +132,5 @@ public class NarucivanjePrekoTelefonaProzor extends JFrame {
         return ok;
 
     }
+
 }

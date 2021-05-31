@@ -222,7 +222,7 @@ public class DodavanjeAutomobila extends JFrame {
                         automobil.setPetFriendly(false);
                     }
 
-                    DoublyLinkedList<Automobil> automobili = ucitavanje.getAutomobili();
+                    DoublyLinkedList<Automobil> automobili = ucitavanje.getSortiranaListaAutomobila();
                     int id = generisiNoviId(automobili);
                     automobil.setId(id);
 

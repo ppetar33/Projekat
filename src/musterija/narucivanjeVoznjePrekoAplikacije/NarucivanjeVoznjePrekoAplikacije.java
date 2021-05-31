@@ -15,8 +15,9 @@ public class NarucivanjeVoznjePrekoAplikacije extends Voznja {
     public NarucivanjeVoznjePrekoAplikacije(){
         this.napomena = "";
     }
-    public NarucivanjeVoznjePrekoAplikacije(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, String napomena, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje, double cenaVoznje, boolean ocenjenVozac) {
-        super(id, datumIvremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojKMpredjenih, trajanjVoznje, statusVoznje, obrisan, statusNaruceneVoznje, cenaVoznje, ocenjenVozac);
+
+    public NarucivanjeVoznjePrekoAplikacije(int id, LocalDateTime datumIvremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterija musterija, Vozac vozac, double brojKMpredjenih, double trajanjVoznje, StatusVoznje statusVoznje, boolean obrisan, StatusNaruceneVoznje statusNaruceneVoznje, double cenaVoznje, boolean ocenjenVozac, String izborMusterijePriNarucivanju, String napomena) {
+        super(id, datumIvremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojKMpredjenih, trajanjVoznje, statusVoznje, obrisan, statusNaruceneVoznje, cenaVoznje, ocenjenVozac, izborMusterijePriNarucivanju);
         this.napomena = napomena;
     }
 
@@ -34,6 +35,6 @@ public class NarucivanjeVoznjePrekoAplikacije extends Voznja {
     }
 
     public String pripremiZaSnimanjePrekoAplikacije() {
-        return id + "," + datumIvremePorudzbine.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija.getKorisnickoIme() + "," + vozac.getKorisnickoIme() + "," + brojKMpredjenih + "," + trajanjVoznje + "," + statusVoznje + "," + napomena + "," + obrisan + "," + statusNaruceneVoznje + "," + cenaVoznje + "," + ocenjenVozac + "\n";
+        return id + "," + datumIvremePorudzbine.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "," + adresaPolaska + "," + adresaDestinacije + "," + musterija.getKorisnickoIme() + "," + vozac.getKorisnickoIme() + "," + brojKMpredjenih + "," + trajanjVoznje + "," + statusVoznje + "," + napomena + "," + obrisan + "," + statusNaruceneVoznje + "," + cenaVoznje + "," + ocenjenVozac + "," + izborMusterijePriNarucivanju +"\n";
     }
 }

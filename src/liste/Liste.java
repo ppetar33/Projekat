@@ -11,6 +11,7 @@ import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
+import musterija.probaZaAlgoritme.Aukcija;
 import osobe.Dispecar;
 import osobe.Musterija;
 import enumi.Odeljenje;
@@ -26,6 +27,10 @@ public class Liste {
 	private DoublyLinkedList<Automobil> automobili;
 	private DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznjaTelefoni;
 	private DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije;
+	private DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sortiranaListaVoznjiAplikacija;
+	private DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sortiranaListaVoznjiTelefon;
+	private DoublyLinkedList<Aukcija> istorijaAukcija;
+	private DoublyLinkedList<Automobil> sortiranaListaAutomobila;
 
 	public Liste() {
 		this.musterije = new DoublyLinkedList<Musterija>();
@@ -33,9 +38,12 @@ public class Liste {
 		this.vozaci = new DoublyLinkedList<Vozac>();
 		this.taksiSluzbe = new DoublyLinkedList<TaksiSluzba>();
 		this.automobili = new DoublyLinkedList<Automobil>();
+		this.sortiranaListaAutomobila = new DoublyLinkedList<Automobil>();
 		this.voznjaTelefoni = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
 		this.voznjaAplikacije = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
-		this.automobili = new DoublyLinkedList<Automobil>();
+		this.istorijaAukcija = new DoublyLinkedList<Aukcija>();
+		this.sortiranaListaVoznjiAplikacija = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
+		this.sortiranaListaVoznjiTelefon = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
 	}
 
 	public DoublyLinkedList<Musterija> getMusterije() {
@@ -72,6 +80,34 @@ public class Liste {
 
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> getVoznjaAplikacije() {
 		return voznjaAplikacije;
+	}
+
+	public DoublyLinkedList<Aukcija> getIstorijaAukcija() {
+		return istorijaAukcija;
+	}
+
+	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> getSortiranaListaVoznjiAplikacija() {
+		return sortiranaListaVoznjiAplikacija;
+	}
+
+	public void setSortiranaListaVoznjiAplikacija(DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sortiranaListaVoznjiAplikacija) {
+		this.sortiranaListaVoznjiAplikacija = sortiranaListaVoznjiAplikacija;
+	}
+
+	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> getSortiranaListaVoznjiTelefon() {
+		return sortiranaListaVoznjiTelefon;
+	}
+
+	public void setSortiranaListaVoznjiTelefon(DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sortiranaListaVoznjiTelefon) {
+		this.sortiranaListaVoznjiTelefon = sortiranaListaVoznjiTelefon;
+	}
+
+	public DoublyLinkedList<Automobil> getSortiranaListaAutomobila() {
+		return sortiranaListaAutomobila;
+	}
+
+	public void setSortiranaListaAutomobila(DoublyLinkedList<Automobil> sortiranaListaAutomobila) {
+		this.sortiranaListaAutomobila = sortiranaListaAutomobila;
 	}
 
 	/*
@@ -202,6 +238,7 @@ public class Liste {
 				double cenaVoznje = Double.parseDouble(podaci[12]);
 				String daLiJeVozacOcenjenString = podaci[13];
 				boolean ocenjenVozac = Boolean.parseBoolean(daLiJeVozacOcenjenString);
+				String izborMusterijePriNarucivanjuVoznje = podaci[14];
 				Musterija musterija = new Musterija();
 				Vozac vozac = new Vozac();
 				for(Musterija musterija1 : musterije){
@@ -215,12 +252,12 @@ public class Liste {
 					}
 				}
 				if(cimeJeNarucenaVoznja.equals(StatusNaruceneVoznje.TELEFON)){
-					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,cimeJeNarucenaVoznja,cenaVoznje,ocenjenVozac);
+					NarucivanjeVoznjePrekoTelefona narucivanjeVoznjePrekoTelefona = new NarucivanjeVoznjePrekoTelefona(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,cimeJeNarucenaVoznja,cenaVoznje,ocenjenVozac,izborMusterijePriNarucivanjuVoznje);
 					voznjaTelefoni.add(narucivanjeVoznjePrekoTelefona);
 
 				}else if(cimeJeNarucenaVoznja.equals(StatusNaruceneVoznje.APLIKACIJA)){
 					String napomena = podaci[9];
-					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,napomena,obrisan,cimeJeNarucenaVoznja,cenaVoznje,ocenjenVozac);
+					NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = new NarucivanjeVoznjePrekoAplikacije(id,dateTime,adresaPolaska,adresaDestinacije,musterija,vozac,brojKMpredjenih,trajanjVoznje,statusVoznje,obrisan,cimeJeNarucenaVoznja,cenaVoznje,ocenjenVozac,izborMusterijePriNarucivanjuVoznje,napomena);
 					voznjaAplikacije.add(narucivanjeVoznjePrekoAplikacije);
 				}
 			}
@@ -228,7 +265,30 @@ public class Liste {
 			e.printStackTrace();
 			System.out.println("Greska prilikom citanja fajla");
 		}
-
+	}
+	// DEO IZ ALGORITAMA
+	public void ucitajIstorijuAukcija(String imeFajla){
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
+			String line;
+			while ((line = br.readLine()) != null) {
+				String[] podaci = line.trim().split(",");
+				String izborMusterije = podaci[0];
+				int IDvoznje = Integer.parseInt(podaci[1]);
+				String vozacKojiUcestvujeUaukciji = podaci[2];
+				int vremeKojeJeUneoVozac = Integer.parseInt(podaci[3]);
+				double ocenaVozaca = Double.parseDouble(podaci[4]);
+				boolean petFriendly = Boolean.parseBoolean(podaci[5]);
+				int godisteAutomobila = Integer.parseInt(podaci[6]);
+				boolean dobioVoznju = Boolean.parseBoolean(podaci[7]);
+				Aukcija aukcija = new Aukcija(izborMusterije,IDvoznje,vozacKojiUcestvujeUaukciji,vremeKojeJeUneoVozac,ocenaVozaca,petFriendly,godisteAutomobila,dobioVoznju);
+				istorijaAukcija.add(aukcija);
+			}
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Greska prilikom citanja fajla");
+		}
 	}
 
 
@@ -306,7 +366,7 @@ public class Liste {
 	public void snimanjeAutomobila(String imeFajla){
 		try{
 			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
-			for (Automobil automobil : automobili){
+			for (Automobil automobil : sortiranaListaAutomobila){
 				br.write(automobil.pripremiZaSnimanjeAutomobil());
 			}
 			br.close();
@@ -319,14 +379,27 @@ public class Liste {
 	public void snimanjeVoznji(String imeFajla){
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
-			for(NarucivanjeVoznjePrekoTelefona voznjaTelefoni : voznjaTelefoni){
+			for(NarucivanjeVoznjePrekoTelefona voznjaTelefoni : sortiranaListaVoznjiTelefon){
 				br.write(voznjaTelefoni.pripremiZaSnimanje());
 			}
-			for(NarucivanjeVoznjePrekoAplikacije voznjaAplikacija : voznjaAplikacije){
+			for(NarucivanjeVoznjePrekoAplikacije voznjaAplikacija : sortiranaListaVoznjiAplikacija){
 				br.write(voznjaAplikacija.pripremiZaSnimanjePrekoAplikacije());
 			}
 			br.close();
 		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Greska prilikom snimanja fajla");
+		}
+	}
+	// DEO IZ ALGORITAMA
+	public void snimiIstorijuAukcija(String imeFajla){
+		try {
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
+			for (Aukcija aukcija : istorijaAukcija) {
+				br.write(aukcija.pripremiZaSnimanjeIstorijuAukcija());
+			}
+			br.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Greska prilikom snimanja fajla");
 		}
@@ -336,7 +409,6 @@ public class Liste {
 	/*
 		SORTIRANJE LISTI
 	*/
-	DoublyLinkedList<Automobil> sortiranaListaAutomobila = new DoublyLinkedList<>();
 	public void sortiranjeAutomobila(){
 		DoublyLinkedList<Integer> listaAutomobila = new DoublyLinkedList<>();
 		for(Automobil automobil : automobili){
@@ -362,8 +434,6 @@ public class Liste {
 			System.out.println("Greska prilikom snimanja fajla");
 		}
 	}
-	DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sortiranaListaVoznjiAplikacija = new DoublyLinkedList<>();
-	DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sortiranaListaVoznjiTelefon = new DoublyLinkedList<>();
 	public void sortiranjeVoznji(){
 		DoublyLinkedList<Integer> listaVoznjiAplikacija = new DoublyLinkedList<>();
 		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : voznjaAplikacije){
@@ -599,7 +669,6 @@ public class Liste {
 		}
 		return null;
 	}
-
 	public DoublyLinkedList<Integer> listaSlobodnihAutomobila(){
 		DoublyLinkedList<Integer> slobodniAutomobil = new DoublyLinkedList<>();
 		for(Automobil automobil : sortiranaListaAutomobila){
@@ -947,7 +1016,7 @@ public class Liste {
 
 	public int generisiNoviIdZaVoznjePutemTelefona(){
 		int maks = -1;
-		for (NarucivanjeVoznjePrekoTelefona prekoTelefona : voznjaTelefoni) {
+		for (NarucivanjeVoznjePrekoTelefona prekoTelefona : sortiranaListaVoznjiTelefon) {
 			if (prekoTelefona.getId() > maks) {
 				maks = prekoTelefona.getId();
 			}
@@ -956,7 +1025,7 @@ public class Liste {
 	}
 	public int generisiNoviIdZaVoznjePutemAplikacije() {
 		int maks = -1;
-		for (NarucivanjeVoznjePrekoAplikacije prekoAplikacije : voznjaAplikacije){
+		for (NarucivanjeVoznjePrekoAplikacije prekoAplikacije : sortiranaListaVoznjiAplikacija){
 			if (prekoAplikacije.getId() > maks){
 				maks = prekoAplikacije.getId();
 			}
@@ -1032,7 +1101,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<Automobil> neobrisaniAutomobili(){
 		DoublyLinkedList<Automobil> neobAutomobili = new DoublyLinkedList<Automobil>();
-		for(Automobil automobil : automobili){
+		for(Automobil automobil : sortiranaListaAutomobila){
 			if(automobil.isObrisan()){
 				neobAutomobili.add(automobil);
 			}
@@ -1087,6 +1156,23 @@ public class Liste {
 		}
 		return voznje;
 	}
+	public String ulogovanKorisnik(){
+		Vozac ulogovanVozac = null;
+		try {
+			File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
+			Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
+			while (citanjeUlogovanogKorisnika.hasNextLine()) {
+				String data = citanjeUlogovanogKorisnika.nextLine();
+				ulogovanVozac = new Vozac();
+				ulogovanVozac.setKorisnickoIme(data);
+			}
+			citanjeUlogovanogKorisnika.close();
+		}  catch (IOException ioException) {
+			ioException.printStackTrace();
+			System.out.println("Greska");
+		}
+		return ulogovanVozac.getKorisnickoIme();
+	}
 
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
@@ -1137,7 +1223,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznjeKreiranePutemAplikacije(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			if(voznja.isObrisan()){
 				neobrisaneVoznje.add(voznja);
 			}
@@ -1146,7 +1232,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> prikazVoznjeZaIstorijuVoznjePrekoTelefona(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
-		for(NarucivanjeVoznjePrekoTelefona voznja : voznjaTelefoni){
+		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
 			Vozac ulogovanVozac = null;
 			try {
 				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
@@ -1169,7 +1255,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> prikazVoznjeZaIstorijuVoznjePrekoAplikacije(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
-		for(NarucivanjeVoznjePrekoAplikacije voznja : voznjaAplikacije){
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			Vozac ulogovanVozac = null;
 			try {
 				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");

@@ -1,4 +1,4 @@
-package dispecer.dodeljivanjeVoznje;
+package musterija.probaZaAlgoritme;
 
 import enumi.StatusNaruceneVoznje;
 import enumi.StatusVozacaIautomobila;
@@ -15,8 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 
-public class ProzorZaDodeljivanjeVoznji extends JFrame{
-
+public class ProzorZaDodeljivanjeVoznjiAukcijom extends JFrame{
     private JLabel adresaPolaska = new JLabel("Adresa polaska");
     private JTextField tadresaPolaska = new JTextField(20);
     private JLabel adresaDolaska = new JLabel("Adresa destinacije");
@@ -33,19 +32,19 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
     private Liste ucitavanje;
     private NarucivanjeVoznjePrekoTelefona voznja;
 
-    public ProzorZaDodeljivanjeVoznji(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja) {
+    public ProzorZaDodeljivanjeVoznjiAukcijom(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja, DoublyLinkedList<String> vozaci) {
         this.ucitavanje = ucitavanje;
         this.voznja = voznja;
         setTitle("Dodeli voznju vozacu");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        initGUI();
+        initGUI(vozaci);
         initListeners();
         setResizable(false);
         pack();
         setLocationRelativeTo(null);
     }
 
-    private void initGUI(){
+    private void initGUI(DoublyLinkedList<String> vozaci){
         MigLayout layout = new MigLayout("wrap 2");
 
         setLayout(layout);
@@ -56,10 +55,9 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
         add(musterija);
         add(tmusterija);
         add(vozac);
-        DoublyLinkedList<String> listaSlobodniVozaca = ucitavanje.listaSlobodnihVozaca();
-        String[] array = new String[listaSlobodniVozaca.size()];
+        String[] array = new String[vozaci.size()];
         for(int i = 0; i < array.length; i++) {
-            array[i] = String.valueOf(listaSlobodniVozaca.get(i));
+            array[i] = String.valueOf(vozaci.get(i));
         }
         slobodniVozaci = new JComboBox(array);
         add(slobodniVozaci);
@@ -88,8 +86,8 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
                 Vozac vozac = new Vozac();
                 vozac.setKorisnickoIme(selektovanVozac);
                 Vozac dodeljeniVozac = ucitavanje.nadjiVozaca(vozac.getKorisnickoIme());
-                if(dodeljeniVozac == null){
-                    JOptionPane.showMessageDialog(null,"Trenutno nema slobodnih vozaca, molim vas pokusajte kasnije.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                if(dodeljeniVozac.getStatusVozaca().equals(StatusVozacaIautomobila.ZAUZET)){
+                    JOptionPane.showMessageDialog(null,dodeljeniVozac.getIme().substring(0,1).toUpperCase() + dodeljeniVozac.getIme().substring(1) + " je trenutno u voznji, molimo vas pokusajte kasnije","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
                 }else {
                     StatusVoznje statusVoznje = (StatusVoznje) statusVoznjeJComboBox.getSelectedItem();
                     if (statusVoznje != StatusVoznje.DODELJENA) {
@@ -128,8 +126,17 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
                         }
                         ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                         JOptionPane.showMessageDialog(null, "Uspesno ste dodelili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
-                        ProzorZaDodeljivanjeVoznji.this.setVisible(false);
-                        ProzorZaDodeljivanjeVoznji.this.dispose();
+                        ProzorZaDodeljivanjeVoznjiAukcijom.this.setVisible(false);
+                        ProzorZaDodeljivanjeVoznjiAukcijom.this.dispose();
+
+                        String vozacKojiJeDobioVoznju = voznja.getVozac().getKorisnickoIme();
+                        DoublyLinkedList<Aukcija> aukcijaDoublyLinkedList = ucitavanje.getIstorijaAukcija();
+                        for(Aukcija aukcija : aukcijaDoublyLinkedList){
+                            if(aukcija.getIDvoznje() == voznja.getId() && aukcija.getVozacKojiUcestvujeUaukciji().equals(vozacKojiJeDobioVoznju)){
+                                aukcija.setDobioVoznju(true);
+                            }
+                        }
+                        ucitavanje.snimiIstorijuAukcija("istorijaAukcija.txt");
                     }
                 }
             }
@@ -138,8 +145,8 @@ public class ProzorZaDodeljivanjeVoznji extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,"Uspesno ste odustali od dodeljivanja voznje","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                ProzorZaDodeljivanjeVoznji.this.setVisible(false);
-                ProzorZaDodeljivanjeVoznji.this.dispose();
+                ProzorZaDodeljivanjeVoznjiAukcijom.this.setVisible(false);
+                ProzorZaDodeljivanjeVoznjiAukcijom.this.dispose();
             }
         });
     }

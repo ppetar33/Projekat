@@ -164,6 +164,7 @@ public class DoublyLinkedList<T> implements Iterable<T> {
     }
 
 
+
     @Override
     public Iterator<T> iterator() {
         return new LinkedListIterator<T>(this);
