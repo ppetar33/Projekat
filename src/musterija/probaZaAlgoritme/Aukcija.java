@@ -1,8 +1,11 @@
 package musterija.probaZaAlgoritme;
 
 
+import enumi.StatusNaruceneVoznje;
+
 public class Aukcija {
 
+    private int id;
     private String izborMusterije;
     private int IDvoznje;
     private String vozacKojiUcestvujeUaukciji;
@@ -11,8 +14,10 @@ public class Aukcija {
     private boolean petFriendly;
     private int godisteAutomobila;
     private boolean dobioVoznju;
+    private StatusNaruceneVoznje statusNaruceneVoznje;
 
     public Aukcija(){
+        this.id = 0;
         this.izborMusterije = "";
         this.IDvoznje = 0;
         this.vozacKojiUcestvujeUaukciji = "";
@@ -21,9 +26,11 @@ public class Aukcija {
         this.petFriendly = false;
         this.godisteAutomobila = 0;
         this.dobioVoznju = false;
+        this.statusNaruceneVoznje = null;
     }
 
-    public Aukcija(String izborMusterije, int IDvoznje, String vozacKojiUcestvujeUaukciji, int vremeKojeJeUneoVozac, double ocenaVozaca, boolean petFriendly, int godisteAutomobila, boolean dobioVoznju) {
+    public Aukcija(int id, String izborMusterije, int IDvoznje, String vozacKojiUcestvujeUaukciji, int vremeKojeJeUneoVozac, double ocenaVozaca, boolean petFriendly, int godisteAutomobila, boolean dobioVoznju, StatusNaruceneVoznje statusNaruceneVoznje) {
+        this.id = id;
         this.izborMusterije = izborMusterije;
         this.IDvoznje = IDvoznje;
         this.vozacKojiUcestvujeUaukciji = vozacKojiUcestvujeUaukciji;
@@ -32,6 +39,15 @@ public class Aukcija {
         this.petFriendly = petFriendly;
         this.godisteAutomobila = godisteAutomobila;
         this.dobioVoznju = dobioVoznju;
+        this.statusNaruceneVoznje = statusNaruceneVoznje;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIzborMusterije() {
@@ -98,10 +114,19 @@ public class Aukcija {
         this.dobioVoznju = dobioVoznju;
     }
 
+    public StatusNaruceneVoznje getStatusNaruceneVoznje() {
+        return statusNaruceneVoznje;
+    }
+
+    public void setStatusNaruceneVoznje(StatusNaruceneVoznje statusNaruceneVoznje) {
+        this.statusNaruceneVoznje = statusNaruceneVoznje;
+    }
+
     @Override
     public String toString() {
         return "Aukcija{" +
-                "izborMusterije='" + izborMusterije + '\'' +
+                "id=" + id +
+                ", izborMusterije='" + izborMusterije + '\'' +
                 ", IDvoznje=" + IDvoznje +
                 ", vozacKojiUcestvujeUaukciji='" + vozacKojiUcestvujeUaukciji + '\'' +
                 ", vremeKojeJeUneoVozac=" + vremeKojeJeUneoVozac +
@@ -109,10 +134,11 @@ public class Aukcija {
                 ", petFriendly=" + petFriendly +
                 ", godisteAutomobila=" + godisteAutomobila +
                 ", dobioVoznju=" + dobioVoznju +
+                ", statusNaruceneVoznje=" + statusNaruceneVoznje +
                 '}';
     }
 
     public String pripremiZaSnimanjeIstorijuAukcija(){
-        return izborMusterije + "," + IDvoznje + "," + vozacKojiUcestvujeUaukciji + "," + vremeKojeJeUneoVozac + "," + ocenaVozaca + "," + petFriendly + "," + godisteAutomobila + "," + dobioVoznju + "\n";
+        return id + "," + izborMusterije + "," + IDvoznje + "," + vozacKojiUcestvujeUaukciji + "," + vremeKojeJeUneoVozac + "," + ocenaVozaca + "," + petFriendly + "," + godisteAutomobila + "," + dobioVoznju + "," + statusNaruceneVoznje + "\n";
     }
 }

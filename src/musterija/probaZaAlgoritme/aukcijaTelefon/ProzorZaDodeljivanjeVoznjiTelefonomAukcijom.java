@@ -1,4 +1,4 @@
-package musterija.probaZaAlgoritme;
+package musterija.probaZaAlgoritme.aukcijaTelefon;
 
 import enumi.StatusNaruceneVoznje;
 import enumi.StatusVozacaIautomobila;
@@ -7,6 +7,7 @@ import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
+import musterija.probaZaAlgoritme.Aukcija;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -15,7 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 
-public class ProzorZaDodeljivanjeVoznjiAukcijom extends JFrame{
+public class ProzorZaDodeljivanjeVoznjiTelefonomAukcijom extends JFrame{
     private JLabel adresaPolaska = new JLabel("Adresa polaska");
     private JTextField tadresaPolaska = new JTextField(20);
     private JLabel adresaDolaska = new JLabel("Adresa destinacije");
@@ -32,7 +33,7 @@ public class ProzorZaDodeljivanjeVoznjiAukcijom extends JFrame{
     private Liste ucitavanje;
     private NarucivanjeVoznjePrekoTelefona voznja;
 
-    public ProzorZaDodeljivanjeVoznjiAukcijom(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja, DoublyLinkedList<String> vozaci) {
+    public ProzorZaDodeljivanjeVoznjiTelefonomAukcijom(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja, DoublyLinkedList<String> vozaci) {
         this.ucitavanje = ucitavanje;
         this.voznja = voznja;
         setTitle("Dodeli voznju vozacu");
@@ -126,13 +127,13 @@ public class ProzorZaDodeljivanjeVoznjiAukcijom extends JFrame{
                         }
                         ucitavanje.snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
                         JOptionPane.showMessageDialog(null, "Uspesno ste dodelili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
-                        ProzorZaDodeljivanjeVoznjiAukcijom.this.setVisible(false);
-                        ProzorZaDodeljivanjeVoznjiAukcijom.this.dispose();
+                        ProzorZaDodeljivanjeVoznjiTelefonomAukcijom.this.setVisible(false);
+                        ProzorZaDodeljivanjeVoznjiTelefonomAukcijom.this.dispose();
 
                         String vozacKojiJeDobioVoznju = voznja.getVozac().getKorisnickoIme();
                         DoublyLinkedList<Aukcija> aukcijaDoublyLinkedList = ucitavanje.getIstorijaAukcija();
                         for(Aukcija aukcija : aukcijaDoublyLinkedList){
-                            if(aukcija.getIDvoznje() == voznja.getId() && aukcija.getVozacKojiUcestvujeUaukciji().equals(vozacKojiJeDobioVoznju)){
+                            if(aukcija.getIDvoznje() == voznja.getId() && aukcija.getVozacKojiUcestvujeUaukciji().equals(vozacKojiJeDobioVoznju) && aukcija.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.TELEFON)){
                                 aukcija.setDobioVoznju(true);
                             }
                         }
@@ -145,8 +146,8 @@ public class ProzorZaDodeljivanjeVoznjiAukcijom extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,"Uspesno ste odustali od dodeljivanja voznje","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                ProzorZaDodeljivanjeVoznjiAukcijom.this.setVisible(false);
-                ProzorZaDodeljivanjeVoznjiAukcijom.this.dispose();
+                ProzorZaDodeljivanjeVoznjiTelefonomAukcijom.this.setVisible(false);
+                ProzorZaDodeljivanjeVoznjiTelefonomAukcijom.this.dispose();
             }
         });
     }

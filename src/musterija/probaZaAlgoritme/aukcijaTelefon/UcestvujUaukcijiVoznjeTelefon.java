@@ -1,11 +1,12 @@
-package musterija.probaZaAlgoritme;
+package musterija.probaZaAlgoritme.aukcijaTelefon;
 
 import dispecer.dodeljivanjeVoznje.DodeljivanjeVoznje;
-import enumi.StatusVoznje;
+import enumi.StatusNaruceneVoznje;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
-import osobe.Vozac;
+import musterija.probaZaAlgoritme.Aukcija;
+import musterija.probaZaAlgoritme.aukcijaTelefon.ProzorZaUnosVremenaVozacaTelefon;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -13,11 +14,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UcestvujUaukciji extends DodeljivanjeVoznje {
+public class UcestvujUaukcijiVoznjeTelefon extends DodeljivanjeVoznje {
 
     private JButton btnUcestvujUaukciji = new JButton("Ucestvuj u aukciji");
 
-    public UcestvujUaukciji(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja) {
+    public UcestvujUaukcijiVoznjeTelefon(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja) {
         super(ucitavanje, voznja);
         setTitle("Aukcija");
         initGUI();
@@ -49,7 +50,7 @@ public class UcestvujUaukciji extends DodeljivanjeVoznje {
                     DoublyLinkedList<String> listaVozacaKojiUcestvujuUaukciji = new DoublyLinkedList<>();
                     String ulogovanVozac = ucitavanje.ulogovanKorisnik();
                     for(Aukcija aukcija : aukcijaDoublyLinkedList){
-                        if(trazenaVoznja.getId() == aukcija.getIDvoznje()){
+                        if(trazenaVoznja.getId() == aukcija.getIDvoznje() && aukcija.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.TELEFON)){
                             listaVozacaKojiUcestvujuUaukciji.add(aukcija.getVozacKojiUcestvujeUaukciji());
                         }
                     }
@@ -60,7 +61,7 @@ public class UcestvujUaukciji extends DodeljivanjeVoznje {
                         }
                     }
                     if(poredjenjeVozaca.isEmpty()) {
-                        ProzorZaUnosVremenaVozaca prozorZaUnosVremenaVozaca = new ProzorZaUnosVremenaVozaca(ucitavanje, trazenaVoznja);
+                        ProzorZaUnosVremenaVozacaTelefon prozorZaUnosVremenaVozaca = new ProzorZaUnosVremenaVozacaTelefon(ucitavanje, trazenaVoznja);
                         prozorZaUnosVremenaVozaca.setVisible(true);
                     }else{
                         JOptionPane.showMessageDialog(null,"Za datu voznju, vec ucestvujete u aukciji, pokusajte sa drugom voznjom.","Obavestenje",JOptionPane.WARNING_MESSAGE);

@@ -1,11 +1,13 @@
 package vozac;
 
 import main.TaxiSluzbaMain;
+import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
+import musterija.probaZaAlgoritme.aukcijaAplikacija.UcestvujUaukcijiVoznjeAplikacija;
 import osobe.Musterija;
 import osobe.Vozac;
 import liste.Liste;
-import musterija.probaZaAlgoritme.UcestvujUaukciji;
+import musterija.probaZaAlgoritme.aukcijaTelefon.UcestvujUaukcijiVoznjeTelefon;
 import vozac.prikazVoznji.PrikazDodeljenihVoznjiKreiranihTelefonom;
 import vozac.prikazVoznji.PrikazVoznjiZakazanihPrekoAplikacije;
 import vozac.zavrsavanjeVoznje.ZavrsavanjeVoznjePutemAplikacije;
@@ -25,7 +27,8 @@ public class MogucnostiVozaca extends JFrame {
     private JMenuItem prikazVoznjeZakazanihPrekoAplikacije = new JMenuItem("Prikaz voznji zakazanih preko aplikacije");
     private JMenuItem prikazDodeljenihVoznji = new JMenuItem("Prikaz dodeljenih voznji kreiranih putem telefona");
     private JMenuItem sumiraneStatistikeVoznji = new JMenuItem("Prikaz sumiraze statistike voznji");
-    private JMenuItem aukcijeVoznje = new JMenuItem("Ucestvuj u aukciji");
+    private JMenuItem aukcijeVoznjeTelefoni = new JMenuItem("Ucestvuj u aukciji za voznju kreiranu putem telefona");
+    private JMenuItem aukcijeVoznjeAplikacija = new JMenuItem("Ucestvuj u aukciji za voznju kreiranu putem aplikacije");
     private JMenuItem zavrsavanjeVoznje = new JMenuItem("Zavrsavanje voznje kreirane putem telefona");
     private JMenuItem zavrsavanjeVoznjePutemAplikacije = new JMenuItem("Zavrsavanje voznje kreirane putem aplikacije");
 
@@ -43,7 +46,8 @@ public class MogucnostiVozaca extends JFrame {
     private Liste ucitavanje;
     private Vozac prijavljeniVozac;
     private Musterija musterija;
-    private NarucivanjeVoznjePrekoTelefona voznja;
+    private NarucivanjeVoznjePrekoTelefona voznjaTelefon;
+    private NarucivanjeVoznjePrekoAplikacije voznjaAplikacija;
 
     public MogucnostiVozaca(Liste ucitavanje, Vozac prijavljeniVozac){
         this.ucitavanje = ucitavanje;
@@ -65,7 +69,8 @@ public class MogucnostiVozaca extends JFrame {
         funkcionalnostiVozaca.add(prikazVoznjeZakazanihPrekoAplikacije);
         funkcionalnostiVozaca.add(prikazDodeljenihVoznji);
         funkcionalnostiVozaca.add(sumiraneStatistikeVoznji);
-        funkcionalnostiVozaca.add(aukcijeVoznje);
+        funkcionalnostiVozaca.add(aukcijeVoznjeTelefoni);
+        funkcionalnostiVozaca.add(aukcijeVoznjeAplikacija);
         funkcionalnostiVozaca.add(zavrsavanjeVoznje);
         funkcionalnostiVozaca.add(zavrsavanjeVoznjePutemAplikacije);
 
@@ -130,13 +135,24 @@ public class MogucnostiVozaca extends JFrame {
             public void actionPerformed(ActionEvent e) {
             }
         });
-        aukcijeVoznje.addActionListener(new ActionListener() {
+        aukcijeVoznjeTelefoni.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
                 }else {
-                    UcestvujUaukciji aukcijeVoznje = new UcestvujUaukciji(ucitavanje, voznja);
+                    UcestvujUaukcijiVoznjeTelefon aukcijeVoznje = new UcestvujUaukcijiVoznjeTelefon(ucitavanje, voznjaTelefon);
+                    aukcijeVoznje.setVisible(true);
+                }
+            }
+        });
+        aukcijeVoznjeAplikacija.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemAplikacije().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    UcestvujUaukcijiVoznjeAplikacija aukcijeVoznje = new UcestvujUaukcijiVoznjeAplikacija(ucitavanje, voznjaAplikacija);
                     aukcijeVoznje.setVisible(true);
                 }
             }

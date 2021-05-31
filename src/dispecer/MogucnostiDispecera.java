@@ -8,24 +8,21 @@ import dispecer.podaciAutomobila.BrisanjeAutomobila;
 import dispecer.podaciAutomobila.DodavanjeAutomobila;
 import dispecer.podaciAutomobila.IzmenaAutomobila;
 import dispecer.podaciAutomobila.PrikazAutomobila;
-import dispecer.podaciDispeceraZaKT2.DodavanjeDispecera;
 import dispecer.podaciTaksiSluzbe.IzmenaPodatakaTaksiSluzbe;
 import dispecer.podaciTaksiSluzbe.PrikazPodatakaTaksiSluzbe;
 import dispecer.podaciVozaca.BrisanjeVozaca;
 import dispecer.podaciVozaca.DodavanjeVozaca;
 import dispecer.podaciVozaca.IzmenaVozaca;
 import dispecer.podaciVozaca.PrikazVozaca;
-import dispecer.podaciVoznjePrekoAplikacije.IzmenaVoznjiNarucenihPrekoAplikacije;
 import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
-import dispecer.podaciVoznjePrekoTelefona.IzmenaVoznjiNarucenihPrekoTelefona;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaAutomobila.*;
 import dispecer.pretragaVozaca.*;
 import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
-import musterija.podaciMusterijeZaKT2.DodavanjeMusterija;
-import musterija.probaZaAlgoritme.DodeliVoznjuAukcijom;
+import musterija.probaZaAlgoritme.aukcijaAplikacija.DodeliVoznjuAplikacijomAukcijom;
+import musterija.probaZaAlgoritme.aukcijaTelefon.DodeliVoznjuTelefonomAukcijom;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -89,7 +86,8 @@ public class MogucnostiDispecera extends JFrame {
 
 	private JMenu funkcionalnostDodavanjeVoznji = new JMenu("Dodeljivanje voznji");
 	private JMenuItem dodeliVoznju = new JMenuItem("Dodeli voznji");
-	private JMenuItem dodeliVoznjuAukcijom = new JMenuItem("Dodeli voznji aukcijom");
+	private JMenuItem dodeliVoznjuTelefonAukcijom = new JMenuItem("Dodeli voznji aukcijom (kreirane telefonom)");
+	private JMenuItem dodeliVoznjuAplikacijaAukcijom = new JMenuItem("Dodeli voznji aukcijom (kreirane aplikacijom)");
 
 	private JMenu odjava = new JMenu("Odjava");
 	private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
@@ -168,7 +166,8 @@ public class MogucnostiDispecera extends JFrame {
 
 		dispecerMenu.add(funkcionalnostDodavanjeVoznji);
 		funkcionalnostDodavanjeVoznji.add(dodeliVoznju);
-		funkcionalnostDodavanjeVoznji.add(dodeliVoznjuAukcijom);
+		funkcionalnostDodavanjeVoznji.add(dodeliVoznjuTelefonAukcijom);
+		funkcionalnostDodavanjeVoznji.add(dodeliVoznjuAplikacijaAukcijom);
 
 		dispecerMenu.add(odjava);
 		odjava.add(potvrdaZaOdjavu);
@@ -417,10 +416,17 @@ public class MogucnostiDispecera extends JFrame {
 				}
 			}
 		});
-		dodeliVoznjuAukcijom.addActionListener(new ActionListener() {
+		dodeliVoznjuTelefonAukcijom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DodeliVoznjuAukcijom dodeliVoznjuAukcijom = new DodeliVoznjuAukcijom(ucitavanje,voznja);
+				DodeliVoznjuTelefonomAukcijom dodeliVoznjuAukcijom = new DodeliVoznjuTelefonomAukcijom(ucitavanje,voznja);
+				dodeliVoznjuAukcijom.setVisible(true);
+			}
+		});
+		dodeliVoznjuAplikacijaAukcijom.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DodeliVoznjuAplikacijomAukcijom dodeliVoznjuAukcijom = new DodeliVoznjuAplikacijomAukcijom(ucitavanje, voznjePrekoAplikacije);
 				dodeliVoznjuAukcijom.setVisible(true);
 			}
 		});

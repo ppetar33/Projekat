@@ -5,7 +5,8 @@ import musterija.istorijaVoznji.IstorijaVoznjiMusterijaAplikacija;
 import musterija.istorijaVoznji.IstorijaVoznjiMusterijaTelefon;
 import musterija.narucivanjeVoznjePrekoAplikacije.ProzorZaNarucivanjePutemAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjePrekoTelefonaProzor;
-import musterija.probaZaAlgoritme.NaruciVoznjuTelefonomAukcija;
+import musterija.probaZaAlgoritme.aukcijaAplikacija.NaruciVoznjuAplikacijomAukcija;
+import musterija.probaZaAlgoritme.aukcijaTelefon.NaruciVoznjuTelefonomAukcija;
 import osobe.Dispecar;
 import osobe.Musterija;
 import liste.Liste;
@@ -23,7 +24,8 @@ public class MogucnostiMusterije extends JFrame{
     private JMenuItem istorijaVoznjiTelefon = new JMenuItem("Istorija voznje kreiranih putem telefona");
     private JMenuItem narucivanjeVoznjePrekoAplikacije = new JMenuItem("Narucivanje voznje preko aplikacije");
     private JMenuItem narucivanjeVoznjePrekoTelefona = new JMenuItem("Narucivanje voznje preko telefona");
-    private JMenuItem probaZaAlgoritme = new JMenuItem("Proba za algoritme TELEFONOM");
+    private JMenuItem narucivanjeVoznjePrekoAplikacijeProba = new JMenuItem("Naruci voznju preko aplikacije proba");
+    private JMenuItem narucivanjeVoznjePrekoTelefonaProba = new JMenuItem("Naruci voznju preko telefona proba");
 
     private JMenu odjava = new JMenu("Odjava");
     private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
@@ -51,7 +53,8 @@ public class MogucnostiMusterije extends JFrame{
         funkcionalnostMusterije.add(istorijaVoznjiTelefon);
         funkcionalnostMusterije.add(narucivanjeVoznjePrekoAplikacije);
         funkcionalnostMusterije.add(narucivanjeVoznjePrekoTelefona);
-        funkcionalnostMusterije.add(probaZaAlgoritme);
+        funkcionalnostMusterije.add(narucivanjeVoznjePrekoAplikacijeProba);
+        funkcionalnostMusterije.add(narucivanjeVoznjePrekoTelefonaProba);
         musterijaMenu.add(odjava);
         odjava.add(potvrdaZaOdjavu);
         odjava.add(odustaniZaOdjavu);
@@ -104,11 +107,19 @@ public class MogucnostiMusterije extends JFrame{
 
 
         //PROBA ZA ALGORITME
-        probaZaAlgoritme.addActionListener(new ActionListener() {
+        narucivanjeVoznjePrekoTelefonaProba.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NaruciVoznjuTelefonomAukcija probaZaAlgoritme = new NaruciVoznjuTelefonomAukcija(ucitavanje,prijavljenaMusterija);
-                probaZaAlgoritme.setVisible(true);
+                NaruciVoznjuTelefonomAukcija proba = new NaruciVoznjuTelefonomAukcija(ucitavanje,prijavljenaMusterija);
+                proba.setVisible(true);
+            }
+        });
+        narucivanjeVoznjePrekoAplikacijeProba.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NaruciVoznjuAplikacijomAukcija proba = new NaruciVoznjuAplikacijomAukcija(ucitavanje,prijavljenaMusterija);
+                proba.setVisible(true);
+
             }
         });
     }

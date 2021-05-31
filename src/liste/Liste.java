@@ -273,15 +273,17 @@ public class Liste {
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] podaci = line.trim().split(",");
-				String izborMusterije = podaci[0];
-				int IDvoznje = Integer.parseInt(podaci[1]);
-				String vozacKojiUcestvujeUaukciji = podaci[2];
-				int vremeKojeJeUneoVozac = Integer.parseInt(podaci[3]);
-				double ocenaVozaca = Double.parseDouble(podaci[4]);
-				boolean petFriendly = Boolean.parseBoolean(podaci[5]);
-				int godisteAutomobila = Integer.parseInt(podaci[6]);
-				boolean dobioVoznju = Boolean.parseBoolean(podaci[7]);
-				Aukcija aukcija = new Aukcija(izborMusterije,IDvoznje,vozacKojiUcestvujeUaukciji,vremeKojeJeUneoVozac,ocenaVozaca,petFriendly,godisteAutomobila,dobioVoznju);
+				int id = Integer.parseInt(podaci[0]);
+				String izborMusterije = podaci[1];
+				int IDvoznje = Integer.parseInt(podaci[2]);
+				String vozacKojiUcestvujeUaukciji = podaci[3];
+				int vremeKojeJeUneoVozac = Integer.parseInt(podaci[4]);
+				double ocenaVozaca = Double.parseDouble(podaci[5]);
+				boolean petFriendly = Boolean.parseBoolean(podaci[6]);
+				int godisteAutomobila = Integer.parseInt(podaci[7]);
+				boolean dobioVoznju = Boolean.parseBoolean(podaci[8]);
+				StatusNaruceneVoznje statusNaruceneVoznje = StatusNaruceneVoznje.valueOf(podaci[9]);
+				Aukcija aukcija = new Aukcija(id,izborMusterije,IDvoznje,vozacKojiUcestvujeUaukciji,vremeKojeJeUneoVozac,ocenaVozaca,petFriendly,godisteAutomobila,dobioVoznju,statusNaruceneVoznje);
 				istorijaAukcija.add(aukcija);
 			}
 			br.close();
@@ -1032,6 +1034,15 @@ public class Liste {
 		}
 		return maks + 1;
 	}
+	public int generisiNoviIDzaIstorijuAukcije(){
+		int maks = -1;
+		for(Aukcija aukcija : istorijaAukcija){
+			if(aukcija.getId() > maks){
+				maks = aukcija.getId();
+			}
+		}
+		return maks + 1;
+	}
 
 
 	/*
@@ -1133,6 +1144,15 @@ public class Liste {
 		}
 		return neobrisaneVoznje;
 	}
+	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> neobrisaneIkreiraneVoznjeNarucenePutemAplikacije(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> neobrisaneVoznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
+			if(voznja.isObrisan() && voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
+				neobrisaneVoznje.add(voznja);
+			}
+		}
+		return neobrisaneVoznje;
+	}
 	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> prikazVoznjeZaZavrsavanjeVoznje(){
 		DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
 		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
@@ -1155,23 +1175,6 @@ public class Liste {
 			}
 		}
 		return voznje;
-	}
-	public String ulogovanKorisnik(){
-		Vozac ulogovanVozac = null;
-		try {
-			File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
-			Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
-			while (citanjeUlogovanogKorisnika.hasNextLine()) {
-				String data = citanjeUlogovanogKorisnika.nextLine();
-				ulogovanVozac = new Vozac();
-				ulogovanVozac.setKorisnickoIme(data);
-			}
-			citanjeUlogovanogKorisnika.close();
-		}  catch (IOException ioException) {
-			ioException.printStackTrace();
-			System.out.println("Greska");
-		}
-		return ulogovanVozac.getKorisnickoIme();
 	}
 
 	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> prikazVoznjeZaZavrsavanjeVoznjePutemAplikacije(){
