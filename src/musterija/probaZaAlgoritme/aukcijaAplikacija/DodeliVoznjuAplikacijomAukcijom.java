@@ -1,10 +1,14 @@
 package musterija.probaZaAlgoritme.aukcijaAplikacija;
 
 import automobili.Voznja;
+import enumi.StatusNaruceneVoznje;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
+import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
+import musterija.probaZaAlgoritme.Aukcija;
 import musterija.probaZaAlgoritme.aukcijaTelefon.DodeliVoznjuTelefonomAukcijom;
+import musterija.probaZaAlgoritme.aukcijaTelefon.ProzorZaDodeljivanjeVoznjiTelefonomAukcijom;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -82,7 +86,127 @@ public class DodeliVoznjuAplikacijomAukcijom extends JFrame {
         btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                int red = voznjeTabela.getSelectedRow();
+                if (red == -1){
+                    JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
+                }else {
+                    DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
+                    String idString = tableModel.getValueAt(red, 0).toString();
+                    int id = Integer.parseInt(idString);
+
+                    DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
+                    NarucivanjeVoznjePrekoAplikacije voznja = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
+
+                    DoublyLinkedList<Aukcija> aukcija = ucitavanje.getIstorijaAukcija();
+                    DoublyLinkedList<String> izborMusterije = new DoublyLinkedList<>();
+                    for(Aukcija aukcija1 : aukcija){
+                        if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)){
+                            izborMusterije.add(aukcija1.getIzborMusterije());
+                        }
+                    }
+
+                    Set<String> izborMusterijeBezDupliranihElemenata = findDuplicatesStrings(izborMusterije);
+                    DoublyLinkedList<Double> oceneVozacaLista = new DoublyLinkedList<>();
+                    DoublyLinkedList<Integer> brzinaVozacaLista = new DoublyLinkedList<>();
+                    DoublyLinkedList<Boolean> petFriendlyLista = new DoublyLinkedList<>();
+                    DoublyLinkedList<Integer> najnovijiAutomobilLista = new DoublyLinkedList<>();
+                    DoublyLinkedList<String> listaPetFriendlyAuta = new DoublyLinkedList<>();
+
+                    for(String i : izborMusterijeBezDupliranihElemenata){
+                        for(Aukcija aukcija1 : aukcija){
+                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)){
+                                if(i.equals("Najbolje ocenjen vozac")){
+                                    oceneVozacaLista.add(aukcija1.getOcenaVozaca());
+                                }else if(i.equals("Najbrzi vozac")){
+                                    brzinaVozacaLista.add(aukcija1.getVremeKojeJeUneoVozac());
+                                }else if(i.equals("Pet friendly automobil")){
+                                    petFriendlyLista.add(aukcija1.isPetFriendly());
+                                    if (aukcija1.isPetFriendly()) {
+                                        String petFriendlyAutaVozaca = aukcija1.getVozacKojiUcestvujeUaukciji();
+                                        listaPetFriendlyAuta.add(petFriendlyAutaVozaca);
+                                    }
+                                }else if(i.equals("Najnoviji automobil")){
+                                    najnovijiAutomobilLista.add(aukcija1.getGodisteAutomobila());
+                                }else{
+                                    oceneVozacaLista.add(aukcija1.getOcenaVozaca());
+                                }
+                            }
+                        }
+                    }
+                    DoublyLinkedList<String> najbrziVozac = new DoublyLinkedList<>();
+                    double n = brzinaVozacaLista.size();
+                    if(brzinaVozacaLista.size() != 0) {
+                        double min = brzinaVozacaLista.get(0);
+                        for (int j = 0; j < n; j++) {
+                            if (brzinaVozacaLista.get(j) < min) {
+                                min = brzinaVozacaLista.get(j);
+                            }
+                        }
+                        for (Aukcija aukcija1 : aukcija) {
+                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)) {
+                                if (min == aukcija1.getVremeKojeJeUneoVozac()) {
+                                    String najbrziVozacKorisnickoIme = aukcija1.getVozacKojiUcestvujeUaukciji();
+                                    najbrziVozac.add(najbrziVozacKorisnickoIme);
+                                }
+                            }
+                        }
+                    }
+
+                    DoublyLinkedList<String> oceneVozaca = new DoublyLinkedList<>();
+                    if(oceneVozacaLista.size() != 0) {
+                        double ocenaVozaca = oceneVozacaLista.getFirst();
+                        for (int j = 0; j < oceneVozacaLista.size(); j++) {
+                            if (oceneVozacaLista.get(j) > ocenaVozaca) {
+                                ocenaVozaca = oceneVozacaLista.get(j);
+                            }
+                        }
+                        for (Aukcija aukcija1 : aukcija) {
+                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)) {
+                                if (aukcija1.getOcenaVozaca() == ocenaVozaca) {
+                                    String najboljeOcenjenVozacKorisnickoIme = aukcija1.getVozacKojiUcestvujeUaukciji();
+                                    oceneVozaca.add(najboljeOcenjenVozacKorisnickoIme);
+                                }
+                            }
+                        }
+                    }
+
+                    DoublyLinkedList<String> najnovijiAutomobil = new DoublyLinkedList<>();
+                    if(najnovijiAutomobilLista.size() != 0){
+                        double najnovijiAuto = najnovijiAutomobilLista.getFirst();
+                        for (int j = 0; j < najnovijiAutomobilLista.size(); j++) {
+                            if (najnovijiAutomobilLista.get(j) > najnovijiAuto) {
+                                najnovijiAuto = najnovijiAutomobilLista.get(j);
+                            }
+                        }
+                        for (Aukcija aukcija1 : aukcija) {
+                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)) {
+                                if (aukcija1.getGodisteAutomobila() == najnovijiAuto) {
+                                    String najboljeOcenjenVozacKorisnickoIme = aukcija1.getVozacKojiUcestvujeUaukciji();
+                                    najnovijiAutomobil.add(najboljeOcenjenVozacKorisnickoIme);
+                                }
+                            }
+                        }
+                    }
+
+                    if(oceneVozacaLista.isEmpty() && petFriendlyLista.isEmpty() && brzinaVozacaLista.isEmpty() && najnovijiAutomobilLista.isEmpty()){
+                        JOptionPane.showMessageDialog(null,"Ni jedan vozac ne ucestvuje u aukciji, molimo vas sacekajte.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                    }
+
+                    if(oceneVozaca.size() != 0){
+                        ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom(ucitavanje,voznja,oceneVozaca);
+                        prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
+                    }else if(najnovijiAutomobil.size() != 0){
+                        ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom(ucitavanje,voznja,najnovijiAutomobil);
+                        prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
+                    }else if(najbrziVozac.size() != 0){
+                        ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom(ucitavanje,voznja,najbrziVozac);
+                        prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
+                    }else if(listaPetFriendlyAuta.size() != 0) {
+                        ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom(ucitavanje, voznja, listaPetFriendlyAuta);
+                        prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
+                    }
+                }
             }
         });
         btnOsvezi.addActionListener(new ActionListener() {

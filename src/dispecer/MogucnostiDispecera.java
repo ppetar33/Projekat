@@ -419,15 +419,23 @@ public class MogucnostiDispecera extends JFrame {
 		dodeliVoznjuTelefonAukcijom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DodeliVoznjuTelefonomAukcijom dodeliVoznjuAukcijom = new DodeliVoznjuTelefonomAukcijom(ucitavanje,voznja);
-				dodeliVoznjuAukcijom.setVisible(true);
+				if(ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					DodeliVoznjuTelefonomAukcijom dodeliVoznjuAukcijom = new DodeliVoznjuTelefonomAukcijom(ucitavanje, voznja);
+					dodeliVoznjuAukcijom.setVisible(true);
+				}
 			}
 		});
 		dodeliVoznjuAplikacijaAukcijom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DodeliVoznjuAplikacijomAukcijom dodeliVoznjuAukcijom = new DodeliVoznjuAplikacijomAukcijom(ucitavanje, voznjePrekoAplikacije);
-				dodeliVoznjuAukcijom.setVisible(true);
+				if(ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemAplikacije().isEmpty()){
+					JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					DodeliVoznjuAplikacijomAukcijom dodeliVoznjuAukcijom = new DodeliVoznjuAplikacijomAukcijom(ucitavanje, voznjePrekoAplikacije);
+					dodeliVoznjuAukcijom.setVisible(true);
+				}
 			}
 		});
 		potvrdaZaOdjavu.addActionListener(new ActionListener() {

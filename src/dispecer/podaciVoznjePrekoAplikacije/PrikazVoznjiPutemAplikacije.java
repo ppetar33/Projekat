@@ -40,9 +40,9 @@ public class PrikazVoznjiPutemAplikacije extends JFrame {
             sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             sadrzaj[i][2] = voznje.getAdresaPolaska();
             sadrzaj[i][3] = voznje.getAdresaDestinacije();
-            sadrzaj[i][4] = voznje.getMusterija().getIme();
+            sadrzaj[i][4] = voznje.getMusterija().getKorisnickoIme();
             if(voznje.getVozac().getKorisnickoIme() != "") {
-                sadrzaj[i][5] = voznje.getVozac().getIme().substring(0, 1).toUpperCase() + voznje.getVozac().getIme().substring(1);
+                sadrzaj[i][5] = voznje.getVozac().getKorisnickoIme();
             }else{
                 sadrzaj[i][5] = "Nema slobodan vozac";
             }

@@ -111,7 +111,7 @@ public class MogucnostiVozaca extends JFrame {
         prikazVoznjeZakazanihPrekoAplikacije.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().isEmpty()){
+                if(ucitavanje.prikazVozacuSvihVoznjiNarucenihPrekoAplikacije().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Trenutno nema voznji!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                 }else {
                     PrikazVoznjiZakazanihPrekoAplikacije prikazVoznjiZakazanihPrekoAplikacije = new PrikazVoznjiZakazanihPrekoAplikacije(ucitavanje, prijavljeniVozac);

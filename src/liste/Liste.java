@@ -1279,6 +1279,29 @@ public class Liste {
 		}
 		return voznje;
 	}
+	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> prikazVozacuSvihVoznjiNarucenihPrekoAplikacije(){
+		DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznje = new DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije>();
+		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
+			Vozac ulogovanVozac = null;
+			try {
+				File ulogovanKorisnik = new File("src/fajlovi/ulogovanKorisnik.txt");
+				Scanner citanjeUlogovanogKorisnika = new Scanner(ulogovanKorisnik);
+				while (citanjeUlogovanogKorisnika.hasNextLine()) {
+					String data = citanjeUlogovanogKorisnika.nextLine();
+					ulogovanVozac = new Vozac();
+					ulogovanVozac.setKorisnickoIme(data);
+					if(voznja.isObrisan() && voznja.getVozac().getKorisnickoIme().equalsIgnoreCase(ulogovanVozac.getKorisnickoIme())){
+						voznje.add(voznja);
+					}
+				}
+				citanjeUlogovanogKorisnika.close();
+			}  catch (IOException ioException) {
+				ioException.printStackTrace();
+				System.out.println("Greska");
+			}
+		}
+		return voznje;
+	}
 
 	//PRETRAGA AUTOMOBILA
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoModelu(String unosModela){

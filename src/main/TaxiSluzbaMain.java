@@ -53,14 +53,7 @@ public class TaxiSluzbaMain {
         najbolju mogucu situaciju vozaca npr najbrzi, da je pet friendly i da je najbolje ocenjen
         4. refaktorisati kod za pretragu i za izvestaje
 
-    PITATI ASISTENTA:
-        automobili i voznje imaju ID i pri ucitavanju treba da ih sortiramo po kljucu (id)
-        a posto korisnici nemaju id da li treba da ih sortiramo?
-
-    Ako odgovori sa da treba odraditi:
-        ubaciti ID za korisnike i potrebno ih je sortirati po kljucu pri ucitavanju kao voznje i izmeniti
-        binarnu pretragu gde god postoji pretraga korisnika po korisnickom imenu da tu bude binarna pretraga
-        po id-u
+   ODRADITI:
 
    2. dodati kod narucivanja voznje telefonom/aplikacijom najiskusnijeg vozaca(vozac koji je imao najvise voznji)
        ovo se moze odraditi tako sto kod vozaca staviti novi atribut koliko voznji je imao
@@ -73,5 +66,16 @@ public class TaxiSluzbaMain {
        kada dodam ovaj atribut potrebno je proveriti sve tacke sto se ticu objektnog
        +
        izvestaji i pretraga
+
+
+
+    PITATI ASISTENTA:
+        automobili i voznje imaju ID i pri ucitavanju treba da ih sortiramo po kljucu (id)
+        a posto korisnici nemaju id da li treba da ih sortiramo?
+
+    Ako odgovori sa da treba odraditi:
+        ubaciti ID za korisnike i potrebno ih je sortirati po kljucu pri ucitavanju kao voznje i izmeniti
+        binarnu pretragu gde god postoji pretraga korisnika po korisnickom imenu da tu bude binarna pretraga
+        po id-u
 
 */

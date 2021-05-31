@@ -51,38 +51,20 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
     private void initGUI(){
         add(mainJToolBar, BorderLayout.SOUTH);
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Broj predjenih km","Trajanje voznje","Status voznje", "Napomena"};
-        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size()][zaglavnje.length];
+        Object[][] sadrzaj = new Object[ucitavanje.prikazVozacuSvihVoznjiNarucenihPrekoAplikacije().size()][zaglavnje.length];
         int j = 0;
-        for(int i = 0; i < ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().size(); i++){
-            NarucivanjeVoznjePrekoAplikacije voznje = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije().get(i);
-
-            Vozac ulogovaniVozac = null;
-            try {
-                File ulogovanVozac = new File("src/fajlovi/ulogovanKorisnik.txt");
-                Scanner citanjeUlogovanogVozaca = new Scanner(ulogovanVozac);
-                while (citanjeUlogovanogVozaca.hasNextLine()) {
-                    String data = citanjeUlogovanogVozaca.nextLine();
-                    ulogovaniVozac = new Vozac();
-                    ulogovaniVozac.setKorisnickoIme(data);
-                }
-                citanjeUlogovanogVozaca.close();
-            }  catch (IOException ioException) {
-                ioException.printStackTrace();
-                System.out.println("Greska");
-            }
-
-            if(voznje.getVozac().getKorisnickoIme().equals(ulogovaniVozac.getKorisnickoIme())){
-                sadrzaj[j][0] = voznje.getId();
-                sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
-                sadrzaj[j][2] = voznje.getAdresaPolaska();
-                sadrzaj[j][3] = voznje.getAdresaDestinacije();
-                sadrzaj[j][4] = voznje.getMusterija().getKorisnickoIme();
-                sadrzaj[j][5] = voznje.getBrojKMpredjenih();
-                sadrzaj[j][6] = voznje.getTrajanjVoznje();
-                sadrzaj[j][7] = voznje.getStatusVoznje();
-                sadrzaj[j][8] = voznje.getNapomena();
-                j++;
-            }
+        for(int i = 0; i < ucitavanje.prikazVozacuSvihVoznjiNarucenihPrekoAplikacije().size(); i++){
+            NarucivanjeVoznjePrekoAplikacije voznje = ucitavanje.prikazVozacuSvihVoznjiNarucenihPrekoAplikacije().get(i);
+            sadrzaj[j][0] = voznje.getId();
+            sadrzaj[j][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm"));
+            sadrzaj[j][2] = voznje.getAdresaPolaska();
+            sadrzaj[j][3] = voznje.getAdresaDestinacije();
+            sadrzaj[j][4] = voznje.getMusterija().getKorisnickoIme();
+            sadrzaj[j][5] = voznje.getBrojKMpredjenih();
+            sadrzaj[j][6] = voznje.getTrajanjVoznje();
+            sadrzaj[j][7] = voznje.getStatusVoznje();
+            sadrzaj[j][8] = voznje.getNapomena();
+            j++;
         }
 
         table_model = new DefaultTableModel(sadrzaj, zaglavnje);
@@ -99,9 +81,6 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
 
         JScrollPane jsp = new JScrollPane(istorijaVoznjeTabela);
         add(jsp, BorderLayout.CENTER);
-
-
-
     }
 
     private void initListeners() {
@@ -120,7 +99,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
 
-                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
+                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.DODELJENA)){
                         ProzorZaPrihvatanjeVoznjeAplikacije prozorZaPrihvatanjeVoznjeAplikacije = new ProzorZaPrihvatanjeVoznjeAplikacije(ucitavanje,nadjiVoznju);
                         prozorZaPrihvatanjeVoznjeAplikacije.setVisible(true);
                     }else {
@@ -149,7 +128,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
                     int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
-                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
+                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.DODELJENA)){
                         JOptionPane.showMessageDialog(null, "Uspesno ste odbili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         ulogovaniVozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
                         ucitavanje.dodavanjeKorisnika();
