@@ -54,6 +54,8 @@ public class TaxiSluzbaMain {
     PITATI ASISTENTA:
         automobili i voznje imaju ID i pri ucitavanju treba da ih sortiramo po kljucu (id)
         a posto korisnici nemaju id da li treba da ih sortiramo?
+        da li je problem input za izvestaje?
+        procitati kako sam odradio aukciju
 
 */
 
