@@ -3,16 +3,13 @@ package musterija.probaZaAlgoritme.aukcijaTelefon;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
-import musterija.probaZaAlgoritme.aukcijaAplikacija.ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom;
 
-import javax.swing.*;
+public class IzborMusterijeSvejednoTelefon {
 
-public class IzborMusterijeSvejedno{
-    
     private Liste ucitavanje;
     private NarucivanjeVoznjePrekoTelefona voznja;
 
-    public IzborMusterijeSvejedno(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja, DoublyLinkedList<Double> svejednoListaOcena, DoublyLinkedList<Integer> svejednoListaBrojVoznji, DoublyLinkedList<Integer> svejednoListaVreme, DoublyLinkedList<Integer> svejednoListaGodisteAuta, DoublyLinkedList<String> vozaciKorisnickaImena) {
+    public IzborMusterijeSvejednoTelefon(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja, DoublyLinkedList<Double> svejednoListaOcena, DoublyLinkedList<Integer> svejednoListaBrojVoznji, DoublyLinkedList<Integer> svejednoListaVreme, DoublyLinkedList<Integer> svejednoListaGodisteAuta, DoublyLinkedList<String> vozaciKorisnickaImena) {
         this.ucitavanje = ucitavanje;
         this.voznja = voznja;
         System.out.println("Vozaci koji ucestvuju u aukciji: ");
@@ -36,11 +33,15 @@ public class IzborMusterijeSvejedno{
             }
         }
         double vrednost = 0.25;
-        double rezultat = 0;
+        double rezultat;
         DoublyLinkedList<Double> rezultatRacunanja = new DoublyLinkedList<>();
         for(Integer i : svejednoListaVreme){
             rezultat = (min/i) * vrednost;
-            rezultatRacunanja.add(rezultat);
+            if(i == 0){
+                rezultatRacunanja.add(0.0);
+            }else {
+                rezultatRacunanja.add(rezultat);
+            }
         }
         return rezultatRacunanja;
     }
@@ -52,7 +53,7 @@ public class IzborMusterijeSvejedno{
             }
         }
         double vrednost = 0.25;
-        double rezultat = 0;
+        double rezultat;
         DoublyLinkedList<Double> rezultatRacunanja = new DoublyLinkedList<>();
         for(Double d : svejednoListaOcena){
             rezultat = (d/ocenaVozaca) * vrednost;
@@ -68,11 +69,15 @@ public class IzborMusterijeSvejedno{
             }
         }
         double vrednost = 0.25;
-        double rezultat = 0;
+        double rezultat;
         DoublyLinkedList<Double> rezultatRacunanja = new DoublyLinkedList<>();
         for(Integer d : svejednoListaBrojVoznji){
             rezultat = (d/najveciBrojVoznji) * vrednost;
-            rezultatRacunanja.add(rezultat);
+            if(d == 0){
+                rezultatRacunanja.add(0.0);
+            }else{
+                rezultatRacunanja.add(rezultat);
+            }
         }
         return rezultatRacunanja;
     }
@@ -84,7 +89,7 @@ public class IzborMusterijeSvejedno{
             }
         }
         double vrednost = 0.25;
-        double rezultat = 0;
+        double rezultat;
         DoublyLinkedList<Double> rezultatRacunanja = new DoublyLinkedList<>();
         for(Integer d : svejednoListaGodisteAuta){
             rezultat = (d/najveceGodisteAuta) * vrednost;
@@ -100,6 +105,25 @@ public class IzborMusterijeSvejedno{
         DoublyLinkedList<Double> brojOdradjenihVoznji =  racunanjeBrojaVoznji(svejednoListaBrojVoznji);
         DoublyLinkedList<Double> godistaAuta = racunanjeGostaAutomobila(svejednoListaGodisteAuta);
 
+        System.out.println("Izracunato vreme dolaska: ");
+        for(Double d : vremeDolaska){
+            System.out.println(d);
+        }
+        System.out.println("-----------------");
+        System.out.println("Izracunate ocene vozaca: ");
+        for(Double d : ocene){
+            System.out.println(d);
+        }
+        System.out.println("-----------------");
+        System.out.println("Izracunato broj odradjenih voznji: ");
+        for(Double d : brojOdradjenihVoznji){
+            System.out.println(d);
+        }
+        System.out.println("-----------------");
+        System.out.println("Izracunata godista automobila: ");
+        for(Double d : godistaAuta){
+            System.out.println(d);
+        }
         DoublyLinkedList<Double> rezultat = new DoublyLinkedList<>();
 
         for(int i = 0; i < vremeDolaska.size(); i++){
@@ -109,6 +133,8 @@ public class IzborMusterijeSvejedno{
 
         double max = rezultat.getFirst();
 
+        System.out.println("-------------");
+        System.out.println("Konacni rezultat: ");
         for(Double d : rezultat){
             System.out.println(d);
         }
@@ -119,16 +145,18 @@ public class IzborMusterijeSvejedno{
             }
         }
 
-        System.out.println("-----");
-        System.out.println(max);
+        System.out.println("-----------------");
+        System.out.println("Maksimalna vrednost: " + max);
 
         int index = rezultat.indexOf(max);
 
-        System.out.println(index);
+        System.out.println("-----------------");
+        System.out.println("Index gde se maksimalna vrednost nalazi: " + index);
 
         String vozacKojiTrebaDaDobijeVoznju = vozaciKorisnickaImena.get(index);
 
-        System.out.println(vozacKojiTrebaDaDobijeVoznju);
+        System.out.println("-----------------");
+        System.out.println("Vozac koji treba da dobije voznju: " + vozacKojiTrebaDaDobijeVoznju);
 
         DoublyLinkedList<String> vozac = new DoublyLinkedList<>();
         vozac.add(vozacKojiTrebaDaDobijeVoznju);
@@ -137,129 +165,4 @@ public class IzborMusterijeSvejedno{
         prozor.setVisible(true);
 
     }
-
-    // sada je potrebno da ove metode vrate brojeve
-    // jer cu ispisati korisnickoImeVozaca + rezultat (rezultat cu izracunati tako sto cu sabrati sve brojeve)
-    // sabrao sam sve brojeve i dobio sam konacan rezultat
-    // sortirati taj rezultat
-    // prikazati dispeceru tabelu vozaca koji su ucestvovali u aukciji i njihov rank, rank odredjujem po sortiranoj listi rezultata
-    // to je to
-
-
-    /*
-        vreme dolaska (non-beneficial)
-        ocena vozaca (beneficial)
-        broj odradjenih voznji (beneficial)
-        godista auta (beneficial)
-        napraviti tabelu gde je ponuda vise vozaca jer je nemoguce da se sve ispuni
-        u zaglavlju ce biti:
-            korisnicko ime vozaca, ocena vozaca, vreme dolaska, broj odradjenih voznji, godiste auta, rank (koji cu izracunati u programu)
-        postoji nesto sto se zove non-beneficial i beneficial kriterijumi
-        non-beneficial su oni gde se gleda najmanji podatak
-        beneficial su oni gde se gleda najveci podatak
-        non-beneficial se racuna tako sto podelimo najmanju vrednost sa svakom vrednoscu
-        beneficial se racuna tako sto podelimo svaki podatak sa najvecom vrednoscu
-
-        ocena vozaca: (preuzeti sve ocene vozaca)
-            3.5
-            4.0
-            3.4
-            4.5
-            3.0
-        najveca vrednost 4.5 (pronaci najvecu vrednost)
-        podeliti svaku vrednost sa najvecnom
-            3.5/4.5 = 0,78
-            4.0/4.5 = 0,88
-            3.4/4.5 = 0,75
-            4.5/4.5 = 1,0
-            3.0/4.5 = 0,67
-
-        vreme dolaska: (preuzeti sva vremena dolaska koje su uneli vozaci)
-            10
-            5
-            12
-            8
-            7
-        najmanja vrednost 5 (pronaci najmanju vrednost)
-        podaliti najmanju vrednost sa svakim podatkom
-            5/10 = 0,5
-            5/5 = 1
-            5/12 = 0,42
-            5/8 = 0,62
-            5/7 = 0,71
-
-        broj odradjenih voznji: (preuzeti sve podatke za broj odradjenih voznji)
-            0
-            0
-            0
-            2
-            4
-        najveca vrednost 4 (pronaci najvecu vrednost)
-        podaliti svaku vrednost sa najvecom
-            0/4 = 0
-            0/4 = 0
-            0/4 = 0
-            2/4 = 0,5
-            4/4 = 1
-
-         godiste auta: (preuzeti sva godista auta)
-            2012
-            2007
-            2009
-            2014
-            2012
-         najveca vrednost 2014 (pronaci najvecu vrednost)
-         podeliti svaku vrednost sa najvecom
-            2012/2014 = 0,999
-            2007/2014 = 0,996
-            2009/2014 = 0,997
-            2014/2014 = 1
-            2012/2014 = 0,999
-
-        stavljam da su sva 4 kriterijuma jednako vazna (25% = 0.25)
-        sada je potrebno da svaki rezultat koji sam dobio pomnozim sa 0.25
-        na kraju dobijam:
-
-        ocena vozaca:
-            0,195
-            0,22
-            0,185
-            0,25
-            0,167
-        vreme dolaska:
-            0,125
-            0,25
-            0,105
-            0,155
-            0,177
-        broj voznji:
-            0
-            0
-            0
-            0,125
-            0,25
-        godiste auta:
-            0,2497
-            0,2490
-            0,2492
-            0,2500
-            0,2497
-
-        sada je potrebno da sve vrednosti za odredjenog vozaca saberem i dobijem jedan rezultat
-        jer cu po njemu da sortiram
-        nemanja123, 0,5697 CETVRTI
-        mirko123, 0,7190 TRECI
-        jovana123, 0,5392 PETI
-        marina123, 0,7800 DRUGI
-        stefan123, 0,8437  PRVI
-
-        racunanje uraditi u kodu
-        a sortiranje je potrebno napraviti metodu za sortiranje double vrednosti
-        nakon sortiranja cu dobiti listu vozaca:
-            1. stefan123
-            2. marina123
-            3. mirko123
-            4. nemanja123
-            5. jovana123
-    */
 }

@@ -111,7 +111,6 @@ public class DodeliVoznjuTelefonomAukcijom extends JFrame {
                     DoublyLinkedList<Integer> najnovijiAutomobilLista = new DoublyLinkedList<>();
                     DoublyLinkedList<String> listaPetFriendlyAuta = new DoublyLinkedList<>();
                     DoublyLinkedList<Integer> najiskusnijiVozacLista = new DoublyLinkedList<>();
-
                     DoublyLinkedList<Integer> svejednoListaVreme = new DoublyLinkedList<>();
                     DoublyLinkedList<Double> svejednoListaOcena = new DoublyLinkedList<>();
                     DoublyLinkedList<Integer> svejednoListaBrojVoznji = new DoublyLinkedList<>();
@@ -238,7 +237,7 @@ public class DodeliVoznjuTelefonomAukcijom extends JFrame {
                         ProzorZaDodeljivanjeVoznjiTelefonomAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonomAukcijom(ucitavanje,voznja,najiskusnijiVozac);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(svejednoListaBrojVoznji.size() != 0){
-                        IzborMusterijeSvejedno izborMusterijeSvejedno = new IzborMusterijeSvejedno(ucitavanje,voznja,svejednoListaOcena,svejednoListaBrojVoznji,svejednoListaVreme,svejednoListaGodisteAuta,vozaciKorisnickaImena);
+                        new IzborMusterijeSvejednoTelefon(ucitavanje,voznja,svejednoListaOcena,svejednoListaBrojVoznji,svejednoListaVreme,svejednoListaGodisteAuta,vozaciKorisnickaImena);
                     }
 
                 }

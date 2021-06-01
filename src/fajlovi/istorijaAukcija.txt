@@ -4,9 +4,3 @@
 4,Najnoviji automobil,1,marina123,30,4.5,false,2014,true,TELEFON,2
 5,Najbrzi vozac,2,nemanja123,12,3.5,true,2012,false,TELEFON,0
 6,Najbrzi vozac,2,stefan123,10,4.0,false,2012,true,TELEFON,4
-7,Najbrzi vozac,4,nemanja123,10,3.5,true,2012,false,TELEFON,0
-8,Svejedno,5,nemanja123,15,3.5,true,2012,false,TELEFON,0
-9,Najbrzi vozac,4,marina123,10,4.5,false,2014,false,TELEFON,2
-10,Svejedno,5,marina123,5,4.5,false,2014,false,TELEFON,2
-11,Svejedno,5,stefan123,10,3.0,false,2012,false,TELEFON,4
-12,Svejedno,5,mirko123,5,4.0,true,2007,false,TELEFON,0
