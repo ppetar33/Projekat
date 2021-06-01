@@ -3,12 +3,18 @@ package musterija.probaZaAlgoritme.aukcijaTelefon;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
+import musterija.probaZaAlgoritme.aukcijaAplikacija.ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom;
+
 import javax.swing.*;
 
-public class IzborMusterijeSvejedno extends JFrame {
-
+public class IzborMusterijeSvejedno{
+    
+    private Liste ucitavanje;
+    private NarucivanjeVoznjePrekoTelefona voznja;
 
     public IzborMusterijeSvejedno(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja, DoublyLinkedList<Double> svejednoListaOcena, DoublyLinkedList<Integer> svejednoListaBrojVoznji, DoublyLinkedList<Integer> svejednoListaVreme, DoublyLinkedList<Integer> svejednoListaGodisteAuta, DoublyLinkedList<String> vozaciKorisnickaImena) {
+        this.ucitavanje = ucitavanje;
+        this.voznja = voznja;
         System.out.println("Vozaci koji ucestvuju u aukciji: ");
         for(String s : vozaciKorisnickaImena){
             System.out.println(s);
@@ -124,8 +130,11 @@ public class IzborMusterijeSvejedno extends JFrame {
 
         System.out.println(vozacKojiTrebaDaDobijeVoznju);
 
+        DoublyLinkedList<String> vozac = new DoublyLinkedList<>();
+        vozac.add(vozacKojiTrebaDaDobijeVoznju);
 
-        
+        ProzorZaDodeljivanjeVoznjiTelefonomAukcijom prozor = new ProzorZaDodeljivanjeVoznjiTelefonomAukcijom(ucitavanje,voznja,vozac);
+        prozor.setVisible(true);
 
     }
 

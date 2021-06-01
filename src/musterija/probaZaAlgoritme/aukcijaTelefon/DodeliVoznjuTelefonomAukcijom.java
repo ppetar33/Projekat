@@ -239,7 +239,6 @@ public class DodeliVoznjuTelefonomAukcijom extends JFrame {
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(svejednoListaBrojVoznji.size() != 0){
                         IzborMusterijeSvejedno izborMusterijeSvejedno = new IzborMusterijeSvejedno(ucitavanje,voznja,svejednoListaOcena,svejednoListaBrojVoznji,svejednoListaVreme,svejednoListaGodisteAuta,vozaciKorisnickaImena);
-                        izborMusterijeSvejedno.setVisible(true);
                     }
 
                 }
