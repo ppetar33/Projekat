@@ -162,7 +162,18 @@ public class DoublyLinkedList<T> implements Iterable<T> {
             }
         }
     }
-
+    public int indexOf(T element) {
+        int index = 0;
+        ListNode<T> current = head;
+        while(current != null) {
+            if(current.element.equals(element)) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
+    }
 
 
     @Override

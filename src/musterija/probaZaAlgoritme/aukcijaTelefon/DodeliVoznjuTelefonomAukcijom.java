@@ -111,6 +111,12 @@ public class DodeliVoznjuTelefonomAukcijom extends JFrame {
                     DoublyLinkedList<Integer> najnovijiAutomobilLista = new DoublyLinkedList<>();
                     DoublyLinkedList<String> listaPetFriendlyAuta = new DoublyLinkedList<>();
                     DoublyLinkedList<Integer> najiskusnijiVozacLista = new DoublyLinkedList<>();
+
+                    DoublyLinkedList<Integer> svejednoListaVreme = new DoublyLinkedList<>();
+                    DoublyLinkedList<Double> svejednoListaOcena = new DoublyLinkedList<>();
+                    DoublyLinkedList<Integer> svejednoListaBrojVoznji = new DoublyLinkedList<>();
+                    DoublyLinkedList<Integer> svejednoListaGodisteAuta = new DoublyLinkedList<>();
+                    DoublyLinkedList<String> vozaciKorisnickaImena = new DoublyLinkedList<>();
                     for(String i : izborMusterijeBezDupliranihElemenata){
                         for(Aukcija aukcija1 : aukcija){
                             if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.TELEFON)){
@@ -129,7 +135,11 @@ public class DodeliVoznjuTelefonomAukcijom extends JFrame {
                                 }else if(i.equals("Najiskusniji vozac")){
                                     najiskusnijiVozacLista.add(aukcija1.getBrojVoznjiKojeJeObavioVozac());
                                 }else{
-                                    oceneVozacaLista.add(aukcija1.getOcenaVozaca());
+                                    svejednoListaVreme.add(aukcija1.getVremeKojeJeUneoVozac());
+                                    svejednoListaOcena.add(aukcija1.getOcenaVozaca());
+                                    svejednoListaBrojVoznji.add(aukcija1.getBrojVoznjiKojeJeObavioVozac());
+                                    svejednoListaGodisteAuta.add(aukcija1.getGodisteAutomobila());
+                                    vozaciKorisnickaImena.add(aukcija1.getVozacKojiUcestvujeUaukciji());
                                 }
                             }
                         }
@@ -208,7 +218,7 @@ public class DodeliVoznjuTelefonomAukcijom extends JFrame {
                         }
                     }
 
-                    if(oceneVozacaLista.isEmpty() && petFriendlyLista.isEmpty() && brzinaVozacaLista.isEmpty() && najnovijiAutomobilLista.isEmpty() && najiskusnijiVozacLista.isEmpty()){
+                    if(oceneVozacaLista.isEmpty() && petFriendlyLista.isEmpty() && brzinaVozacaLista.isEmpty() && najnovijiAutomobilLista.isEmpty() && najiskusnijiVozacLista.isEmpty() && svejednoListaBrojVoznji.isEmpty()){
                         JOptionPane.showMessageDialog(null,"Ni jedan vozac ne ucestvuje u aukciji, molimo vas sacekajte.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
                     }
 
@@ -227,6 +237,9 @@ public class DodeliVoznjuTelefonomAukcijom extends JFrame {
                     }else if(najiskusnijiVozac.size() != 0){
                         ProzorZaDodeljivanjeVoznjiTelefonomAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonomAukcijom(ucitavanje,voznja,najiskusnijiVozac);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
+                    }else if(svejednoListaBrojVoznji.size() != 0){
+                        IzborMusterijeSvejedno izborMusterijeSvejedno = new IzborMusterijeSvejedno(ucitavanje,voznja,svejednoListaOcena,svejednoListaBrojVoznji,svejednoListaVreme,svejednoListaGodisteAuta,vozaciKorisnickaImena);
+                        izborMusterijeSvejedno.setVisible(true);
                     }
 
                 }
