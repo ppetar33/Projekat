@@ -52,11 +52,18 @@ public class TaxiSluzbaMain {
         10. Aukcija (20 bodova)
 
     PITATI ASISTENTA:
-        automobili i voznje imaju ID i pri ucitavanju treba da ih sortiramo po kljucu (id)
+        1. automobili i voznje imaju ID i pri ucitavanju treba da ih sortiramo po kljucu (id)
         a posto korisnici nemaju id da li treba da ih sortiramo?
-        da li je problem input za izvestaje?
-        procitati kako sam odradio aukciju
+        2. da li je problem input za izvestaje? da li treba da prikazem podatke samo za zavrsene voznje
+        ili i za zavrsene i za odbijene?
+        3. algoritam za aukciju
+        4. pretraga
 
+    Zbog AISP izmeniti klasu PrikazVoznjiZakazanihPrekoAplikacije
+    prihvati/odbi
+    linija: 102 StatusVoznje.DODELJENA
+    linija: 131 StatusVoznje.DODELJENA
+    i izmeniti poruku koja kaze da moze samo dodeljene voznje za prihvati
 */
 
 

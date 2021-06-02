@@ -99,7 +99,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
 
-                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.DODELJENA)){
+                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
                         ProzorZaPrihvatanjeVoznjeAplikacije prozorZaPrihvatanjeVoznjeAplikacije = new ProzorZaPrihvatanjeVoznjeAplikacije(ucitavanje,nadjiVoznju);
                         prozorZaPrihvatanjeVoznjeAplikacije.setVisible(true);
                     }else {
@@ -128,7 +128,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
                     int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
-                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.DODELJENA)){
+                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
                         JOptionPane.showMessageDialog(null, "Uspesno ste odbili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         ulogovaniVozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
                         ucitavanje.dodavanjeKorisnika();
