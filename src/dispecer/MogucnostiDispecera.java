@@ -4,6 +4,7 @@ import automobili.Automobil;
 import dispecer.dodeljivanjeVoznje.DodeljivanjeVoznje;
 import dispecer.izvestaj.DnevniIzvestaj;
 import dispecer.izvestaj.Izvestaj;
+import dispecer.izvestajVozaca.DnevniIzvestajVozacaAplikacija;
 import dispecer.podaciAutomobila.BrisanjeAutomobila;
 import dispecer.podaciAutomobila.DodavanjeAutomobila;
 import dispecer.podaciAutomobila.IzmenaAutomobila;
@@ -405,6 +406,13 @@ public class MogucnostiDispecera extends JFrame {
 				godisnjiIzvestaj.setVisible(true);
 			}
 		});
+		dnevniVozaci.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DnevniIzvestajVozacaAplikacija dnevniIzvestajVozacaAplikacija = new DnevniIzvestajVozacaAplikacija(ucitavanje);
+				dnevniIzvestajVozacaAplikacija.setVisible(true);
+			}
+		});
 		dodeliVoznju.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -454,7 +462,6 @@ public class MogucnostiDispecera extends JFrame {
 			}
 		});
 
-		//STATISTIKA VOZNJI VOZACA
 
 	}
 }

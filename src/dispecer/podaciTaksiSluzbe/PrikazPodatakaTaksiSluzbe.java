@@ -11,7 +11,6 @@ import java.awt.*;
 public class PrikazPodatakaTaksiSluzbe extends JFrame {
 
     public JToolBar mainToolBar = new JToolBar();
-
     public DefaultTableModel table_model;
     public JTable taksiSluzbaTabela;
 
@@ -28,7 +27,6 @@ public class PrikazPodatakaTaksiSluzbe extends JFrame {
         setLocationRelativeTo(null);
         initGUI();
     }
-
     private void initGUI() {
         add(mainToolBar, BorderLayout.SOUTH);
         String[] zaglavlje = new String[]{"ID","PIB", "Naziv", "Adresa", "Cena starta voznje", "Cena po kilometru"};

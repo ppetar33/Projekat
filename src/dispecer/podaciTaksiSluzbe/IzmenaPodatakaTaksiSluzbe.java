@@ -55,7 +55,7 @@ public class IzmenaPodatakaTaksiSluzbe extends PrikazPodatakaTaksiSluzbe{
                             ProzorZaIzmenuTaksiSluzbe prozorZaIzmenuTaksiSluzbe = new ProzorZaIzmenuTaksiSluzbe(ucitavanje, taksiSluzba);
                             prozorZaIzmenuTaksiSluzbe.setVisible(true);
                         }else{
-                            JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranu taksi sluzbu!", "Greska", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Odustali ste od izmene taksi sluzbe!", "Greska", JOptionPane.ERROR_MESSAGE);
                         }
                     }
 
