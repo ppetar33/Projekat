@@ -273,15 +273,15 @@ public class DodavanjeVozaca extends JFrame{
                             vozac.setStatusVozaca(statusVozaca);
                         }
 
-
+                        DoublyLinkedList<Vozac> sviVozaci = ucitavanje.getSortiraniVozaci();
                         if (muski.isSelected()) {
                             Pol pol = Pol.MUSKI;
                             Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca,0);
-                            ucitavanje.getVozaci().add(vozac);
+                            sviVozaci.add(vozac);
                         } else if (zenski.isSelected()) {
                             Pol pol = Pol.ZENSKI;
                             Vozac vozac = new Vozac(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJMBG, unosAdresa, pol, unosBrojTelefona, true, unosPlata, unosBrojClanskeKarte, automobil, ocena, statusVozaca,0);
-                            ucitavanje.getVozaci().add(vozac);
+                            sviVozaci.add(vozac);
                         }
                         ucitavanje.dodavanjeKorisnika();
                         JOptionPane.showMessageDialog(null, "Vozac je uspesno dodat!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);

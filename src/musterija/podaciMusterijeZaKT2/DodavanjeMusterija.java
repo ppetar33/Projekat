@@ -102,7 +102,7 @@ public class DodavanjeMusterija extends JFrame {
                         }
 
                         Musterija musterija = new Musterija(unosKorisnickoIme, unosLozinka, unosIme, unosPrezime, unosJmbg, unosAdresa, pol, brojTelefona, true);
-                        ucitavanje.getMusterije().add(musterija);
+                        ucitavanje.getSortiraneMusterije().add(musterija);
                         ucitavanje.dodavanjeKorisnika();
                         JOptionPane.showMessageDialog(null, "Musterija je uspesno dodata!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         DodavanjeMusterija.this.dispose();

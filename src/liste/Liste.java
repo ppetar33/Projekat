@@ -21,8 +21,11 @@ import taksiSluzba.TaksiSluzba;
 public class Liste {
 
 	private DoublyLinkedList<Musterija> musterije;
+	private DoublyLinkedList<Musterija> sortiraneMusterije;
 	private DoublyLinkedList<Dispecar> dispecari;
+	private DoublyLinkedList<Dispecar> sortiraniDispeceri;
 	private DoublyLinkedList<Vozac> vozaci;
+	private DoublyLinkedList<Vozac> sortiraniVozaci;
 	private DoublyLinkedList<TaksiSluzba> taksiSluzbe;
 	private DoublyLinkedList<Automobil> automobili;
 	private DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznjaTelefoni;
@@ -34,8 +37,11 @@ public class Liste {
 
 	public Liste() {
 		this.musterije = new DoublyLinkedList<Musterija>();
+		this.sortiraneMusterije = new DoublyLinkedList<Musterija>();
 		this.dispecari = new DoublyLinkedList<Dispecar>();
+		this.sortiraniDispeceri = new DoublyLinkedList<Dispecar>();
 		this.vozaci = new DoublyLinkedList<Vozac>();
+		this.sortiraniVozaci = new DoublyLinkedList<Vozac>();
 		this.taksiSluzbe = new DoublyLinkedList<TaksiSluzba>();
 		this.automobili = new DoublyLinkedList<Automobil>();
 		this.sortiranaListaAutomobila = new DoublyLinkedList<Automobil>();
@@ -74,14 +80,6 @@ public class Liste {
 		this.automobili = automobili;
 	}
 
-	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> getVoznjaTelefoni() {
-		return voznjaTelefoni;
-	}
-
-	public DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> getVoznjaAplikacije() {
-		return voznjaAplikacije;
-	}
-
 	public DoublyLinkedList<Aukcija> getIstorijaAukcija() {
 		return istorijaAukcija;
 	}
@@ -90,24 +88,36 @@ public class Liste {
 		return sortiranaListaVoznjiAplikacija;
 	}
 
-	public void setSortiranaListaVoznjiAplikacija(DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sortiranaListaVoznjiAplikacija) {
-		this.sortiranaListaVoznjiAplikacija = sortiranaListaVoznjiAplikacija;
-	}
-
 	public DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> getSortiranaListaVoznjiTelefon() {
 		return sortiranaListaVoznjiTelefon;
-	}
-
-	public void setSortiranaListaVoznjiTelefon(DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sortiranaListaVoznjiTelefon) {
-		this.sortiranaListaVoznjiTelefon = sortiranaListaVoznjiTelefon;
 	}
 
 	public DoublyLinkedList<Automobil> getSortiranaListaAutomobila() {
 		return sortiranaListaAutomobila;
 	}
 
-	public void setSortiranaListaAutomobila(DoublyLinkedList<Automobil> sortiranaListaAutomobila) {
-		this.sortiranaListaAutomobila = sortiranaListaAutomobila;
+	public DoublyLinkedList<Musterija> getSortiraneMusterije() {
+		return sortiraneMusterije;
+	}
+
+	public void setSortiraneMusterije(DoublyLinkedList<Musterija> sortiraneMusterije) {
+		this.sortiraneMusterije = sortiraneMusterije;
+	}
+
+	public DoublyLinkedList<Dispecar> getSortiraniDispeceri() {
+		return sortiraniDispeceri;
+	}
+
+	public void setSortiraniDispeceri(DoublyLinkedList<Dispecar> sortiraniDispeceri) {
+		this.sortiraniDispeceri = sortiraniDispeceri;
+	}
+
+	public DoublyLinkedList<Vozac> getSortiraniVozaci() {
+		return sortiraniVozaci;
+	}
+
+	public void setSortiraniVozaci(DoublyLinkedList<Vozac> sortiraniVozaci) {
+		this.sortiraniVozaci = sortiraniVozaci;
 	}
 
 	/*
@@ -305,7 +315,7 @@ public class Liste {
 			File korisniciFajl = new File("src/fajlovi/korisnici.txt");
 			String content = "";
 
-			for (Vozac vozac : vozaci) {
+			for (Vozac vozac : sortiraniVozaci) {
 				content += vozac.getKorisnickoIme() + "," +
 						vozac.getLozinka() + "," +
 						vozac.getIme() + "," +
@@ -322,7 +332,7 @@ public class Liste {
 						vozac.getStatusVozaca() + "," +
 						vozac.getBrojOdradjenihVoznji() + "\n";
 			}
-			for (Musterija musterija : musterije) {
+			for (Musterija musterija : sortiraneMusterije) {
 				content += musterija.getKorisnickoIme() + "," +
 						musterija.getLozinka() + "," +
 						musterija.getIme() + "," +
@@ -332,7 +342,7 @@ public class Liste {
 						musterija.getPol() + "," +
 						musterija.getBrojTelefona() + "," + "," + "," + "," + "MUSTERIJA" + "," + musterija.isObrisan() + "\n";
 			}
-			for (Dispecar dispecar : dispecari) {
+			for (Dispecar dispecar : sortiraniDispeceri) {
 				content += dispecar.getKorisnickoIme() + "," +
 						dispecar.getLozinka() + "," +
 						dispecar.getIme() + "," +
@@ -428,16 +438,7 @@ public class Liste {
 				}
 			}
 		}
-		try{
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/automobil.txt")));
-			for (Automobil automobil : sortiranaListaAutomobila){
-				br.write(automobil.pripremiZaSnimanjeAutomobil());
-			}
-			br.close();
-		}catch (Exception e){
-			e.printStackTrace();
-			System.out.println("Greska prilikom snimanja fajla");
-		}
+		snimanjeAutomobila(TaxiSluzbaMain.AUTOMOBILI_FAJL);
 	}
 	public void sortiranjeVoznji(){
 		DoublyLinkedList<Integer> listaVoznjiAplikacija = new DoublyLinkedList<>();
@@ -468,18 +469,57 @@ public class Liste {
 				}
 			}
 		}
-		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/voznje.txt")));
-			for(NarucivanjeVoznjePrekoTelefona voznjaTelefoni : sortiranaListaVoznjiTelefon){
-				br.write(voznjaTelefoni.pripremiZaSnimanje());
+		snimanjeVoznji(TaxiSluzbaMain.VOZNJE_FAJL);
+	}
+	public void sortiranjeKorisnika(){
+
+		String[] korisnickaImenaVozaca = new String[neobrisaniVozaciKorisnickaImena().size()];
+		String[] korisnickaImenaDispecera = new String[neobrisaniDispeceriKorisnickaImena().size()];
+		String[] korisnickaImenaMusterije = new String[neobrisaneMusterijeKorisnickaImena().size()];
+		for(int i = 0; i < korisnickaImenaVozaca.length; i++) {
+			korisnickaImenaVozaca[i] = String.valueOf(neobrisaniVozaciKorisnickaImena().get(i));
+		}
+		for(int i = 0; i < korisnickaImenaDispecera.length; i++) {
+			korisnickaImenaDispecera[i] = String.valueOf(neobrisaniDispeceriKorisnickaImena().get(i));
+		}
+		for(int i = 0; i < korisnickaImenaMusterije.length; i++) {
+			korisnickaImenaMusterije[i] = String.valueOf(neobrisaneMusterijeKorisnickaImena().get(i));
+		}
+		sortiranjeKorisnickihImena(korisnickaImenaVozaca);
+		sortiranjeKorisnickihImena(korisnickaImenaDispecera);
+		sortiranjeKorisnickihImena(korisnickaImenaMusterije);
+		for(String s : korisnickaImenaVozaca){
+			for(Vozac vozac1 : vozaci){
+				if(vozac1.getKorisnickoIme().equals(s)){
+					sortiraniVozaci.add(vozac1);
+				}
 			}
-			for(NarucivanjeVoznjePrekoAplikacije voznjaAplikacija : sortiranaListaVoznjiAplikacija){
-				br.write(voznjaAplikacija.pripremiZaSnimanjePrekoAplikacije());
+		}
+		for(String s : korisnickaImenaDispecera){
+			for(Dispecar dispecar : dispecari){
+				if(dispecar.getKorisnickoIme().equals(s)){
+					sortiraniDispeceri.add(dispecar);
+				}
 			}
-			br.close();
-		}catch (Exception e){
-			e.printStackTrace();
-			System.out.println("Greska prilikom snimanja fajla");
+		}
+		for(String s : korisnickaImenaMusterije){
+			for(Musterija musterija : musterije){
+				if(musterija.getKorisnickoIme().equals(s)){
+					sortiraneMusterije.add(musterija);
+				}
+			}
+		}
+		dodavanjeKorisnika();
+	}
+	private void sortiranjeKorisnickihImena(String[] korisnickaImenaVozaca) {
+		for(int a = 0; a < korisnickaImenaVozaca.length - 1; a++) {
+			for(int b = a + 1; b < korisnickaImenaVozaca.length; b++) {
+				if(korisnickaImenaVozaca[a].compareTo(korisnickaImenaVozaca[b]) > 0) {
+					String temp = korisnickaImenaVozaca[a];
+					korisnickaImenaVozaca[a] = korisnickaImenaVozaca[b];
+					korisnickaImenaVozaca[b] = temp;
+				}
+			}
 		}
 	}
 
@@ -561,7 +601,7 @@ public class Liste {
 	}
 
 	public Vozac nadjiVozaca(String korisnickoIme){
-		for(Vozac vozac : vozaci){
+		for(Vozac vozac : sortiraniVozaci){
 			if(vozac.getKorisnickoIme().equals(korisnickoIme) && vozac.isObrisan()){
 				return vozac;
 			}
@@ -569,7 +609,7 @@ public class Liste {
 		return null;
 	}
 	public boolean istoKorisnickoImeVozaca(String korisnickoIme){
-		for(Vozac vozac : vozaci){
+		for(Vozac vozac : sortiraniVozaci){
 			if(vozac.getKorisnickoIme().equals(korisnickoIme)){
 				return true;
 			}
@@ -577,7 +617,7 @@ public class Liste {
 		return false;
 	}
 	public boolean istoKorisnickoImeDispecera(String korisnickoIme){
-		for(Dispecar dispecar : dispecari){
+		for(Dispecar dispecar : sortiraniDispeceri){
 			if(dispecar.getKorisnickoIme().equals(korisnickoIme)){
 				return true;
 			}
@@ -585,7 +625,7 @@ public class Liste {
 		return false;
 	}
 	public boolean istoKorisnickoImeMusterije(String korisnickoIme){
-		for(Musterija musterija : musterije){
+		for(Musterija musterija : sortiraneMusterije){
 			if(musterija.getKorisnickoIme().equals(korisnickoIme)){
 				return true;
 			}
@@ -594,7 +634,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<Vozac> nadjiVozacaPoPlati(double plataUnos){
 		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
-		for(Vozac vozac : vozaci){
+		for(Vozac vozac : sortiraniVozaci){
 			if(vozac.getPlata() == plataUnos && vozac.isObrisan()){
 				sviVozaci.add(vozac);
 			}
@@ -603,7 +643,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<Vozac> nadjiVozacaPoImenu(String unosIme){
 		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
-		for(Vozac vozac : vozaci){
+		for(Vozac vozac : sortiraniVozaci){
 			if(vozac.getIme().equalsIgnoreCase(unosIme) && vozac.isObrisan()){
 				sviVozaci.add(vozac);
 			}
@@ -613,7 +653,7 @@ public class Liste {
 
 	public DoublyLinkedList<Vozac> nadjiVozacaPoPrezimenu(String unosPrezime){
 		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
-		for(Vozac vozac : vozaci){
+		for(Vozac vozac : sortiraniVozaci){
 			if(vozac.getPrezime().equalsIgnoreCase(unosPrezime) && vozac.isObrisan()){
 				sviVozaci.add(vozac);
 			}
@@ -622,7 +662,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<Vozac> nadjiVozacaPoAutomobilu(String model){
 		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
-		for(Vozac vozac : vozaci){
+		for(Vozac vozac : sortiraniVozaci){
 			if(vozac.getAutomobili().getModel().equalsIgnoreCase(model) && vozac.isObrisan()){
 				sviVozaci.add(vozac);
 			}
@@ -631,7 +671,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<Vozac> rezultatKombinovanePretrage(String ime,String prezime,String model,double plata){
 		DoublyLinkedList<Vozac> sviVozaci = new DoublyLinkedList<Vozac>();
-		for(Vozac vozac : vozaci){
+		for(Vozac vozac : sortiraniVozaci){
 			if(vozac.isObrisan() && vozac.getIme().equalsIgnoreCase(ime) && vozac.getPrezime().equalsIgnoreCase(prezime) && vozac.getAutomobili().getModel().equalsIgnoreCase(model) && vozac.getPlata() == plata){
 				sviVozaci.add(vozac);
 			}
@@ -639,7 +679,7 @@ public class Liste {
 		return sviVozaci;
 	}
 	public Vozac nadjiVozacaKojiJeSlobodan(){
-		for(Vozac vozac : vozaci){
+		for(Vozac vozac : sortiraniVozaci){
 			if(vozac.isObrisan() && vozac.getStatusVozaca().equals(StatusVozacaIautomobila.SLOBODAN) && vozac.getAutomobili().getId() != 0){
 				return vozac;
 			}
@@ -648,7 +688,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<String> listaSlobodnihVozaca(){
 		DoublyLinkedList<String> slobodniVozaci = new DoublyLinkedList<>();
-		for(Vozac vozac : vozaci){
+		for(Vozac vozac : sortiraniVozaci){
 			if(vozac.isObrisan() && vozac.getStatusVozaca().equals(StatusVozacaIautomobila.SLOBODAN) && vozac.getAutomobili().getId() != 0){
 				String vozaci = vozac.getKorisnickoIme();
 				slobodniVozaci.add(vozaci);
@@ -658,7 +698,7 @@ public class Liste {
 	}
 
 	public Musterija nadjiMusteriju(String korisnickoIme){
-		for(Musterija musterija : musterije){
+		for(Musterija musterija : sortiraneMusterije){
 			if(musterija.getKorisnickoIme().equals(korisnickoIme) && musterija.isObrisan()){
 				return musterija;
 			}
@@ -667,7 +707,7 @@ public class Liste {
 	}
 
 	public Dispecar nadjiDispecera(String korisnickoIme){
-		for(Dispecar dispecar : dispecari){
+		for(Dispecar dispecar : sortiraniDispeceri){
 			if(dispecar.getKorisnickoIme().equals(korisnickoIme) && dispecar.isObrisan()){
 				return dispecar;
 			}
@@ -695,7 +735,7 @@ public class Liste {
 	}
 	public DoublyLinkedList<String> listaVozacaBezAutomobila(){
 		DoublyLinkedList<String> slobodanVozac = new DoublyLinkedList<>();
-		for (Vozac vozac : vozaci){
+		for (Vozac vozac : sortiraniVozaci){
 			if (vozac.getAutomobili().getId() == 0 & vozac.isObrisan()){
 				String vozacIme = vozac.getKorisnickoIme();
 				slobodanVozac.add(vozacIme);
@@ -1053,7 +1093,7 @@ public class Liste {
 	*/
 
 	public Musterija loginMusterija(String korisnickoIme, String lozinka) {
-		for (Musterija musterija : musterije) {
+		for (Musterija musterija : sortiraneMusterije) {
 			if (musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
 					&& musterija.getLozinka().equals(lozinka)) {
 				return musterija;
@@ -1063,7 +1103,7 @@ public class Liste {
 	}
 
 	public Dispecar loginDispecar(String korisnickoIme, String lozinka) {
-		for (Dispecar dispecar : dispecari) {
+		for (Dispecar dispecar : sortiraniDispeceri) {
 			if (dispecar.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
 					&& dispecar.getLozinka().equals(lozinka)) {
 				return dispecar;
@@ -1073,7 +1113,7 @@ public class Liste {
 	}
 
 	public Vozac loginVozac(String korisnickoIme, String lozinka) {
-		for (Vozac vozac : vozaci) {
+		for (Vozac vozac : sortiraniVozaci) {
 			if (vozac.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
 					&& vozac.getLozinka().equals(lozinka)) {
 				return vozac;
@@ -1088,27 +1128,54 @@ public class Liste {
 
 	public DoublyLinkedList<Vozac> neobrisaniVozaci(){
 		DoublyLinkedList<Vozac> neobrisaniVozaci = new DoublyLinkedList<Vozac>();
-		for(Vozac vozac : vozaci){
+		for(Vozac vozac : sortiraniVozaci){
 			if(vozac.isObrisan()){
 				neobrisaniVozaci.add(vozac);
 			}
 		}
 		return neobrisaniVozaci;
 	}
+	public DoublyLinkedList<String> neobrisaniVozaciKorisnickaImena(){
+		DoublyLinkedList<String> neobrisaniVozaci = new DoublyLinkedList<String>();
+		for(Vozac vozac : vozaci){
+			if(vozac.isObrisan()){
+				neobrisaniVozaci.add(vozac.getKorisnickoIme());
+			}
+		}
+		return neobrisaniVozaci;
+	}
 	public DoublyLinkedList<Musterija> neobrisaneMusterije(){
 		DoublyLinkedList<Musterija> neobrisaneMusterije = new DoublyLinkedList<Musterija>();
-		for(Musterija musterija : musterije){
+		for(Musterija musterija : sortiraneMusterije){
 			if(musterija.isObrisan()){
 				neobrisaneMusterije.add(musterija);
 			}
 		}
 		return neobrisaneMusterije;
 	}
+	public DoublyLinkedList<String> neobrisaneMusterijeKorisnickaImena(){
+		DoublyLinkedList<String> neobrisaneMusterije = new DoublyLinkedList<String>();
+		for(Musterija musterija : musterije){
+			if(musterija.isObrisan()){
+				neobrisaneMusterije.add(musterija.getKorisnickoIme());
+			}
+		}
+		return neobrisaneMusterije;
+	}
 	public DoublyLinkedList<Dispecar> neobrisaniDispeceri(){
 		DoublyLinkedList<Dispecar> neobrisaniDispeceri = new DoublyLinkedList<Dispecar>();
-		for(Dispecar dispecar : dispecari){
+		for(Dispecar dispecar : sortiraniDispeceri){
 			if(dispecar.isObrisan()){
 				neobrisaniDispeceri.add(dispecar);
+			}
+		}
+		return neobrisaniDispeceri;
+	}
+	public DoublyLinkedList<String> neobrisaniDispeceriKorisnickaImena(){
+		DoublyLinkedList<String> neobrisaniDispeceri = new DoublyLinkedList<String>();
+		for(Dispecar dispecar : dispecari){
+			if(dispecar.isObrisan()){
+				neobrisaniDispeceri.add(dispecar.getKorisnickoIme());
 			}
 		}
 		return neobrisaniDispeceri;

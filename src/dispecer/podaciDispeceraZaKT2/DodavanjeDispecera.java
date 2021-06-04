@@ -123,7 +123,7 @@ public class DodavanjeDispecera extends JFrame{
                         }
 
                         Dispecar dispecar = new Dispecar(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan, plata, brojTelefonskeLinije, odeljenje);
-                        ucitavanje.getDispecari().add(dispecar);
+                        ucitavanje.getSortiraniDispeceri().add(dispecar);
                         ucitavanje.dodavanjeKorisnika();
                         JOptionPane.showMessageDialog(null, "Dispecer je uspesno dodat!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         DodavanjeDispecera.this.dispose();

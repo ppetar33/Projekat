@@ -1,6 +1,7 @@
 package liste.doublyLinkedList;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class DoublyLinkedList<T> implements Iterable<T> {
 
@@ -173,6 +174,25 @@ public class DoublyLinkedList<T> implements Iterable<T> {
             index++;
         }
         return -1;
+    }
+    public String toString()
+    {
+        if (head == null)
+        {
+            return "[]";
+        }
+        else
+        {
+            String result = "[" + head.element;
+            ListNode<T> current = head.next;
+            while (current != null)
+            {
+                result += ", " +current.element ;
+                current = current.next;
+            }
+            result += "]";
+            return result;
+        }
     }
 
 

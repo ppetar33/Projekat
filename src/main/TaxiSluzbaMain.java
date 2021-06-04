@@ -17,11 +17,12 @@ public class TaxiSluzbaMain {
 
         ucitavanje.ucitajIstorijuAukcija(AUKCIJE_FAJL);
         ucitavanje.ucitajAutomobila(AUTOMOBILI_FAJL);
-        ucitavanje.sortiranjeAutomobila();
         ucitavanje.ucitajTaksiSluzbe(TAKSI_SLUZBA_FAJL);
         ucitavanje.ucitajKorisnike(KORISNICI_FAJL);
         ucitavanje.ucitavanjeVoznji(VOZNJE_FAJL);
         ucitavanje.sortiranjeVoznji();
+        ucitavanje.sortiranjeAutomobila();
+        ucitavanje.sortiranjeKorisnika();
 
         LoginProzor lp = new LoginProzor(ucitavanje);
         lp.setVisible(true);
@@ -46,25 +47,26 @@ public class TaxiSluzbaMain {
         4. Hash map
         5. Kreiranje, izmena i pregled svih potrebnih entiteta (20 bodova)
         6. Izvestaj (10 bodova)
-        7. Pri pokretanju programa potrebno je sortirati sve podatke po ID-u
+        7. Pri pokretanju programa potrebno je sortirati sve podatke po ID-u (korisnike po korsnickom imenu)
         8. Binarna pretraga (5 bodova)
         9. Ocenjivanje vozaca
-        10. Aukcija (20 bodova)
+        10.Aukcija (20 bodova)
 
     PITATI ASISTENTA:
-        1. automobili i voznje imaju ID i pri ucitavanju treba da ih sortiramo po kljucu (id)
-        a posto korisnici nemaju id da li treba da ih sortiramo?
         2. da li je problem input za izvestaje? da li treba da prikazem podatke samo za zavrsene voznje
         ili i za zavrsene i za odbijene?
         3. algoritam za aukciju
         4. pretraga
+
 
     Zbog AISP izmeniti klasu PrikazVoznjiZakazanihPrekoAplikacije
     prihvati/odbi
     linija: 102 StatusVoznje.DODELJENA
     linija: 131 StatusVoznje.DODELJENA
     i izmeniti poruku koja kaze da moze samo dodeljene voznje za prihvati
+
 */
+
 
 
 
