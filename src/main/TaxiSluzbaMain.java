@@ -39,6 +39,9 @@ public class TaxiSluzbaMain {
                 izvestaje
                 aukciju
         3. Prekontrolisati ceo projekat
+        4. Ubaciti kod dispecera prikaz istorije aukcija kod prikaza voznji, kad klikne na neku voznju
+        prikazi vozace koji su ucestvovali u aukciji i podatke
+
 
     GOTOVO:
         1. Pretraga (7.5 bodova)
@@ -58,12 +61,6 @@ public class TaxiSluzbaMain {
         3. algoritam za aukciju
         4. pretraga
 
-
-    Zbog AISP izmeniti klasu PrikazVoznjiZakazanihPrekoAplikacije
-    prihvati/odbi
-    linija: 102 StatusVoznje.DODELJENA
-    linija: 131 StatusVoznje.DODELJENA
-    i izmeniti poruku koja kaze da moze samo dodeljene voznje za prihvati
 
 */
 

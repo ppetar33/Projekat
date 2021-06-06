@@ -52,14 +52,6 @@ public class Liste {
 		this.sortiranaListaVoznjiTelefon = new DoublyLinkedList<NarucivanjeVoznjePrekoTelefona>();
 	}
 
-	public DoublyLinkedList<Musterija> getMusterije() {
-		return musterije;
-	}
-
-	public DoublyLinkedList<Dispecar> getDispecari() {
-		return dispecari;
-	}
-
 	public DoublyLinkedList<Vozac> getVozaci() {
 		return vozaci;
 	}
@@ -100,24 +92,12 @@ public class Liste {
 		return sortiraneMusterije;
 	}
 
-	public void setSortiraneMusterije(DoublyLinkedList<Musterija> sortiraneMusterije) {
-		this.sortiraneMusterije = sortiraneMusterije;
-	}
-
 	public DoublyLinkedList<Dispecar> getSortiraniDispeceri() {
 		return sortiraniDispeceri;
 	}
 
-	public void setSortiraniDispeceri(DoublyLinkedList<Dispecar> sortiraniDispeceri) {
-		this.sortiraniDispeceri = sortiraniDispeceri;
-	}
-
 	public DoublyLinkedList<Vozac> getSortiraniVozaci() {
 		return sortiraniVozaci;
-	}
-
-	public void setSortiraniVozaci(DoublyLinkedList<Vozac> sortiraniVozaci) {
-		this.sortiraniVozaci = sortiraniVozaci;
 	}
 
 	/*

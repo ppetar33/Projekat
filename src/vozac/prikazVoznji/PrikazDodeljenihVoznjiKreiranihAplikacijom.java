@@ -14,12 +14,9 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
-public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
+public class PrikazDodeljenihVoznjiKreiranihAplikacijom extends JFrame {
 
     private JToolBar mainJToolBar = new JToolBar();
     private JButton btnPrihvati = new JButton("Prihvati");
@@ -33,7 +30,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
     private Liste ucitavanje;
     private Vozac ulogovaniVozac;
 
-    public PrikazVoznjiZakazanihPrekoAplikacije(Liste ucitavanje, Vozac ulogovaniVozac){
+    public PrikazDodeljenihVoznjiKreiranihAplikacijom(Liste ucitavanje, Vozac ulogovaniVozac){
         this.ucitavanje = ucitavanje;
         this.ulogovaniVozac = ulogovaniVozac;
         mainJToolBar.add(btnPrihvati);
@@ -99,14 +96,14 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
 
-                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
+                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.DODELJENA)){
                         ProzorZaPrihvatanjeVoznjeAplikacije prozorZaPrihvatanjeVoznjeAplikacije = new ProzorZaPrihvatanjeVoznjeAplikacije(ucitavanje,nadjiVoznju);
                         prozorZaPrihvatanjeVoznjeAplikacije.setVisible(true);
                     }else {
                         JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce prihvatiti!", "Greska", JOptionPane.WARNING_MESSAGE);
                         NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznjuZakazanuPrekoAplikacije();
                         if(narucivanjeVoznjePrekoAplikacije != null){
-                            JOptionPane.showMessageDialog(null, "Mozete prihvatiti samo voznje koje su kreirane na cekanju!", "Greska", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Mozete prihvatiti samo voznje koje su dodeljene!", "Greska", JOptionPane.WARNING_MESSAGE);
                         }else{
                             JOptionPane.showMessageDialog(null, "Uspesno prihvacena voznja!", "Greska", JOptionPane.WARNING_MESSAGE);
                         }
@@ -128,7 +125,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                     DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
                     int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
                     NarucivanjeVoznjePrekoAplikacije nadjiVoznju = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
-                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
+                    if (nadjiVoznju.getStatusVoznje().equals(StatusVoznje.DODELJENA)){
                         JOptionPane.showMessageDialog(null, "Uspesno ste odbili voznju!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                         ulogovaniVozac.setStatusVozaca(StatusVozacaIautomobila.SLOBODAN);
                         ucitavanje.dodavanjeKorisnika();
@@ -150,7 +147,7 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
                         JOptionPane.showMessageDialog(null, "Ovu voznju nije moguce odbiti!", "Greska", JOptionPane.WARNING_MESSAGE);
                         NarucivanjeVoznjePrekoAplikacije narucivanjeVoznjePrekoAplikacije = ucitavanje.nadjiVoznjuZakazanuPrekoAplikacije();
                         if(narucivanjeVoznjePrekoAplikacije != null){
-                            JOptionPane.showMessageDialog(null, "Mozete odbiti samo voznje koje su kreirane na cekanju!", "Greska", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Mozete odbiti samo voznje koje su dodeljenje!", "Greska", JOptionPane.WARNING_MESSAGE);
                         }else{
                             JOptionPane.showMessageDialog(null, "Uspesno odbijena voznja!", "Greska", JOptionPane.WARNING_MESSAGE);
                         }
@@ -161,9 +158,9 @@ public class PrikazVoznjiZakazanihPrekoAplikacije extends JFrame {
         btnOsvezi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PrikazVoznjiZakazanihPrekoAplikacije.this.setVisible(false);
-                PrikazVoznjiZakazanihPrekoAplikacije.this.dispose();
-                PrikazVoznjiZakazanihPrekoAplikacije prikazVoznjiZakazanihPrekoAplikacije = new PrikazVoznjiZakazanihPrekoAplikacije(ucitavanje, ulogovaniVozac);
+                PrikazDodeljenihVoznjiKreiranihAplikacijom.this.setVisible(false);
+                PrikazDodeljenihVoznjiKreiranihAplikacijom.this.dispose();
+                PrikazDodeljenihVoznjiKreiranihAplikacijom prikazVoznjiZakazanihPrekoAplikacije = new PrikazDodeljenihVoznjiKreiranihAplikacijom(ucitavanje, ulogovaniVozac);
                 prikazVoznjiZakazanihPrekoAplikacije.setVisible(true);
             }
         });

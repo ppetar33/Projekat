@@ -1,7 +1,6 @@
 package liste.doublyLinkedList;
 
 import java.util.Iterator;
-import java.util.List;
 
 public class DoublyLinkedList<T> implements Iterable<T> {
 

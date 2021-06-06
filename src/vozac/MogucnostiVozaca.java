@@ -10,7 +10,7 @@ import liste.Liste;
 import musterija.probaZaAlgoritme.aukcijaTelefon.UcestvujUaukcijiVoznjeTelefon;
 import vozac.Statistika.DnevnaStatistika;
 import vozac.prikazVoznji.PrikazDodeljenihVoznjiKreiranihTelefonom;
-import vozac.prikazVoznji.PrikazVoznjiZakazanihPrekoAplikacije;
+import vozac.prikazVoznji.PrikazDodeljenihVoznjiKreiranihAplikacijom;
 import vozac.zavrsavanjeVoznje.ZavrsavanjeVoznjePutemAplikacije;
 import vozac.zavrsavanjeVoznje.ZavrsavanjeVoznjePutemTelefona;
 
@@ -115,7 +115,7 @@ public class MogucnostiVozaca extends JFrame {
                 if(ucitavanje.prikazVozacuSvihVoznjiNarucenihPrekoAplikacije().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Trenutno nema voznji!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                 }else {
-                    PrikazVoznjiZakazanihPrekoAplikacije prikazVoznjiZakazanihPrekoAplikacije = new PrikazVoznjiZakazanihPrekoAplikacije(ucitavanje, prijavljeniVozac);
+                    PrikazDodeljenihVoznjiKreiranihAplikacijom prikazVoznjiZakazanihPrekoAplikacije = new PrikazDodeljenihVoznjiKreiranihAplikacijom(ucitavanje, prijavljeniVozac);
                     prikazVoznjiZakazanihPrekoAplikacije.setVisible(true);
                 }
             }
