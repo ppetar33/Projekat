@@ -1,12 +1,9 @@
 package dispecer.pretragaAutomobila;
 
 import automobili.Automobil;
-import dispecer.pretragaVozaca.Kombinovana;
-import dispecer.pretragaVozaca.ProzorZaPrikazKombinovanePretrage;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import net.miginfocom.swing.MigLayout;
-import osobe.Vozac;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

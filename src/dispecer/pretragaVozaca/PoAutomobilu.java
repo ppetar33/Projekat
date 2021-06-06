@@ -53,7 +53,7 @@ public class PoAutomobilu extends JFrame {
                     if(rezultatPretrage.isEmpty()) {
                         JOptionPane.showMessageDialog(null,"Korisnik sa modelom automobila (" + unosModela + ") ne postoji!","Greska",JOptionPane.WARNING_MESSAGE);
                     }else{
-                        ProzorZaPrikazRezultataPretragePoAutomobilu prozor = new ProzorZaPrikazRezultataPretragePoAutomobilu(rezultatPretrage);
+                        ProzorZaPrikazRezultataPretrage prozor = new ProzorZaPrikazRezultataPretrage(rezultatPretrage);
                         prozor.setVisible(true);
                     }
                 }

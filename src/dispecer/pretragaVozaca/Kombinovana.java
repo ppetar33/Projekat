@@ -70,7 +70,7 @@ public class Kombinovana extends JFrame {
                     if(rezultatKombinovanePretrage.isEmpty()) {
                         JOptionPane.showMessageDialog(null,"Vozac sa unesenim podacima ne postoji!","Greska",JOptionPane.WARNING_MESSAGE);
                     }else{
-                        ProzorZaPrikazKombinovanePretrage prozorZaPrikazKombinovanePretrage = new ProzorZaPrikazKombinovanePretrage(rezultatKombinovanePretrage);
+                        ProzorZaPrikazRezultataPretrage prozorZaPrikazKombinovanePretrage = new ProzorZaPrikazRezultataPretrage(rezultatKombinovanePretrage);
                         prozorZaPrikazKombinovanePretrage.setVisible(true);
                     }
 

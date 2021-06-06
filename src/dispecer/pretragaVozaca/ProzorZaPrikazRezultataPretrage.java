@@ -8,12 +8,12 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
-public class ProzorZaPrikazRezultataPretragePoAutomobilu extends JFrame{
+public class ProzorZaPrikazRezultataPretrage extends JFrame{
 
     private DefaultTableModel table_model;
     private JTable vozaciTabela;
 
-    public ProzorZaPrikazRezultataPretragePoAutomobilu(DoublyLinkedList<Vozac> vozaci) {
+    public ProzorZaPrikazRezultataPretrage(DoublyLinkedList<Vozac> vozaci) {
 
         setTitle("Prikaz pretrage");
         setSize(1050, 200);

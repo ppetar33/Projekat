@@ -291,7 +291,6 @@ public class MogucnostiDispecera extends JFrame {
 				}
 			}
 		});
-
 		//PRETRAGA VOZACA
 		poImenu.addActionListener(new ActionListener() {
 			@Override
@@ -328,7 +327,6 @@ public class MogucnostiDispecera extends JFrame {
 				kombinovana.setVisible(true);
 			}
 		});
-
 		//PRETRAGA AUTOMOBILA
 		poModelu.addActionListener(new ActionListener() {
 			@Override
@@ -372,7 +370,6 @@ public class MogucnostiDispecera extends JFrame {
 				kombinovanaAutomobili.setVisible(true);
 			}
 		});
-
 		//IZVESTAJI DISPECERA
 		dnevni.addActionListener(new ActionListener() {
 			@Override

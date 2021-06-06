@@ -53,7 +53,7 @@ public class PoPlati extends JFrame {
                     if(rezultatPretrage.isEmpty()){
                         JOptionPane.showMessageDialog(null,"Vozac sa platom (" + unosPlataString + ") ne postoji!","Greska",JOptionPane.WARNING_MESSAGE);
                     }else{
-                        ProzorZaPrikazRezultataPretragePoPlati prozor = new ProzorZaPrikazRezultataPretragePoPlati(rezultatPretrage);
+                        ProzorZaPrikazRezultataPretrage prozor = new ProzorZaPrikazRezultataPretrage(rezultatPretrage);
                         prozor.setVisible(true);
                     }
                 }
