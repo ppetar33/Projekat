@@ -31,7 +31,6 @@ public class Izvestaj extends JFrame {
     }
     private void initGUI(){
         MigLayout layout = new MigLayout("wrap 2");
-
         setLayout(layout);
         add(datum);
         add(datumUnos);

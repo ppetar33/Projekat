@@ -733,12 +733,6 @@ public class Liste {
 		return null;
 	}
 
-	/*
-
-		DNEVNI IZVESTAJ
-
-	*/
-
 	public boolean nadjiDatum(String datum){
 		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -774,85 +768,9 @@ public class Liste {
 		}
 		return counter;
 	}
-	public double uporediDatumItrajanjeVoznje(String datum){
-		double rezultat = 0;
-		double counter = 0;
-		double average;
-		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))){
-				rezultat += voznja.getTrajanjVoznje();
-				counter++;
-			}
-		}
-		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))){
-				rezultat += voznja.getTrajanjVoznje();
-				counter++;
-			}
-		}
-		average = rezultat/counter;
-		return average;
-	}
-	public double uporediDatumIkilometrazu(String datum){
-		double rezultat = 0;
-		double counter = 0;
-		double average;
-		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))){
-				rezultat += voznja.getBrojKMpredjenih();
-				counter++;
-			}
-		}
-		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))){
-				rezultat += voznja.getBrojKMpredjenih();
-				counter++;
-			}
-		}
-		average = rezultat/counter;
-		return average;
-	}
-	public double ukupnaZaradaZaSveVoznje(String datum){
-		double rezultat = 0;
-		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))){
-				rezultat += voznja.getCenaVoznje();
-			}
-		}
-		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))){
-				rezultat += voznja.getCenaVoznje();
-			}
-		}
-		return rezultat;
-	}
-	public DoublyLinkedList<String> spisakVozacaKojiSuVozili(String datum){
-		DoublyLinkedList<String> spisakSvihVozaca = new DoublyLinkedList<>();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : sortiranaListaVoznjiTelefon){
-			if(voznjePrekoTelefona.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))){
-				String korisnickoImeVozaca = voznjePrekoTelefona.getVozac().getKorisnickoIme();
-				spisakSvihVozaca.add(korisnickoImeVozaca);
-			}
-		}
-		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : sortiranaListaVoznjiAplikacija){
-			if(voznjePrekoAplikacije.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznjePrekoAplikacije.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))){
-				String korisnickoImeVozaca = voznjePrekoAplikacije.getVozac().getKorisnickoIme();
-				spisakSvihVozaca.add(korisnickoImeVozaca);
-			}
-		}
-		return spisakSvihVozaca;
-	}
-
 
 	/*
-		NEDELJENI, MESECNI, GODISNJI IZVESTAJ
+		IZVESTAJ DISPECERA
 	*/
 
 	public DoublyLinkedList<String> ukupanBrojVoznjiPrekoTelefona(){
@@ -969,6 +887,7 @@ public class Liste {
 	}
 
 	//DNEVNI IZVESTAJ ZA VOZACE
+
 	public double uporediDatumIkilometrazuZaStatistiku(String datum){
 		double rezultat = 0;
 		double counter = 0;

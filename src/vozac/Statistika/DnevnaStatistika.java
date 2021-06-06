@@ -1,13 +1,10 @@
 package vozac.Statistika;
 
-import automobili.Voznja;
-import dispecer.izvestaj.DnevniIzvestaj;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
-import osobe.Vozac;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
