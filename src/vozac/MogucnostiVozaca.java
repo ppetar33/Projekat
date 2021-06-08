@@ -9,6 +9,9 @@ import osobe.Vozac;
 import liste.Liste;
 import musterija.probaZaAlgoritme.aukcijaTelefon.UcestvujUaukcijiVoznjeTelefon;
 import vozac.Statistika.DnevnaStatistika;
+import vozac.Statistika.GodisnjaStatistika;
+import vozac.Statistika.MesecnaStatistika;
+import vozac.Statistika.NedeljnaStatistika;
 import vozac.prikazVoznji.PrikazDodeljenihVoznjiKreiranihTelefonom;
 import vozac.prikazVoznji.PrikazDodeljenihVoznjiKreiranihAplikacijom;
 import vozac.zavrsavanjeVoznje.ZavrsavanjeVoznjePutemAplikacije;
@@ -187,6 +190,27 @@ public class MogucnostiVozaca extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 DnevnaStatistika dnevnaStatistika = new DnevnaStatistika(ucitavanje);
                 dnevnaStatistika.setVisible(true);
+            }
+        });
+        nedeljna.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NedeljnaStatistika nedeljnaStatistika = new NedeljnaStatistika(ucitavanje);
+                nedeljnaStatistika.setVisible(true);
+            }
+        });
+        mesecna.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MesecnaStatistika mesecnaStatistika = new MesecnaStatistika(ucitavanje);
+                mesecnaStatistika.setVisible(true);
+            }
+        });
+        godisnja.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GodisnjaStatistika godisnjaStatistika = new GodisnjaStatistika(ucitavanje);
+                godisnjaStatistika.setVisible(true);
             }
         });
 

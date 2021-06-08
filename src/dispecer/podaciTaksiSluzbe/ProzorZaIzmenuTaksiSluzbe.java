@@ -80,7 +80,7 @@ public class ProzorZaIzmenuTaksiSluzbe extends JFrame {
                     ucitavanje.snimiTaksiSluzbe(TaxiSluzbaMain.TAKSI_SLUZBA_FAJL);
                     JOptionPane.showMessageDialog(null, "Taksi sluzba je uspesno izmenjena!", "Uspesno", JOptionPane.INFORMATION_MESSAGE);
                     ProzorZaIzmenuTaksiSluzbe.this.setVisible(false);
-                    ProzorZaIzmenuTaksiSluzbe.this.dispose();//da se ne vidi prozor
+                    ProzorZaIzmenuTaksiSluzbe.this.dispose();
                 }
             }
         });

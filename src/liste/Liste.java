@@ -948,8 +948,11 @@ public class Liste {
 		return rezultat;
 	}
 
+	//IZVESTAJI
 
-
+	public DoublyLinkedList<Vozac> dohvatiVozace(){
+		return vozaci;
+	}
 
 	//STATISTIKA VOZNJI ZA VOZACA NA DNEVNOM NIVOU
 	public String ulogovanKorisnik(){
@@ -988,11 +991,6 @@ public class Liste {
 		}
 		return zavrseneVoznje;
 	}
-
-
-
-
-
 
 
 	/*

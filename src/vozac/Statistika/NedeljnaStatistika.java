@@ -9,9 +9,11 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class DnevnaStatistika extends JFrame {
+public class NedeljnaStatistika extends JFrame {
 
     private JLabel datum = new JLabel("Unesi datum");
     private JTextField datumUnos = new JTextField(20);
@@ -19,7 +21,7 @@ public class DnevnaStatistika extends JFrame {
     private JButton btnCancel = new JButton("Cancel");
     private Liste ucitavanje;
 
-    public DnevnaStatistika(Liste ucitavanje){
+    public NedeljnaStatistika(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
         setTitle("Dnevna statistika");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -53,10 +55,6 @@ public class DnevnaStatistika extends JFrame {
                         JOptionPane.showMessageDialog(null, "Nazalost, za uneti datum, nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         String uneseniDatum = datumUnos.getText().trim();
-                        String[] nizDatum = uneseniDatum.split("-");
-                        int uneseniDan = Integer.parseInt(nizDatum[2]);
-                        int uneseniMesec = Integer.parseInt(nizDatum[1]);
-                        int unesenaGodina = Integer.parseInt(nizDatum[0]);
 
                         DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije = ucitavanje.zavrsenePutemAplikacije();
                         DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznjaTelefon = ucitavanje.zavrsenePutemTelefona();
@@ -71,36 +69,46 @@ public class DnevnaStatistika extends JFrame {
                         double prosecnaZarada = 0;
 
                         String ulogovaniVozac = ucitavanje.ulogovanKorisnik();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        LocalDate uneseniDatum1 = LocalDate.parse(uneseniDatum, formatter);
 
-                        for (NarucivanjeVoznjePrekoAplikacije x : voznjaAplikacije){
-                            if (x.getVozac().getKorisnickoIme().equals(ulogovaniVozac)){
-                                LocalDateTime datum = x.getDatumIvremePorudzbine();
-                                int dan = datum.getDayOfMonth();
-                                int mesec = datum.getMonthValue();
-                                int godina = datum.getYear();
-                                if (dan == uneseniDan && mesec == uneseniMesec && godina == unesenaGodina ){
-                                    ukupnoVoznji++;
-                                    ukupnoKilometara+= x.getBrojKMpredjenih();
-                                    ukupnoTrajanje+= x.getTrajanjVoznje();
-                                    ukupnaZarada+= x.getCenaVoznje();
+                        for (int d = 0; d < 7; d++){
+                            LocalDate trenutniDatum = uneseniDatum1.minusDays(d);
+                            int uneseniDan = trenutniDatum.getDayOfMonth();
+                            int uneseniMesec = trenutniDatum.getMonthValue();
+                            int unesenaGodina = trenutniDatum.getYear();
+
+                            for (NarucivanjeVoznjePrekoAplikacije x : voznjaAplikacije){
+                                if (x.getVozac().getKorisnickoIme().equals(ulogovaniVozac)){
+                                    LocalDateTime datum = x.getDatumIvremePorudzbine();
+                                    int dan = datum.getDayOfMonth();
+                                    int mesec = datum.getMonthValue();
+                                    int godina = datum.getYear();
+                                    if (dan == uneseniDan && mesec == uneseniMesec && godina == unesenaGodina ){
+                                        ukupnoVoznji++;
+                                        ukupnoKilometara+= x.getBrojKMpredjenih();
+                                        ukupnoTrajanje+= x.getTrajanjVoznje();
+                                        ukupnaZarada+= x.getCenaVoznje();
+                                    }
+                                }
+                            }
+
+                            for (NarucivanjeVoznjePrekoTelefona x : voznjaTelefon){
+                                if (x.getVozac().getKorisnickoIme().equals(ulogovaniVozac)){
+                                    LocalDateTime datum = x.getDatumIvremePorudzbine();
+                                    int dan = datum.getDayOfMonth();
+                                    int mesec = datum.getMonthValue();
+                                    int godina = datum.getYear();
+                                    if (dan == uneseniDan && mesec == uneseniMesec && godina == unesenaGodina ){
+                                        ukupnoVoznji++;
+                                        ukupnoKilometara+= x.getBrojKMpredjenih();
+                                        ukupnoTrajanje+= x.getTrajanjVoznje();
+                                        ukupnaZarada+= x.getCenaVoznje();
+                                    }
                                 }
                             }
                         }
 
-                        for (NarucivanjeVoznjePrekoTelefona x : voznjaTelefon){
-                            if (x.getVozac().getKorisnickoIme().equals(ulogovaniVozac)){
-                                LocalDateTime datum = x.getDatumIvremePorudzbine();
-                                int dan = datum.getDayOfMonth();
-                                int mesec = datum.getMonthValue();
-                                int godina = datum.getYear();
-                                if (dan == uneseniDan && mesec == uneseniMesec && godina == unesenaGodina ){
-                                    ukupnoVoznji++;
-                                    ukupnoKilometara+= x.getBrojKMpredjenih();
-                                    ukupnoTrajanje+= x.getTrajanjVoznje();
-                                    ukupnaZarada+= x.getCenaVoznje();
-                                }
-                            }
-                        }
 
                         if (ukupnoVoznji > 0){
                             prosekKilometara = ukupnoKilometara / ukupnoVoznji;
@@ -113,8 +121,8 @@ public class DnevnaStatistika extends JFrame {
 
                         ProzorZaPrikazStatistika prozorZaPrikazStatistika = new ProzorZaPrikazStatistika(ukupnoVoznji, ukupnoKilometara, ukupnoTrajanje, prosekKilometara,prosekTrajanja,prosecnoBezVoznje, ukupnaZarada, prosecnaZarada);
                         prozorZaPrikazStatistika.setVisible(true);
-                        DnevnaStatistika.this.setVisible(false);
-                        DnevnaStatistika.this.dispose();
+                        NedeljnaStatistika.this.setVisible(false);
+                        NedeljnaStatistika.this.dispose();
                     }
                 }
             }
@@ -123,8 +131,8 @@ public class DnevnaStatistika extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,"Uspesno ste odustali!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
-                DnevnaStatistika.this.setVisible(false);
-                DnevnaStatistika.this.dispose();
+                NedeljnaStatistika.this.setVisible(false);
+                NedeljnaStatistika.this.dispose();
             }
         });
     }
