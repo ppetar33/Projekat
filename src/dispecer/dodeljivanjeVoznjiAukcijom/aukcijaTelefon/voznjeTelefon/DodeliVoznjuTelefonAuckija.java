@@ -1,11 +1,11 @@
-package musterija.probaZaAlgoritme.aukcijaTelefon;
+package dispecer.dodeljivanjeVoznjiAukcijom.aukcijaTelefon.voznjeTelefon;
 
 import automobili.Voznja;
 import enumi.StatusNaruceneVoznje;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
-import musterija.probaZaAlgoritme.Aukcija;
+import aukcija.Aukcija;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DodeliVoznjuTelefonomAukcijom extends JFrame {
+public class DodeliVoznjuTelefonAuckija extends JFrame {
     private DefaultTableModel tableModel;
     private JToolBar mainToolBar = new JToolBar();
     public JTable voznjeTabela;
@@ -27,7 +27,7 @@ public class DodeliVoznjuTelefonomAukcijom extends JFrame {
     public Liste ucitavanje;
     public NarucivanjeVoznjePrekoTelefona voznja;
 
-    public DodeliVoznjuTelefonomAukcijom(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja) {
+    public DodeliVoznjuTelefonAuckija(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja) {
         this.ucitavanje = ucitavanje;
         this.voznja = voznja;
         setTitle("Dodeljivanje voznji");
@@ -222,19 +222,19 @@ public class DodeliVoznjuTelefonomAukcijom extends JFrame {
                     }
 
                     if(oceneVozaca.size() != 0){
-                        ProzorZaDodeljivanjeVoznjiTelefonomAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonomAukcijom(ucitavanje,voznja,oceneVozaca);
+                        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,oceneVozaca);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(najnovijiAutomobil.size() != 0){
-                        ProzorZaDodeljivanjeVoznjiTelefonomAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonomAukcijom(ucitavanje,voznja,najnovijiAutomobil);
+                        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,najnovijiAutomobil);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(najbrziVozac.size() != 0){
-                        ProzorZaDodeljivanjeVoznjiTelefonomAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonomAukcijom(ucitavanje,voznja,najbrziVozac);
+                        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,najbrziVozac);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(listaPetFriendlyAuta.size() != 0){
-                        ProzorZaDodeljivanjeVoznjiTelefonomAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonomAukcijom(ucitavanje,voznja,listaPetFriendlyAuta);
+                        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,listaPetFriendlyAuta);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(najiskusnijiVozac.size() != 0){
-                        ProzorZaDodeljivanjeVoznjiTelefonomAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonomAukcijom(ucitavanje,voznja,najiskusnijiVozac);
+                        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,najiskusnijiVozac);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(svejednoListaBrojVoznji.size() != 0){
                         new IzborMusterijeSvejednoTelefon(ucitavanje,voznja,svejednoListaOcena,svejednoListaBrojVoznji,svejednoListaVreme,svejednoListaGodisteAuta,vozaciKorisnickaImena);
@@ -246,9 +246,9 @@ public class DodeliVoznjuTelefonomAukcijom extends JFrame {
         btnOsvezi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DodeliVoznjuTelefonomAukcijom.this.setVisible(false);
-                DodeliVoznjuTelefonomAukcijom.this.dispose();
-                DodeliVoznjuTelefonomAukcijom dodeljivanjeVoznje = new DodeliVoznjuTelefonomAukcijom(ucitavanje,voznja);
+                DodeliVoznjuTelefonAuckija.this.setVisible(false);
+                DodeliVoznjuTelefonAuckija.this.dispose();
+                DodeliVoznjuTelefonAuckija dodeljivanjeVoznje = new DodeliVoznjuTelefonAuckija(ucitavanje,voznja);
                 dodeljivanjeVoznje.setVisible(true);
             }
         });

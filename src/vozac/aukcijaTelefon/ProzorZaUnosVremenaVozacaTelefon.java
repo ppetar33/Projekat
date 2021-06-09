@@ -1,9 +1,9 @@
-package musterija.probaZaAlgoritme.aukcijaTelefon;
+package vozac.aukcijaTelefon;
 
 import enumi.StatusNaruceneVoznje;
 import liste.Liste;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
-import musterija.probaZaAlgoritme.Aukcija;
+import aukcija.Aukcija;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import javax.swing.*;
@@ -20,6 +20,7 @@ public class ProzorZaUnosVremenaVozacaTelefon extends JFrame {
     private JButton btnOK = new JButton("Potvrdi");
     private Liste ucitavanje;
     private NarucivanjeVoznjePrekoTelefona trazenaVoznja;
+
     public ProzorZaUnosVremenaVozacaTelefon(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona trazenaVoznja){
         this.ucitavanje = ucitavanje;
         this.trazenaVoznja = trazenaVoznja;

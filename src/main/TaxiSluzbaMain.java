@@ -30,40 +30,6 @@ public class TaxiSluzbaMain {
     }
 }
 
-/*
-
-    ODRADITI:
-        1. Obrisati visak klasa i rasporediti klase koje su za aukciju gde treba
-        2. Popraviti kod ako je moguce za:
-                pretrage
-                izvestaje
-                aukciju
-        3. Prekontrolisati ceo projekat
-        4. Ubaciti kod dispecera prikaz istorije aukcija kod prikaza voznji, kad klikne na neku voznju
-        prikazi vozace koji su ucestvovali u aukciji i podatke
-
-
-    GOTOVO:
-        1. Pretraga (7.5 bodova)
-        2. Sortiranje u tabeli (5 bodova)
-        3. Doubly linked list
-        4. Hash map
-        5. Kreiranje, izmena i pregled svih potrebnih entiteta (20 bodova)
-        6. Izvestaj (10 bodova)
-        7. Pri pokretanju programa potrebno je sortirati sve podatke po ID-u (korisnike po korsnickom imenu)
-        8. Binarna pretraga (5 bodova)
-        9. Ocenjivanje vozaca
-        10.Aukcija (20 bodova)
-
-    PITATI ASISTENTA:
-        2. da li je problem input za izvestaje? da li treba da prikazem podatke samo za zavrsene voznje
-        ili i za zavrsene i za odbijene?
-        3. algoritam za aukciju
-        4. pretraga
-
-
-*/
-
 
 
 

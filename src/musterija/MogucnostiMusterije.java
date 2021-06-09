@@ -5,8 +5,8 @@ import musterija.istorijaVoznji.IstorijaVoznjiMusterijaAplikacija;
 import musterija.istorijaVoznji.IstorijaVoznjiMusterijaTelefon;
 import musterija.narucivanjeVoznjePrekoAplikacije.ProzorZaNarucivanjePutemAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjePrekoTelefonaProzor;
-import musterija.probaZaAlgoritme.aukcijaAplikacija.NaruciVoznjuAplikacijomAukcija;
-import musterija.probaZaAlgoritme.aukcijaTelefon.NaruciVoznjuTelefonomAukcija;
+import musterija.narucivanjeVoznjeAplikacijaAukcija.NaruciVoznjuAplikacijomAukcija;
+import musterija.narucivanjeVoznjeTelefonAukcija.NaruciVoznjuTelefonomAukcija;
 import osobe.Dispecar;
 import osobe.Musterija;
 import liste.Liste;
@@ -22,10 +22,10 @@ public class MogucnostiMusterije extends JFrame{
     private JMenu funkcionalnostMusterije = new JMenu("Voznje");
     private JMenuItem istorijaVoznjiAplikacija = new JMenuItem("Istorija voznje kreiranih putem aplikacije");
     private JMenuItem istorijaVoznjiTelefon = new JMenuItem("Istorija voznje kreiranih putem telefona");
-    private JMenuItem narucivanjeVoznjePrekoAplikacije = new JMenuItem("Narucivanje voznje preko aplikacije");
-    private JMenuItem narucivanjeVoznjePrekoTelefona = new JMenuItem("Narucivanje voznje preko telefona");
-    private JMenuItem narucivanjeVoznjePrekoAplikacijeProba = new JMenuItem("Naruci voznju preko aplikacije proba");
-    private JMenuItem narucivanjeVoznjePrekoTelefonaProba = new JMenuItem("Naruci voznju preko telefona proba");
+//    private JMenuItem narucivanjeVoznjePrekoAplikacije = new JMenuItem("Narucivanje voznje preko aplikacije");
+//    private JMenuItem narucivanjeVoznjePrekoTelefona = new JMenuItem("Narucivanje voznje preko telefona");
+    private JMenuItem narucivanjeVoznjePrekoAplikacijeProba = new JMenuItem("Naruci voznju preko aplikacije");
+    private JMenuItem narucivanjeVoznjePrekoTelefonaProba = new JMenuItem("Naruci voznju preko telefona");
 
     private JMenu odjava = new JMenu("Odjava");
     private JMenuItem potvrdaZaOdjavu = new JMenuItem("Potvrdi");
@@ -51,8 +51,8 @@ public class MogucnostiMusterije extends JFrame{
         musterijaMenu.add(funkcionalnostMusterije);
         funkcionalnostMusterije.add(istorijaVoznjiAplikacija);
         funkcionalnostMusterije.add(istorijaVoznjiTelefon);
-        funkcionalnostMusterije.add(narucivanjeVoznjePrekoAplikacije);
-        funkcionalnostMusterije.add(narucivanjeVoznjePrekoTelefona);
+//        funkcionalnostMusterije.add(narucivanjeVoznjePrekoAplikacije);
+//        funkcionalnostMusterije.add(narucivanjeVoznjePrekoTelefona);
         funkcionalnostMusterije.add(narucivanjeVoznjePrekoAplikacijeProba);
         funkcionalnostMusterije.add(narucivanjeVoznjePrekoTelefonaProba);
         musterijaMenu.add(odjava);
@@ -75,20 +75,20 @@ public class MogucnostiMusterije extends JFrame{
                 istorijaVoznjiMusterija.setVisible(true);
             }
         });
-        narucivanjeVoznjePrekoAplikacije.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ProzorZaNarucivanjePutemAplikacije prozorZaNarucivanjePutemAplikacije = new ProzorZaNarucivanjePutemAplikacije(ucitavanje, prijavljenaMusterija);
-                prozorZaNarucivanjePutemAplikacije.setVisible(true);
-            }
-        });
-        narucivanjeVoznjePrekoTelefona.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                NarucivanjePrekoTelefonaProzor narucivanjePrekoTelefonaProzor = new NarucivanjePrekoTelefonaProzor(ucitavanje,prijavljenaMusterija);
-                narucivanjePrekoTelefonaProzor.setVisible(true);
-            }
-        });
+//        narucivanjeVoznjePrekoAplikacije.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                ProzorZaNarucivanjePutemAplikacije prozorZaNarucivanjePutemAplikacije = new ProzorZaNarucivanjePutemAplikacije(ucitavanje, prijavljenaMusterija);
+//                prozorZaNarucivanjePutemAplikacije.setVisible(true);
+//            }
+//        });
+//        narucivanjeVoznjePrekoTelefona.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                NarucivanjePrekoTelefonaProzor narucivanjePrekoTelefonaProzor = new NarucivanjePrekoTelefonaProzor(ucitavanje,prijavljenaMusterija);
+//                narucivanjePrekoTelefonaProzor.setVisible(true);
+//            }
+//        });
         potvrdaZaOdjavu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,9 +104,6 @@ public class MogucnostiMusterije extends JFrame{
                 JOptionPane.showMessageDialog(null, "Uspesno ste odustali od odjave!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
             }
         });
-
-
-        //PROBA ZA ALGORITME
         narucivanjeVoznjePrekoTelefonaProba.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -119,7 +116,6 @@ public class MogucnostiMusterije extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 NaruciVoznjuAplikacijomAukcija proba = new NaruciVoznjuAplikacijomAukcija(ucitavanje,prijavljenaMusterija);
                 proba.setVisible(true);
-
             }
         });
     }

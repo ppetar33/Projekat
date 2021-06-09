@@ -1,15 +1,11 @@
-package musterija.probaZaAlgoritme.aukcijaAplikacija;
+package dispecer.dodeljivanjeVoznjiAukcijom.aukcijaTelefon.voznjeAplikacija;
 
 import automobili.Voznja;
 import enumi.StatusNaruceneVoznje;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
-import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
-import musterija.probaZaAlgoritme.Aukcija;
-import musterija.probaZaAlgoritme.aukcijaTelefon.DodeliVoznjuTelefonomAukcijom;
-import musterija.probaZaAlgoritme.aukcijaTelefon.IzborMusterijeSvejednoTelefon;
-import musterija.probaZaAlgoritme.aukcijaTelefon.ProzorZaDodeljivanjeVoznjiTelefonomAukcijom;
+import aukcija.Aukcija;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
