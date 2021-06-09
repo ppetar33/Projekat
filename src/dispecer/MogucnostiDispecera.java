@@ -18,6 +18,7 @@ import dispecer.podaciVoznjePrekoAplikacije.PrikazVoznjiPutemAplikacije;
 import dispecer.podaciVoznjePrekoTelefona.PrikazVoznjiPutemTelefona;
 import dispecer.pretragaAutomobila.*;
 import dispecer.pretragaVozaca.*;
+import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
@@ -461,7 +462,5 @@ public class MogucnostiDispecera extends JFrame {
 				JOptionPane.showMessageDialog(null, "Uspesno ste odustali od odjave!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-
-
 	}
 }

@@ -115,8 +115,10 @@ public class DnevniIzvestajVozaca extends JFrame {
                                 prosecnoBezVoznje = (240 - ukupnoTrajanje) / 60;
                             }
 
-                            TabelaZaPrikazIzvestaja tabelaZaPrikazIzvestaja = new TabelaZaPrikazIzvestaja(rb, trenutniVozac, ukupnoVoznji, ukupnoKilometara, prosekKilometara, ukupnoTrajanje, prosekTrajanja, ukupnaZarada, prosecnaZarada, prosecnoBezVoznje);
-                            tabelaZaPrikazIzvestaja.setVisible(true);
+                            if(ukupnoVoznji != 0) {
+                                TabelaZaPrikazIzvestaja tabelaZaPrikazIzvestaja = new TabelaZaPrikazIzvestaja(ucitavanje, rb, trenutniVozac, ukupnoVoznji, ukupnoKilometara, prosekKilometara, ukupnoTrajanje, prosekTrajanja, ukupnaZarada, prosecnaZarada, prosecnoBezVoznje);
+                                tabelaZaPrikazIzvestaja.setVisible(true);
+                            }
                             rb++;
                         }
                     }

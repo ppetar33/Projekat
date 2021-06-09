@@ -951,7 +951,7 @@ public class Liste {
 	//IZVESTAJI
 
 	public DoublyLinkedList<Vozac> dohvatiVozace(){
-		return vozaci;
+		return sortiraniVozaci;
 	}
 
 	//STATISTIKA VOZNJI ZA VOZACA NA DNEVNOM NIVOU
