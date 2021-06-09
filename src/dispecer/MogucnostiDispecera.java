@@ -410,6 +410,9 @@ public class MogucnostiDispecera extends JFrame {
 				dnevniIzvestajVozaca.setVisible(true);
 			}
 		});
+
+
+
 		dodeliVoznju.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

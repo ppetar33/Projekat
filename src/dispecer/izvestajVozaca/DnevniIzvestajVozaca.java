@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 public class DnevniIzvestajVozaca extends JFrame {
 
@@ -78,19 +79,31 @@ public class DnevniIzvestajVozaca extends JFrame {
 
                             for (NarucivanjeVoznjePrekoAplikacije x : voznjaAplikacije) {
                                 if (x.getVozac().getKorisnickoIme().equals(trenutniVozac)) {
-                                    ukupnoVoznji++;
-                                    ukupnoKilometara += x.getBrojKMpredjenih();
-                                    ukupnoTrajanje += x.getTrajanjVoznje();
-                                    ukupnaZarada += x.getCenaVoznje();
+                                    LocalDateTime datum = x.getDatumIvremePorudzbine();
+                                    int dan = datum.getDayOfMonth();
+                                    int mesec = datum.getMonthValue();
+                                    int godina = datum.getYear();
+                                    if (dan == uneseniDan && mesec == uneseniMesec && godina == unesenaGodina ){
+                                        ukupnoVoznji++;
+                                        ukupnoKilometara+= x.getBrojKMpredjenih();
+                                        ukupnoTrajanje+= x.getTrajanjVoznje();
+                                        ukupnaZarada+= x.getCenaVoznje();
+                                    }
                                 }
                             }
 
                             for (NarucivanjeVoznjePrekoTelefona x : voznjaTelefon) {
                                 if (x.getVozac().getKorisnickoIme().equals(trenutniVozac)) {
-                                    ukupnoVoznji++;
-                                    ukupnoKilometara += x.getBrojKMpredjenih();
-                                    ukupnoTrajanje += x.getTrajanjVoznje();
-                                    ukupnaZarada += x.getCenaVoznje();
+                                    LocalDateTime datum = x.getDatumIvremePorudzbine();
+                                    int dan = datum.getDayOfMonth();
+                                    int mesec = datum.getMonthValue();
+                                    int godina = datum.getYear();
+                                    if (dan == uneseniDan && mesec == uneseniMesec && godina == unesenaGodina ){
+                                        ukupnoVoznji++;
+                                        ukupnoKilometara+= x.getBrojKMpredjenih();
+                                        ukupnoTrajanje+= x.getTrajanjVoznje();
+                                        ukupnaZarada+= x.getCenaVoznje();
+                                    }
                                 }
                             }
 

@@ -21,10 +21,9 @@ public class TabelaZaPrikazIzvestaja extends JFrame {
     public Liste ucitavanje;
 
     String[] zaglavlje = new String[]{"Vozac", "Ukupan broj voznji", "Ukupan broj predjenih kilometara", "Ukupno trajanje voznji", "Prosecan broj predjenih km po voznji", "Prosecno trajanje voznje", "Prosecno bez voznje", "Ukupna zarada", "Prosecna zarada"};
-    Object[][] sadrzaj = new Object[ucitavanje.zavrsenePutemAplikacije().size()][zaglavlje.length];
+    Object[][] sadrzaj = new Object[ucitavanje.dohvatiVozace().size()][zaglavlje.length];
 
     public TabelaZaPrikazIzvestaja(int rb, String trenutniVozac, int ukupnoVoznji, double ukupnoKilometara, double ukupnoTrajanje, double prosekKilometara, double prosekTrajanja, double prosecnoBezVoznje, double ukupnaZarada, double prosecnaZarada){
-        this.ucitavanje = ucitavanje;
         setTitle("Izvestaji vozaca");
         setSize(1050,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -64,6 +63,6 @@ public class TabelaZaPrikazIzvestaja extends JFrame {
         sadrzaj[rb][6] = prosecnoBezVoznje;
         sadrzaj[rb][7] = ukupnaZarada;
         sadrzaj[rb][8] = prosecnaZarada;
-}
+    }
 }
 
