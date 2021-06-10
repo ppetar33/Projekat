@@ -5,7 +5,6 @@ import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
 import net.miginfocom.swing.MigLayout;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -102,14 +101,14 @@ public class DnevnaStatistika extends JFrame {
                             }
                         }
 
+
                         if (ukupnoVoznji > 0){
                             prosekKilometara = ukupnoKilometara / ukupnoVoznji;
                             prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                             prosecnaZarada = ukupnaZarada / ukupnoVoznji;
                             //todo
-                            prosecnoBezVoznje = (240 - ukupnoTrajanje) / 60;
+                            prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
                         }
-
 
                         ProzorZaPrikazStatistika prozorZaPrikazStatistika = new ProzorZaPrikazStatistika(ukupnoVoznji, ukupnoKilometara, ukupnoTrajanje, prosekKilometara,prosekTrajanja,prosecnoBezVoznje, ukupnaZarada, prosecnaZarada);
                         prozorZaPrikazStatistika.setVisible(true);

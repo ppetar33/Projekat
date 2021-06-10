@@ -4,6 +4,8 @@ import liste.Liste;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class ProzorZaPrikazStatistika extends JFrame {
 
@@ -68,12 +70,14 @@ public class ProzorZaPrikazStatistika extends JFrame {
     }
 
     private void popunjavanjePolja(int ukupnoVoznji, double ukupnoKilometara, double ukupnoTrajanje, double prosekKilometara, double prosekTrajanja, double prosecnoBezVoznje, double ukupnaZarada, double prosecnaZarada){
+        DecimalFormat df = new DecimalFormat("#.####");
+        df.setRoundingMode(RoundingMode.CEILING);
         tukupanBrojVoznji.setText(String.valueOf(ukupnoVoznji));
         tukupanBrojPredjenihKilometara.setText(String.valueOf(ukupnoKilometara + " km"));
         tukupnoTrajanjeVoznji.setText(String.valueOf(ukupnoTrajanje + " min"));
         tprosecanBrojKilometara.setText(String.valueOf(prosekKilometara));
         tprosecnoTrajanjeVoznji.setText(String.valueOf(prosekTrajanja + " min"));
-        tprosecnoBezVoznje.setText(String.valueOf(prosecnoBezVoznje + " h"));
+        tprosecnoBezVoznje.setText(String.valueOf(df.format(prosecnoBezVoznje) + " h"));
         tukupnaZarada.setText(String.valueOf(ukupnaZarada + " din"));
         tprosecnaZarada.setText(String.valueOf(prosecnaZarada + " din"));
     }

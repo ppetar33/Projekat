@@ -115,7 +115,7 @@ public class NedeljnaStatistika extends JFrame {
                             prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                             prosecnaZarada = ukupnaZarada / ukupnoVoznji;
                             //todo
-                            prosecnoBezVoznje = (240 - ukupnoTrajanje) / 60;
+                            prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
                         }
 
 
