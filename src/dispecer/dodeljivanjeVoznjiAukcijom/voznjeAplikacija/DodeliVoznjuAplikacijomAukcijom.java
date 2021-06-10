@@ -1,10 +1,10 @@
-package dispecer.dodeljivanjeVoznjiAukcijom.aukcijaTelefon.voznjeTelefon;
+package dispecer.dodeljivanjeVoznjiAukcijom.voznjeAplikacija;
 
 import automobili.Voznja;
 import enumi.StatusNaruceneVoznje;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
-import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
+import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import aukcija.Aukcija;
 
 import javax.swing.*;
@@ -18,16 +18,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DodeliVoznjuTelefonAuckija extends JFrame {
+public class DodeliVoznjuAplikacijomAukcijom extends JFrame {
+
     private DefaultTableModel tableModel;
     private JToolBar mainToolBar = new JToolBar();
     public JTable voznjeTabela;
     private JButton btnEdit = new JButton("Dodeli");
     private JButton btnOsvezi = new JButton("Osvezi tabelu");
     public Liste ucitavanje;
-    public NarucivanjeVoznjePrekoTelefona voznja;
+    public NarucivanjeVoznjePrekoAplikacije voznja;
 
-    public DodeliVoznjuTelefonAuckija(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja) {
+    public DodeliVoznjuAplikacijomAukcijom(Liste ucitavanje, NarucivanjeVoznjePrekoAplikacije voznja){
         this.ucitavanje = ucitavanje;
         this.voznja = voznja;
         setTitle("Dodeljivanje voznji");
@@ -48,12 +49,11 @@ public class DodeliVoznjuTelefonAuckija extends JFrame {
         add(btnEdit, BorderLayout.NORTH);
         add(btnOsvezi, BorderLayout.SOUTH);
     }
-
     private void initTable(){
         String[] zaglavnje = new String[] {"ID","Datum i vreme porudzbine","Adresa polaska","Adresa destinacije","Musterija","Vozac","Broj predjenih km","Trajanje voznje","Status voznje","Izbor musterije"};
-        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().size()][zaglavnje.length];
-        for(int i = 0; i < ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().size(); i++){
-            Voznja voznje = ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().get(i);
+        Object[][] sadrzaj = new Object[ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemAplikacije().size()][zaglavnje.length];
+        for(int i = 0; i < ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemAplikacije().size(); i++){
+            Voznja voznje = ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemAplikacije().get(i);
             sadrzaj[i][0] = voznje.getId();
             sadrzaj[i][1] = voznje.getDatumIvremePorudzbine().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             sadrzaj[i][2] = voznje.getAdresaPolaska();
@@ -80,7 +80,6 @@ public class DodeliVoznjuTelefonAuckija extends JFrame {
         JScrollPane jsp = new JScrollPane(voznjeTabela);
         add(jsp, BorderLayout.CENTER);
     }
-
     private void initListeners(){
         btnEdit.addActionListener(new ActionListener() {
             @Override
@@ -88,22 +87,23 @@ public class DodeliVoznjuTelefonAuckija extends JFrame {
                 int red = voznjeTabela.getSelectedRow();
                 if (red == -1){
                     JOptionPane.showMessageDialog(null, "Morate odabrati bar jedan red u tabeli!", "Greska", JOptionPane.WARNING_MESSAGE);
-                }else{
+                }else {
                     DefaultTableModel tableModel = (DefaultTableModel) voznjeTabela.getModel();
                     String idString = tableModel.getValueAt(red, 0).toString();
                     int id = Integer.parseInt(idString);
 
-                    DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> sveVoznjePrekoTelefona = ucitavanje.neobrisaneVoznjeKreiranePutemTelefona();
-                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeTelefonBinarySearch(sveVoznjePrekoTelefona,id);
-                    NarucivanjeVoznjePrekoTelefona voznja = sveVoznjePrekoTelefona.get(indexGdeSeNalazi);
+                    DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> sveVoznjePrekoAplikacije = ucitavanje.neobrisaneVoznjeKreiranePutemAplikacije();
+                    int indexGdeSeNalazi = ucitavanje.pronadjiVoznjeAplikacijaBinarySearch(sveVoznjePrekoAplikacije,id);
+                    NarucivanjeVoznjePrekoAplikacije voznja = sveVoznjePrekoAplikacije.get(indexGdeSeNalazi);
 
                     DoublyLinkedList<Aukcija> aukcija = ucitavanje.getIstorijaAukcija();
                     DoublyLinkedList<String> izborMusterije = new DoublyLinkedList<>();
                     for(Aukcija aukcija1 : aukcija){
-                        if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.TELEFON)){
+                        if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)){
                             izborMusterije.add(aukcija1.getIzborMusterije());
                         }
                     }
+
                     Set<String> izborMusterijeBezDupliranihElemenata = findDuplicatesStrings(izborMusterije);
                     DoublyLinkedList<Double> oceneVozacaLista = new DoublyLinkedList<>();
                     DoublyLinkedList<Integer> brzinaVozacaLista = new DoublyLinkedList<>();
@@ -118,7 +118,7 @@ public class DodeliVoznjuTelefonAuckija extends JFrame {
                     DoublyLinkedList<String> vozaciKorisnickaImena = new DoublyLinkedList<>();
                     for(String i : izborMusterijeBezDupliranihElemenata){
                         for(Aukcija aukcija1 : aukcija){
-                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.TELEFON)){
+                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)){
                                 if(i.equals("Najbolje ocenjen vozac")){
                                     oceneVozacaLista.add(aukcija1.getOcenaVozaca());
                                 }else if(i.equals("Najbrzi vozac")){
@@ -143,7 +143,6 @@ public class DodeliVoznjuTelefonAuckija extends JFrame {
                             }
                         }
                     }
-
                     DoublyLinkedList<String> najbrziVozac = new DoublyLinkedList<>();
                     double n = brzinaVozacaLista.size();
                     if(brzinaVozacaLista.size() != 0) {
@@ -154,7 +153,7 @@ public class DodeliVoznjuTelefonAuckija extends JFrame {
                             }
                         }
                         for (Aukcija aukcija1 : aukcija) {
-                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.TELEFON)) {
+                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)) {
                                 if (min == aukcija1.getVremeKojeJeUneoVozac()) {
                                     String najbrziVozacKorisnickoIme = aukcija1.getVozacKojiUcestvujeUaukciji();
                                     najbrziVozac.add(najbrziVozacKorisnickoIme);
@@ -172,8 +171,8 @@ public class DodeliVoznjuTelefonAuckija extends JFrame {
                             }
                         }
                         for (Aukcija aukcija1 : aukcija) {
-                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.TELEFON)) {
-                                if (aukcija1.getBrojVoznjiKojeJeObavioVozac() == ocenaVozaca) {
+                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)) {
+                                if (aukcija1.getOcenaVozaca() == ocenaVozaca) {
                                     String najboljeOcenjenVozacKorisnickoIme = aukcija1.getVozacKojiUcestvujeUaukciji();
                                     oceneVozaca.add(najboljeOcenjenVozacKorisnickoIme);
                                 }
@@ -190,8 +189,8 @@ public class DodeliVoznjuTelefonAuckija extends JFrame {
                             }
                         }
                         for (Aukcija aukcija1 : aukcija) {
-                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.TELEFON)) {
-                                if (aukcija1.getOcenaVozaca() == iskustvoVozaca) {
+                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)) {
+                                if (aukcija1.getBrojVoznjiKojeJeObavioVozac() == iskustvoVozaca) {
                                     String najiskusnijiVozacKorisnickoIme = aukcija1.getVozacKojiUcestvujeUaukciji();
                                     najiskusnijiVozac.add(najiskusnijiVozacKorisnickoIme);
                                 }
@@ -208,7 +207,7 @@ public class DodeliVoznjuTelefonAuckija extends JFrame {
                             }
                         }
                         for (Aukcija aukcija1 : aukcija) {
-                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.TELEFON)) {
+                            if(aukcija1.getIDvoznje() == voznja.getId() && aukcija1.getStatusNaruceneVoznje().equals(StatusNaruceneVoznje.APLIKACIJA)) {
                                 if (aukcija1.getGodisteAutomobila() == najnovijiAuto) {
                                     String najboljeOcenjenVozacKorisnickoIme = aukcija1.getVozacKojiUcestvujeUaukciji();
                                     najnovijiAutomobil.add(najboljeOcenjenVozacKorisnickoIme);
@@ -222,38 +221,36 @@ public class DodeliVoznjuTelefonAuckija extends JFrame {
                     }
 
                     if(oceneVozaca.size() != 0){
-                        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,oceneVozaca);
+                        ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom(ucitavanje,voznja,oceneVozaca);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(najnovijiAutomobil.size() != 0){
-                        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,najnovijiAutomobil);
+                        ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom(ucitavanje,voznja,najnovijiAutomobil);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(najbrziVozac.size() != 0){
-                        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,najbrziVozac);
+                        ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom(ucitavanje,voznja,najbrziVozac);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
-                    }else if(listaPetFriendlyAuta.size() != 0){
-                        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,listaPetFriendlyAuta);
+                    }else if(listaPetFriendlyAuta.size() != 0) {
+                        ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom(ucitavanje, voznja, listaPetFriendlyAuta);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(najiskusnijiVozac.size() != 0){
-                        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,najiskusnijiVozac);
+                        ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom prozorZaDodeljivanjeVoznjiAukcijom = new ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom(ucitavanje,voznja,najiskusnijiVozac);
                         prozorZaDodeljivanjeVoznjiAukcijom.setVisible(true);
                     }else if(svejednoListaBrojVoznji.size() != 0){
-                        new IzborMusterijeSvejednoTelefon(ucitavanje,voznja,svejednoListaOcena,svejednoListaBrojVoznji,svejednoListaVreme,svejednoListaGodisteAuta,vozaciKorisnickaImena);
+                        new IzborMusterijeSvejednoAplikacija(ucitavanje,voznja,svejednoListaOcena,svejednoListaBrojVoznji,svejednoListaVreme,svejednoListaGodisteAuta,vozaciKorisnickaImena);
                     }
-
                 }
             }
         });
         btnOsvezi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DodeliVoznjuTelefonAuckija.this.setVisible(false);
-                DodeliVoznjuTelefonAuckija.this.dispose();
-                DodeliVoznjuTelefonAuckija dodeljivanjeVoznje = new DodeliVoznjuTelefonAuckija(ucitavanje,voznja);
+                DodeliVoznjuAplikacijomAukcijom.this.setVisible(false);
+                DodeliVoznjuAplikacijomAukcijom.this.dispose();
+                DodeliVoznjuAplikacijomAukcijom dodeljivanjeVoznje = new DodeliVoznjuAplikacijomAukcijom(ucitavanje,voznja);
                 dodeljivanjeVoznje.setVisible(true);
             }
         });
     }
-
     private Set<String> findDuplicatesStrings(DoublyLinkedList<String> list){
         Set<String> items = new HashSet<String>();
         Set<String> duplicates = new HashSet<String>();

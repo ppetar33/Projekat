@@ -23,7 +23,7 @@ public class GodisnjaStatistika extends JFrame {
 
     public GodisnjaStatistika(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
-        setTitle("Dnevna statistika");
+        setTitle("Godisnja statistika");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initGUI();
         initActions();

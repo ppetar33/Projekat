@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import automobili.Automobil;
+import dispecer.izvestajVozaca.Izvestaji;
 import enumi.*;
 import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
@@ -98,6 +99,7 @@ public class Liste {
 	public DoublyLinkedList<Vozac> getSortiraniVozaci() {
 		return sortiraniVozaci;
 	}
+
 
 	/*
 			UCITAVANJE
@@ -256,7 +258,6 @@ public class Liste {
 			System.out.println("Greska prilikom citanja fajla");
 		}
 	}
-	// DEO IZ ALGORITAMA
 	public void ucitajIstorijuAukcija(String imeFajla){
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(new File("src/fajlovi/" + imeFajla)));
@@ -385,7 +386,6 @@ public class Liste {
 			System.out.println("Greska prilikom snimanja fajla");
 		}
 	}
-	// DEO IZ ALGORITAMA
 	public void snimiIstorijuAukcija(String imeFajla){
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/fajlovi/" + imeFajla)));
@@ -501,8 +501,6 @@ public class Liste {
 			}
 		}
 	}
-
-
 
 	/*
 			PRETRAGA
@@ -747,26 +745,6 @@ public class Liste {
 		}
 		return false;
 	}
-	public int uporediDatumIvoznjeAplikacijom(String datum){
-		int counter = 0;
-		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusNaruceneVoznje() == StatusNaruceneVoznje.APLIKACIJA && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))){
-				counter++;
-			}
-		}
-		return counter;
-	}
-	public int uporediDatumIvoznjeTelefonom(String datum){
-		int counter = 0;
-		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && voznja.getStatusNaruceneVoznje() == StatusNaruceneVoznje.TELEFON && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))) {
-				counter++;
-			}
-		}
-		return counter;
-	}
 
 	/*
 		IZVESTAJ DISPECERA
@@ -885,70 +863,6 @@ public class Liste {
 		return vozaci;
 	}
 
-	//DNEVNI IZVESTAJ ZA VOZACE
-
-	public double uporediDatumIkilometrazuZaStatistiku(String datum){
-		double rezultat = 0;
-		double counter = 0;
-		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
-				rezultat += voznja.getBrojKMpredjenih();
-				counter++;
-			}
-		}
-		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
-				rezultat += voznja.getBrojKMpredjenih();
-				counter++;
-			}
-		}
-		return rezultat;
-	}
-
-	public double uporediDatumITrajanjeZaStatistiku(String datum){
-		double rezultat = 0;
-		double counter = 0;
-		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
-				rezultat += voznja.getTrajanjVoznje();
-				counter++;
-			}
-		}
-		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
-				rezultat += voznja.getTrajanjVoznje();
-				counter++;
-			}
-		}
-		return rezultat;
-	}
-
-	public double uporediDatumIZaraduZaStatistiku(String datum){
-		double rezultat = 0;
-		double counter = 0;
-		for(NarucivanjeVoznjePrekoAplikacije voznja : sortiranaListaVoznjiAplikacija){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
-				rezultat += voznja.getCenaVoznje();
-				counter++;
-			}
-		}
-		for(NarucivanjeVoznjePrekoTelefona voznja : sortiranaListaVoznjiTelefon){
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			if(voznja.getDatumIvremePorudzbine().format(formatter).equals(datum) && (voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) || voznja.getStatusVoznje().equals(StatusVoznje.ODBIJENA))){
-				rezultat += voznja.getCenaVoznje();
-				counter++;
-			}
-		}
-		return rezultat;
-	}
-
-	//IZVESTAJI
-
 	public DoublyLinkedList<Vozac> dohvatiVozace(){
 		return sortiraniVozaci;
 	}
@@ -1058,10 +972,6 @@ public class Liste {
 		}
 		return null;
 	}
-
-	/*
-		LISTE NEOBRISANIH ZA PRIKAZ
-	*/
 
 	public DoublyLinkedList<Vozac> neobrisaniVozaci(){
 		DoublyLinkedList<Vozac> neobrisaniVozaci = new DoublyLinkedList<Vozac>();
@@ -1313,7 +1223,7 @@ public class Liste {
 	//PRETRAGA AUTOMOBILA
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoModelu(String unosModela){
 		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
-		for (Automobil automobil : automobili){
+		for (Automobil automobil : sortiranaListaAutomobila){
 			if (automobil.getModel().equalsIgnoreCase(unosModela) && automobil.isObrisan()){
 				sviAutomobili.add(automobil);
 			}
@@ -1323,7 +1233,7 @@ public class Liste {
 
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoBrojuRegistarskeOznake(String unosRegistarskeOznake){
 		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
-		for (Automobil automobil : automobili){
+		for (Automobil automobil : sortiranaListaAutomobila){
 			if (automobil.getRegistarskiBroj().equalsIgnoreCase(unosRegistarskeOznake) && automobil.isObrisan()){
 				sviAutomobili.add(automobil);
 			}
@@ -1333,7 +1243,7 @@ public class Liste {
 
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoBrojuTaksiVozila(int unosBrojaTaksiVozila){
 		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
-		for (Automobil automobil : automobili){
+		for (Automobil automobil : sortiranaListaAutomobila){
 			if (automobil.getBrojVozila() == unosBrojaTaksiVozila && automobil.isObrisan()){
 				sviAutomobili.add(automobil);
 			}
@@ -1343,7 +1253,7 @@ public class Liste {
 
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoGodiniProizvodnje(int unosGodineProizvodnje){
 		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
-		for (Automobil automobil : automobili){
+		for (Automobil automobil : sortiranaListaAutomobila){
 			if (automobil.getGodinaProizvodnje() == unosGodineProizvodnje && automobil.isObrisan()){
 				sviAutomobili.add(automobil);
 			}
@@ -1353,7 +1263,7 @@ public class Liste {
 
 	public DoublyLinkedList<Automobil> nadjiAutomobilPoProizvodjacu(String unosProizvodjaca){
 		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
-		for (Automobil automobil : automobili){
+		for (Automobil automobil : sortiranaListaAutomobila){
 			if (automobil.getProizvodjac().equalsIgnoreCase(unosProizvodjaca) && automobil.isObrisan()){
 				sviAutomobili.add(automobil);
 			}
@@ -1361,15 +1271,13 @@ public class Liste {
 		return sviAutomobili;
 	}
 
-	public DoublyLinkedList<Automobil> rezultatKombinovanePretrageAutomobili(String model, String proizvodnjac, int godinaProizvodnje, int brojTaksiVozila, String brojRegistarskeOznake){
+	public DoublyLinkedList<Automobil> rezultatKombinovanePretrageAutomobili(String model, String proizvodnjac, int godinaProizvodnje, int brojTaksiVozila, String brojRegistarskeOznake) {
 		DoublyLinkedList<Automobil> sviAutomobili = new DoublyLinkedList<Automobil>();
-		for (Automobil automobil : automobili){
-			if (automobil.isObrisan() && automobil.getModel().equalsIgnoreCase(model) && automobil.getProizvodjac().equalsIgnoreCase(proizvodnjac) && automobil.getGodinaProizvodnje() == godinaProizvodnje && automobil.getBrojVozila() == brojTaksiVozila && automobil.getRegistarskiBroj().equalsIgnoreCase(brojRegistarskeOznake)){
+		for (Automobil automobil : sortiranaListaAutomobila) {
+			if (automobil.isObrisan() && automobil.getModel().equalsIgnoreCase(model) && automobil.getProizvodjac().equalsIgnoreCase(proizvodnjac) && automobil.getGodinaProizvodnje() == godinaProizvodnje && automobil.getBrojVozila() == brojTaksiVozila && automobil.getRegistarskiBroj().equalsIgnoreCase(brojRegistarskeOznake)) {
 				sviAutomobili.add(automobil);
 			}
 		}
 		return sviAutomobili;
 	}
-
-
 }

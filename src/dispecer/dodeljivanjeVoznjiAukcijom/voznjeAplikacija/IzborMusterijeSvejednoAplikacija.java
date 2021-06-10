@@ -1,15 +1,14 @@
-package dispecer.dodeljivanjeVoznjiAukcijom.aukcijaTelefon.voznjeTelefon;
+package dispecer.dodeljivanjeVoznjiAukcijom.voznjeAplikacija;
 
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
-import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
+import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 
-public class IzborMusterijeSvejednoTelefon {
-
+public class IzborMusterijeSvejednoAplikacija {
     private Liste ucitavanje;
-    private NarucivanjeVoznjePrekoTelefona voznja;
+    private NarucivanjeVoznjePrekoAplikacije voznja;
 
-    public IzborMusterijeSvejednoTelefon(Liste ucitavanje, NarucivanjeVoznjePrekoTelefona voznja, DoublyLinkedList<Double> svejednoListaOcena, DoublyLinkedList<Integer> svejednoListaBrojVoznji, DoublyLinkedList<Integer> svejednoListaVreme, DoublyLinkedList<Integer> svejednoListaGodisteAuta, DoublyLinkedList<String> vozaciKorisnickaImena) {
+    public IzborMusterijeSvejednoAplikacija(Liste ucitavanje, NarucivanjeVoznjePrekoAplikacije voznja, DoublyLinkedList<Double> svejednoListaOcena, DoublyLinkedList<Integer> svejednoListaBrojVoznji, DoublyLinkedList<Integer> svejednoListaVreme, DoublyLinkedList<Integer> svejednoListaGodisteAuta, DoublyLinkedList<String> vozaciKorisnickaImena) {
         this.ucitavanje = ucitavanje;
         this.voznja = voznja;
         System.out.println("Vozaci koji ucestvuju u aukciji: ");
@@ -161,7 +160,7 @@ public class IzborMusterijeSvejednoTelefon {
         DoublyLinkedList<String> vozac = new DoublyLinkedList<>();
         vozac.add(vozacKojiTrebaDaDobijeVoznju);
 
-        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozor = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,vozac);
+        ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom prozor = new ProzorZaDodeljivanjeVoznjiAplikacijaAukcijom(ucitavanje,voznja,vozac);
         prozor.setVisible(true);
 
     }

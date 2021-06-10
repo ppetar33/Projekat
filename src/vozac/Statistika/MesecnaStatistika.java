@@ -23,7 +23,7 @@ public class MesecnaStatistika extends JFrame {
 
     public MesecnaStatistika(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
-        setTitle("Dnevna statistika");
+        setTitle("Mesecna statistika");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initGUI();
         initActions();

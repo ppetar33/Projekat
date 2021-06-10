@@ -1,4 +1,4 @@
-package dispecer.dodeljivanjeVoznjiAukcijom.aukcijaTelefon.voznjeAplikacija;
+package dispecer.dodeljivanjeVoznjiAukcijom.voznjeAplikacija;
 
 import enumi.StatusNaruceneVoznje;
 import enumi.StatusVozacaIautomobila;

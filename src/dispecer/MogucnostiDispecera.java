@@ -1,9 +1,11 @@
 package dispecer;
 
 import automobili.Automobil;
-import dispecer.dodeljivanjeVoznje.DodeljivanjeVoznje;
 import dispecer.izvestaj.Izvestaj;
 import dispecer.izvestajVozaca.DnevniIzvestajVozaca;
+import dispecer.izvestajVozaca.GodisnjiIzvestajVozaca;
+import dispecer.izvestajVozaca.MesecniIzvestajVozaca;
+import dispecer.izvestajVozaca.NedeljniIzvestajVozaca;
 import dispecer.podaciAutomobila.BrisanjeAutomobila;
 import dispecer.podaciAutomobila.DodavanjeAutomobila;
 import dispecer.podaciAutomobila.IzmenaAutomobila;
@@ -21,8 +23,8 @@ import dispecer.pretragaVozaca.*;
 import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
-import dispecer.dodeljivanjeVoznjiAukcijom.aukcijaTelefon.voznjeAplikacija.DodeliVoznjuAplikacijomAukcijom;
-import dispecer.dodeljivanjeVoznjiAukcijom.aukcijaTelefon.voznjeTelefon.DodeliVoznjuTelefonAuckija;
+import dispecer.dodeljivanjeVoznjiAukcijom.voznjeAplikacija.DodeliVoznjuAplikacijomAukcijom;
+import dispecer.dodeljivanjeVoznjiAukcijom.voznjeTelefon.DodeliVoznjuTelefonAuckija;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -410,9 +412,27 @@ public class MogucnostiDispecera extends JFrame {
 				dnevniIzvestajVozaca.setVisible(true);
 			}
 		});
-
-
-
+		nedeljniVozaci.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				NedeljniIzvestajVozaca nedeljniIzvestajVozaca = new NedeljniIzvestajVozaca(ucitavanje);
+				nedeljniIzvestajVozaca.setVisible(true);
+			}
+		});
+		mesecniVozaci.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MesecniIzvestajVozaca mesecniIzvestajVozaca = new MesecniIzvestajVozaca(ucitavanje);
+				mesecniIzvestajVozaca.setVisible(true);
+			}
+		});
+		godisnjiVozaci.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GodisnjiIzvestajVozaca godisnjiIzvestajVozaca = new GodisnjiIzvestajVozaca(ucitavanje);
+				godisnjiIzvestajVozaca.setVisible(true);
+			}
+		});
 //		dodeliVoznju.addActionListener(new ActionListener() {
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
