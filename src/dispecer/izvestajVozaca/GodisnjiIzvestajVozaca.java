@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GodisnjiIzvestajVozaca extends JFrame {
     private JLabel datum = new JLabel("Unesi datum");
@@ -116,7 +118,6 @@ public class GodisnjiIzvestajVozaca extends JFrame {
                                     prosekKilometara = ukupnoKilometara / ukupnoVoznji;
                                     prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                                     prosecnaZarada = ukupnaZarada / ukupnoVoznji;
-                                    //todo
                                     prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
                                 }
 
