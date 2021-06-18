@@ -8,7 +8,6 @@ import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
@@ -54,7 +53,6 @@ public class DnevniIzvestajVozaca extends JFrame {
                     if (voznje == false) {
                         JOptionPane.showMessageDialog(null, "Nazalost, za uneti datum, nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        int rb = 0;
 
                         String uneseniDatum = datumUnos.getText().trim();
                         String[] nizDatum = uneseniDatum.split("-");
@@ -65,6 +63,8 @@ public class DnevniIzvestajVozaca extends JFrame {
                         DoublyLinkedList<Vozac> vozaci = ucitavanje.dohvatiVozace();
                         DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije = ucitavanje.zavrsenePutemAplikacije();
                         DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznjaTelefon = ucitavanje.zavrsenePutemTelefona();
+                        DoublyLinkedList<Izvestaji> tests = new DoublyLinkedList<>();
+
 
                         for (Vozac v : vozaci) {
                             String trenutniVozac = v.getKorisnickoIme();
@@ -112,29 +112,34 @@ public class DnevniIzvestajVozaca extends JFrame {
                                 prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                                 prosecnaZarada = ukupnaZarada / ukupnoVoznji;
                                 //todo
-                                prosecnoBezVoznje = (240 - ukupnoTrajanje) / 60;
+                                prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
                             }
 
-                            TabelaZaPrikazIzvestaja tabelaZaPrikazIzvestaja = new TabelaZaPrikazIzvestaja(rb, trenutniVozac, ukupnoVoznji, ukupnoKilometara, prosekKilometara, ukupnoTrajanje, prosekTrajanja, ukupnaZarada, prosecnaZarada, prosecnoBezVoznje);
-                            tabelaZaPrikazIzvestaja.setVisible(true);
-                            rb++;
+
+                            Izvestaji proba = new Izvestaji(trenutniVozac,ukupnoVoznji,ukupnoKilometara,prosekKilometara,ukupnoTrajanje,prosekTrajanja,ukupnaZarada,prosecnaZarada,prosecnoBezVoznje);
+                            if(ukupnoVoznji!=0) {
+                                tests.add(proba);
+                            }
+
                         }
+                        TabelaPrikaz tabelaPrikaz = new TabelaPrikaz(tests);
+                        tabelaPrikaz.setVisible(true);
                     }
                 }
             }
         });
     }
 
-            public boolean validacija() {
-                boolean ok = true;
-                String obavestenjeZaGresku = "Napravili ste neke greske pri unosu, molimo vas ispravite! \n";
-                if (datumUnos.getText().equals("")) {
-                    obavestenjeZaGresku += "\nMorate uneti datum! \n";
-                    ok = false;
-                }
-                if (ok == false) {
-                    JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Neispravni podaci!", JOptionPane.WARNING_MESSAGE);
-                }
-                return ok;
-            }
+    private boolean validacija() {
+        boolean ok = true;
+        String obavestenjeZaGresku = "Napravili ste neke greske pri unosu, molimo vas ispravite! \n";
+        if (datumUnos.getText().equals("")) {
+            obavestenjeZaGresku += "\nMorate uneti datum! \n";
+            ok = false;
+        }
+        if (ok == false) {
+            JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Neispravni podaci!", JOptionPane.WARNING_MESSAGE);
+        }
+        return ok;
     }
+}

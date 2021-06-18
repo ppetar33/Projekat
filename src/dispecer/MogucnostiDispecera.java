@@ -1,9 +1,11 @@
 package dispecer;
 
 import automobili.Automobil;
-import dispecer.dodeljivanjeVoznje.DodeljivanjeVoznje;
 import dispecer.izvestaj.Izvestaj;
 import dispecer.izvestajVozaca.DnevniIzvestajVozaca;
+import dispecer.izvestajVozaca.GodisnjiIzvestajVozaca;
+import dispecer.izvestajVozaca.MesecniIzvestajVozaca;
+import dispecer.izvestajVozaca.NedeljniIzvestajVozaca;
 import dispecer.podaciAutomobila.BrisanjeAutomobila;
 import dispecer.podaciAutomobila.DodavanjeAutomobila;
 import dispecer.podaciAutomobila.IzmenaAutomobila;
@@ -21,8 +23,8 @@ import dispecer.pretragaVozaca.*;
 import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
 import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
-import musterija.probaZaAlgoritme.aukcijaAplikacija.DodeliVoznjuAplikacijomAukcijom;
-import musterija.probaZaAlgoritme.aukcijaTelefon.DodeliVoznjuTelefonomAukcijom;
+import dispecer.dodeljivanjeVoznjiAukcijom.voznjeAplikacija.DodeliVoznjuAplikacijomAukcijom;
+import dispecer.dodeljivanjeVoznjiAukcijom.voznjeTelefon.DodeliVoznjuTelefonAuckija;
 import osobe.Dispecar;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -85,7 +87,7 @@ public class MogucnostiDispecera extends JFrame {
 	private JMenuItem godisnjiVozaci = new JMenuItem("Godisnji");
 
 	private JMenu funkcionalnostDodavanjeVoznji = new JMenu("Dodeljivanje voznji");
-	private JMenuItem dodeliVoznju = new JMenuItem("Dodeli voznji");
+//	private JMenuItem dodeliVoznju = new JMenuItem("Dodeli voznji");
 	private JMenuItem dodeliVoznjuTelefonAukcijom = new JMenuItem("Dodeli voznji aukcijom (kreirane telefonom)");
 	private JMenuItem dodeliVoznjuAplikacijaAukcijom = new JMenuItem("Dodeli voznji aukcijom (kreirane aplikacijom)");
 
@@ -165,7 +167,7 @@ public class MogucnostiDispecera extends JFrame {
 		funkcionalnostIzvestajVozaca.add(godisnjiVozaci);
 
 		dispecerMenu.add(funkcionalnostDodavanjeVoznji);
-		funkcionalnostDodavanjeVoznji.add(dodeliVoznju);
+//		funkcionalnostDodavanjeVoznji.add(dodeliVoznju);
 		funkcionalnostDodavanjeVoznji.add(dodeliVoznjuTelefonAukcijom);
 		funkcionalnostDodavanjeVoznji.add(dodeliVoznjuAplikacijaAukcijom);
 
@@ -410,27 +412,45 @@ public class MogucnostiDispecera extends JFrame {
 				dnevniIzvestajVozaca.setVisible(true);
 			}
 		});
-
-
-
-		dodeliVoznju.addActionListener(new ActionListener() {
+		nedeljniVozaci.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().isEmpty()){
-					JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					DodeljivanjeVoznje dodeljivanjeVoznji = new DodeljivanjeVoznje(ucitavanje, voznja);
-					dodeljivanjeVoznji.setVisible(true);
-				}
+				NedeljniIzvestajVozaca nedeljniIzvestajVozaca = new NedeljniIzvestajVozaca(ucitavanje);
+				nedeljniIzvestajVozaca.setVisible(true);
 			}
 		});
+		mesecniVozaci.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MesecniIzvestajVozaca mesecniIzvestajVozaca = new MesecniIzvestajVozaca(ucitavanje);
+				mesecniIzvestajVozaca.setVisible(true);
+			}
+		});
+		godisnjiVozaci.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GodisnjiIzvestajVozaca godisnjiIzvestajVozaca = new GodisnjiIzvestajVozaca(ucitavanje);
+				godisnjiIzvestajVozaca.setVisible(true);
+			}
+		});
+//		dodeliVoznju.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if(ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().isEmpty()){
+//					JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+//				}else {
+//					DodeljivanjeVoznje dodeljivanjeVoznji = new DodeljivanjeVoznje(ucitavanje, voznja);
+//					dodeljivanjeVoznji.setVisible(true);
+//				}
+//			}
+//		});
 		dodeliVoznjuTelefonAukcijom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(ucitavanje.neobrisaneIkreiraneVoznjeNarucenePutemTelefona().isEmpty()){
 					JOptionPane.showMessageDialog(null,"Nazalost, nema kreiranih voznji.","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
 				}else {
-					DodeliVoznjuTelefonomAukcijom dodeliVoznjuAukcijom = new DodeliVoznjuTelefonomAukcijom(ucitavanje, voznja);
+					DodeliVoznjuTelefonAuckija dodeliVoznjuAukcijom = new DodeliVoznjuTelefonAuckija(ucitavanje, voznja);
 					dodeliVoznjuAukcijom.setVisible(true);
 				}
 			}
@@ -461,7 +481,5 @@ public class MogucnostiDispecera extends JFrame {
 				JOptionPane.showMessageDialog(null, "Uspesno ste odustali od odjave!","Uspesno",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-
-
 	}
 }

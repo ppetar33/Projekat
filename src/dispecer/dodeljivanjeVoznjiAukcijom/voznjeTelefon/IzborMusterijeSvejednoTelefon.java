@@ -1,4 +1,4 @@
-package musterija.probaZaAlgoritme.aukcijaTelefon;
+package dispecer.dodeljivanjeVoznjiAukcijom.voznjeTelefon;
 
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
@@ -161,7 +161,7 @@ public class IzborMusterijeSvejednoTelefon {
         DoublyLinkedList<String> vozac = new DoublyLinkedList<>();
         vozac.add(vozacKojiTrebaDaDobijeVoznju);
 
-        ProzorZaDodeljivanjeVoznjiTelefonomAukcijom prozor = new ProzorZaDodeljivanjeVoznjiTelefonomAukcijom(ucitavanje,voznja,vozac);
+        ProzorZaDodeljivanjeVoznjiTelefonAukcija prozor = new ProzorZaDodeljivanjeVoznjiTelefonAukcija(ucitavanje,voznja,vozac);
         prozor.setVisible(true);
 
     }

@@ -1,4 +1,4 @@
-package musterija.probaZaAlgoritme.aukcijaAplikacija;
+package dispecer.dodeljivanjeVoznjiAukcijom.voznjeAplikacija;
 
 import enumi.StatusNaruceneVoznje;
 import enumi.StatusVozacaIautomobila;
@@ -7,9 +7,7 @@ import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import main.TaxiSluzbaMain;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
-import musterija.narucivanjeVoznjePrekoTelefona.NarucivanjeVoznjePrekoTelefona;
-import musterija.probaZaAlgoritme.Aukcija;
-import musterija.probaZaAlgoritme.aukcijaTelefon.ProzorZaDodeljivanjeVoznjiTelefonomAukcijom;
+import aukcija.Aukcija;
 import net.miginfocom.swing.MigLayout;
 import osobe.Musterija;
 import osobe.Vozac;

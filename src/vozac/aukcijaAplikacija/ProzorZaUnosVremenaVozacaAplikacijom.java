@@ -1,10 +1,9 @@
-package musterija.probaZaAlgoritme.aukcijaAplikacija;
+package vozac.aukcijaAplikacija;
 
 import enumi.StatusNaruceneVoznje;
 import liste.Liste;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
-import musterija.probaZaAlgoritme.Aukcija;
-import musterija.probaZaAlgoritme.aukcijaTelefon.ProzorZaUnosVremenaVozacaTelefon;
+import aukcija.Aukcija;
 import net.miginfocom.swing.MigLayout;
 import osobe.Vozac;
 import javax.swing.*;

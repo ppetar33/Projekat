@@ -23,7 +23,7 @@ public class GodisnjaStatistika extends JFrame {
 
     public GodisnjaStatistika(Liste ucitavanje){
         this.ucitavanje = ucitavanje;
-        setTitle("Dnevna statistika");
+        setTitle("Godisnja statistika");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initGUI();
         initActions();
@@ -115,7 +115,7 @@ public class GodisnjaStatistika extends JFrame {
                             prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                             prosecnaZarada = ukupnaZarada / ukupnoVoznji;
                             //todo
-                            prosecnoBezVoznje = (240 - ukupnoTrajanje) / 60;
+                            prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
                         }
 
 

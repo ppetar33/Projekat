@@ -1,9 +1,8 @@
-package musterija.probaZaAlgoritme.aukcijaAplikacija;
+package dispecer.dodeljivanjeVoznjiAukcijom.voznjeAplikacija;
 
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
-import musterija.probaZaAlgoritme.aukcijaTelefon.ProzorZaDodeljivanjeVoznjiTelefonomAukcijom;
 
 public class IzborMusterijeSvejednoAplikacija {
     private Liste ucitavanje;
