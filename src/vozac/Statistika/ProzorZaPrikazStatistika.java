@@ -70,15 +70,15 @@ public class ProzorZaPrikazStatistika extends JFrame {
     }
 
     private void popunjavanjePolja(int ukupnoVoznji, double ukupnoKilometara, double ukupnoTrajanje, double prosekKilometara, double prosekTrajanja, double prosecnoBezVoznje, double ukupnaZarada, double prosecnaZarada){
-        DecimalFormat df = new DecimalFormat("#.####");
+        DecimalFormat df = new DecimalFormat("#.###");
         df.setRoundingMode(RoundingMode.CEILING);
         tukupanBrojVoznji.setText(String.valueOf(ukupnoVoznji));
         tukupanBrojPredjenihKilometara.setText(String.valueOf(ukupnoKilometara + " km"));
         tukupnoTrajanjeVoznji.setText(String.valueOf(ukupnoTrajanje + " min"));
-        tprosecanBrojKilometara.setText(String.valueOf(prosekKilometara));
-        tprosecnoTrajanjeVoznji.setText(String.valueOf(prosekTrajanja + " min"));
+        tprosecanBrojKilometara.setText(String.valueOf(df.format(prosekKilometara) + " km"));
+        tprosecnoTrajanjeVoznji.setText(String.valueOf(df.format(prosekTrajanja) + " min"));
         tprosecnoBezVoznje.setText(String.valueOf(df.format(prosecnoBezVoznje) + " h"));
         tukupnaZarada.setText(String.valueOf(ukupnaZarada + " din"));
-        tprosecnaZarada.setText(String.valueOf(prosecnaZarada + " din"));
+        tprosecnaZarada.setText(String.valueOf(df.format(prosecnaZarada) + " din"));
     }
 }

@@ -6,6 +6,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class TabelaPrikaz extends JFrame {
 
@@ -30,15 +32,17 @@ public class TabelaPrikaz extends JFrame {
 
         for(Izvestaji x : tests) {
             Object[] o = new Object[9];
+            DecimalFormat df = new DecimalFormat("#.###");
+            df.setRoundingMode(RoundingMode.CEILING);
             o[0] = x.getTrenutniVozac();
             o[1] = x.getUkupnoVoznji();
             o[2] = x.getUkupnoKilometara();
             o[3] = x.getUkupnoTrajanje();
-            o[4] = x.getProsekKilometara();
-            o[5] = x.getProsekTrajanja();
-            o[6] = x.getProsecnoBezVoznje();
+            o[4] = df.format(x.getProsekKilometara());
+            o[5] = df.format(x.getProsekTrajanja());
+            o[6] = df.format(x.getProsecnoBezVoznje());
             o[7] = x.getUkupnaZarada();
-            o[8] = x.getProsecnaZarada();
+            o[8] = df.format(x.getProsecnaZarada());
             table_model.addRow(o);
         }
 

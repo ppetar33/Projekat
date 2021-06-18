@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 public class NedeljnaStatistika extends JFrame {
 
@@ -59,6 +61,7 @@ public class NedeljnaStatistika extends JFrame {
                         DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije = ucitavanje.zavrsenePutemAplikacije();
                         DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznjaTelefon = ucitavanje.zavrsenePutemTelefona();
 
+                        int ukupnoDana = 0;
                         int ukupnoVoznji = 0;
                         double ukupnoKilometara = 0;
                         double ukupnoTrajanje = 0;
@@ -78,8 +81,20 @@ public class NedeljnaStatistika extends JFrame {
                             int uneseniMesec = trenutniDatum.getMonthValue();
                             int unesenaGodina = trenutniDatum.getYear();
 
+                            //NAPRAVIM LISTU SA DATUMIMA NAPRAVIM NOVU LISTU I U TU LISTU CU DA UBACIM SVE DATUME KOJI
+                            // NISU DUPLIRANI A DUPLIRANE CU DA IZBACIM SA METODOM KOJA SE NALAZI U IZVESTAJIMA
+
                             for (NarucivanjeVoznjePrekoAplikacije x : voznjaAplikacije){
                                 if (x.getVozac().getKorisnickoIme().equals(ulogovaniVozac)){
+                                    DoublyLinkedList<String> novaListaDatuma = new DoublyLinkedList<>();
+
+
+                                    Set<String> listaBezDuplinarihDatuma = findDuplicatesStrings(novaListaDatuma);
+                                    int count = 0;
+                                    for (String s : listaBezDuplinarihDatuma){
+                                        count++;
+                                    }
+
                                     LocalDateTime datum = x.getDatumIvremePorudzbine();
                                     int dan = datum.getDayOfMonth();
                                     int mesec = datum.getMonthValue();
@@ -149,5 +164,18 @@ public class NedeljnaStatistika extends JFrame {
             JOptionPane.showMessageDialog(null, obavestenjeZaGresku, "Neispravni podaci!", JOptionPane.WARNING_MESSAGE);
         }
         return ok;
+    }
+
+    private Set<String> findDuplicatesStrings(DoublyLinkedList<String> list){
+        Set<String> items = new HashSet<String>();
+        Set<String> duplicates = new HashSet<String>();
+        for (String item : list) {
+            if (items.contains(item)) {
+                duplicates.remove(item);
+            } else {
+                items.add(item);
+            }
+        }
+        return items;
     }
 }

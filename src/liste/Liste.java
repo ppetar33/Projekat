@@ -905,6 +905,23 @@ public class Liste {
 		return zavrseneVoznje;
 	}
 
+	public DoublyLinkedList<String> listaDatuma(int id){
+		DoublyLinkedList<String> vozaci = new DoublyLinkedList<>();
+		for(NarucivanjeVoznjePrekoTelefona voznjePrekoTelefona : sortiranaListaVoznjiTelefon){
+			if(voznjePrekoTelefona.getId() == id && (voznjePrekoTelefona.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))) {
+				int datumId = voznjePrekoTelefona.getId();
+				vozaci.add(String.valueOf(datumId));
+			}
+		}
+		for(NarucivanjeVoznjePrekoAplikacije voznjePrekoAplikacije : sortiranaListaVoznjiAplikacija){
+			if(voznjePrekoAplikacije.getId() == id && (voznjePrekoAplikacije.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))) {
+				int datumId = voznjePrekoAplikacije.getId();
+				vozaci.add(String.valueOf(datumId));
+			}
+		}
+		return vozaci;
+	}
+
 
 	/*
 		GENERISI NOVI ID ZA VOZNJE
