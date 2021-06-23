@@ -114,8 +114,8 @@ public class GodisnjaStatistika extends JFrame {
                             prosekKilometara = ukupnoKilometara / ukupnoVoznji;
                             prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                             prosecnaZarada = ukupnaZarada / ukupnoVoznji;
-                            //todo
-                            prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
+                            //261 radnih dana godisnje
+                            prosecnoBezVoznje = (125280 - ukupnoTrajanje) / 60;
                         }
 
 

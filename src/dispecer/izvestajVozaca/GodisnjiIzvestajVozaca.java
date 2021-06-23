@@ -118,7 +118,8 @@ public class GodisnjiIzvestajVozaca extends JFrame {
                                     prosekKilometara = ukupnoKilometara / ukupnoVoznji;
                                     prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                                     prosecnaZarada = ukupnaZarada / ukupnoVoznji;
-                                    prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
+                                    //261 radnih dana na godisnjem nivou
+                                    prosecnoBezVoznje = (125280 - ukupnoTrajanje) / 60;
                                 }
 
 
@@ -133,6 +134,13 @@ public class GodisnjiIzvestajVozaca extends JFrame {
                         tabelaPrikaz.setVisible(true);
                     }
                 }
+            }
+        });
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GodisnjiIzvestajVozaca.this.setVisible(false);
+                GodisnjiIzvestajVozaca.this.dispose();
             }
         });
     }

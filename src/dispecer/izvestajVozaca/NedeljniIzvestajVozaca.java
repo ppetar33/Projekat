@@ -116,8 +116,8 @@ public class NedeljniIzvestajVozaca extends JFrame {
                                     prosekKilometara = ukupnoKilometara / ukupnoVoznji;
                                     prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                                     prosecnaZarada = ukupnaZarada / ukupnoVoznji;
-                                    //todo
-                                    prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
+                                    //5 radnih dana nedeljno
+                                    prosecnoBezVoznje = (2400 - ukupnoTrajanje) / 60;
                                 }
 
 
@@ -132,6 +132,13 @@ public class NedeljniIzvestajVozaca extends JFrame {
                         tabelaPrikaz.setVisible(true);
                     }
                 }
+            }
+        });
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NedeljniIzvestajVozaca.this.setVisible(false);
+                NedeljniIzvestajVozaca.this.dispose();
             }
         });
     }

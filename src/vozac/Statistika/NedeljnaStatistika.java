@@ -1,5 +1,6 @@
 package vozac.Statistika;
 
+import enumi.StatusVoznje;
 import liste.Liste;
 import liste.doublyLinkedList.DoublyLinkedList;
 import musterija.narucivanjeVoznjePrekoAplikacije.NarucivanjeVoznjePrekoAplikacije;
@@ -57,11 +58,10 @@ public class NedeljnaStatistika extends JFrame {
                         JOptionPane.showMessageDialog(null, "Nazalost, za uneti datum, nema voznji.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         String uneseniDatum = datumUnos.getText().trim();
-
                         DoublyLinkedList<NarucivanjeVoznjePrekoAplikacije> voznjaAplikacije = ucitavanje.zavrsenePutemAplikacije();
                         DoublyLinkedList<NarucivanjeVoznjePrekoTelefona> voznjaTelefon = ucitavanje.zavrsenePutemTelefona();
 
-                        int ukupnoDana = 0;
+
                         int ukupnoVoznji = 0;
                         double ukupnoKilometara = 0;
                         double ukupnoTrajanje = 0;
@@ -81,20 +81,9 @@ public class NedeljnaStatistika extends JFrame {
                             int uneseniMesec = trenutniDatum.getMonthValue();
                             int unesenaGodina = trenutniDatum.getYear();
 
-                            //NAPRAVIM LISTU SA DATUMIMA NAPRAVIM NOVU LISTU I U TU LISTU CU DA UBACIM SVE DATUME KOJI
-                            // NISU DUPLIRANI A DUPLIRANE CU DA IZBACIM SA METODOM KOJA SE NALAZI U IZVESTAJIMA
 
                             for (NarucivanjeVoznjePrekoAplikacije x : voznjaAplikacije){
                                 if (x.getVozac().getKorisnickoIme().equals(ulogovaniVozac)){
-                                    DoublyLinkedList<String> novaListaDatuma = new DoublyLinkedList<>();
-
-
-                                    Set<String> listaBezDuplinarihDatuma = findDuplicatesStrings(novaListaDatuma);
-                                    int count = 0;
-                                    for (String s : listaBezDuplinarihDatuma){
-                                        count++;
-                                    }
-
                                     LocalDateTime datum = x.getDatumIvremePorudzbine();
                                     int dan = datum.getDayOfMonth();
                                     int mesec = datum.getMonthValue();
@@ -129,8 +118,8 @@ public class NedeljnaStatistika extends JFrame {
                             prosekKilometara = ukupnoKilometara / ukupnoVoznji;
                             prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                             prosecnaZarada = ukupnaZarada / ukupnoVoznji;
-                            //todo
-                            prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
+                            //pet radnih dana u 7 dana
+                            prosecnoBezVoznje = (2400 - ukupnoTrajanje) / 60;
                         }
 
 

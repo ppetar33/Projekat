@@ -117,8 +117,8 @@ public class MesecniIzvestajVozaca extends JFrame {
                                     prosekKilometara = ukupnoKilometara / ukupnoVoznji;
                                     prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                                     prosecnaZarada = ukupnaZarada / ukupnoVoznji;
-                                    //todo
-                                    prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
+                                    //22 radna dana mesecno
+                                    prosecnoBezVoznje = (10560 - ukupnoTrajanje) / 60;
                                 }
 
 
@@ -133,6 +133,13 @@ public class MesecniIzvestajVozaca extends JFrame {
                         tabelaPrikaz.setVisible(true);
                     }
                 }
+            }
+        });
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MesecniIzvestajVozaca.this.setVisible(false);
+                MesecniIzvestajVozaca.this.dispose();
             }
         });
     }

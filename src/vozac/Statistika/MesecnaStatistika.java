@@ -114,8 +114,8 @@ public class MesecnaStatistika extends JFrame {
                             prosekKilometara = ukupnoKilometara / ukupnoVoznji;
                             prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                             prosecnaZarada = ukupnaZarada / ukupnoVoznji;
-                            //todo
-                            prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
+                            //22 radna dana u mesec dana
+                            prosecnoBezVoznje = (10560 - ukupnoTrajanje) / 60;
                         }
 
 

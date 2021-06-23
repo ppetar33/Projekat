@@ -108,7 +108,6 @@ public class DnevnaStatistika extends JFrame {
                             prosekKilometara = ukupnoKilometara / ukupnoVoznji;
                             prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                             prosecnaZarada = ukupnaZarada / ukupnoVoznji;
-                            //todo
                             prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
                         }
 

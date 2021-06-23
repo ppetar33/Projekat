@@ -111,7 +111,6 @@ public class DnevniIzvestajVozaca extends JFrame {
                                 prosekKilometara = ukupnoKilometara / ukupnoVoznji;
                                 prosekTrajanja = ukupnoTrajanje / ukupnoVoznji;
                                 prosecnaZarada = ukupnaZarada / ukupnoVoznji;
-                                //todo
                                 prosecnoBezVoznje = (480 - ukupnoTrajanje) / 60;
                             }
 
@@ -126,6 +125,13 @@ public class DnevniIzvestajVozaca extends JFrame {
                         tabelaPrikaz.setVisible(true);
                     }
                 }
+            }
+        });
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DnevniIzvestajVozaca.this.setVisible(false);
+                DnevniIzvestajVozaca.this.dispose();
             }
         });
     }
