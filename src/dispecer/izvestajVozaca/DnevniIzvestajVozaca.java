@@ -123,6 +123,9 @@ public class DnevniIzvestajVozaca extends JFrame {
                         }
                         TabelaPrikaz tabelaPrikaz = new TabelaPrikaz(tests);
                         tabelaPrikaz.setVisible(true);
+                        DnevniIzvestajVozaca.this.setVisible(false);
+                        DnevniIzvestajVozaca.this.dispose();
+
                     }
                 }
             }

@@ -130,6 +130,8 @@ public class NedeljniIzvestajVozaca extends JFrame {
                         }
                         TabelaPrikaz tabelaPrikaz = new TabelaPrikaz(tests);
                         tabelaPrikaz.setVisible(true);
+                        NedeljniIzvestajVozaca.this.setVisible(false);
+                        NedeljniIzvestajVozaca.this.dispose();
                     }
                 }
             }

@@ -132,6 +132,8 @@ public class GodisnjiIzvestajVozaca extends JFrame {
                         }
                         TabelaPrikaz tabelaPrikaz = new TabelaPrikaz(tests);
                         tabelaPrikaz.setVisible(true);
+                        GodisnjiIzvestajVozaca.this.setVisible(false);
+                        GodisnjiIzvestajVozaca.this.dispose();
                     }
                 }
             }

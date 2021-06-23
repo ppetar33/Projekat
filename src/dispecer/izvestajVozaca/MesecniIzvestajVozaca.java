@@ -131,6 +131,8 @@ public class MesecniIzvestajVozaca extends JFrame {
                         }
                         TabelaPrikaz tabelaPrikaz = new TabelaPrikaz(tests);
                         tabelaPrikaz.setVisible(true);
+                        MesecniIzvestajVozaca.this.setVisible(false);
+                        MesecniIzvestajVozaca.this.dispose();
                     }
                 }
             }
